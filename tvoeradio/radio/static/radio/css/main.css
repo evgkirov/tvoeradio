@@ -1,0 +1,395 @@
+ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background: #f7f7f7;
+    color: #000000;
+    font-family: tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+a {
+	color: #2B587A;
+	text-decoration: none;
+}
+
+.input_text {
+    border: 1px solid #C0CAD5;
+    font-family: tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    padding: 3px;
+    width: 200px;
+}
+
+.button {
+    background: #36638E;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 8px;
+}
+
+.button:hover {
+    color:#DAE1E8;
+}
+
+.greenbutton {
+    background: #69A74E;
+    border: 1px solid #99b38c;
+    outline: 1px solid #3B6E22;
+    color: #ffffff;
+    cursor: pointer;
+	padding: 5px 20px;
+	margin-top: 10px;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.greenbutton:hover {
+	background: #75ba57;
+}
+
+.menu_button {
+    cursor: pointer;
+    display: block;
+    height: 11px;
+    margin-top: 10px;
+    padding: 5px 7px 7px 7px;
+    right: 10px;
+    position: absolute;
+    top: 0;
+}
+
+.menu_button:hover span {
+    text-decoration: underline;
+}
+
+.menu_button_active {
+    background-image: url(../img/white50.png);
+}
+
+.menu {
+    background: white;
+    border: 1px solid #6792bb;
+    color: #2B587A;
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 32px;
+    z-index: 300;
+}
+
+.menu li {
+    cursor: pointer;
+    display: block;
+    height: 18px;
+    background: 4px 4px no-repeat;
+    padding: 4px 10px 0px 27px;
+}
+
+.menu li:hover {
+    background-color: #DAE2E8;
+}
+
+.tabs {
+    border-bottom: 1px solid white;
+    list-style: none;
+    height: 28px;
+    margin: 0;
+    padding: 12px 10px 0 10px;
+}
+
+.tabs li {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 15px;
+    margin: 0 5px 0 0;
+    padding: 5px 10px 5px 10px;
+}
+
+.tabs_dark li:hover {
+    background: url(../img/white30.png);
+}
+
+.tabs_dark li.active {
+    background: #f7f7f7;
+    color: black;
+}
+
+#search-suggest {
+    background: white;
+    border: 1px solid #6792bb;
+    display: none;
+    position: absolute;
+    top: 0;
+    z-index: 300;
+}
+
+#search-suggest div {
+    clear: both;
+}
+
+#search-suggest div span {
+    color:  #666666;element
+    display: block;
+    float: left;
+    padding: 4px 10px 0px 10px;
+    text-align: right;
+    width: 80px;
+}
+
+#search-suggest div ul {
+    float: left;
+    list-style: none;
+    min-width: 200px;
+}
+
+#search-suggest div ul li {
+	border: 1px solid #ffffff;
+    cursor: pointer;
+    display: block;
+    min-height: 18px;
+    background: 4px 4px no-repeat;
+    padding: 4px 10px 0px 10px;
+}
+
+#search-suggest div ul li:hover {
+    background-color: #DAE2E8;
+}
+
+#search-suggest div ul li.active {
+    background-color: #6d84b4;
+    /*border: 1px solid #8a9cc1;*/
+    border: 1px solid #3b5998;
+    color: #ffffff;
+    /*outline: 1px solid #3b5998;*/
+}
+
+#search-result {
+	display: none;
+	padding: 20px;
+}
+
+.page {
+    display: none;
+}
+
+#page_tune {
+    display: block;
+    /*margin: 200px auto;
+    width: 500px;*/
+}
+
+#search-widget {
+    height: 40px;
+    margin: 15px auto;
+    width: 400px;
+}
+
+#search-widget__text {
+    font-size: 18px;
+    width: 494px;
+}
+
+#typehere {
+    text-align: center;
+}
+
+.infoblock {
+	display: table;
+	width: 100%;
+}
+
+.infoblock__i {
+	display: table-row;
+
+}
+
+.infoblock__l {
+	display: table-cell;
+	padding-right: 20px;
+	vertical-align: top;
+}
+
+.infoblock__r {
+	display: table-cell;
+	vertical-align: top;
+	width: 200px;
+}
+
+.infoblock_artist__picture {
+	max-width: 200px;
+}
+
+#controls {
+    color: #ffffff;
+    background: #6792bb url(../img/bg/under-construction.png) left top repeat-x;
+    height: 246px;
+}
+
+#station {
+    height: 46px;
+    position: relative;
+}
+
+#station_change {
+    cursor: pointer;
+    margin: 17px 0 0 10px;
+    position: absolute;
+}
+
+#station_change span {
+    margin-left: 5px;
+}
+
+#station_change:hover span {
+    text-decoration: underline;
+}
+
+#station_name {
+    font-size: 14px;
+    margin: 15px 0 0 140px;
+    filter: alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
+    position: absolute;
+}
+
+#trackinfo {
+    height: 117px;
+    position: relative;
+}
+
+#trackinfo div {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+#album_cover {
+    max-height: 100px;
+    max-width: 100px;
+    margin: 9px 0 0 10px;
+}
+
+#track_artist {
+    font-size: 24px;
+    margin: 10px 0 0 140px;
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+}
+
+#track_name {
+    font-size: 32px;
+    margin: 40px 0 0 140px;
+}
+
+#album_name {
+    font-size: 14px;
+    margin: 85px 0 0 140px;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+}
+
+#album_artist {
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+}
+
+#buttons {
+    height: 38px;
+    margin: 8px 0 0 136px;
+}
+
+.control_button {
+    background: url(../img/control_button.png) no-repeat;
+    color: #999;
+    cursor: pointer;
+    font-size: 9px;
+    float: left;
+    height: 9px;
+    margin-right: 10px;
+    padding-top: 23px;
+    text-align: center;
+    width: 32px;
+}
+
+#button_next {
+    background-position: left top;
+}
+
+#button_play {
+    background-position: center top;
+    display: none;
+}
+
+#button_pause {
+    background-position: right top;
+}
+
+.control_slider {
+    background-image: url(../img/control_slider.png);
+    background-repeat: no-repeat;
+    border-top: 1px solid white;
+    cursor: pointer;
+    float: right;
+    height: 10px;
+    margin-right: 10px;
+    margin-top: 16px;
+    z-index: 10;
+}
+
+#slider_volume {
+    background-position: 80% 0;
+    width: 100px;
+}
+
+#slider_seek {
+    border-top-color: #999999;
+    width: 350px;
+}
+
+#slider_seek div {
+    border-top: 1px solid white;
+    height: 0;
+    position: relative;
+    top: -1px;
+    width: 0%;
+}
+
+#controls .tabs {
+    padding-left: 135px;
+}
+
+#info_panel {
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 10px;
+}

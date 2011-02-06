@@ -1,0 +1,5 @@
+-e svn+http://code.djangoproject.com/svn/django/trunk#egg=django
+south
+django-annoying
+django-vkontakte-iframe
+django-mediagenerator

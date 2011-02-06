@@ -1,0 +1,6 @@
+glob:db/*
+glob:*.pyc
+glob:.project
+glob:.pydevproject
+glob:.settings
+
