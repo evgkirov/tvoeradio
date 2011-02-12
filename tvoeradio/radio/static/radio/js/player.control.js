@@ -9,8 +9,8 @@ player.control.start = function(type, name) {
 	    player.playlist.current_track_num = 0;
 	    ui.hide_loader_fullscreen();
 		ui.go_to_page('player');
-		ui.player.update_track_info();
-		ui.player.update_station_info();
+		ui.update_track_info();
+		ui.update_station_info();
 		player.audio.set_file(player.playlist.get_current_track().mp3_url);
 		player.audio.play();
 		player.station.current.add_to_playlist();
@@ -26,7 +26,7 @@ player.control.stop = function() {
 
 player.control.next = function() {
     player.playlist.current_track_num++;
-    ui.player.update_track_info();
+    ui.update_track_info();
     player.audio.set_file(player.playlist.get_current_track().mp3_url);
     player.audio.play();
     player.station.current.add_to_playlist();

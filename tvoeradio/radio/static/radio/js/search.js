@@ -1,9 +1,19 @@
+var to = null;
+
 $(document).ready(function() {
 
     var $widget = $('#search-widget');
 
-    $widget.children('.input_text').blur( function(e) {
+    $('#search-suggest li').live('click', function(){
         $('#search-suggest').hide();
+        $('#typehere').hide();
+        $('#search-result').show();
+        ui.infoblock.show($('#search-result'), $(this).attr('rel'), $(this).text());
+        $('#search-widget__text').val($(this).text());
+    });
+
+    $widget.children('.input_text').blur(function(e) {
+        setTimeout($('#search-suggest').hide, 1000);
     });
     
     $widget.children('.input_text').keyup( function(e) {
@@ -53,21 +63,25 @@ $(document).ready(function() {
             $('#search-suggest ul').width($this.outerWidth());
             $('#search-suggest__text').val($this.val());
             
-            network.lastfm.api('artist.search', { 'artist': $this.val(), 'limit': 5 }, function(data) {
-                if (data.results['@attr']['for'] != $this.val()) {
-                    return;
-                }
-                var artists = network.lastfm.arrayize(data.results.artistmatches.artist);
-                var html = '';
-                for (var i in artists) {
-                    html += '<li rel="artist">'+artists[i].name+'</li>';
-                }
-                if (html != '') {
-                    $('#search-suggest__artists ul').html(html);
-                    $('#search-suggest').show();
-                }
-            });
-            
+            function load_tratata(txt) {
+                network.lastfm.api('artist.search', { 'artist': txt, 'limit': 5 }, function(data) {
+                    if (data.results['@attr']['for'] != $this.val()) {
+                        return;
+                    }
+                    var artists = network.lastfm.arrayize(data.results.artistmatches.artist);
+                    var html = '';
+                    for (var i in artists) {
+                        html += '<li rel="artist">'+artists[i].name+'</li>';
+                    }
+                    if (html != '') {
+                        $('#search-suggest__artists ul').html(html);
+                        $('#search-suggest').show();
+                    }
+                });
+            }
+            clearTimeout(to);
+            to = setTimeout(load_tratata, 100, $this.val());
+           
         }
     });
 

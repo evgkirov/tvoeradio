@@ -13,9 +13,14 @@ html, body {
     text-align: left;
 }
 
-a {
+a, span.pseudolink {
 	color: #2B587A;
+	cursor: pointer;
 	text-decoration: none;
+}
+
+a:hover, span.pseudolink:hover {
+    text-decoration: underline;
 }
 
 .input_text {
@@ -144,6 +149,65 @@ a {
 .tabs_dark li.active {
     background: #f7f7f7;
     color: black;
+}
+
+#topnav {
+    background: white;
+    border-bottom: 1px solid #DAE2E8;
+    padding: 10px 10px 5px 10px;
+}
+
+.popup {
+    background: transparent url('../img/transpx2.png');
+    display: none;
+    left: 50%;
+    margin-left: -260px;
+    padding: 10px;
+    position: absolute;
+    width: 500px;
+    top: 40px;
+    z-index: 100;
+}
+
+.popup__close {
+    background: url(../img/popup__close.png) no-repeat;
+    cursor: pointer;
+    float: right;
+    height: 17px;
+    margin: 5px 5px 0px 0px;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    padding: 0;
+    width: 17px;
+}
+
+.popup__close:hover {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1;
+}
+
+.popup__title {
+    background-color: #4B769F;
+    border-top: 1px solid #6088B3;
+    border-bottom: 1px solid #466E94;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0 1px;
+    padding: 4px 10px 5px 10px;
+    outline: 1px solid #45688E;
+}
+
+.popup__content {
+    background-color: white;
+    border-left: 1px solid #AAA;
+    border-right: 1px solid #AAA;
+    border-bottom: 1px solid #AAA;
+    padding: 16px 14px;
 }
 
 #search-suggest {

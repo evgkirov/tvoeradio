@@ -23,26 +23,35 @@
 </head>
 <body>
 
+    <div style="display: none">
+        <div class="infoblock infoblock_artist" id="infoblock_artist_template">
+            <div class="infoblock__l">
+                <h2 class="infoblock__header"></h2>
+                <div class="infoblock__text"></div>
+            </div>
+            <div class="infoblock__r">
+                <img class="infoblock_artist__picture" src="" alt="" />
+                <br/><br/>
+                <div class="greenbutton">Слушать похожих</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup_infoblock">
+        <div class="popup__close">&nbsp;</div>
+        <div class="popup__title">
+            &nbsp;
+        </div>
+        <div class="popup__content">
+            
+        </div>
+    </div>
+
     <div id="mp3player"></div>
     <div id="loader_fullscreen"></div>
 
-    <div style="display: none">
-    	<div class="infoblock infoblock_artist" id="infoblock_artist_template">
-    		<div class="infoblock__l">
-    			<h2 class="infoblock__header"></h2>
-    			<div class="infoblock__text"></div>
-    
-    		</div>
-    		<div class="infoblock__r">
-    			<img class="infoblock_artist__picture" src="" alt="" />
-    			<br/><br/>
-    			<div class="greenbutton">Слушать похожих</div>
-    		</div>
-    	</div>
-    </div>
-
     <div id="page_tune" class="page">
-
+        
         <div id="search-suggest">
             <input id="search-suggest__text" type="hidden" />
             <div id="search-suggest__artists">
@@ -50,6 +59,8 @@
                 <ul></ul>
             </div>
         </div>
+
+        <div id="topnav"></div>
 
         <div id="search-widget">
             <input id="search-widget__text" type="text" class="input_text" />

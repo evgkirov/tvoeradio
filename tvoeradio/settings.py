@@ -79,7 +79,6 @@ MEDIA_BUNDLES = (
         'radio/js/network.lastfm.js',
         'radio/js/ui.menu.js',
         'radio/js/ui.js',
-        'radio/js/ui.player.js',
         'radio/js/ui.infoblock.js',
         'radio/js/player.audio.js',
         'radio/js/player.playlist.js',
