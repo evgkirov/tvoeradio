@@ -81,6 +81,7 @@ MEDIA_BUNDLES = (
         'radio/js/ui.js',
         'radio/js/ui.player.js',
         'radio/js/ui.infoblock.js',
+        'radio/js/player.audio.js',
         'radio/js/player.playlist.js',
         'radio/js/player.station.js',
         'radio/js/player.station.similar_artists.js',

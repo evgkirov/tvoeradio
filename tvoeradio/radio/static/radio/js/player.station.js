@@ -9,3 +9,7 @@ player.station.set = function(type, name) {
 	this.name = name;
 	this.current = player.station[type];
 }
+
+player.station.get_current_html = function() {
+    return this.current.get_html(this.name);
+}

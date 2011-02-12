@@ -54,6 +54,9 @@ $(document).ready(function() {
             $('#search-suggest__text').val($this.val());
             
             network.lastfm.api('artist.search', { 'artist': $this.val(), 'limit': 5 }, function(data) {
+                if (data.results['@attr']['for'] != $this.val()) {
+                    return;
+                }
                 var artists = network.lastfm.arrayize(data.results.artistmatches.artist);
                 var html = '';
                 for (var i in artists) {

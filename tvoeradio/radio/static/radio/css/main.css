@@ -103,6 +103,17 @@ a {
     background-color: #DAE2E8;
 }
 
+#loader_fullscreen {
+    background: url(../img/white50.png);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 300;
+}
+
 .tabs {
     border-bottom: 1px solid white;
     list-style: none;
@@ -242,7 +253,7 @@ a {
 
 #controls {
     color: #ffffff;
-    background: #6792bb url(../img/bg/under-construction.png) left top repeat-x;
+    background: #597ea4 url(../img/bg/under-construction.png) left top repeat-x;
     height: 246px;
 }
 
@@ -387,7 +398,7 @@ a {
     padding-left: 135px;
 }
 
-#info_panel {
+#trackinfo_panel {
     overflow: auto;
     overflow-x: hidden;
     overflow-y: auto;

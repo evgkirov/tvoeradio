@@ -8,10 +8,17 @@ ui.go_to_page = function(name) {
 ui.resz = function() {
     var ww = $(window).width();
     var wh = $(window).height()
-    $('#info_panel').height(wh-$('#controls').height());
+    $('#trackinfo_panel').height(wh-$('#controls').height());
     $('#slider_seek').width(ww-430);
 }
 
+ui.show_loader_fullscreen = function() {
+    $('#loader_fullscreen').show();
+}
+
+ui.hide_loader_fullscreen = function() {
+    $('#loader_fullscreen').hide();
+}
 
 $(document).ready( function() {
     $(window).resize(ui.resz);

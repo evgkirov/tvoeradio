@@ -16,3 +16,8 @@ player.station.similar_artists.add_to_playlist = function(callback) {
         });
     });
 }
+
+
+player.station.similar_artists.get_html = function(name) {
+    return 'похожее на <b>' + util.string.htmlspecialchars(name) + '</b>';
+}

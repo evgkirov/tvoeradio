@@ -24,6 +24,7 @@
 <body>
 
     <div id="mp3player"></div>
+    <div id="loader_fullscreen"></div>
 
     <div style="display: none">
     	<div class="infoblock infoblock_artist" id="infoblock_artist_template">
@@ -72,7 +73,7 @@
             <div id="station">
                 <span id="station_change">&#9664; <span>сменить волну</span></span>
                 <div id="station_name"></div>
-                <span id="menu_station_button" class="menu_button"><span>Станция</span> &#9660;</span>
+                <!--<span id="menu_station_button" class="menu_button"><span>Станция</span> &#9660;</span>-->
                 <ul id="menu_station" class="menu">
                     <li style="background-image:url({% media_url 'img/icons/heart.png' %})">Добавить в любимые</li>
                     <li style="background-image:url({% media_url 'img/icons/wall-brick.png' %})">Отправить на стену</li>
@@ -107,26 +108,9 @@
 
         </div><!--controls-->
 
-		<!--<div id="info_panel">
-			<p>Something&rsquo;s tearing me&nbsp;down<br />
-			And I&nbsp;can&rsquo;t help but feel it&rsquo;s coming from you<br />
-			She&rsquo;s a&nbsp;gunshot bride<br />
-			With a&nbsp;trigger cries<br />
-			I&nbsp;just wonder what we&rsquo;ve gotten ourselves into</p>
-			<p>In&nbsp;a&nbsp;trail of&nbsp;fire I&nbsp;know we&nbsp;will be&nbsp;free again<br />
-			In&nbsp;the end we&nbsp;will be&nbsp;one<br />
-			In&nbsp;a&nbsp;trail of&nbsp;fire I&rsquo;ll burn before you bury me<br />
-			Set your sights for the sun</p>
-			<p>Mind is&nbsp;willing<br />
-			Soul remains<br />
-			This woman cannot be&nbsp;saved<br />
-			From the drawn into the fire</p>
-			<p>Mind is&nbsp;willing<br />
-			Soul remains<br />
-			This woman cannot be&nbsp;saved<br />
-			From the drawn into the fire</p>
+		<div id="trackinfo_panel">
 
-		</div><!--info_panel-->
+		</div><!--trackinfo_panel-->
 
     </div><!--page_player-->
 
