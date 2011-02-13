@@ -1,4 +1,4 @@
-var to = null;
+var to = null; // TODO это надо убрать отсюда.
 
 $(document).ready(function() {
 

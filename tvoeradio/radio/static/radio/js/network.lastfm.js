@@ -10,7 +10,7 @@ network.lastfm.authorized = false;
 network.lastfm.auth_token = null;
 network.lastfm.session_key = null;
 network.lastfm.nocache_methods = ['auth.getToken'];
-network.lastfm.write_methods = ['track.updateNowPlaying'];
+network.lastfm.write_methods = ['track.updateNowPlaying', 'track.scrobble'];
 
 
 network.lastfm.api = function(method, params, callback) {
@@ -77,6 +77,24 @@ network.lastfm.api = function(method, params, callback) {
             doc.close();
     }
 };
+
+
+network.lastfm.login = function(user, session_key) {
+    this.user = user;
+    this.session_key = session_key;
+    this.authorized = true;
+    util.cookie.set('tvoeradio_lastfm_user', user, 60*60*24*1000);
+    util.cookie.set('tvoeradio_lastfm_session_key', session_key, 60*60*24*1000);
+};
+
+
+network.lastfm.cookielogin = function() {
+    var user = util.cookie.get('tvoeradio_lastfm_user');
+    var session_key = util.cookie.get('tvoeradio_lastfm_session_key');
+    if (user && session_key) {
+        this.login(user, session_key);
+    }
+}
 
 
 network.lastfm.arrayize = function(o) {

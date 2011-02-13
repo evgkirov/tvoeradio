@@ -39,10 +39,21 @@ ui.update_station_info = function() {
 
 ui.update_topnav = function() {
     var links_left = [];
-    if (network.lastfm.user) {
+    if (network.lastfm.authorized) {
         links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm (' + util.string.htmlspecialchars(network.lastfm.user) + ')</span>')
     } else {
         links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm</span>')
     }
     $('#topnav').html(links_left.join(' | '));
 };
+
+
+ui.update_popup_lastfm = function() {
+    if (network.lastfm.authorized) {
+        $('#popup_lastfm__auth1, #popup_lastfm__auth2').hide();
+        $('#popup_lastfm__authed').show();
+    } else {
+        $('#popup_lastfm__authed, #popup_lastfm__auth2').hide();
+        $('#popup_lastfm__auth1').show();
+    }
+}

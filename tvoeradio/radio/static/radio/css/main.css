@@ -210,6 +210,17 @@ a:hover, span.pseudolink:hover {
     padding: 16px 14px;
 }
 
+#popup_lastfm__auth2,
+#popup_lastfm__authed {
+    display: none;
+}
+
+#popup_lastfm__auth1,
+#popup_lastfm__auth2 {
+    padding: 30px;
+    text-align: center;
+}
+
 #search-suggest {
     background: white;
     border: 1px solid #6792bb;

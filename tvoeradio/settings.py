@@ -7,7 +7,7 @@ def get_version():
     try:
         from mercurial import ui, hg
         repo = hg.repository(ui.ui(), here('..'))
-        return 'r%s' % (repo.filectx(repo.root, 'tip').rev() + 1)
+        return 'r%s' % (repo.filectx(repo.root, 'tip').rev())
     except:
         return ''
 
@@ -74,6 +74,7 @@ MEDIA_BUNDLES = (
         'radio/js/3rdparty/jplayer/jquery.jplayer.js',
         'radio/js/util.namespace.js',
         'radio/js/util.random.js',
+        'radio/js/util.cookie.js',
         'radio/js/util.string.js',
         'radio/js/util.array.js',
         'radio/js/network.vkontakte.js',
