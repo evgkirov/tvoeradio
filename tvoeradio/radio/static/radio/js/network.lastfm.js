@@ -1,7 +1,9 @@
 register_namespace('network.lastfm');
 
+
 network.lastfm.api_url = 'http://ws.audioscrobbler.com/2.0/';
-network.lastfm.api_key = config.lastfm_api_key;
+network.lastfm.api_key = null;
+network.lastfm.api_secret = null;
 network.lastfm.cache = {};
 network.lastfm.user = null;
 network.lastfm.authorized = false;
@@ -10,13 +12,14 @@ network.lastfm.session_key = null;
 network.lastfm.nocache_methods = ['auth.getToken'];
 network.lastfm.write_methods = ['track.updateNowPlaying'];
 
+
 network.lastfm.api = function(method, params, callback) {
     var cache_key = method;
     var _this = this;
     var callback = callback || $.noop;
     
     for (var k in params) {
-        cache_key += '&'+k+'='+params[k];
+        cache_key += '&' + k + '=' + params[k];
     }
 
     params.method = method;
@@ -30,7 +33,7 @@ network.lastfm.api = function(method, params, callback) {
         api_sig += i + params[i];
     }
 
-    params.api_sig = VK.MD5(api_sig+'212627ff4f288e140a8b3734a40d2be2'); //TODO заменить на независимое от контакта
+    params.api_sig = network.vkontakte.MD5(api_sig + this.api_secret);
     params.format = 'json';
 
     if (this.write_methods.indexOf(method)==-1) {
@@ -46,7 +49,7 @@ network.lastfm.api = function(method, params, callback) {
         }
         
     } else {
-        
+
             var html   = document.getElementsByTagName('html')[0];
             var iframe = document.createElement('iframe');
             var doc;
@@ -73,8 +76,9 @@ network.lastfm.api = function(method, params, callback) {
             doc.write('</script>');
             doc.close();
     }
-}
+};
+
 
 network.lastfm.arrayize = function(o) {
     return $.isArray(o) ? o : [o];
-}
+};

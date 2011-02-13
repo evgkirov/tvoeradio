@@ -6,7 +6,8 @@ util.random.choice = function(arr, max) {
 		max = arr.length;
 	}
 	return arr[Math.floor(Math.random()*max)];
-}
+};
+
 
 util.random.choice_similar = function(arr) {
 	var sim = [];
@@ -23,4 +24,4 @@ util.random.choice_similar = function(arr) {
 		// Иначе — из всех похожих
 		return this.choice(sim);
 	}
-}
+};

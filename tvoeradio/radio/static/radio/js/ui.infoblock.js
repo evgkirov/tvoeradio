@@ -18,9 +18,10 @@ ui.infoblock.show_artist = function(elem, name) {
     		$block.appendTo(elem);
     	}
     );
-}
+};
+
 
 ui.infoblock.show = function(elem, type, name) {
 	elem.text('');
     this.show_artist(elem, name);
-}
+};

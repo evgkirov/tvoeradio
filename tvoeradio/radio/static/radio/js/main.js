@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    network.lastfm.api_key = config.lastfm_api_key;
+    network.lastfm.api_secret = config.lastfm_api_secret;
     $(window).resize(ui.resz);
     ui.resz();
     ui.update_topnav();

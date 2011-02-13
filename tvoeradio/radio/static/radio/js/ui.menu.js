@@ -19,7 +19,7 @@ ui.menu.open = function(id) {
     $menu.fadeIn(200, function() {
         $('body').bind('click', this.close_all)
     });
-}
+};
 
 
 /**
@@ -39,7 +39,7 @@ ui.menu.close = function(id) {
     $menu.fadeOut(200, function() {
         $('body').unbind('click', this.close_all)
     });
-}
+};
 
 
 /**
@@ -47,7 +47,7 @@ ui.menu.close = function(id) {
  */
 ui.menu.close_all = function() {
     this.close();
-}
+};
 
 
 
@@ -59,7 +59,8 @@ ui.menu.toggle = function(id) {
     } else {
         this.open(id);
     }
-}
+};
+
 
 $(document).ready(function(){
     

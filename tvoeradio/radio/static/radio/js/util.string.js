@@ -69,7 +69,7 @@ util.string.levenshtein = function (s1, s2) {
         v1 = v_tmp;
     }
     return v0[s1_len];
-}
+};
 
 
 util.string.htmlspecialchars = function(string, quote_style, charset, double_encode) {
@@ -135,4 +135,4 @@ util.string.htmlspecialchars = function(string, quote_style, charset, double_enc
     }
 
     return string;
-}
+};

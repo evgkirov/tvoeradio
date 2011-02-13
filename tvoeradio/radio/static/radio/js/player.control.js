@@ -15,13 +15,13 @@ player.control.start = function(type, name) {
 		player.audio.play();
 		player.station.current.add_to_playlist();
 	});
-}
+};
 
 
 player.control.stop = function() {
     ui.go_to_page('tune');
     player.audio.stop();
-}
+};
 
 
 player.control.next = function() {
@@ -30,4 +30,4 @@ player.control.next = function() {
     player.audio.set_file(player.playlist.get_current_track().mp3_url);
     player.audio.play();
     player.station.current.add_to_playlist();
-}
+};

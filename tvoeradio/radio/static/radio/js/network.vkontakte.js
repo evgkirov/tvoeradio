@@ -38,7 +38,6 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
                     }
                 }
             });
-            
            
             if (callback) {
                 callback(mp3);
@@ -51,4 +50,4 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
             }
         }
     });
-}
+};

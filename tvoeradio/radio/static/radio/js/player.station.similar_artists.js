@@ -1,5 +1,6 @@
 register_namespace('player.station.similar_artists');
 
+
 player.station.similar_artists.add_to_playlist = function(callback) {
 
     network.lastfm.api('artist.getSimilar', {'artist': player.station.name}, function(data) {
@@ -15,9 +16,9 @@ player.station.similar_artists.add_to_playlist = function(callback) {
             }*/
         });
     });
-}
+};
 
 
 player.station.similar_artists.get_html = function(name) {
     return 'похожее на <b>' + util.string.htmlspecialchars(name) + '</b>';
-}
+};

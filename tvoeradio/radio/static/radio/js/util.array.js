@@ -103,4 +103,4 @@ util.array.sort_by_key = function(inputArr, sort_flags) {
     }
 
     return strictForIn || populateArr;
-}
+};
