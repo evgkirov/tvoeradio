@@ -33,6 +33,10 @@ ui.update_station_info = function() {
 
 ui.update_topnav = function() {
     var links_left = [];
-    links_left.push('<span class="pseudolink">Last.fm</span>')
+    if (network.lastfm.user) {
+        links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm (' + util.string.htmlspecialchars(network.lastfm.user) + ')</span>')
+    } else {
+        links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm</span>')
+    }
     $('#topnav').html(links_left.join(' | '));
 }

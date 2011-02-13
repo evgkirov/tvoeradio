@@ -80,7 +80,7 @@ $(document).ready(function() {
                 });
             }
             clearTimeout(to);
-            to = setTimeout(load_tratata, 100, $this.val());
+            to = setTimeout(load_tratata, 300, $this.val());
            
         }
     });

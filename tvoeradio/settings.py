@@ -3,13 +3,13 @@
 import os
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
-def get_version(version):
+def get_version():
     try:
         from mercurial import ui, hg
         repo = hg.repository(ui.ui(), here('..'))
-        return "%s.%s" % (version, repo.filectx(repo.root, 'tip').rev() + 1)
+        return 'r%s' % (repo.filectx(repo.root, 'tip').rev() + 1)
     except:
-        return version
+        return ''
 
 
 DEBUG = TEMPLATE_DEBUG = MEDIA_DEV_MODE = True
@@ -75,17 +75,18 @@ MEDIA_BUNDLES = (
         'radio/js/util.namespace.js',
         'radio/js/util.random.js',
         'radio/js/util.string.js',
+        'radio/js/util.array.js',
         'radio/js/network.vkontakte.js',
         'radio/js/network.lastfm.js',
         'radio/js/ui.menu.js',
         'radio/js/ui.js',
         'radio/js/ui.infoblock.js',
+        'radio/js/ui.search.js',
         'radio/js/player.audio.js',
         'radio/js/player.playlist.js',
         'radio/js/player.station.js',
         'radio/js/player.station.similar_artists.js',
         'radio/js/player.control.js',
-        'radio/js/search.js',
         'radio/js/main.js',
     ),
 )
@@ -169,7 +170,7 @@ INSTALLED_APPS = (
     'south',
 )
 
-TVOERADIO_VERSION = get_version('2.0')
+TVOERADIO_VERSION = get_version()
 LASTFM_API_KEY = '5f170ff5352903d39512d907566283fc'
 VK_APP_ID = '1840144'
 VK_APP_KEY = 'rlh7nKUmRE'

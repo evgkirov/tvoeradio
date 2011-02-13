@@ -2,6 +2,7 @@ $(document).ready(function(){
     $(window).resize(ui.resz);
     ui.resz();
     ui.update_topnav();
+    $.ajaxSetup({'cache':true});
     $("#mp3player").jPlayer({
         'swfPath': config.jplayer_swfpath.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''),
         'ended': player.control.next
@@ -18,6 +19,24 @@ $(document).ready(function(){
         ui.infoblock.show($('#popup_infoblock .popup__content'), 'artist', artist);
         return false;
     });
+    $('#topnav__lastfm').live('click', function() {
+        $('#popup_lastfm').show();
+    });
+    $('#popup_lastfm__auth').click(function() {
+        var open_link = window.open('','_blank');
+        network.lastfm.api('auth.getToken', {}, function(data){
+            open_link.location='http://www.last.fm/api/auth/?api_key='+network.lastfm.api_key+'&token='+data.token;
+            network.lastfm.auth_token = data.token;
+        }); 
+    });
+    $('#popup_lastfm__auth2').click(function() {
+        network.lastfm.api('auth.getSession', {'token': network.lastfm.auth_token}, function(data) {
+            network.lastfm.user = data.session.name;
+            network.lastfm.session_key = data.session.key;
+            ui.update_topnav();
+        });
+    });
+    
 });
 
 
