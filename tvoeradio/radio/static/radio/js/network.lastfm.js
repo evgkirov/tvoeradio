@@ -10,7 +10,7 @@ network.lastfm.authorized = false;
 network.lastfm.auth_token = null;
 network.lastfm.session_key = null;
 network.lastfm.nocache_methods = ['auth.getToken'];
-network.lastfm.write_methods = ['track.updateNowPlaying', 'track.scrobble'];
+network.lastfm.write_methods = ['track.updateNowPlaying', 'track.scrobble', 'track.love'];
 
 
 network.lastfm.api = function(method, params, callback) {

@@ -91,6 +91,15 @@ $(document).ready(function(){
     // События в плеере
     
     $('#station_change').click(player.control.stop);
+    $('#menu_track__love').click(function(){
+        network.lastfm.api(
+            'track.love',
+            {
+                'track': player.playlist.get_current_track().title,
+                'artist': player.playlist.get_current_track().artist
+            }
+        );
+    });
 
 });
 
