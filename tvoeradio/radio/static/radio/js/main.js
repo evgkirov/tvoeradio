@@ -91,6 +91,7 @@ $(document).ready(function(){
     // События в плеере
     
     $('#station_change').click(player.control.stop);
+    
     $('#menu_track__love').click(function(){
         network.lastfm.api(
             'track.love',
@@ -100,9 +101,22 @@ $(document).ready(function(){
             }
         );
     });
+    
+    $('#menu_track__poststatus').click(function(){
+        var current_track = player.playlist.get_current_track();
+        network.vkontakte.api(
+            'wall.post',
+            {
+                'message': 'Слушаю '+current_track.artist+' "'+current_track.title+'"',
+                'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
+            }
+        );
+    });
+    
+    
 
 });
 
 
-network.vkontakte.init({apiId: config.vk_api_id});
+
 

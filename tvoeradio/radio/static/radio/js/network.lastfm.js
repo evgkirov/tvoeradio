@@ -33,7 +33,7 @@ network.lastfm.api = function(method, params, callback) {
         api_sig += i + params[i];
     }
 
-    params.api_sig = network.vkontakte.MD5(api_sig + this.api_secret);
+    params.api_sig = util.string.md5(api_sig + this.api_secret);
     params.format = 'json';
 
     if (this.write_methods.indexOf(method)==-1) {

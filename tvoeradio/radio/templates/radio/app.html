@@ -9,17 +9,31 @@
     <link rel="icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
     <link rel="shortcut icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{% media_url 'img/apple-touch-icon.png' %}" />
+    {% include_media 'radio.css' %}
     <script type="text/javascript">
         var config = {
             'app_version': '{{ settings.TVOERADIO_VERSION }}',
+            'mode': '{{ mode }}',
             'lastfm_api_key': '{{ settings.LASTFM_API_KEY }}',
             'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET }}',
             'vk_api_id': '{{ settings.VK_APP_ID }}',
-            'jplayer_swfpath': '{% media_url 'radio/js/3rdparty/jplayer/Jplayer.swf' %}' 
+            'jplayer_swfpath': '{% media_url 'radio/js/3rdparty/jplayer/Jplayer.swf' %}'
         }
     </script>
-    {% include_media 'radio.css' %}
-    <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
+    {% if mode == 'vk' %}
+        <script src="http://vkontakte.ru/js/api/xd_connection.js?2" type="text/javascript"></script>
+        <script type="text/javascript">
+          VK.init(function() {
+             // API initialization succeeded
+             // Your code here
+          });
+        </script>
+    {% else %}
+        <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            VK.init({apiId: config.vk_api_id});
+        </script>
+    {% endif %}
     {% include_media 'radio.js' %}
 </head>
 <body>
@@ -114,6 +128,7 @@
                 <span id="menu_track_button" class="menu_button"><span>Песня</span> &#9660;</span>
                 <ul id="menu_track" class="menu">
                     <li id="menu_track__love" style="background-image:url({% media_url 'img/icons/heart.png' %})">Last.fm: Нравится</li>
+                    <li id="menu_track__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">В статус</li>
                 </ul><!--menu_track-->
             </div><!--trackinfo-->
 

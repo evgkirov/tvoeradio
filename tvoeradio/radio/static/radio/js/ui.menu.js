@@ -17,7 +17,7 @@ ui.menu.open = function(id) {
     }
     $menu_button.addClass('menu_button_active');
     $menu.fadeIn(200, function() {
-        $('body').bind('click', this.close_all)
+        $('body').bind('click', ui.menu.close_all)
     });
 };
 
@@ -37,7 +37,7 @@ ui.menu.close = function(id) {
     }
     $menu_button.removeClass('menu_button_active');
     $menu.fadeOut(200, function() {
-        $('body').unbind('click', this.close_all)
+        $('body').unbind('click', ui.menu.close_all)
     });
 };
 
@@ -46,7 +46,7 @@ ui.menu.close = function(id) {
  * Закрывает все меню.
  */
 ui.menu.close_all = function() {
-    this.close();
+    ui.menu.close();
 };
 
 
@@ -67,6 +67,8 @@ $(document).ready(function(){
     $('.menu_button').click( function() {
         ui.menu.toggle($(this).attr('id').slice(0,-7));
     });
+    
+    $('body').click
     
 });
 

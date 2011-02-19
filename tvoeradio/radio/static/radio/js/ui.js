@@ -2,17 +2,24 @@ register_namespace('ui');
 
 
 ui.go_to_page = function(name) {
-    $('.page').hide(300);
-    $('#page_'+name).show(300);
-    $('.popup').hide(300);
+    $('.page').hide();
+    $('#page_'+name).show();
+    $('.popup').hide();
 };
 
 ui.resz = function() {
-    var ww = $(window).width();
+    /*var ww = $(window).width();
     var wh = $(window).height()
     $('#trackinfo_panel').height(wh-$('#controls').height());
-    $('#slider_seek').width(ww-430);
+    $('#slider_seek').width(ww-430);*/
 };
+
+
+ui.fit = function() {
+    if (config.mode == 'vk') {
+        network.vkontakte.callMethod('resizeWindow', 627, $('body').height());
+    }
+}
 
 
 ui.show_loader_fullscreen = function() {
@@ -26,9 +33,20 @@ ui.hide_loader_fullscreen = function() {
 
 
 ui.update_track_info = function() {
-    $('#track_artist').text(player.playlist.get_current_track().artist);
-    $('#track_name').text(player.playlist.get_current_track().title);
-    ui.infoblock.show($('#trackinfo_panel'), 'artist', player.playlist.get_current_track().artist);
+    var current_track = player.playlist.get_current_track();
+    $('#track_artist').text(current_track.artist);
+    $('#track_name').text(current_track.title);
+    $('#album_name').text('');
+    network.lastfm.api('track.getInfo', {'artist': current_track.artist, 'track': current_track.title}, function(data){
+        if (data.track.album) {
+            current_track.album_cover = data.track.album.image[data.track.album.image.length-1]["#text"];
+            current_track.album_name = data.track.album.title;
+            current_track.album_artist = data.track.album.artist;
+            $('#album_name').text(current_track.album_name);
+            $('#album_cover').attr('src', current_track.album_cover);
+        }
+    });
+    ui.infoblock.show($('#trackinfo_panel'), 'artist', current_track.artist);
 };
 
 
