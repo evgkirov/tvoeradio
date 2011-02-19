@@ -28,7 +28,7 @@ $(document).ready(function(){
                 }
             );
         },
-        'ended': function() {
+        'ended': function(e) {
             network.lastfm.api(
                 'track.scrobble',
                 {
@@ -38,6 +38,11 @@ $(document).ready(function(){
                 }
             );
             player.control.next();
+        },
+        'timeupdate': function(e) {
+            $('#slider_seek div').width(Math.round(e.jPlayer.status.seekPercent)+'%');
+            $('#slider_seek').css('background-position', Math.round(e.jPlayer.status.currentPercentAbsolute)+'% 0');
+            $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(e.jPlayer.status.duration));
         }
     });
     
@@ -92,6 +97,9 @@ $(document).ready(function(){
     
     $('#station_change').click(player.control.stop);
     
+    $('#button_next').click(player.control.next);
+    
+    
     $('#menu_track__love').click(function(){
         network.lastfm.api(
             'track.love',
@@ -113,10 +121,24 @@ $(document).ready(function(){
         );
     });
     
-    
+    $('#menu_station__poststatus').click(function(){
+        network.vkontakte.api(
+            'wall.post',
+            {
+                'message': 'http://vkontakte.ru/app1840144#'+player.station.type+'/'+util.string.urlencode(player.station.name)
+            }
+        );
+    });
 
 });
 
-
+network.vkontakte.addCallback('onLocationChanged', function(str){
+    if (str) {
+        var parts = util.string.urldecode(str).split('/', 2);
+        player.control.start(parts[0], parts[1]);
+    } else {
+        player.control.stop();
+    }
+});
 
 

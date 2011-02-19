@@ -14,6 +14,9 @@ player.control.start = function(type, name) {
 		player.audio.set_file(player.playlist.get_current_track().mp3_url);
 		player.audio.play();
 		player.station.current.add_to_playlist();
+		if (config.mode == 'vk') {
+		    network.vkontakte.callMethod('setLocation', type+'/'+util.string.urlencode(name));
+		}
 	});
 };
 
@@ -21,6 +24,9 @@ player.control.start = function(type, name) {
 player.control.stop = function() {
     ui.go_to_page('tune');
     player.audio.stop();
+    if (config.mode == 'vk') {
+        network.vkontakte.callMethod('setLocation', '');
+    }
 };
 
 

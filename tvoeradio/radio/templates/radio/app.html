@@ -77,7 +77,7 @@
     </div>
 
     <div id="mp3player"></div>
-    <div id="loader_fullscreen"></div>
+    <div id="loader_fullscreen"><div id="loader_fullscreen__i"></div></div>
 
     <div id="page_tune" class="page">
         
@@ -92,7 +92,7 @@
         <div id="topnav"></div>
 
         <div id="search-widget">
-            <input id="search-widget__text" type="text" class="input_text" />
+            <span id="search-widget__label">поиск:</span><input id="search-widget__text" type="text" class="input_text" />
         </div>
         
         <div id="typehere">
@@ -113,11 +113,10 @@
             <div id="station">
                 <span id="station_change">&#9664; <span>сменить волну</span></span>
                 <div id="station_name"></div>
-                <!--<span id="menu_station_button" class="menu_button"><span>Станция</span> &#9660;</span>-->
+                <span id="menu_station_button" class="menu_button"><span>Станция</span> &#9660;</span>
                 <ul id="menu_station" class="menu">
-                    <li style="background-image:url({% media_url 'img/icons/heart.png' %})">Добавить в любимые</li>
-                    <li style="background-image:url({% media_url 'img/icons/wall-brick.png' %})">Отправить на стену</li>
-                </ul><!--menu_track-->
+                    <li id="menu_station__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">В статус</li>
+                </ul><!--menu_station-->
             </div><!--station-->
 
             <div id="trackinfo">
@@ -133,23 +132,24 @@
             </div><!--trackinfo-->
 
             <div id="buttons">
-                <!-- <div id="button_pause" class="control_button" title="Пауза"></div>
+				<div id="button_previous" class="control_button" title="Предыдущий"></div>
+                <div id="button_pause" class="control_button" title="Пауза"></div>
 				<div id="button_play" class="control_button" title="Продолжить"></div>
-				<div id="button_next" class="control_button" title="Пропустить">00:00</div>
-                <div id="slider_volume" class="control_slider" title="Громкость 80%"></div>
-				<div id="slider_seek" class="control_slider"><div></div></div> -->
+				<div id="button_next" class="control_button" title="Пропустить"></div>
+                <div id="slider_volume" class="control_slider" title="Громкость"><span></span></div>
+				<div id="slider_seek" class="control_slider"><div></div><span></span></div>
             </div><!--buttons-->
 
-            <ul class="tabs tabs_dark">
-                <!--<li>Об исполнителе</li>
-                <li class="active">Текст песни</li>
-                <li>История</li>-->
+            <ul class="tabs tabs_dark" id="tabs_player">
+                <li class="active">Об исполнителе</li>
+                <li>Текст песни</li>
+                <li>История</li>
             </ul><!--tabs-->
 
         </div><!--controls-->
 
 		<div id="trackinfo_panel">
-
+            
 		</div><!--trackinfo_panel-->
 
     </div><!--page_player-->

@@ -15,6 +15,7 @@ player.playlist.add_track = function(artist, title, callback) {
         var track = {
             'artist': artist,
             'title': title,
+            'duration': mp3.duration,
             'mp3_url': mp3.url,
             'vk_oid': mp3.owner_id,
             'vk_aid': mp3.aid

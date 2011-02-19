@@ -14,9 +14,9 @@ html, body {
 }
 
 a, span.pseudolink {
-	color: #2B587A;
-	cursor: pointer;
-	text-decoration: none;
+    color: #2B587A;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 a:hover, span.pseudolink:hover {
@@ -52,15 +52,15 @@ a:hover, span.pseudolink:hover {
     outline: 1px solid #3B6E22;
     color: #ffffff;
     cursor: pointer;
-	padding: 5px 20px;
-	margin-top: 10px;
-	font-size: 13px;
-	font-weight: bold;
-	text-align: center;
+    padding: 5px 20px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .greenbutton:hover {
-	background: #75ba57;
+    background: #75ba57;
 }
 
 .menu_button {
@@ -109,7 +109,7 @@ a:hover, span.pseudolink:hover {
 }
 
 #loader_fullscreen {
-    background: url(../img/white50.png);
+    background: url(../img/loader_fullscreen.png);
     display: none;
     height: 100%;
     left: 0;
@@ -117,6 +117,11 @@ a:hover, span.pseudolink:hover {
     width: 100%;
     top: 0;
     z-index: 300;
+}
+
+#loader_fullscreen__i {
+    background: url(../img/loader_fullscreen__i.gif) center no-repeat;
+    height: 100%;
 }
 
 .tabs {
@@ -210,13 +215,11 @@ a:hover, span.pseudolink:hover {
     padding: 16px 14px;
 }
 
-#popup_lastfm__auth2,
-#popup_lastfm__authed {
+#popup_lastfm__auth2, #popup_lastfm__authed {
     display: none;
 }
 
-#popup_lastfm__auth1,
-#popup_lastfm__auth2 {
+#popup_lastfm__auth1, #popup_lastfm__auth2 {
     padding: 30px;
     text-align: center;
 }
@@ -235,7 +238,8 @@ a:hover, span.pseudolink:hover {
 }
 
 #search-suggest div span {
-    color:  #666666;element
+    color:  #666666;
+    element
     display: block;
     float: left;
     padding: 4px 10px 0px 10px;
@@ -250,7 +254,7 @@ a:hover, span.pseudolink:hover {
 }
 
 #search-suggest div ul li {
-	border: 1px solid #ffffff;
+    border: 1px solid #ffffff;
     cursor: pointer;
     display: block;
     min-height: 18px;
@@ -271,8 +275,8 @@ a:hover, span.pseudolink:hover {
 }
 
 #search-result {
-	display: none;
-	padding: 20px;
+    display: none;
+    padding: 20px;
 }
 
 .page {
@@ -280,20 +284,31 @@ a:hover, span.pseudolink:hover {
 }
 
 #page_tune {
+    background: url(../img/page_tune.png) top repeat-x;
     display: block;
     /*margin: 200px auto;
-    width: 500px;*/
+     width: 500px;*/
 }
 
 #search-widget {
     height: 40px;
-    margin: 15px auto;
-    width: 400px;
+    margin: 15px 10px;
+    white-space: nowrap;
+}
+
+#search-widget__label {
+    color: #C0CAD5;
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 5px;
+    text-align: right;
+    width: 100px;
 }
 
 #search-widget__text {
+    display: inline-block;
     font-size: 18px;
-    width: 494px;
+    margin: 0;
 }
 
 #typehere {
@@ -301,29 +316,46 @@ a:hover, span.pseudolink:hover {
 }
 
 .infoblock {
-	display: table;
-	width: 100%;
+    display: table;
+    width: 100%;
 }
 
 .infoblock__i {
-	display: table-row;
-
+    display: table-row;
 }
 
 .infoblock__l {
-	display: table-cell;
-	padding-right: 20px;
-	vertical-align: top;
+    display: table-cell;
+    padding-right: 20px;
+    vertical-align: top;
 }
 
 .infoblock__r {
-	display: table-cell;
-	vertical-align: top;
-	width: 200px;
+    display: table-cell;
+    vertical-align: top;
+    width: 200px;
+}
+
+.infoblock__text {
+    margin: 10px 0;
+}
+
+.infoblock__header {
+    border-bottom: 1px solid #DAE1E8;
+    color: #36638E;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    padding-bottom: 5px;
 }
 
 .infoblock_artist__picture {
-	max-width: 200px;
+    max-width: 200px;
+}
+
+.infoblock-loader {
+    background: url(../img/loader_big.gif) center no-repeat;
+    padding: 80px;
 }
 
 #controls {
@@ -362,6 +394,7 @@ a:hover, span.pseudolink:hover {
 }
 
 #trackinfo {
+    overflow: hidden;
     height: 117px;
     position: relative;
 }
@@ -370,11 +403,12 @@ a:hover, span.pseudolink:hover {
     left: 0;
     position: absolute;
     top: 0;
+    white-space: nowrap;
 }
 
 #album_cover {
-    max-height: 100px;
-    max-width: 100px;
+    height: 100px;
+    width: 100px;
     margin: 9px 0 0 10px;
 }
 
@@ -414,7 +448,6 @@ a:hover, span.pseudolink:hover {
 }
 
 .control_button {
-    background: url(../img/control_button.png) no-repeat;
     color: #999;
     cursor: pointer;
     font-size: 9px;
@@ -427,16 +460,20 @@ a:hover, span.pseudolink:hover {
 }
 
 #button_next {
-    background-position: left top;
+    background: url(../img/button_next.png) no-repeat;
 }
 
 #button_play {
-    background-position: center top;
+    background: url(../img/button_play.png) no-repeat;
     display: none;
 }
 
 #button_pause {
-    background-position: right top;
+    background: url(../img/button_pause.png) no-repeat;
+}
+
+#button_previous {
+    background: url(../img/button_previous.png) no-repeat;
 }
 
 .control_slider {
@@ -448,7 +485,19 @@ a:hover, span.pseudolink:hover {
     height: 10px;
     margin-right: 10px;
     margin-top: 16px;
+    position: relative;
     z-index: 10;
+}
+
+.control_slider span {
+    font-size: 9px;
+    filter: alpha(opacity=40);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
+    position: absolute;
+    right: 0;
+    top: -13px;
 }
 
 #slider_volume {

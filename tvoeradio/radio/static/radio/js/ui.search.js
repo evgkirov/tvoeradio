@@ -55,7 +55,7 @@ $(document).ready(function() {
         } else {
             
             $('#search-suggest').css({
-                'top': $this.position().top+$this.outerHeight()+1+'px',
+                'top': $this.position().top+$this.outerHeight()-1+'px',
                 'left': $this.position().left-100+'px'
             })
             .width($this.outerWidth()+100);
