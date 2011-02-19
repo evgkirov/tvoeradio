@@ -72,6 +72,7 @@ ui.update_topnav = function() {
     } else {
         links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm</span>')
     }
+    links_left.push('<span>'+$('title').html()+'</span>');
     $('#topnav').html(links_left.join(' | '));
 };
 

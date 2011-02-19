@@ -94,7 +94,16 @@ network.lastfm.cookielogin = function() {
     if (user && session_key) {
         this.login(user, session_key);
     }
-}
+};
+
+
+network.lastfm.logout = function() {
+    this.user = null;
+    this.session_key = null;
+    this.authorized = false;
+    util.cookie.remove('tvoeradio_lastfm_user');
+    util.cookie.remove('tvoeradio_lastfm_session_key');
+};
 
 
 network.lastfm.arrayize = function(o) {

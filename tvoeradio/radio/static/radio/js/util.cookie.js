@@ -71,5 +71,5 @@ util.cookie.set = function(name, value, expires, path, domain, secure) {
 util.cookie.remove = function(name, path, domain) {
 
     //make cookie expire 1 second ago
-    setcookie(name, '', -1, path, domain);
+    this.set(name, '', -1, path, domain);
 };

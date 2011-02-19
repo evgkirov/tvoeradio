@@ -92,6 +92,13 @@ $(document).ready(function(){
         });
     });
     
+    $('#popup_lastfm__authed .button').click(function() {
+        network.lastfm.logout();
+        $('#popup_lastfm').hide();
+        ui.update_topnav();
+        ui.update_popup_lastfm();
+    });
+    
     
     // События в плеере
     
