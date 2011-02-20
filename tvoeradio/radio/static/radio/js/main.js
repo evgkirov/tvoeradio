@@ -124,7 +124,8 @@ $(document).ready(function(){
             {
                 'message': 'Слушаю '+current_track.artist+' "'+current_track.title+'"',
                 'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
-            }
+            },
+            function(data) {}
         );
     });
     
@@ -132,20 +133,31 @@ $(document).ready(function(){
         network.vkontakte.api(
             'wall.post',
             {
-                'message': 'http://vkontakte.ru/app1840144#'+player.station.type+'/'+util.string.urlencode(player.station.name)
-            }
+                'message': 'Советую послушать: http://vkontakte.ru/app1840144#'+player.station.type+'/'+util.string.urlencode(player.station.name)
+            },
+            function(data) {}
         );
     });
 
 });
 
-network.vkontakte.addCallback('onLocationChanged', function(str){
-    if (str) {
-        var parts = util.string.urldecode(str).split('/', 2);
-        player.control.start(parts[0], parts[1]);
-    } else {
-        player.control.stop();
-    }
-});
+if (config.mode == 'vk') {
+    
+    network.vkontakte.init(function() {
+         // API initialization succeeded
+         // Your code here
+      });
 
+    network.vkontakte.addCallback('onLocationChanged', function(str){
+        if (str) {
+            var parts = util.string.urldecode(str).split('/', 2);
+            player.control.start(parts[0], parts[1]);
+        } else {
+            player.control.stop();
+        }
+    });
+
+} else {
+    network.vkontakte.init({apiId: config.vk_api_id});
+}
 

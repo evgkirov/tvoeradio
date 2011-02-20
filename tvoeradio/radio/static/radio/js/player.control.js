@@ -31,9 +31,16 @@ player.control.stop = function() {
 
 
 player.control.next = function() {
-    player.playlist.current_track_num++;
-    ui.update_track_info();
-    player.audio.set_file(player.playlist.get_current_track().mp3_url);
-    player.audio.play();
-    player.station.current.add_to_playlist();
+    function do_next() {
+        player.playlist.current_track_num++;
+        ui.update_track_info();
+        player.audio.set_file(player.playlist.get_current_track().mp3_url);
+        player.audio.play();
+        player.station.current.add_to_playlist();
+    }
+    if (player.playlist.playlist.length == player.playlist.current_track_num + 1) {
+        player.station.current.add_to_playlist(do_next);
+    } else {
+        do_next();
+    }
 };
