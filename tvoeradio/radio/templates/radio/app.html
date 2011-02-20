@@ -26,6 +26,9 @@
         <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
     {% endif %}
     {% include_media 'radio.js' %}
+    <script type="text/javascript">
+        userdata.recent_stations.list = {{ recent_stations|safe }};
+    </script>
 </head>
 <body>
 
@@ -86,8 +89,9 @@
             <span id="search-widget__label">поиск:</span><input id="search-widget__text" type="text" class="input_text" />
         </div>
         
-        <div id="typehere">
-            <img style="border: 1px solid #C0CAD5;" alt="" src="{% media_url 'radio/img/typehere.jpg' %}">
+        <div id="dashboard">
+            <h2>Последнее прослушанное</h2>
+            <ul id="dashboard__recent_stations"></ul>
         </div>
         
         <div id="search-result">
@@ -132,16 +136,20 @@
             </div><!--buttons-->
 
             <ul class="tabs tabs_dark" id="tabs_player">
-                <li class="active">Об исполнителе</li>
-                <li>Текст песни</li>
-                <li>Плейлист</li>
+                <li class="active" id="tabs_player__info">Об исполнителе</li>
+                <li id="tabs_player__lyrics">Текст песни</li>
+                <li id="tabs_player__playlist">Плейлист</li>
             </ul><!--tabs-->
 
         </div><!--controls-->
 
-		<div id="trackinfo_panel">
-            
-		</div><!--trackinfo_panel-->
+        <div id="trackinfo_panel">
+            <div class="tabcontent" id="tabcontent_tabs_player__info"></div>
+            <div class="tabcontent" id="tabcontent_tabs_player__lyrics">
+                <div class="infoblock-loader"></div>
+            </div>
+            <div class="tabcontent" id="tabcontent_tabs_player__playlist"></div>
+        </div><!--trackinfo_panel-->
 
     </div><!--page_player-->
 

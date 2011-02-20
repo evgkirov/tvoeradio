@@ -13,6 +13,7 @@ ui.resz = function() {
     var wh = $(window).height()
     $('#slider_seek').width(ww-400);
     $('#search-widget__text').width(ww-155);
+    $('#trackinfo div').width(ww-140);
     if (config.mode == 'desktop') {
         $('#trackinfo_panel').height(wh-$('#controls').height());
     }
@@ -21,7 +22,20 @@ ui.resz = function() {
 
 ui.fit = function() {
     if (config.mode == 'vk') {
-        network.vkontakte.callMethod('resizeWindow', 627, $('body').height());
+        var h = $('body').height();
+        if ($('#search-suggest').is(':visible')) {
+            var ssh = $('#search-suggest').height() + $('#search-suggest').offset().top + 10;
+            if (h < ssh) {
+                h = ssh;
+            }
+        }
+        if ($('.popup:visible').length) {
+            var ph = $('.popup:visible').height() + $('.popup:visible').offset().top + 30;
+            if (h < ph) {
+                h = ph;
+            }
+        }
+        network.vkontakte.callMethod('resizeWindow', 627, h);
     }
 }
 
@@ -33,6 +47,17 @@ ui.show_loader_fullscreen = function() {
 
 ui.hide_loader_fullscreen = function() {
     $('#loader_fullscreen').hide();
+};
+
+
+ui.update_dashboard = function() {
+    var html = [];
+    var max = Math.min(5, userdata.recent_stations.list.length);
+    for (var i = 0; i < max; i++) {
+        var station = userdata.recent_stations.list[i];
+        html.push('<li><span>' + player.station[station.type].get_html(station.name) + '</span></li>');
+    }
+    $('#dashboard__recent_stations').html(html.join(''));
 };
 
 
@@ -52,7 +77,7 @@ ui.update_track_info = function() {
             $('#album_cover').attr('src', current_track.album_cover);
         }
     });
-    ui.infoblock.show($('#trackinfo_panel'), 'artist', current_track.artist);
+    ui.infoblock.show($('#tabcontent_tabs_player__info'), 'artist', current_track.artist);
 };
 
 
@@ -99,7 +124,10 @@ $(document).ready(function(){
    $('.tabs li').click(function(){
        $('.tabs li.active').removeClass('active');
        $(this).addClass('active');
+       $('.tabcontent').hide();
+       $('#tabcontent_'+$(this).attr('id')).show();
    });
    $('#album_cover').load(function(){$(this).fadeIn()});
+   ui.update_dashboard();
    setInterval(ui.fit, 10);
 });

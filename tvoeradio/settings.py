@@ -79,6 +79,7 @@ MEDIA_BUNDLES = (
         'radio/js/util.array.js',
         'radio/js/network.vkontakte.js',
         'radio/js/network.lastfm.js',
+        'radio/js/userdata.recent_stations.js',
         'radio/js/ui.menu.js',
         'radio/js/ui.js',
         'radio/js/ui.infoblock.js',

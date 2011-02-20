@@ -6,6 +6,9 @@ $(document).ready(function(){
     network.lastfm.api_key = config.lastfm_api_key;
     network.lastfm.api_secret = config.lastfm_api_secret;
     $.ajaxSetup({'cache':true});
+    
+    
+    $('#search-widget__text').focus();
 
     
     // Настройка UI    

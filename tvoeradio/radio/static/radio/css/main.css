@@ -274,9 +274,13 @@ a:hover, span.pseudolink:hover {
     /*outline: 1px solid #3b5998;*/
 }
 
+#dashboard {
+    padding: 10px;
+}
+
 #search-result {
     display: none;
-    padding: 20px;
+    padding: 10px;
 }
 
 .page {
@@ -286,6 +290,7 @@ a:hover, span.pseudolink:hover {
 #page_tune {
     background: url(../img/page_tune.png) top repeat-x;
     display: block;
+    min-height: 100px;
     /*margin: 200px auto;
      width: 500px;*/
 }
@@ -309,10 +314,6 @@ a:hover, span.pseudolink:hover {
     display: inline-block;
     font-size: 18px;
     margin: 0;
-}
-
-#typehere {
-    text-align: center;
 }
 
 .infoblock {
@@ -340,7 +341,7 @@ a:hover, span.pseudolink:hover {
     margin: 10px 0;
 }
 
-.infoblock__header {
+h2 {
     border-bottom: 1px solid #DAE1E8;
     color: #36638E;
     margin: 0px;
@@ -403,6 +404,9 @@ a:hover, span.pseudolink:hover {
     left: 0;
     position: absolute;
     top: 0;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow:hidden;
     white-space: nowrap;
 }
 

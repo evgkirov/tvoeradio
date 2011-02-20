@@ -24,7 +24,7 @@ ui.search.load_suggest = function(txt) {
 
 ui.search.load_result = function(type, name) {
     $('#search-suggest').hide();
-    $('#typehere').hide();
+    $('#dashboard').hide();
     $('#search-result').show();
     $('#search-widget__text').val(name);
     ui.infoblock.show($('#search-result'), type, name);

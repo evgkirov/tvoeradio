@@ -9,6 +9,7 @@ player.control.start = function(type, name) {
 	    player.playlist.current_track_num = 0;
 	    ui.hide_loader_fullscreen();
 		ui.go_to_page('player');
+		userdata.recent_stations.add(type, name);
 		ui.update_track_info();
 		ui.update_station_info();
 		player.audio.set_file(player.playlist.get_current_track().mp3_url);
