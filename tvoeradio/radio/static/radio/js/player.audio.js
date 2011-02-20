@@ -16,3 +16,16 @@ player.audio.stop = function() {
     $('#mp3player').jPlayer('stop');
 };
 
+
+player.audio.is_playing = function() {
+    return !$('#mp3player').data('jPlayer').status.paused;
+}
+
+
+player.audio.pause = function() {
+    if (this.is_playing()) {
+        $('#mp3player').jPlayer('pause');
+    } else {
+        $('#mp3player').jPlayer('play');
+    }
+};

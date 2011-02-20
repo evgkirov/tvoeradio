@@ -7,10 +7,11 @@ ui.go_to_page = function(name) {
     $('.popup').hide();
 };
 
+
 ui.resz = function() {
     var ww = $(window).width();
     var wh = $(window).height()
-    $('#slider_seek').width(ww-430);
+    $('#slider_seek').width(ww-400);
     $('#search-widget__text').width(ww-155);
     if (config.mode == 'desktop') {
         $('#trackinfo_panel').height(wh-$('#controls').height());
@@ -56,7 +57,13 @@ ui.update_track_info = function() {
 
 
 ui.update_player_controls = function() {
-    
+    if (player.control.is_playing()) {
+        $('#button_pause').hide();
+        $('#button_play').show();
+    } else {
+        $('#button_pause').show();
+        $('#button_play').hide();
+    }
 };
 
 

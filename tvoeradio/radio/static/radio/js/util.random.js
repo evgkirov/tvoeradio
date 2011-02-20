@@ -25,3 +25,8 @@ util.random.choice_similar = function(arr) {
 		return this.choice(sim);
 	}
 };
+
+
+util.random.randint = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};

@@ -106,6 +106,10 @@ $(document).ready(function(){
     
     $('#button_next').click(player.control.next);
     
+    $('#button_previous').click(player.control.previous);
+    
+    $('#button_play, #button_pause').click(player.control.pause);
+    
     
     $('#menu_track__love').click(function(){
         network.lastfm.api(
