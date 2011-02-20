@@ -1,22 +1,48 @@
-var to = null; // TODO это надо убрать отсюда.
+register_namespace('ui.search');
+
+
+ui.search.timeout = null;
+
+
+ui.search.load_suggest = function(txt) {
+    network.lastfm.api('artist.search', { 'artist': txt, 'limit': 5 }, function(data) {
+        if (data.results['@attr']['for'] != $('#search-widget__text').val()) {
+            return;
+        }
+        var artists = network.lastfm.arrayize(data.results.artistmatches.artist);
+        var html = '';
+        for (var i in artists) {
+            html += '<li rel="artist">'+artists[i].name+'</li>';
+        }
+        if (html != '') {
+            $('#search-suggest__artists ul').html(html);
+            $('#search-suggest').show();
+        }
+    });
+};
+
+
+ui.search.load_result = function(type, name) {
+    $('#search-suggest').hide();
+    $('#typehere').hide();
+    $('#search-result').show();
+    $('#search-widget__text').val(name);
+    ui.infoblock.show($('#search-result'), type, name);
+};
+
 
 $(document).ready(function() {
 
-    var $widget = $('#search-widget');
 
     $('#search-suggest li').live('click', function(){
-        $('#search-suggest').hide();
-        $('#typehere').hide();
-        $('#search-result').show();
-        ui.infoblock.show($('#search-result'), $(this).attr('rel'), $(this).text());
-        $('#search-widget__text').val($(this).text());
+        ui.search.load_result($(this).attr('rel'), $(this).text());
     });
 
-    $widget.children('.input_text').blur(function(e) {
+    $('#search-widget').children('.input_text').blur(function(e) {
         setTimeout($('#search-suggest').hide, 1000);
     });
     
-    $widget.children('.input_text').keyup( function(e) {
+    $('#search-widget').children('.input_text').keyup( function(e) {
         var $this = $(this);
 
         if ($this.val() == '') {
@@ -25,11 +51,11 @@ $(document).ready(function() {
         }
 
         if (e.which == 13) { // enter
-            $('#search-suggest').hide();
+  
             var $li_active = $('#search-suggest li.active');
-            $('#typehere').hide();
-            $('#search-result').show();
-            ui.infoblock.show($('#search-result'), $li_active.attr('rel'), $li_active.text());
+            if ($li_active.length) {
+                ui.search.load_result($li_active.attr('rel'), $li_active.text());
+            }
             
         } else if ((e.which == 40) || (e.which==38)) { // up / down
 
@@ -61,26 +87,10 @@ $(document).ready(function() {
             .width($this.outerWidth()+100);
 
             $('#search-suggest ul').width($this.outerWidth());
-            $('#search-suggest__text').val($this.val());
-            
-            function load_tratata(txt) {
-                network.lastfm.api('artist.search', { 'artist': txt, 'limit': 5 }, function(data) {
-                    if (data.results['@attr']['for'] != $this.val()) {
-                        return;
-                    }
-                    var artists = network.lastfm.arrayize(data.results.artistmatches.artist);
-                    var html = '';
-                    for (var i in artists) {
-                        html += '<li rel="artist">'+artists[i].name+'</li>';
-                    }
-                    if (html != '') {
-                        $('#search-suggest__artists ul').html(html);
-                        $('#search-suggest').show();
-                    }
-                });
-            }
-            clearTimeout(to);
-            to = setTimeout(load_tratata, 300, $this.val());
+            //$('#search-suggest__text').val($this.val());
+
+            clearTimeout(ui.search.timeout);
+            ui.search.timeout = setTimeout(ui.search.load_suggest, 300, $this.val());
            
         }
     });
