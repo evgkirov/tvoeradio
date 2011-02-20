@@ -90,8 +90,24 @@
         </div>
         
         <div id="dashboard">
-            <h2>Последнее прослушанное</h2>
-            <ul id="dashboard__recent_stations"></ul>
+            <div class="dashboard__row">
+                <div class="dashboard__cell">
+                    <h2>Последнее в избранном</h2>
+                </div>
+                <div class="dashboard__cell">
+                    <h2>Популярные исполнители</h2>
+                </div>
+            </div>
+            <div class="dashboard__row">
+                <div class="dashboard__cell">
+                    <h2>Последнее прослушанное</h2>
+                    <ul id="dashboard__recent_stations"></ul>
+                </div>
+                <div class="dashboard__cell">
+                    <h2>Популярные теги</h2>
+                    <div style="text-align: justify;">{% for tag in top_tags %} <span style="font-size: {{ tag.size }}%; vertical-align:middle">{{ tag.name }}</span>{% endfor %}</div>
+                </div>
+            </div>
         </div>
         
         <div id="search-result">

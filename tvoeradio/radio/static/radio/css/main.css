@@ -275,7 +275,18 @@ a:hover, span.pseudolink:hover {
 }
 
 #dashboard {
+    display: table;
     padding: 10px;
+    width: 100%;
+}
+
+.dashboard__row {
+    display: table-row;
+}
+
+.dashboard__cell {
+    display: table-cell;
+    width: 50%;
 }
 
 #search-result {

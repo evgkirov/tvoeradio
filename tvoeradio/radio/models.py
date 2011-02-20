@@ -32,3 +32,32 @@ class FavoritedStation(Station):
     Избранная станция.
     """
     pass
+
+
+class TopTag(models.Model):
+    """
+    Топ тегов, показываемый в дашборде.
+    """
+    name = models.CharField(max_length=255, db_index=True)
+    popularity = models.IntegerField()
+
+    class Meta:
+        ordering = ('name',)
+
+    def __unicode__(self):
+        return self.name
+
+
+class TopArtist(models.Model):
+    """
+    Топ исполнителей, показываемый в дашборде.
+    """
+    name = models.CharField(max_length=255, db_index=True)
+    popularity = models.IntegerField(db_index=True)
+    image = models.URLField(verify_exists=False)
+
+    class Meta:
+        ordering = ('-popularity',)
+
+    def __unicode__(self):
+        return self.name

@@ -3,3 +3,4 @@ south
 django-annoying
 django-vkontakte-iframe
 django-mediagenerator
+sorl-thumbnail
