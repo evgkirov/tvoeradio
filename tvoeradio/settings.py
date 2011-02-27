@@ -62,7 +62,7 @@ GLOBAL_MEDIA_DIRS = (here('static'),)
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 #MEDIA_URL = '/static/'
-PRODUCTION_MEDIA_URL = '/static/'
+PRODUCTION_MEDIA_URL = '/media/'
 DEV_MEDIA_URL = '/develstatic/'
 
 MEDIA_BUNDLES = (
@@ -131,7 +131,7 @@ MIDDLEWARE_CLASSES = (
     'mediagenerator.middleware.MediaMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'vk_iframe.middleware.AuthenticationMiddleware'
     #'django.middleware.locale.LocaleMiddleware',
@@ -146,7 +146,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-ROOT_URLCONF = 'tvoeradio.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     here('templates'),

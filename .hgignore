@@ -3,4 +3,5 @@ glob:*.pyc
 glob:.project
 glob:.pydevproject
 glob:.settings
-
+glob:_generated_media_names.py
+glob:settings_local.py
