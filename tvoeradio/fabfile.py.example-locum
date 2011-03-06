@@ -23,5 +23,6 @@ def deploy():
         run('%s manage.py syncdb' % python_path)
         run('%s manage.py migrate' % python_path)
         run('%s manage.py generatemedia' % python_path)
+        run('cp %s/radio/static/radio/js/3rdparty/jplayer/Jplayer.swf %s/media/radio/js/3rdparty/jplayer/ -v' % (tvoeradio_dir, project_dir))
     with cd(project_dir):
         run('touch django.wsgi')

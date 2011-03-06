@@ -13,6 +13,11 @@ html, body {
     text-align: left;
 }
 
+#mp3player {
+    height: 0;
+    overflow: hidden;
+}
+
 a, span.pseudolink {
     color: #2B587A;
     cursor: pointer;
