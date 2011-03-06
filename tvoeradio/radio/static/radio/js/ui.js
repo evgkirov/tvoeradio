@@ -78,6 +78,11 @@ ui.update_track_info = function() {
         }
     });
     ui.infoblock.show($('#tabcontent_tabs_player__info'), 'artist', current_track.artist);
+    if (network.lastfm.authorized) { 
+        $('#menu_track__love').show(); 
+    } else {
+        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого 
+    }
 };
 
 

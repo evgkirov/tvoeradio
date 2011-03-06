@@ -30,25 +30,29 @@ $(document).ready(function(){
     $("#mp3player").jPlayer({
         'swfPath': config.jplayer_swfpath.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''),
         'play': function(e) {
-            network.lastfm.api(
-                'track.updateNowPlaying',
-                {
-                    'track': player.playlist.get_current_track().title,
-                    'artist': player.playlist.get_current_track().artist,
-                    'duration': e.jPlayer.status.duration
-                }
-            );
+            if (network.lastfm.authorized) {
+                network.lastfm.api(
+                    'track.updateNowPlaying',
+                    {
+                        'track': player.playlist.get_current_track().title,
+                        'artist': player.playlist.get_current_track().artist,
+                        'duration': e.jPlayer.status.duration
+                    }
+                );
+            }
         },
         'ended': function(e) {
-            network.lastfm.api(
-                'track.scrobble',
-                {
-                    'track[0]': player.playlist.get_current_track().title,
-                    'timestamp[0]': player.playlist.get_current_track().started,
-                    'artist[0]': player.playlist.get_current_track().artist
-                }
-            );
-            player.control.next();
+            if (network.lastfm.authorized) {
+                network.lastfm.api(
+                    'track.scrobble',
+                    {
+                        'track[0]': player.playlist.get_current_track().title,
+                        'timestamp[0]': player.playlist.get_current_track().started,
+                        'artist[0]': player.playlist.get_current_track().artist
+                    }
+                );
+                player.control.next();
+            }
         },
         'timeupdate': function(e) {
             $('#slider_seek div').width(Math.round(e.jPlayer.status.seekPercent)+'%');
@@ -72,7 +76,7 @@ $(document).ready(function(){
     $('a.bbcode_artist').live('click', function() {
         var artist = $(this).attr('href');
         artist = artist.replace('http://www.last.fm/music/', '');
-        artist = artist.replace('+', ' ');
+        artist = util.string.urldecode(artist);
         $('#popup_infoblock').show();
         ui.infoblock.show($('#popup_infoblock .popup__content'), 'artist', artist);
         return false;
@@ -123,6 +127,7 @@ $(document).ready(function(){
     
     
     $('#menu_track__love').click(function(){
+        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого 
         network.lastfm.api(
             'track.love',
             {
