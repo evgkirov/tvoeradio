@@ -28,7 +28,7 @@ $(document).ready(function(){
     // Поднимаем плеер
 
     $("#mp3player").jPlayer({
-        'swfPath': config.jplayer_swfpath.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''),
+        'swfPath': config.jplayer_swfpath,
         'play': function(e) {
             network.lastfm.api(
                 'track.updateNowPlaying',
