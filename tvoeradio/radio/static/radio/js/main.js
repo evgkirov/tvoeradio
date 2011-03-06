@@ -5,7 +5,15 @@ $(document).ready(function(){
 
     network.lastfm.api_key = config.lastfm_api_key;
     network.lastfm.api_secret = config.lastfm_api_secret;
-    $.ajaxSetup({'cache':true});
+    network.lastfm.api_url = config.lastfm_api_url;
+    $.ajaxSetup({
+        'cache': true,
+        'beforeSend': function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                xhr.setRequestHeader("X-CSRFToken", $("[name='csrfmiddlewaretoken']").val());
+            }
+        }
+    });
     
     
     $('#search-widget__text').focus();
@@ -140,7 +148,7 @@ $(document).ready(function(){
         network.vkontakte.api(
             'wall.post',
             {
-                'message': 'Советую послушать: http://vkontakte.ru/app1840144#'+player.station.type+'/'+util.string.urlencode(player.station.name)
+                'message': 'Советую послушать: http://vkontakte.ru/app'+config.vk_api_id+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
             },
             function(data) {}
         );

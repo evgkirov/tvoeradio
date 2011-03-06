@@ -14,6 +14,7 @@
         var config = {
             'app_version': '{{ settings.TVOERADIO_VERSION }}',
             'mode': '{{ mode }}',
+            'lastfm_api_url': '{{ settings.LASTFM_API_URL }}',
             'lastfm_api_key': '{{ settings.LASTFM_API_KEY }}',
             'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET }}',
             'vk_api_id': '{{ settings.VK_APP_ID }}',
@@ -40,10 +41,12 @@
             </div>
             <div class="infoblock__r">
                 <img class="infoblock_artist__picture" src="" alt="" />
-                <br/><br/>
+                <br/>
                 <div class="greenbutton">Слушать похожих</div>
             </div>
         </div>
+        <div id="mp3player"></div>
+        {% csrf_token %}
     </div>
 
     <div class="popup" id="popup_infoblock">
@@ -70,7 +73,6 @@
         </div>
     </div>
 
-    <div id="mp3player"></div>
     <div id="loader_fullscreen"><div id="loader_fullscreen__i"></div></div>
 
     <div id="page_tune" class="page">

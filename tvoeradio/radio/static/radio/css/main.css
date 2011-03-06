@@ -541,5 +541,13 @@ h2 {
     overflow: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 0 10px;
+    padding: 10px;
+}
+
+.tabcontent {
+    display: none;
+}
+
+#tabcontent_tabs_player__info {
+    display: block;
 }

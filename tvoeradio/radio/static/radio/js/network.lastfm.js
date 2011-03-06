@@ -1,7 +1,7 @@
 register_namespace('network.lastfm');
 
 
-network.lastfm.api_url = 'http://ws.audioscrobbler.com/2.0/';
+network.lastfm.api_url = null;
 network.lastfm.api_key = null;
 network.lastfm.api_secret = null;
 network.lastfm.cache = {};
@@ -49,32 +49,9 @@ network.lastfm.api = function(method, params, callback) {
         }
         
     } else {
-
-            var html   = document.getElementsByTagName('html')[0];
-            var iframe = document.createElement('iframe');
-            var doc;
-            iframe.width = 1;
-            iframe.height = 1;
-            iframe.style.border = 'none';
-            html.appendChild(iframe);
-            if (typeof(iframe.contentWindow) != 'undefined') {
-                doc = iframe.contentWindow.document;
-            } else if(typeof(iframe.contentDocument.document) != 'undefined') {
-                doc = iframe.contentDocument.document.document;
-            } else {
-                doc = iframe.contentDocument.document;
-            }
-            doc.open();
-            doc.clear();
-            doc.write('<form method="post" action="' + this.api_url + '" id="form">');
-            for(var param in params){
-                doc.write('<input type="text" name="' + param + '" value="' + params[param] + '">');
-            }
-            doc.write('</form>');
-            doc.write('<script type="application/x-javascript">');
-            doc.write('document.getElementById("form").submit();');
-            doc.write('</script>');
-            doc.close();
+        $.post('/app/lastfm_proxy/', params, function(data){
+            callback(data);
+        });
     }
 };
 

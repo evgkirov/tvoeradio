@@ -1,9 +1,10 @@
 from annoying.decorators import render_to, ajax_request
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.utils import simplejson
+import urllib, urllib2
 
 from .forms import RecentStationForm
 from .models import RecentStation, TopTag
@@ -23,8 +24,6 @@ def app(request):
     for tag in top_tags:
         tag.size = 120 * tag.popularity / max_popularity + 90
 
-
-
     return {
         'settings': settings,
         'mode': mode,
@@ -43,5 +42,12 @@ def recent_station_add(request):
         station.user = request.user
         station.save()
         return {'status':'ok'}
-    print form.errors
     raise Http404
+
+
+@login_required
+@require_POST
+def lastfm_proxy(request):
+    req = urllib2.Request(settings.LASTFM_API_URL, request.raw_post_data)
+    response = urllib2.urlopen(req)
+    return HttpResponse(response.read(), mimetype='application/json; charset=utf-8')

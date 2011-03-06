@@ -16,7 +16,7 @@ class Command(BaseCommand):
         params['method'] = method
         for (k, v) in kwargs.iteritems():
             params[k] = v
-        api_url = 'http://ws.audioscrobbler.com/2.0/'
+        api_url = settings.LASTFM_API_URL
         fetcher = urllib.urlopen(api_url + '?' + urllib.urlencode(params))
         return simplejson.loads(fetcher.read())
 
