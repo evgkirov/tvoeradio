@@ -22,7 +22,7 @@ class ClosureAPI(Filter):
         url = 'http://closure-compiler.appspot.com/compile'
         for input in self.get_input(variation):
             values = {
-                'js_code': input,
+                'js_code': input.encode('utf-8'),
                 'compilation_level': COMPILATION_LEVEL,
                 'output_format': 'text',
                 'output_info': 'compiled_code'
