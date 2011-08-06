@@ -1,6 +1,6 @@
--e svn+http://code.djangoproject.com/svn/django/trunk#egg=django
+django
 south
 django-annoying
-django-vkontakte-iframe
+-e hg+http://bitbucket.org/eXtractor/django-vkontakte-iframe/#egg=django-vkontakte-iframe
 django-mediagenerator
-sorl-thumbnail
+
