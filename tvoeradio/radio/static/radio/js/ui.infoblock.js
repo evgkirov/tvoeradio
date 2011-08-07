@@ -13,7 +13,6 @@ ui.infoblock.show_artist = function(elem, name) {
             $block.find('.infoblock__header').text(data.artist.name);
             $block.find('.infoblock__text').html(data.artist.bio.summary);
             $block.find('.infoblock__comments').attr('id', id + '__comments');
-            network.vkontakte.Widgets.Comments(id + '__comments', {limit: 10, width: "350", attach: "*"}, util.string.md5('artist ' + name));
             $block.find('.infoblock_artist__picture').load(function() { /*ui.fit()*/ })
                                                      .attr('src', data.artist.image[data.artist.image.length-1]["#text"]);
             $block.find('.greenbutton').click(function(){
@@ -21,6 +20,7 @@ ui.infoblock.show_artist = function(elem, name) {
             });
             elem.html('');
             $block.appendTo(elem);
+            network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, util.string.md5('artist ' + name));
         }
     );
 };
