@@ -7,9 +7,9 @@ player.station.current = null;
 
 
 player.station.set = function(type, name) {
-	this.type = type;
-	this.name = name;
-	this.current = player.station[type];
+    this.type = type;
+    this.name = name;
+    this.current = player.station[type];
 };
 
 
