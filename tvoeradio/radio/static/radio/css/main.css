@@ -339,22 +339,22 @@ a:hover, span.pseudolink:hover {
 
 .infoblock__i {
     display: table-row;
+    vertical-align: top;
 }
 
 .infoblock__l {
-    display: table-cell;
-    padding-right: 20px;
-    vertical-align: top;
+    float: left;
+    padding-right: 3%;
+    width: 67%;
 }
 
 .infoblock__r {
-    display: table-cell;
-    vertical-align: top;
-    width: 200px;
+    float: right;
+    width: 30%;
 }
 
 .infoblock__comments {
-    display: table-row;
+    clear: both;
 }
 
 .infoblock__text {
@@ -371,7 +371,7 @@ h2 {
 }
 
 .infoblock_artist__picture {
-    max-width: 200px;
+    max-width: 100%;
 }
 
 .infoblock-loader {
