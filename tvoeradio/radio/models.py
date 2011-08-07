@@ -4,34 +4,26 @@ from django.contrib.auth.models import User
 
 
 class Station(models.Model):
-    """
-    Абстрактная модель для избранных и недавно прослушанных станций.
-    """
-    user = models.ForeignKey(User)
-    date_added = models.DateTimeField(auto_now_add=True, db_index=True)
     type = models.CharField(max_length=30)
     name = models.CharField(max_length=255)
 
     class Meta:
-        abstract = True
-        ordering = ('-date_added',)
+        ordering = ('type', 'name')
 
     def __unicode__(self):
-        return '%s - %s - %s' % (self.user, self.type, self.name)
+        return '%s - %s' % (self.type, self.name)
 
 
-class RecentStation(Station):
-    """
-    История прослушанных станций.
-    """
-    pass
+class RecentStation(models.Model):
+    station = models.ForeignKey(Station)
+    user = models.ForeignKey(User)
+    date_added = models.DateTimeField(auto_now_add=True)
 
 
-class FavoritedStation(Station):
-    """
-    Избранная станция.
-    """
-    pass
+class FavoritedStation(models.Model):
+    station = models.ForeignKey(Station)
+    user = models.ForeignKey(User)
+    date_added = models.DateTimeField(auto_now_add=True)
 
 
 class TopTag(models.Model):
@@ -54,7 +46,7 @@ class TopArtist(models.Model):
     """
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField(db_index=True)
-    image = models.URLField(verify_exists=False)
+    image = models.ImageField(upload_to='topartists')
 
     class Meta:
         ordering = ('-popularity',)
