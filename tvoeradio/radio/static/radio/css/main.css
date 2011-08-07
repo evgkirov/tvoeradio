@@ -353,9 +353,8 @@ a:hover, span.pseudolink:hover {
     width: 200px;
 }
 
-.infoblock__f {
+.infoblock__comments {
     display: table-row;
-    vertical-align: top;
 }
 
 .infoblock__text {
