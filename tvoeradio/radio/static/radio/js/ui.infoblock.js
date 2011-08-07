@@ -8,9 +8,12 @@ ui.infoblock.show_artist = function(elem, name) {
             'artist': name
         },
         function(data) {
-            var $block = $('#infoblock_artist_template').clone(false).attr('id', '');
+            var id = 'infoblock_artist' + util.random.randint(0, 100500);
+            var $block = $('#infoblock_artist_template').clone(false).attr('id', id);
             $block.find('.infoblock__header').text(data.artist.name);
             $block.find('.infoblock__text').html(data.artist.bio.summary);
+            $block.find('.infoblock__comments').attr('id', id + '__comments');
+            network.vkontakte.Widgets.Comments(id + '__comments', {limit: 10, width: "350", attach: "*"}, util.string.md5('artist ' + name));
             $block.find('.infoblock_artist__picture').load(function() { /*ui.fit()*/ })
                                                      .attr('src', data.artist.image[data.artist.image.length-1]["#text"]);
             $block.find('.greenbutton').click(function(){
