@@ -173,7 +173,7 @@ INSTALLED_APPS = (
     'south',
 )
 
-TVOERADIO_VERSION = get_version()
+TVOERADIO_VERSION = get_version
 LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/';
 LASTFM_API_KEY = '5f170ff5352903d39512d907566283fc'
 LASTFM_API_SECRET = '212627ff4f288e140a8b3734a40d2be2'

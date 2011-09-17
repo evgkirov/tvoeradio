@@ -51,8 +51,8 @@ $(document).ready(function(){
                         'artist[0]': player.playlist.get_current_track().artist
                     }
                 );
-                player.control.next();
             }
+            player.control.next();
         },
         'timeupdate': function(e) {
             $('#slider_seek div').width(Math.round(e.jPlayer.status.seekPercent)+'%');
