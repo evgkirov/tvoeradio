@@ -259,7 +259,6 @@ a:hover, span.pseudolink:hover {
 
 #search-suggest div span {
     color:  #666666;
-    element
     display: block;
     float: left;
     padding: 4px 10px 0px 10px;
@@ -335,7 +334,7 @@ a:hover, span.pseudolink:hover {
 }
 
 #search-widget {
-    background-position: center;
+    background-position: bottom;
     height: 21px;
     padding: 15px 10px;
     white-space: nowrap;

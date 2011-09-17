@@ -41,12 +41,12 @@ ui.fit = function() {
 
 
 ui.show_loader_fullscreen = function() {
-    $('#loader_fullscreen').show();
+    $('#loader_fullscreen').fadeIn();
 };
 
 
 ui.hide_loader_fullscreen = function() {
-    $('#loader_fullscreen').hide();
+    $('#loader_fullscreen').fadeOut();
 };
 
 
@@ -78,10 +78,10 @@ ui.update_track_info = function() {
         }
     });
     ui.infoblock.show($('#tabcontent_tabs_player__info'), 'artist', current_track.artist);
-    if (network.lastfm.authorized) { 
-        $('#menu_track__love').show(); 
+    if (network.lastfm.authorized) {
+        $('#menu_track__love').show();
     } else {
-        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого 
+        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого
     }
 };
 
