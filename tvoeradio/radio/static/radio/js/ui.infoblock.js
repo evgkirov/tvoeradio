@@ -12,6 +12,26 @@ ui.infoblock.show_artist = function(elem, name) {
             var $block = $('#infoblock_artist_template').clone(false).attr('id', id);
             $block.find('.infoblock__header').text(data.artist.name);
             $block.find('.infoblock__text').html(data.artist.bio.summary);
+            var similar = [];
+            var data_similar = network.lastfm.arrayize(data.artist.similar.artist);
+            for (var i in data_similar) {
+                similar.push('<a href="#" class="artist">' + util.string.htmlspecialchars(data_similar[i].name) + '</a>');
+            }
+            var html = similar.join(', ');
+            if (similar) {
+                html = 'Похожие исполнители: ' + html;
+            }
+            $block.find('.infoblock__similar').html(html);
+            var tags = [];
+            var data_tags = network.lastfm.arrayize(data.artist.tags.tag);
+            for (var i in data_tags) {
+                tags.push('<a href="#" class="tag">' + util.string.htmlspecialchars(data_tags[i].name) + '</a>');
+            }
+            var html = tags.join(', ');
+            if (tags) {
+                html = 'Теги: ' + html;
+            }
+            $block.find('.infoblock__tags').html(html);
             $block.find('.infoblock__comments').attr('id', id + '__comments');
             $block.find('.infoblock_artist__picture').load(function() { /*ui.fit()*/ })
                                                      .attr('src', data.artist.image[data.artist.image.length-1]["#text"]);
@@ -30,3 +50,20 @@ ui.infoblock.show = function(elem, type, name) {
     elem.html('<div class="infoblock-loader"></div>');
     this.show_artist(elem, name);
 };
+
+
+ui.infoblock.show_popup = function(type, name) {
+    $('#popup_infoblock').show();
+    ui.infoblock.show($('#popup_infoblock .popup__content'), type, name);
+};
+
+
+$('.artist').live('click', function(e){
+    e.preventDefault();
+    ui.infoblock.show_popup('artist', $(this).text());
+});
+
+$('.tag').live('click', function(e){
+    e.preventDefault();
+    ui.infoblock.show_popup('tag', $(this).text());
+});

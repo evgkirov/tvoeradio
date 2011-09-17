@@ -14,17 +14,17 @@ $(document).ready(function(){
             }
         }
     });
-    
-    
+
+
     $('#search-widget__text').focus();
 
-    
-    // Настройка UI    
+
+    // Настройка UI
 
     $(window).resize(ui.resz);
     ui.resz();
 
-    
+
     // Поднимаем плеер
 
     $("#mp3player").jPlayer({
@@ -60,31 +60,31 @@ $(document).ready(function(){
             $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(e.jPlayer.status.duration));
         }
     });
-    
-    
+
+
     // Логинимся в Last.fm, если были залогинены ранее
-    
+
     network.lastfm.cookielogin();
     ui.update_topnav();
     ui.update_popup_lastfm();
 
-    
+
     $('.popup__close').click(function(){
         $(this).parent('.popup').hide();
     });
-    
-    $('a.bbcode_artist').live('click', function() {
+
+    $('a.bbcode_artist').live('click', function(e) {
+        e.preventDefault();
         var artist = $(this).attr('href');
         artist = artist.replace('http://www.last.fm/music/', '');
         artist = util.string.urldecode(artist);
-        $('#popup_infoblock').show();
-        ui.infoblock.show($('#popup_infoblock .popup__content'), 'artist', artist);
-        return false;
+        ui.infoblock.show_popup('artist', artist)
     });
+
     $('#topnav__lastfm').live('click', function() {
         $('#popup_lastfm').show();
     });
-    
+
     $('#popup_lastfm__auth1 .button').click(function() {
         var open_link = window.open('','_blank');
         network.lastfm.api('auth.getToken', {}, function(data){
@@ -92,9 +92,9 @@ $(document).ready(function(){
             network.lastfm.auth_token = data.token;
             $('#popup_lastfm__auth1').hide();
             $('#popup_lastfm__auth2').show();
-        }); 
+        });
     });
-    
+
     $('#popup_lastfm__auth2 .button').click(function() {
         network.lastfm.api('auth.getSession', {'token': network.lastfm.auth_token}, function(data) {
             if (data.error) {
@@ -106,28 +106,28 @@ $(document).ready(function(){
             ui.update_popup_lastfm();
         });
     });
-    
+
     $('#popup_lastfm__authed .button').click(function() {
         network.lastfm.logout();
         $('#popup_lastfm').hide();
         ui.update_topnav();
         ui.update_popup_lastfm();
     });
-    
-    
+
+
     // События в плеере
-    
+
     $('#station_change').click(player.control.stop);
-    
+
     $('#button_next').click(player.control.next);
-    
+
     $('#button_previous').click(player.control.previous);
-    
+
     $('#button_play, #button_pause').click(player.control.pause);
-    
-    
+
+
     $('#menu_track__love').click(function(){
-        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого 
+        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого
         network.lastfm.api(
             'track.love',
             {
@@ -136,7 +136,7 @@ $(document).ready(function(){
             }
         );
     });
-    
+
     $('#menu_track__poststatus').click(function(){
         var current_track = player.playlist.get_current_track();
         network.vkontakte.api(
@@ -148,7 +148,7 @@ $(document).ready(function(){
             function(data) {}
         );
     });
-    
+
     $('#menu_station__poststatus').click(function(){
         network.vkontakte.api(
             'wall.post',
@@ -162,7 +162,7 @@ $(document).ready(function(){
 });
 
 if (config.mode == 'vk') {
-    
+
     network.vkontakte.init(function() {
          // API initialization succeeded
          // Your code here
