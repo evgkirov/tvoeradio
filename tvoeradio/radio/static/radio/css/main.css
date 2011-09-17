@@ -4,7 +4,7 @@ ul, ol, li {
 }
 
 html, body {
-    background: #f7f7f7;
+    background: #ffffff;
     color: #000000;
     font-family: tahoma, verdana, arial, sans-serif;
     font-size: 11px;
@@ -281,7 +281,7 @@ a:hover, span.pseudolink:hover {
 
 #dashboard {
     display: table;
-    padding: 10px;
+    padding: 10px 10px 10px 0;
     width: 100%;
 }
 
@@ -291,7 +291,18 @@ a:hover, span.pseudolink:hover {
 
 .dashboard__cell {
     display: table-cell;
+    padding: 0 0 10px 10px;
     width: 50%;
+}
+
+.dashboard__cell__title {
+    background: #E1E7ED;
+    border-top: 1px solid #D3DAE0;
+    border-bottom: 1px solid #D8DFE5;
+    color: #45688E;
+    font-weight: bold;
+    outline: none;
+    padding: 3px 8px;
 }
 
 #search-result {
@@ -307,8 +318,6 @@ a:hover, span.pseudolink:hover {
     background: url(../img/page_tune.png) top repeat-x;
     display: block;
     min-height: 100px;
-    /*margin: 200px auto;
-     width: 500px;*/
 }
 
 #search-widget {
@@ -318,7 +327,7 @@ a:hover, span.pseudolink:hover {
 }
 
 #search-widget__label {
-    color: #C0CAD5;
+    color: #E1E7ED;
     display: inline-block;
     font-size: 18px;
     margin-right: 5px;

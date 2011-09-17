@@ -77,7 +77,7 @@
     <div id="loader_fullscreen"><div id="loader_fullscreen__i"></div></div>
 
     <div id="page_tune" class="page">
-        
+
         <div id="search-suggest">
             <input id="search-suggest__text" type="hidden" />
             <div id="search-suggest__artists">
@@ -91,28 +91,30 @@
         <div id="search-widget">
             <span id="search-widget__label">поиск:</span><input id="search-widget__text" type="text" class="input_text" />
         </div>
-        
+
         <div id="dashboard">
+            {% comment %}
             <div class="dashboard__row">
                 <div class="dashboard__cell">
-                    <h2>Последнее в избранном</h2>
+                    <div class="dashboard__cell__title">Последнее в избранном</div>
                 </div>
                 <div class="dashboard__cell">
-                    <h2>Популярные исполнители</h2>
+                    <div class="dashboard__cell__title">Популярные исполнители</div>
                 </div>
             </div>
             <div class="dashboard__row">
                 <div class="dashboard__cell">
-                    <h2>Последнее прослушанное</h2>
+                    <div class="dashboard__cell__title">Последнее прослушанное</div>
                     <ul id="dashboard__recent_stations"></ul>
                 </div>
                 <div class="dashboard__cell">
-                    <h2>Популярные теги</h2>
-                    <div style="text-align: justify;">{% for tag in top_tags %} <span style="font-size: {{ tag.size }}%; vertical-align:middle">{{ tag.name }}</span>{% endfor %}</div>
+                    <div class="dashboard__cell__title">Популярные теги</div>
+                    <div style="text-align: justify; color: #C0CAD5;">{% for tag in top_tags %} <span style="font-size: {{ tag.size }}%; vertical-align:middle">{{ tag.name }}</span>{% endfor %}</div>
                 </div>
             </div>
+            {% endcomment %}
         </div>
-        
+
         <div id="search-result">
 
         </div>

@@ -9,7 +9,7 @@ def get_version():
         repo = hg.repository(ui.ui(), here('..'))
         return 'r%s' % (repo.filectx(repo.root, 'tip').rev())
     except:
-        return ''
+        return 'r??'
 
 
 DEBUG = TEMPLATE_DEBUG = MEDIA_DEV_MODE = True
