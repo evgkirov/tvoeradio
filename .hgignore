@@ -4,6 +4,7 @@ glob:.project
 glob:.pydevproject
 glob:.settings
 glob:_generated_media_names.py
+glob:_generated_media
 glob:settings_local.py
 glob:fabfile.py
 

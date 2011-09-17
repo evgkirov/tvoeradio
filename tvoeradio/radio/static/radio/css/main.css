@@ -130,7 +130,8 @@ a:hover, span.pseudolink:hover {
 }
 
 .tabs {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #597DA3;
+    color: #2B587A;
     list-style: none;
     height: 28px;
     margin: 0;
@@ -152,12 +153,26 @@ a:hover, span.pseudolink:hover {
     padding: 5px 10px 5px 10px;
 }
 
+.tabs li.active {
+    background: #597DA3;
+    color: #ffffff;
+}
+
+.tabs_dark li:hover {
+    background: #E1E7ED;
+}
+
+.tabs_dark {
+    border-bottom: 1px solid white;
+    color: #ffffff;
+}
+
 .tabs_dark li:hover {
     background: url(../img/white30.png);
 }
 
 .tabs_dark li.active {
-    background: #f7f7f7;
+    background: #ffffff;
     color: black;
 }
 
@@ -315,21 +330,21 @@ a:hover, span.pseudolink:hover {
 }
 
 #page_tune {
-    background: url(../img/page_tune.png) top repeat-x;
     display: block;
     min-height: 100px;
 }
 
 #search-widget {
-    height: 40px;
-    margin: 15px 10px;
+    background-position: center;
+    height: 21px;
+    padding: 15px 10px;
     white-space: nowrap;
 }
 
 #search-widget__label {
     color: #E1E7ED;
     display: inline-block;
-    font-size: 18px;
+    font-size: 11px;
     margin-right: 5px;
     text-align: right;
     width: 100px;
@@ -337,7 +352,7 @@ a:hover, span.pseudolink:hover {
 
 #search-widget__text {
     display: inline-block;
-    font-size: 18px;
+    font-size: 11px;
     margin: 0;
 }
 
@@ -390,7 +405,6 @@ h2 {
 
 #controls {
     color: #ffffff;
-    background: #597ea4 url(../img/bg/gradient.png) left top repeat-x;
     height: 246px;
 }
 
