@@ -20,7 +20,7 @@ ui.infoblock.show_artist = function(elem, name) {
             });
             elem.html('');
             $block.appendTo(elem);
-            network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, util.string.md5('artist ' + name));
+            //network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, util.string.md5('artist ' + name));
         }
     );
 };
