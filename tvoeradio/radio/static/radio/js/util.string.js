@@ -459,3 +459,15 @@ util.string.md5 = function(str) {
 
     return temp.toLowerCase();
 };
+
+
+util.string.safe_format = function(tpl) {
+    var parts = tpl.split('%s');
+    for (var i in parts) {
+        i = parseInt(i);
+        if (parts.length != i + 1) {
+            parts[i] += this.htmlspecialchars(arguments[i+1]);
+        }
+    }
+    return parts.join('');
+};

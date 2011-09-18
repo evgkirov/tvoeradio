@@ -15,7 +15,7 @@ ui.resz = function() {
     $('#search-widget__text').width(ww-155);
     $('#trackinfo div').width(ww-140);
     if (config.mode == 'desktop') {
-        $('#trackinfo_panel').height(wh-$('#controls').height());
+        $('#trackinfo_panel').height(wh-$('#controls').height()-20);
     }
 };
 
@@ -122,7 +122,21 @@ ui.update_popup_lastfm = function() {
         $('#popup_lastfm__authed, #popup_lastfm__auth2').hide();
         $('#popup_lastfm__auth1').show();
     }
-}
+};
+
+
+ui.update_playlist = function() {
+    var pl = [];
+    for (var i in player.playlist.playlist) {
+        var track = player.playlist.playlist[i];
+        if (i == player.playlist.current_track_num) {
+            pl.push(util.string.safe_format('<div class="boxed boxed_selected" rel="%s">%s &mdash; %s</div>', i, track.artist, track.title));
+        } else {
+            pl.push(util.string.safe_format('<div class="boxed" rel="%s">%s &mdash; %s</div>', i, track.artist, track.title));
+        }
+    }
+    $('#tabcontent_tabs_player__playlist').html(pl.join(''));
+};
 
 
 $(document).ready(function(){
@@ -133,6 +147,9 @@ $(document).ready(function(){
        $('#tabcontent_'+$(this).attr('id')).show();
    });
    $('#album_cover').load(function(){$(this).fadeIn()});
+   $('#tabcontent_tabs_player__playlist .boxed').live('click', function(e){
+       player.control.navigate($(this).attr('rel'));
+   });
    ui.update_dashboard();
    setInterval(ui.fit, 10);
 });

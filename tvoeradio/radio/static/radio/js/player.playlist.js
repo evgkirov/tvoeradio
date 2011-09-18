@@ -7,6 +7,7 @@ player.playlist.current_track_num = 0;
 
 player.playlist.clear = function() {
     this.playlist = [];
+    ui.update_playlist()
 };
 
 
@@ -21,6 +22,7 @@ player.playlist.add_track = function(artist, title, callback) {
             'vk_aid': mp3.aid
         }
         player.playlist.playlist.push(track);
+        ui.update_playlist()
         if (callback) {
             callback();
         }

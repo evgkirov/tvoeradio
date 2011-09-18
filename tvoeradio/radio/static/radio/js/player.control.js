@@ -38,6 +38,7 @@ player.control.next = function() {
         ui.update_track_info();
         player.audio.set_file(player.playlist.get_current_track().mp3_url);
         player.audio.play();
+        ui.update_playlist()
         ui.update_player_controls();
         player.station.current.add_to_playlist();
     }
@@ -49,16 +50,25 @@ player.control.next = function() {
 };
 
 
-player.control.previous = function() {
-    player.playlist.current_track_num--;
+
+player.control.navigate = function(to) {
+    player.playlist.current_track_num = parseInt(to);
     if (player.playlist.current_track_num < 0) {
         player.playlist.current_track_num = 0;
     }
     ui.update_track_info();
     player.audio.set_file(player.playlist.get_current_track().mp3_url);
     player.audio.play();
+    ui.update_playlist();
     ui.update_player_controls();
+
 };
+
+
+player.control.previous = function() {
+    player.control.navigate(player.playlist.current_track_num - 1);
+};
+
 
 
 player.control.pause = function() {
