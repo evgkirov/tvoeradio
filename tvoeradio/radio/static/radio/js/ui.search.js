@@ -26,6 +26,7 @@ ui.search.load_result = function(type, name) {
     $('#search-suggest').hide();
     $('#dashboard').hide();
     $('#search-result').show();
+    $('#search-widget__clear').show();
     $('#search-widget__text').val(name);
     ui.infoblock.show($('#search-result'), type, name);
 };
@@ -41,6 +42,13 @@ $(document).ready(function() {
     $('#search-widget').children('.input_text').blur(function(e) {
         setTimeout($('#search-suggest').hide, 1000);
     });
+    
+    $('#search-widget__clear').click(function(){
+        $('#search-widget__clear').hide();
+        $('#dashboard').show();
+        $('#search-result').hide();
+    });
+    
     
     $('#search-widget').children('.input_text').keyup( function(e) {
         var $this = $(this);

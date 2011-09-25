@@ -459,6 +459,15 @@ a:hover, span.pseudolink:hover {
     margin: 0;
 }
 
+#search-widget__clear {
+    background: url(../img/search-widget__clear.gif) center center no-repeat;
+    display: none;
+    height: 20px;
+    position: absolute;
+    right: 33px;
+    width: 20px;
+}
+
 .infoblock {
     display: table;
     width: 100%;
