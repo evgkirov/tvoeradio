@@ -34,7 +34,6 @@ ui.search.load_result = function(type, name) {
 
 $(document).ready(function() {
 
-
     $('#search-suggest li').live('click', function(){
         ui.search.load_result($(this).attr('rel'), $(this).text());
     });
@@ -47,8 +46,9 @@ $(document).ready(function() {
         $('#search-widget__clear').hide();
         $('#dashboard').show();
         $('#search-result').hide();
+        $('#search-widget__text').val('');
+        $('#search-suggest').hide();
     });
-    
     
     $('#search-widget').children('.input_text').keyup( function(e) {
         var $this = $(this);
@@ -89,7 +89,6 @@ $(document).ready(function() {
         } else {
             
             $('#search-suggest').css({
-                'top': $this.position().top+$this.outerHeight()-1+'px',
                 'left': $this.position().left-100+'px'
             })
             .width($this.outerWidth()+100);

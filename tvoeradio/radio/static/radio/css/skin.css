@@ -1,6 +1,12 @@
 #search-widget,
-#controls {
+#controls,
+#search-widget__clear {
     background-color: #597ea4;
+}
+
+
+#search-widget,
+#controls {
     background-image: url(../img/skin/gradient.png);
     background-repeat: repeat-x;
 }

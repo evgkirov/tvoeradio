@@ -353,7 +353,7 @@ a:hover, span.pseudolink:hover {
     border: 1px solid #6792bb;
     display: none;
     position: absolute;
-    top: 0;
+    top: 64px;
     z-index: 300;
 }
 
@@ -441,6 +441,7 @@ a:hover, span.pseudolink:hover {
     background-position: bottom;
     height: 21px;
     padding: 15px 10px;
+    position: relative;
     white-space: nowrap;
 }
 
@@ -462,10 +463,11 @@ a:hover, span.pseudolink:hover {
 #search-widget__clear {
     background: url(../img/search-widget__clear.gif) center center no-repeat;
     display: none;
-    height: 20px;
+    height: 11px;
     position: absolute;
-    right: 33px;
-    width: 20px;
+    right: 37px;
+    width: 11px;
+    top: 20px;
 }
 
 .infoblock {
