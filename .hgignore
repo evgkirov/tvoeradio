@@ -1,5 +1,6 @@
 glob:db/*
 glob:*.pyc
+glob:*.komodoproject
 glob:.project
 glob:.pydevproject
 glob:.settings

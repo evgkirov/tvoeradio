@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 
 
 class Station(models.Model):
-    type = models.CharField(max_length=30)
-    name = models.CharField(max_length=255)
+    type = models.CharField(max_length=30, db_index=True)
+    name = models.CharField(max_length=255, db_index=True)
+    plays_count = models.PositiveIntegerField(default=0, db_index=True)
 
     class Meta:
         ordering = ('type', 'name')
@@ -14,22 +15,45 @@ class Station(models.Model):
         return '%s - %s' % (self.type, self.name)
 
 
-class RecentStation(models.Model):
+class UserStationManager(models.Manager):
+    
+    def get_query_set(self):
+        qs = super(UserStationManager, self).get_query_set()
+        return qs.select_related('station')
+    
+    def get_for_user(self, user):
+        return self.get_query_set().filter(user=user)
+        
+
+class UserStation(models.Model):
+
     station = models.ForeignKey(Station)
     user = models.ForeignKey(User)
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateTimeField(auto_now_add=True, db_index=True)
+    
+    objects = UserStationManager()
+
+    class Meta:
+        abstract = True
 
 
-class FavoritedStation(models.Model):
-    station = models.ForeignKey(Station)
-    user = models.ForeignKey(User)
-    date_added = models.DateTimeField(auto_now_add=True)
+class RecentStation(UserStation):
+    
+    class Meta:
+        ordering = ('-date_added',)
+
+
+class FavoritedStation(UserStation):
+
+    class Meta:
+        ordering = ('-date_added',)
 
 
 class TopTag(models.Model):
     """
     Топ тегов, показываемый в дашборде.
     """
+    
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField()
 
@@ -44,6 +68,7 @@ class TopArtist(models.Model):
     """
     Топ исполнителей, показываемый в дашборде.
     """
+    
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField(db_index=True)
     image = models.ImageField(upload_to='topartists')

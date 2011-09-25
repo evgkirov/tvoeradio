@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% load media %}
+{% load media jsonize %}
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
@@ -28,7 +28,7 @@
     {% endif %}
     {% include_media 'radio.js' %}
     <script type="text/javascript">
-        userdata.recent_stations.list = [];
+        userdata.recent_stations.list = {{ recent_stations|jsonize }};
     </script>
 </head>
 <body>
@@ -95,7 +95,6 @@
         </div>
 
         <div id="dashboard">
-            {% comment %}
             <div class="dashboard__row">
                 <div class="dashboard__cell">
                     <div class="dashboard__cell__title">Последнее в избранном</div>
@@ -114,7 +113,6 @@
                     <div style="text-align: justify; color: #C0CAD5;">{% for tag in top_tags %} <span style="font-size: {{ tag.size }}%; vertical-align:middle">{{ tag.name }}</span>{% endfor %}</div>
                 </div>
             </div>
-            {% endcomment %}
         </div>
 
         <div id="search-result">
