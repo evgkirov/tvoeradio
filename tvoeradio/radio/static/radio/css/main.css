@@ -36,21 +36,6 @@ a:hover, span.pseudolink:hover {
     width: 200px;
 }
 
-.button {
-    background: #36638E;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-block;
-    padding: 5px 8px;
-}
-
-.button:hover {
-    color:#DAE1E8;
-}
-
 .greenbutton {
     background: #69A74E;
     border: 1px solid #99b38c;
@@ -129,6 +114,103 @@ a:hover, span.pseudolink:hover {
     height: 100%;
 }
 
+.button_blue, .button_gray {
+    text-align: center;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    display: inline-block;
+    *display: inline;
+    position: relative;
+    zoom: 1;
+}
+
+.button_blue button, .button_gray button {
+    border: 1px solid;
+    background: none;
+    font-size: 11px;
+    margin: 0px;
+    cursor: pointer;
+    white-space: nowrap;
+    outline: none;
+    padding: 4px 14px 4px;
+    *padding: 5px 15px 3px;
+    font-family: tahoma, verdana, arial, sans-serif, Lucida Sans;
+    overflow: visible;
+}
+
+.button_wide {
+    display: block;
+}
+
+.button_wide button {
+    width: 100%;
+}
+
+.button_blue button::-moz-focus-inner,
+.button_gray button::-moz-focus-inner {
+    border: 0;
+}
+
+.button_blue {
+    border: 1px solid #45688E;
+    background: #5D81A7;
+}
+
+.button_blue button {
+    border-top-color: #789ABF;
+    border-bottom-color: #5980A9;
+    border-left-color: #5980A9;
+    border-right-color: #5980A9;
+    color: #FFF;
+    text-shadow:0 1px 0 #45688E;
+    *border: 0;
+    background: url(../img/button_vk.png) #6181a6 repeat-x top;
+    background-position: 0px -16px;
+    *background-position: 0px -16px;
+}
+
+.button_blue button:hover {
+    background-position: 0px -8px;
+}
+
+.button_blue button:active {
+    background: #5e80a5;
+    border: 1px solid #5e80a5;
+    position:relative;
+}
+
+.button_gray {
+    border: 1px solid #b3b3b3;
+    background: #e0e0e0;
+}
+
+.button_gray button {
+    border-top-color: #ffffff;
+    border-bottom-color: #e5e5e5;
+    border-left-color: #e7e7e7;
+    border-right-color: #e7e7e7;
+    color: #444;
+    text-shadow:0 1px 0 #ffffff;
+    *border: 0;
+    background: url(../img/button_vk.png) #dddddd repeat-x top;
+    background-position: 0px -54px;
+}
+
+.button_gray button:hover {
+    background-position: 0px -46px;
+}
+
+.button_gray button:active {
+    background: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    position:relative;
+}
+
+
+
+
 .tabs {
     border-bottom: 1px solid #597DA3;
     color: #2B587A;
@@ -203,11 +285,10 @@ a:hover, span.pseudolink:hover {
 }
 
 .popup {
-    background: transparent url('../img/transpx2.png');
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
     display: none;
     left: 50%;
     margin-left: -260px;
-    padding: 10px;
     position: absolute;
     width: 500px;
     top: 40px;
@@ -219,7 +300,7 @@ a:hover, span.pseudolink:hover {
     cursor: pointer;
     float: right;
     height: 17px;
-    margin: 5px 5px 0px 0px;
+    margin: 8px 8px 0px 0px;
     filter: alpha(opacity=50);
     -moz-opacity: 0.5;
     -khtml-opacity: 0.5;
@@ -236,22 +317,25 @@ a:hover, span.pseudolink:hover {
 }
 
 .popup__title {
-    background-color: #4B769F;
-    border-top: 1px solid #6088B3;
-    border-bottom: 1px solid #466E94;
+    background-color: #597DA3;
+    border: 1px solid;
+    padding: 0px;
     color: white;
     font-size: 13px;
     font-weight: bold;
-    margin: 0 1px;
-    padding: 4px 10px 5px 10px;
-    outline: 1px solid #45688E;
+    border-color: #45688E #43658A;
+}
+
+.popup__title div {
+    border-top: 1px solid #648CB7;
+    padding: 6px 10px 8px 10px;
 }
 
 .popup__content {
     background-color: white;
-    border-left: 1px solid #AAA;
-    border-right: 1px solid #AAA;
-    border-bottom: 1px solid #AAA;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
     padding: 16px 14px;
 }
 

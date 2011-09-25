@@ -85,7 +85,7 @@ $(document).ready(function(){
         $('#popup_lastfm').show();
     });
 
-    $('#popup_lastfm__auth1 .button').click(function() {
+    $('#popup_lastfm__auth1 button').click(function() {
         var open_link = window.open('','_blank');
         network.lastfm.api('auth.getToken', {}, function(data){
             open_link.location='http://www.last.fm/api/auth/?api_key='+network.lastfm.api_key+'&token='+data.token;
@@ -95,7 +95,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#popup_lastfm__auth2 .button').click(function() {
+    $('#popup_lastfm__auth2 button').click(function() {
         network.lastfm.api('auth.getSession', {'token': network.lastfm.auth_token}, function(data) {
             if (data.error) {
                 $('#popup_lastfm__auth1 p').text('Вы не подтвердили доступ, придётся начать сначала.');
@@ -107,7 +107,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#popup_lastfm__authed .button').click(function() {
+    $('#popup_lastfm__authed button').click(function() {
         network.lastfm.logout();
         $('#popup_lastfm').hide();
         ui.update_topnav();

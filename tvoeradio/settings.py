@@ -67,8 +67,8 @@ DEV_MEDIA_URL = '/develstatic/'
 
 MEDIA_BUNDLES = (
     ('radio.css',
-        'radio/css/skin.css',
         'radio/css/main.css',
+        'radio/css/skin.css',
     ),
     ('radio.js',
         'js/3rdparty/jquery.js',
