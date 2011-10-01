@@ -1,6 +1,7 @@
 glob:db/*
 glob:*.pyc
 glob:*.komodoproject
+glob:*.sublime-workspace
 glob:.project
 glob:.pydevproject
 glob:.settings

@@ -319,11 +319,11 @@ a:hover, span.pseudolink:hover {
 .popup__title {
     background-color: #597DA3;
     border: 1px solid;
+    border-color: #45688E #43658A;
     padding: 0px;
     color: white;
     font-size: 13px;
     font-weight: bold;
-    border-color: #45688E #43658A;
 }
 
 .popup__title div {

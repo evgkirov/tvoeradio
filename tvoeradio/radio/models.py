@@ -16,21 +16,21 @@ class Station(models.Model):
 
 
 class UserStationManager(models.Manager):
-    
+
     def get_query_set(self):
         qs = super(UserStationManager, self).get_query_set()
         return qs.select_related('station')
-    
+
     def get_for_user(self, user):
         return self.get_query_set().filter(user=user)
-        
+
 
 class UserStation(models.Model):
 
     station = models.ForeignKey(Station)
     user = models.ForeignKey(User)
     date_added = models.DateTimeField(auto_now_add=True, db_index=True)
-    
+
     objects = UserStationManager()
 
     class Meta:
@@ -38,7 +38,7 @@ class UserStation(models.Model):
 
 
 class RecentStation(UserStation):
-    
+
     class Meta:
         ordering = ('-date_added',)
 
@@ -53,7 +53,7 @@ class TopTag(models.Model):
     """
     Топ тегов, показываемый в дашборде.
     """
-    
+
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField()
 
@@ -68,7 +68,7 @@ class TopArtist(models.Model):
     """
     Топ исполнителей, показываемый в дашборде.
     """
-    
+
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField(db_index=True)
     image = models.ImageField(upload_to='topartists')
