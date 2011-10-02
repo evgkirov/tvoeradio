@@ -29,3 +29,13 @@ player.audio.pause = function() {
         $('#mp3player').jPlayer('play');
     }
 };
+
+
+player.audio.seek = function(time) {
+    $('#mp3player').jPlayer('play', time);
+};
+
+
+player.audio.status = function() {
+    return $('#mp3player').data('jPlayer').status;
+};

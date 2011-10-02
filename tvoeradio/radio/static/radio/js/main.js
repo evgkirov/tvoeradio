@@ -56,10 +56,28 @@ $(document).ready(function(){
         },
         'timeupdate': function(e) {
             $('#slider_seek div').width(Math.round(e.jPlayer.status.seekPercent)+'%');
-            $('#slider_seek').css('background-position', Math.round(e.jPlayer.status.currentPercentAbsolute)+'% 0');
-            $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(e.jPlayer.status.duration));
+            $('#slider_seek').css('background-position', Math.ceil(100*e.jPlayer.status.currentTime/player.playlist.get_current_track().duration)+'% 0');
+            $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(player.playlist.get_current_track().duration));
+        },
+        'play': function(e) {
+            ui.update_player_controls();
+        },
+        'pause': function(e) {
+            ui.update_player_controls();
+        },
+        'volumechange': function(e) {
+            $('#slider_volume').css('background-position', e.jPlayer.status.volume*100+'% 0');
         }
     });
+
+    var volume = util.cookie.get('tvoeradio_player_volume');
+    if (volume == null) {
+        volume = 0.8;
+    } else {
+        volume = parseInt(volume) / 100;
+    }
+
+    $('#mp3player').jPlayer('volume', volume);
 
 
     // Логинимся в Last.fm, если были залогинены ранее
@@ -125,9 +143,42 @@ $(document).ready(function(){
 
     $('#button_play, #button_pause').click(player.control.pause);
 
+    $('#slider_seek').click(function(e) {
+        var percent = e.offsetX / $(this).width();
+        var max_percent = $('#mp3player').data('jPlayer').status.seekPercent / 100;
+        percent = Math.min(percent, max_percent);
+        var time = Math.round(percent * player.playlist.get_current_track().duration)-1;
+        if (time - 2 >= 0) {
+            time = time - 2;
+        }
+        player.audio.seek(time);
+    });
+
+    function change_volume(e) {
+        var slider_width = 10;
+        var x = e.pageX-$('#slider_volume').position().left-Math.round(slider_width/2);
+        var k = ($('#slider_volume').width()-slider_width)/100;
+        var vol = Math.round(x/k);
+        if (vol>100) vol=100;
+        if (vol<0) vol=0;
+        $('#mp3player').jPlayer('volume', vol/100);
+        util.cookie.set('tvoeradio_player_volume', vol, 60*60*24*1000);
+    }
+
+    $('#slider_volume').mousedown(function(e) {
+        e.preventDefault();
+        change_volume(e);
+        $(window).mousemove(change_volume);
+    });
+
+    $('#slider_volume').click(change_volume);
+
+    $(window).mouseup(function(){
+        $(this).unbind('mousemove', change_volume);
+    });
 
     $('#menu_track__love').click(function(){
-        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого
+        $('#menu_track__love').hide();
         network.lastfm.api(
             'track.love',
             {
@@ -142,7 +193,6 @@ $(document).ready(function(){
         network.vkontakte.api(
             'wall.post',
             {
-                'message': 'Слушаю '+current_track.artist+' "'+current_track.title+'"',
                 'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
             },
             function(data) {}

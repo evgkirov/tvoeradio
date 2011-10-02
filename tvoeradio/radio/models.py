@@ -22,7 +22,16 @@ class UserStationManager(models.Manager):
         return qs.select_related('station')
 
     def get_for_user(self, user):
-        return self.get_query_set().filter(user=user)
+        return self.filter(user=user)
+
+    def create_user_station(self, user, type, name):
+        station, created = Station.objects.get_or_create(type=type, name=name)
+        kwargs = {'station': station, 'user': user}
+        self.filter(**kwargs).delete()
+        return self.create(**kwargs)
+
+    def delete_user_station(self, user, type, name):
+        self.filter(user=user, station__type=type, station__name=name).delete()
 
 
 class UserStation(models.Model):

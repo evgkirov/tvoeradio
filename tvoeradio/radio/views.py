@@ -3,12 +3,10 @@ from annoying.decorators import render_to, ajax_request
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
-from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
-from django.utils import simplejson
-import urllib, urllib2
+import urllib2
 
-from .models import TopTag, RecentStation, Station
+from .models import TopTag, RecentStation, FavoritedStation, Station
 from .utils import get_user_stations_list
 
 
@@ -22,7 +20,7 @@ def app(request):
     if mode not in ('vk', 'desktop'):
         mode = 'vk'
     top_tags = list(TopTag.objects.all())
-    max_popularity = max(top_tags, key=lambda tag:tag.popularity).popularity
+    max_popularity = max(top_tags, key=lambda tag: tag.popularity).popularity
     for tag in top_tags:
         tag.size = 120 * tag.popularity / max_popularity + 90
 
@@ -31,6 +29,7 @@ def app(request):
         'mode': mode,
         'top_tags': top_tags,
         'recent_stations': get_user_stations_list(RecentStation, user, 20),
+        'favorited_stations': get_user_stations_list(FavoritedStation, user),
     }
 
 
@@ -51,25 +50,52 @@ def started(request):
     Регистрация начала воспроизведения станции.
     """
 
-    user = request.user
     try:
         type = request.POST['type']
         name = request.POST['name']
     except IndexError:
         raise Http404()
 
-    station, created = Station.objects.get_or_create(type=type,
-                                                     name=name)
-    station.plays_count += 1
-    station.save()
-
-    kwargs = {'station': station,
-              'user': user}
-
-    RecentStation.objects.filter(**kwargs).delete()
-    RecentStation.objects.create(**kwargs)
+    rs = RecentStation.objects.create_user_station(request.user, type, name)
+    rs.station.plays_count += 1
+    rs.station.save()
 
     return {
-        'recent_stations': get_user_stations_list(RecentStation, user, 20),
+        'recent_stations': get_user_stations_list(RecentStation, request.user, 20),
     }
 
+
+@login_required
+@require_POST
+@ajax_request
+def add_favorite(request):
+
+    try:
+        type = request.POST['type']
+        name = request.POST['name']
+    except IndexError:
+        raise Http404()
+
+    FavoritedStation.objects.create_user_station(request.user, type, name)
+
+    return {
+        'favorited_stations': get_user_stations_list(FavoritedStation, request.user),
+    }
+
+
+@login_required
+@require_POST
+@ajax_request
+def remove_favorite(request):
+
+    try:
+        type = request.POST['type']
+        name = request.POST['name']
+    except IndexError:
+        raise Http404()
+
+    FavoritedStation.objects.delete_user_station(request.user, type, name)
+
+    return {
+        'favorited_stations': get_user_stations_list(FavoritedStation, request.user),
+    }

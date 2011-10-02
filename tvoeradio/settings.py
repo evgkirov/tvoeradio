@@ -3,15 +3,6 @@
 import os
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
-def get_version():
-    try:
-        from mercurial import ui, hg
-        repo = hg.repository(ui.ui(), here('..'))
-        return 'r%s' % (repo.filectx(repo.root, 'tip').rev())
-    except:
-        return 'r??'
-
-
 DEBUG = TEMPLATE_DEBUG = MEDIA_DEV_MODE = True
 
 ADMINS = MANAGERS = (
@@ -21,12 +12,12 @@ ADMINS = MANAGERS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': here('..', 'db', 'dev.sqlite'), # Or path to database file if using sqlite3.
-        'USER': '', # Not used with sqlite3.
-        'PASSWORD': '', # Not used with sqlite3.
-        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '', # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': here('..', 'db', 'dev.sqlite'),  # Or path to database file if using sqlite3.
+        'USER': '',  # Not used with sqlite3.
+        'PASSWORD': '',  # Not used with sqlite3.
+        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -81,6 +72,7 @@ MEDIA_BUNDLES = (
         'radio/js/network.vkontakte.js',
         'radio/js/network.lastfm.js',
         'radio/js/userdata.recent_stations.js',
+        'radio/js/userdata.favorited_stations.js',
         'radio/js/ui.menu.js',
         'radio/js/ui.js',
         'radio/js/ui.infoblock.js',
@@ -134,11 +126,21 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'vk_iframe.middleware.AuthenticationMiddleware'
+    'vk_iframe.middleware.AuthenticationMiddleware',
     #'django.middleware.locale.LocaleMiddleware',
     #'vk_iframe.middleware.LoginRequiredMiddleware',
 
     #'django.contrib.messages.middleware.MessageMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    #"django.core.context_processors.static",
+    #"django.contrib.messages.context_processors.messages",
+    "common.context_processors.tvoeradio_version",
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -173,8 +175,7 @@ INSTALLED_APPS = (
     'south',
 )
 
-TVOERADIO_VERSION = get_version
-LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/';
+LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/'
 LASTFM_API_KEY = '5f170ff5352903d39512d907566283fc'
 LASTFM_API_SECRET = '212627ff4f288e140a8b3734a40d2be2'
 VK_APP_ID = '1840144'
@@ -193,11 +194,11 @@ LOGGING = {
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'django.utils.log.AdminEmailHandler',
         }
     },
     'loggers': {
-        'django.request':{
+        'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
@@ -211,4 +212,3 @@ try:
     from settings_local import *
 except:
     pass
-

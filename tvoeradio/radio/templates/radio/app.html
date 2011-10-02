@@ -5,14 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Твоёрадио {{ settings.TVOERADIO_VERSION }}</title>
+    <title>Твоёрадио {{ tvoeradio_version }}</title>
     <link rel="icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
     <link rel="shortcut icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{% media_url 'img/apple-touch-icon.png' %}" />
     {% include_media 'radio.css' %}
     <script type="text/javascript">
         var config = {
-            'app_version': '{{ settings.TVOERADIO_VERSION }}',
+            'app_version': '{{ tvoeradio_version }}',
             'mode': '{{ mode }}',
             'lastfm_api_url': '{{ settings.LASTFM_API_URL }}',
             'lastfm_api_key': '{{ settings.LASTFM_API_KEY }}',
@@ -29,6 +29,7 @@
     {% include_media 'radio.js' %}
     <script type="text/javascript">
         userdata.recent_stations.list = {{ recent_stations|jsonize }};
+        userdata.favorited_stations.list = {{ favorited_stations|jsonize }};
     </script>
 </head>
 <body>
@@ -56,8 +57,6 @@
         <div class="popup__title"><div>&nbsp;</div></div>
         <div class="popup__content"></div>
     </div>
-
-
 
     <div class="popup" id="popup_lastfm">
         <div class="popup__close">&nbsp;</div>
@@ -134,6 +133,8 @@
                 <div id="station_name"></div>
                 <span id="menu_station_button" class="menu_button"><span>Станция</span> &#9660;</span>
                 <ul id="menu_station" class="menu">
+                    <li id="menu_station__favorite" style="background-image:url({% media_url 'img/icons/star--plus.png' %})">Добавить в избранное</li>
+                    <li id="menu_station__remove_favorite" style="background-image:url({% media_url 'img/icons/star--minus.png' %})">Убрать из избранного</li>
                     <li id="menu_station__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">В статус</li>
                 </ul><!--menu_station-->
             </div><!--station-->
@@ -161,7 +162,9 @@
 
             <ul class="tabs tabs_dark" id="tabs_player">
                 <li class="active" id="tabs_player__info">Об исполнителе</li>
-                <li id="tabs_player__lyrics">Текст песни</li>
+                <!--<li id="tabs_player__lyrics">Текст песни</li>
+                <li id="tabs_player__buy">Купить</li>
+                <li id="tabs_player__comments">Комментарии</li>-->
                 <li id="tabs_player__playlist">Плейлист</li>
             </ul><!--tabs-->
 

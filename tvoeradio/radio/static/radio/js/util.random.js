@@ -13,7 +13,7 @@ util.random.choice_similar = function(arr) {
     var sim = [];
     // Выбираем только похожие
     for (var i in arr) {
-        if (parseFloat(arr[i].match)>0.5) {
+        if (parseFloat(arr[i].match) > 0.5) {
             sim.push(arr[i]);
         }
     }

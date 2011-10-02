@@ -35,7 +35,7 @@ ui.fit = function() {
                 h = ph;
             }
         }
-        network.vkontakte.callMethod('resizeWindow', 627, h);
+        network.vkontakte.callMethod('resizeWindow', 727, h);
     }
 }
 
@@ -88,11 +88,11 @@ ui.update_track_info = function() {
 
 ui.update_player_controls = function() {
     if (player.control.is_playing()) {
-        $('#button_pause').hide();
-        $('#button_play').show();
-    } else {
         $('#button_pause').show();
         $('#button_play').hide();
+    } else {
+        $('#button_pause').hide();
+        $('#button_play').show();
     }
 };
 
