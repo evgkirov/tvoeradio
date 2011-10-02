@@ -25,7 +25,6 @@ def app(request):
         tag.size = 120 * tag.popularity / max_popularity + 90
 
     return {
-        'settings': settings,
         'mode': mode,
         'top_tags': top_tags,
         'recent_stations': get_user_stations_list(RecentStation, user, 20),

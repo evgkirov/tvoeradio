@@ -1,3 +1,8 @@
-def tvoeradio_version(request):
-    import tvoeradio
-    return {'tvoeradio_version': tvoeradio.VERSION}
+def settings(request):
+    from django.conf import settings
+    return {'settings': settings}
+
+
+def version(request):
+    from version import VERSION
+    return {'tvoeradio_version': VERSION}

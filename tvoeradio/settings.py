@@ -3,10 +3,11 @@
 import os
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
+
 DEBUG = TEMPLATE_DEBUG = MEDIA_DEV_MODE = True
 
 ADMINS = MANAGERS = (
-    ('Evgeniy Kirov', 'me@xtr.pp.ru'),
+    ('Evgeniy Kirov', 'evg.kirov@gmail.com'),
 )
 
 
@@ -140,7 +141,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     #"django.core.context_processors.static",
     #"django.contrib.messages.context_processors.messages",
-    "common.context_processors.tvoeradio_version",
+    "common.context_processors.settings",
+    "common.context_processors.version",
 )
 
 AUTHENTICATION_BACKENDS = (
