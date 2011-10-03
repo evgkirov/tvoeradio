@@ -18,7 +18,7 @@ def deploy():
     with cd(repo_dir):
         run('hg pull %s' % hg_url)
         run('hg update')
-        run('%s install -r requirements.txt' % pip_path)
+        run('%s install --upgrade -r requirements.txt' % pip_path)
     with cd(tvoeradio_dir):
         run('%s manage.py syncdb' % python_path)
         run('%s manage.py migrate' % python_path)
