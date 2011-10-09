@@ -171,6 +171,7 @@ INSTALLED_APPS = (
 
     'mediagenerator',
     'vk_iframe',
+    'sorl.thumbnail',
 
     'radio',
 

@@ -60,7 +60,7 @@ ui.infoblock.show_popup = function(type, name) {
 
 $('.artist').live('click', function(e){
     e.preventDefault();
-    ui.infoblock.show_popup('artist', $(this).text());
+    ui.infoblock.show_popup('artist', ($(this).text())||($(this).data('name')));
 });
 
 $('.tag').live('click', function(e){

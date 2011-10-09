@@ -80,7 +80,7 @@ class TopArtist(models.Model):
 
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField(db_index=True)
-    image = models.ImageField(upload_to='topartists')
+    image = models.URLField()
 
     class Meta:
         ordering = ('-popularity',)

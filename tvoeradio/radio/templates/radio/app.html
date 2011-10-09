@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% load media jsonize %}
+{% load media jsonize thumbnail %}
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
@@ -103,7 +103,12 @@
                     <ul id="dashboard__favorited_stations"></ul>
                 </div>
                 <div class="dashboard__cell">
-                    <div class="dashboard__cell__title">Популярные исполнители</div>
+                    {%comment%}<div class="dashboard__cell__title">Популярные исполнители</div>
+                    {% for artist in top_artists %}
+                        {% thumbnail artist.image "40x40" crop="center" as im %}
+                            <span class="artist" data-name="{{ artist.name }}"><img src="{{ artist.image }}" width="{{ im.width }}" height="{{ im.height }}" /></span>
+                        {% endthumbnail %}
+                    {% endfor %}{%endcomment%}
                 </div>
             </div>
             <div class="dashboard__row">
