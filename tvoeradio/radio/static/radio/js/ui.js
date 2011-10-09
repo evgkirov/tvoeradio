@@ -52,12 +52,19 @@ ui.hide_loader_fullscreen = function() {
 
 ui.update_dashboard = function() {
     var html = [];
-    var max = Math.min(5, userdata.recent_stations.list.length);
+    var max = Math.min(15, userdata.recent_stations.list.length);
     for (var i = 0; i < max; i++) {
         var station = userdata.recent_stations.list[i];
         html.push('<li><span>' + player.station[station.type].get_html(station.name) + '</span></li>');
     }
     $('#dashboard__recent_stations').html(html.join(''));
+    var html = [];
+    var max = Math.min(15, userdata.favorited_stations.list.length);
+    for (var i = 0; i < max; i++) {
+        var station = userdata.favorited_stations.list[i];
+        html.push('<li><span>' + player.station[station.type].get_html(station.name) + '</span></li>');
+    }
+    $('#dashboard__favorited_stations').html(html.join(''));
 };
 
 
@@ -99,6 +106,14 @@ ui.update_player_controls = function() {
 
 ui.update_station_info = function() {
     $('#station_name').html(player.station.get_current_html());
+    if (userdata.favorited_stations.is_favorited(player.station.type, player.station.name)) {
+        $('#menu_station__favorite').hide();
+        $('#menu_station__remove_favorite').show();
+    } else {
+        $('#menu_station__favorite').show();
+        $('#menu_station__remove_favorite').hide();
+    }
+
 };
 
 

@@ -209,6 +209,10 @@ $(document).ready(function(){
         );
     });
 
+    $('#menu_station__favorite').click(function(){
+        userdata.favorited_stations.add(player.station.type, player.station.name);
+    });
+
 });
 
 if (config.mode == 'vk') {
