@@ -88,7 +88,7 @@ ui.update_track_info = function() {
     if (network.lastfm.authorized) {
         $('#menu_track__love').show();
     } else {
-        $('#menu_track__love').hide(); //TODO: найти более подходящее место для этого
+        $('#menu_track__love').hide();
     }
 };
 

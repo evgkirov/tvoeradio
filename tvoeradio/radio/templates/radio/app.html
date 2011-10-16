@@ -96,29 +96,21 @@
             <span id="search-widget__label">поиск:</span><input id="search-widget__text" type="text" class="input_text" />
         </div>
 
+
+        {% comment %}
+        <div style="text-align: justify; color: #C0CAD5;">{% for tag in top_tags %} <span style="font-size: {{ tag.size }}%; vertical-align:middle">{{ tag.name }}</span>{% endfor %}</div>
+        {% endcomment %}
+
         <div id="dashboard">
+
             <div class="dashboard__row">
                 <div class="dashboard__cell">
                     <div class="dashboard__cell__title">Последнее в избранном</div>
                     <ul id="dashboard__favorited_stations"></ul>
                 </div>
                 <div class="dashboard__cell">
-                    {%comment%}<div class="dashboard__cell__title">Популярные исполнители</div>
-                    {% for artist in top_artists %}
-                        {% thumbnail artist.image "40x40" crop="center" as im %}
-                            <span class="artist" data-name="{{ artist.name }}"><img src="{{ artist.image }}" width="{{ im.width }}" height="{{ im.height }}" /></span>
-                        {% endthumbnail %}
-                    {% endfor %}{%endcomment%}
-                </div>
-            </div>
-            <div class="dashboard__row">
-                <div class="dashboard__cell">
                     <div class="dashboard__cell__title">Последнее прослушанное</div>
                     <ul id="dashboard__recent_stations"></ul>
-                </div>
-                <div class="dashboard__cell">
-                    <div class="dashboard__cell__title">Популярные теги</div>
-                    <div style="text-align: justify; color: #C0CAD5;">{% for tag in top_tags %} <span style="font-size: {{ tag.size }}%; vertical-align:middle">{{ tag.name }}</span>{% endfor %}</div>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ $(document).ready(function(){
     network.lastfm.api_key = config.lastfm_api_key;
     network.lastfm.api_secret = config.lastfm_api_secret;
     network.lastfm.api_url = config.lastfm_api_url;
+
     $.ajaxSetup({
         'cache': true,
         'beforeSend': function(xhr, settings) {
@@ -14,9 +15,6 @@ $(document).ready(function(){
             }
         }
     });
-
-
-    $('#search-widget__text').focus();
 
 
     // Настройка UI
@@ -91,13 +89,7 @@ $(document).ready(function(){
         $(this).parent('.popup').hide();
     });
 
-    $('a.bbcode_artist').live('click', function(e) {
-        e.preventDefault();
-        var artist = $(this).attr('href');
-        artist = artist.replace('http://www.last.fm/music/', '');
-        artist = util.string.urldecode(artist);
-        ui.infoblock.show_popup('artist', artist)
-    });
+
 
     $('#topnav__lastfm').live('click', function() {
         $('#popup_lastfm').show();

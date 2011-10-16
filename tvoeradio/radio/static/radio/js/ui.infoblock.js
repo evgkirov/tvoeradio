@@ -58,12 +58,20 @@ ui.infoblock.show_popup = function(type, name) {
 };
 
 
-$('.artist').live('click', function(e){
+$('.link-artist').live('click', function(e){
     e.preventDefault();
-    ui.infoblock.show_popup('artist', ($(this).text())||($(this).data('name')));
+    ui.infoblock.show_popup('artist', (($(this).data('name'))||$(this).text()));
 });
 
-$('.tag').live('click', function(e){
+$('.link-tag').live('click', function(e){
     e.preventDefault();
-    ui.infoblock.show_popup('tag', $(this).text());
+    ui.infoblock.show_popup('tag', (($(this).data('name'))||$(this).text()));
+});
+
+$('a.bbcode_artist').live('click', function(e) {
+    e.preventDefault();
+    var artist = $(this).attr('href');
+    artist = artist.replace('http://www.last.fm/music/', '');
+    artist = util.string.urldecode(artist);
+    ui.infoblock.show_popup('artist', artist)
 });
