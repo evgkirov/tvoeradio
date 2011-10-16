@@ -4,7 +4,7 @@ from django.db import transaction
 from django.utils import simplejson
 import urllib
 
-from tvoeradio.radio.models import TopTag, TopArtist
+from tvoeradio.radio.models import TopTag
 
 
 class Command(BaseCommand):
