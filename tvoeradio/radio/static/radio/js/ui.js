@@ -55,14 +55,14 @@ ui.update_dashboard = function() {
     var max = Math.min(15, userdata.recent_stations.list.length);
     for (var i = 0; i < max; i++) {
         var station = userdata.recent_stations.list[i];
-        html.push('<li><span>' + player.station[station.type].get_html(station.name) + '</span></li>');
+        html.push('<li><span class="pseudolink nav-station" data-type="' + station.type + '" data-name="' + station.name + '">' + player.station[station.type].get_html(station.name) + '</span></li>');
     }
     $('#dashboard__recent_stations').html(html.join(''));
     var html = [];
     var max = Math.min(15, userdata.favorited_stations.list.length);
     for (var i = 0; i < max; i++) {
         var station = userdata.favorited_stations.list[i];
-        html.push('<li><span>' + player.station[station.type].get_html(station.name) + '</span></li>');
+        html.push('<li><span class="pseudolink nav-station" data-type="' + station.type + '" data-name="' + station.name + '">' + player.station[station.type].get_html(station.name) + '</span></li>');
     }
     $('#dashboard__favorited_stations').html(html.join(''));
 };
@@ -165,6 +165,11 @@ $(document).ready(function(){
    $('#tabcontent_tabs_player__playlist .boxed').live('click', function(e){
        player.control.navigate($(this).attr('rel'));
    });
+   $('.nav-station').live('click', function(e) {
+        e.preventDefault();
+        player.control.start($(this).data('type'), (($(this).data('name'))||$(this).text()));
+
+    });
    ui.update_dashboard();
    setInterval(ui.fit, 10);
 });

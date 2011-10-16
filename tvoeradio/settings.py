@@ -64,7 +64,8 @@ MEDIA_BUNDLES = (
     ),
     ('radio.js',
         'js/3rdparty/jquery.js',
-        'radio/js/3rdparty/jplayer/jquery.jplayer.js',
+        'js/3rdparty/ICanHaz.js',
+        'js/3rdparty/jplayer/jquery.jplayer.js',
         'radio/js/util.namespace.js',
         'radio/js/util.random.js',
         'radio/js/util.cookie.js',
@@ -171,8 +172,8 @@ INSTALLED_APPS = (
 
     'mediagenerator',
     'vk_iframe',
-    'sorl.thumbnail',
 
+    'common',
     'radio',
 
     'south',

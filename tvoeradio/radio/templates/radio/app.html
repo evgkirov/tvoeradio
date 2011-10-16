@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-{% load media jsonize thumbnail %}
+{% load media %} {# external libs #}
+{% load jsonize include_ich %} {# common app #}
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
@@ -18,7 +19,7 @@
             'lastfm_api_key': '{{ settings.LASTFM_API_KEY }}',
             'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET }}',
             'vk_api_id': '{{ settings.VK_APP_ID }}',
-            'jplayer_swfpath': '{% media_url 'radio/js/3rdparty/jplayer/Jplayer.swf' %}'
+            'jplayer_swfpath': '{% media_url 'js/3rdparty/jplayer/Jplayer.swf' %}'
         }
     </script>
     {% if mode == 'vk' %}
@@ -34,23 +35,8 @@
 </head>
 <body>
 
-    <div style="display: none">
-        <div class="infoblock infoblock_artist" id="infoblock_artist_template">
-            <div class="infoblock__l">
-                <h2 class="infoblock__header"></h2>
-                <div class="infoblock__text"></div>
-                <div class="infoblock__similar"></div>
-                <div class="infoblock__tags"></div>
-            </div>
-            <div class="infoblock__r">
-                <img class="infoblock_artist__picture" src="" alt="" />
-                <br/>
-                <div class="greenbutton">Слушать похожих</div>
-            </div>
-            <div class="infoblock__comments"></div>
-        </div>
-        {% csrf_token %}
-    </div>
+    {% csrf_token %}
+    {% include_ich 'radio/ich/infoblock_artist.html' %}
 
     <div class="popup" id="popup_infoblock">
         <div class="popup__close">&nbsp;</div>
