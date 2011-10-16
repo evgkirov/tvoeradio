@@ -30,17 +30,5 @@ class Command(BaseCommand):
                 TopTag(name=tag['name'], popularity=tag['taggings']).save()
                 self.stdout.write('Tag "%s"\n' % tag['name'])
 
-        @transaction.commit_on_success
-        def update_top_artists(self):
-            data = self.lastfm_request('geo.getTopArtists', country='russia')
-            TopArtist.objects.all().delete()
-            for artist in data['topartists']['artist']:
-                name = artist['name']
-                popularity = artist['listeners']
-                image = artist['image'][-1]['#text']
-                TopArtist(name=name, popularity=popularity, image=image).save()
-                self.stdout.write('Artist "%s"\n' % name)
-
         update_top_tags(self)
-        update_top_artists(self)
 

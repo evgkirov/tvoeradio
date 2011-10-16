@@ -6,7 +6,7 @@ from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
 import urllib2
 
-from .models import TopTag, TopArtist, RecentStation, FavoritedStation, Station
+from .models import TopTag, RecentStation, FavoritedStation, Station
 from .utils import get_user_stations_list
 
 
@@ -20,7 +20,6 @@ def app(request):
     if mode not in ('vk', 'desktop'):
         mode = 'vk'
     top_tags = list(TopTag.objects.all())
-    top_artists = TopArtist.objects.all()
     max_popularity = max(top_tags, key=lambda tag: tag.popularity).popularity
     for tag in top_tags:
         tag.size = 120 * tag.popularity / max_popularity + 90
@@ -28,7 +27,6 @@ def app(request):
     return {
         'mode': mode,
         'top_tags': top_tags,
-        'top_artists': top_artists[:21],
         'recent_stations': get_user_stations_list(RecentStation, user, 20),
         'favorited_stations': get_user_stations_list(FavoritedStation, user),
     }

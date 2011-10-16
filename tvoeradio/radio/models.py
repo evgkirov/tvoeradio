@@ -73,17 +73,3 @@ class TopTag(models.Model):
         return self.name
 
 
-class TopArtist(models.Model):
-    """
-    Топ исполнителей, показываемый в дашборде.
-    """
-
-    name = models.CharField(max_length=255, db_index=True)
-    popularity = models.IntegerField(db_index=True)
-    image = models.URLField()
-
-    class Meta:
-        ordering = ('-popularity',)
-
-    def __unicode__(self):
-        return self.name
