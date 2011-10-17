@@ -16,7 +16,9 @@
         </div>
     </div>
     <div class="infoblock__r">
-        <img class="infoblock_artist__picture" src="{{image}}" alt="" />
+        {{#image}}
+            <img class="infoblock_artist__picture" src="{{image}}" alt="" />
+        {{/image}}
         <br/>
         <div class="greenbutton nav-station" data-type="similar_artists" data-name="{{name}}">Слушать похожих</div>
     </div>
