@@ -19,7 +19,7 @@ def do_include_ich(parser, token):
     block_name, block_type = basename(template_name).rsplit('.', 1)
     source, path = load_template_source(template_name)
 
-    source = '<script id="tpl_%s" type="text/%s">%s</script>' % (block_name, block_type, source)
+    source = '<script id="tpl_%s" type="text/%s">\n%s\n</script>' % (block_name, block_type, source)
 
     return template.TextNode(source)
 register.tag("include_ich", do_include_ich)

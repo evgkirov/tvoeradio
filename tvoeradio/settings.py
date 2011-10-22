@@ -77,6 +77,7 @@ MEDIA_BUNDLES = (
         'radio/js/userdata.favorited_stations.js',
         'radio/js/ui.menu.js',
         'radio/js/ui.js',
+        'radio/js/ui.popup.js',
         'radio/js/ui.infoblock.js',
         'radio/js/ui.search.js',
         'radio/js/player.audio.js',

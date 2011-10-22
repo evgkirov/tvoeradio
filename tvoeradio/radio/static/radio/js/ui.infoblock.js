@@ -38,13 +38,13 @@ ui.infoblock.show_artist = function(elem, name) {
 
 ui.infoblock.show = function(elem, type, name) {
     elem.html('<div class="infoblock-loader"></div>');
-    this.show_artist(elem, name);
+    this['show_' + type](elem, name);
 };
 
 
 ui.infoblock.show_popup = function(type, name) {
-    $('#popup_infoblock').show();
-    ui.infoblock.show($('#popup_infoblock .popup__content'), type, name);
+    ui.popup.show(name);
+    ui.infoblock.show($('.popup .popup__content'), type, name);
 };
 
 

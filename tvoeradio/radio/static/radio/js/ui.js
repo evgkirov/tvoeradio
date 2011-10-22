@@ -57,14 +57,14 @@ ui.update_dashboard = function() {
         var station = userdata.recent_stations.list[i];
         html.push('<li><span class="pseudolink nav-station" data-type="' + station.type + '" data-name="' + station.name + '">' + player.station[station.type].get_html(station.name) + '</span></li>');
     }
-    $('#dashboard__recent_stations').html(html.join(''));
+    $('#dashboard__recent_stations__list').html(html.join(''));
     var html = [];
     var max = Math.min(15, userdata.favorited_stations.list.length);
     for (var i = 0; i < max; i++) {
         var station = userdata.favorited_stations.list[i];
         html.push('<li><span class="pseudolink nav-station" data-type="' + station.type + '" data-name="' + station.name + '">' + player.station[station.type].get_html(station.name) + '</span></li>');
     }
-    $('#dashboard__favorited_stations').html(html.join(''));
+    $('#dashboard__favorited_stations__list').html(html.join(''));
 };
 
 
@@ -122,20 +122,18 @@ ui.update_topnav = function() {
     if (network.lastfm.authorized) {
         links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm (' + util.string.htmlspecialchars(network.lastfm.user) + ')</span>')
     } else {
-        links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm</span>')
+        links_left.push('<span class="pseudolink" id="topnav__lastfm_auth">Last.fm</span>')
     }
     links_left.push('<span>'+$('title').html()+'</span>');
     $('#topnav').html(links_left.join(' | '));
 };
 
 
-ui.update_popup_lastfm = function() {
+ui.show_popup_lastfm = function() {
     if (network.lastfm.authorized) {
-        $('#popup_lastfm__auth1, #popup_lastfm__auth2').hide();
-        $('#popup_lastfm__authed').show();
+        ui.popup.show('Last.fm', ich.tpl_popup__lastfm());
     } else {
-        $('#popup_lastfm__authed, #popup_lastfm__auth2').hide();
-        $('#popup_lastfm__auth1').show();
+        ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1());
     }
 };
 
@@ -144,13 +142,14 @@ ui.update_playlist = function() {
     var pl = [];
     for (var i in player.playlist.playlist) {
         var track = player.playlist.playlist[i];
-        if (i == player.playlist.current_track_num) {
-            pl.push(util.string.safe_format('<div class="boxed boxed_selected" rel="%s">%s &mdash; %s</div>', i, track.artist, track.title));
-        } else {
-            pl.push(util.string.safe_format('<div class="boxed" rel="%s">%s &mdash; %s</div>', i, track.artist, track.title));
-        }
+        pl.push({
+            'number': i,
+            'is_current': (i == player.playlist.current_track_num),
+            'artist': track.artist,
+            'title': track.title
+        });
     }
-    $('#tabcontent_tabs_player__playlist').html(pl.join(''));
+    $('#tabcontent_tabs_player__playlist').html(ich.tpl_playlist({'playlist': pl}));
 };
 
 
@@ -163,12 +162,11 @@ $(document).ready(function(){
    });
    $('#album_cover').load(function(){$(this).fadeIn()});
    $('#tabcontent_tabs_player__playlist .boxed').live('click', function(e){
-       player.control.navigate($(this).attr('rel'));
+       player.control.navigate($(this).data('number'));
    });
    $('.nav-station').live('click', function(e) {
         e.preventDefault();
         player.control.start($(this).data('type'), (($(this).data('name'))||$(this).text()));
-
     });
    ui.update_dashboard();
    setInterval(ui.fit, 10);

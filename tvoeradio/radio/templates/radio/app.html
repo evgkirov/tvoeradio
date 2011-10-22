@@ -37,29 +37,16 @@
 
     {% csrf_token %}
     {% include_ich 'radio/ich/infoblock_artist.html' %}
+    {% include_ich 'radio/ich/playlist.html' %}
+    {% include_ich 'radio/ich/popup.html' %}
+    {% include_ich 'radio/ich/popup__lastfm_auth1.html' %}
+    {% include_ich 'radio/ich/popup__lastfm_auth2.html' %}
+    {% include_ich 'radio/ich/popup__lastfm.html' %}
 
-    <div class="popup" id="popup_infoblock">
+    <div class="popup">
         <div class="popup__close">&nbsp;</div>
-        <div class="popup__title"><div>&nbsp;</div></div>
+        <div class="popup__title"><div></div></div>
         <div class="popup__content"></div>
-    </div>
-
-    <div class="popup" id="popup_lastfm">
-        <div class="popup__close">&nbsp;</div>
-        <div class="popup__title"><div>Last.fm</div></div>
-        <div class="popup__content">
-            <div id="popup_lastfm__auth1">
-                <p></p>
-                <div class="button_blue"><button>Начать авторизацию</button></div>
-            </div>
-            <div id="popup_lastfm__auth2">
-                <p>Когда откроется сайт, и Вы подтвердите доступ к аккаунту, нажмите эту кнопку:</p>
-                <div class="button_blue"><button>Авторизоваться</button></div>
-            </div>
-            <div id="popup_lastfm__authed">
-                <div class="button_blue"><button>Выйти</button></div>
-            </div>
-        </div>
     </div>
 
     <div id="mp3player"></div>
@@ -91,12 +78,12 @@
 
             <div class="dashboard__row">
                 <div class="dashboard__cell">
-                    <div class="dashboard__cell__title">Последнее в избранном</div>
-                    <ul id="dashboard__favorited_stations"></ul>
+                    <div class="dashboard__cell__title"><span class="pseudolink" id="dashboard__favorited_stations">все</span>Последнее в избранном</div>
+                    <ul id="dashboard__favorited_stations__list"></ul>
                 </div>
                 <div class="dashboard__cell">
                     <div class="dashboard__cell__title">Последнее прослушанное</div>
-                    <ul id="dashboard__recent_stations"></ul>
+                    <ul id="dashboard__recent_stations__list"></ul>
                 </div>
             </div>
         </div>

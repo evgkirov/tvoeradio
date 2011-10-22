@@ -347,10 +347,6 @@ a:hover, span.pseudolink:hover {
     padding: 16px 14px;
 }
 
-#popup_lastfm__auth2, #popup_lastfm__authed {
-    display: none;
-}
-
 #popup_lastfm__auth1, #popup_lastfm__auth2 {
     padding: 30px;
     text-align: center;
@@ -429,6 +425,12 @@ a:hover, span.pseudolink:hover {
     font-weight: bold;
     outline: none;
     padding: 3px 8px;
+}
+
+.dashboard__cell__title span {
+    color: #AAB7C5;
+    float: right;
+    font-weight: bold;
 }
 
 #search-result {
