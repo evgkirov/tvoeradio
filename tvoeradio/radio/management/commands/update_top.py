@@ -47,14 +47,15 @@ class Command(BaseCommand):
 
         @transaction.commit_on_success
         def update_top_tags(self):
+            self.stdout.write('update_top_tags')
             data = self.lastfm_request('chart.getTopTags')
             TopTag.objects.all().delete()
             for tag in data['tags']['tag']:
                 TopTag(name=tag['name'], popularity=tag['taggings']).save()
-                self.stdout.write('Tag "%s"\n' % tag['name'])
 
         @transaction.commit_on_success
         def update_top_artists(self):
+            self.stdout.write('update_top_artists')
             data = self.lastfm_request('geo.getTopArtists', country='russia')
             TopArtist.objects.all().delete()
             for artist in data['topartists']['artist']:
@@ -67,7 +68,6 @@ class Command(BaseCommand):
                 image_content = _resize_and_crop(image_content)
                 obj.image.save(image_name, image_content, save=False)
                 obj.save()
-                self.stdout.write('Artist "%s"\n' % obj.name)
 
         update_top_tags(self)
         update_top_artists(self)
