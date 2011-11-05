@@ -3,13 +3,13 @@
         <h2 class="infoblock__header">{{name}}</h2>
         <div class="infoblock__text">{{{bio_summary}}}</div>
         <div class="infoblock__similar">
-            Похожие исполнители:
+            Похожие исполнители:<br/>
             {{#similar}}
                 <span class="pseudolink nav-infoblock" data-type="artist" data-name="{{name}}">{{name}}</span>
             {{/similar}}
         </div>
         <div class="infoblock__tags">
-            Теги:
+            Теги:<br/>
             {{#tags}}
                 <span class="pseudolink nav-infoblock" data-type="tag" data-name="{{name}}">{{name}}</span>
             {{/tags}}
@@ -19,8 +19,9 @@
         {{#image}}
             <img class="infoblock_artist__picture" src="{{image}}" alt="" />
         {{/image}}
-        <br/>
-        <div class="greenbutton nav-station" data-type="similar_artists" data-name="{{name}}">Слушать похожих</div>
+        <div class="infoblock__stations">
+            {{>tpl_partial_stationslist}}
+        </div>
     </div>
     <div class="infoblock__comments"></div>
 </div>

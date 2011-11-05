@@ -13,6 +13,10 @@ html, body {
     text-align: left;
 }
 
+.clear {
+    clear: both;
+}
+
 #mp3player {
     height: 0;
     overflow: hidden;
@@ -208,16 +212,28 @@ a:hover, span.pseudolink:hover {
     position:relative;
 }
 
-
 .nav-infoblock {
-    display: inline-block;
-    padding: 2px 4px 2px 15px;
+    background: url(../img/nav-infoblock.png) no-repeat;
+    padding: 0 0 0 10px;
 }
 
-.nav-infoblock:hover {
-    background-color: #E1E7ED;
+.nav-infoblock[data-type='tag'] {
+    background-position: left bottom;
 }
 
+.stations-list {
+    list-style: none;
+}
+
+.nav-station {
+    cursor: pointer;
+    display: block;
+    padding: 4px 8px;
+}
+
+.nav-station:hover {
+    background-color: #EDF1F5;
+}
 
 .tabs {
     border-bottom: 1px solid #597DA3;
@@ -402,29 +418,37 @@ a:hover, span.pseudolink:hover {
 }
 
 #dashboard {
-    display: table;
-    padding: 10px 10px 10px 0;
-    width: 100%;
+    padding: 10px 0 10px 10px;
 }
 
-.dashboard__row {
-    display: table-row;
+.dashboard__tags {
+    color: #C0CAD5;
+    padding: 0 10px 10px 0;
+    text-align: center;
+}
+
+.dashboard__tags .nav-infoblock {
+    background: none;
+    padding: 0;
+    vertical-align: middle;
 }
 
 .dashboard__cell {
-    display: table-cell;
-    padding: 0 0 10px 10px;
+    float: left;
     width: 50%;
 }
 
 .dashboard__cell__title {
     background: #E1E7ED;
-    border-top: 1px solid #D3DAE0;
-    border-bottom: 1px solid #D8DFE5;
     color: #45688E;
     font-weight: bold;
+    margin-right: 10px;
     outline: none;
-    padding: 3px 8px;
+    padding: 4px 8px;
+}
+
+.dashboard__cell div {
+    margin-right: 10px;
 }
 
 .dashboard__cell__title span {
@@ -465,6 +489,14 @@ a:hover, span.pseudolink:hover {
 }
 
 #search-widget__text {
+    background-color: #FFFFFF;
+    background-image: linear-gradient(top, #efefef 0%, #ffffff 100%);
+    background-image: -o-linear-gradient(top, #efefef 0%, #ffffff 100%);
+    background-image: -moz-linear-gradient(top, #efefef 0%, #ffffff 100%);
+    background-image: -webkit-linear-gradient(top, #efefef 0%, #ffffff 100%);
+    background-image: -ms-linear-gradient(top, #efefef 0%, #ffffff 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #efefef), color-stop(1, #ffffff));
+    border-radius: 3px;
     display: inline-block;
     font-size: 11px;
     margin: 0;
@@ -509,6 +541,18 @@ a:hover, span.pseudolink:hover {
     margin: 10px 0;
 }
 
+.infoblock__tags,
+.infoblock__similar {
+    padding: 10px 0;
+}
+
+
+.infoblock__tags .nav-infoblock,
+.infoblock__similar .nav-infoblock {
+    display: inline-block;
+    margin-right: 10px;
+}
+
 h2 {
     border-bottom: 1px solid #DAE1E8;
     color: #36638E;
@@ -520,6 +564,12 @@ h2 {
 
 .infoblock_artist__picture {
     max-width: 100%;
+}
+
+.infoblock__stations {
+    background: #F1F1F1;
+    padding: 5px;
+    text-align: center;
 }
 
 .infoblock-loader {

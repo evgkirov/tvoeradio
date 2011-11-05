@@ -11,9 +11,17 @@ ui.infoblock.show_artist = function(elem, name) {
             var context = {
                 'name': data.artist.name,
                 'bio_summary': data.artist.bio.summary,
+                'bio': data.artist.bio.content,
                 'similar': network.lastfm.arrayize(data.artist.similar.artist),
                 'tags': network.lastfm.arrayize(data.artist.tags.tag),
-                'image': data.artist.image[data.artist.image.length-1]["#text"]
+                'image': data.artist.image[data.artist.image.length-1]["#text"],
+                'stations': [
+                    {
+                        'type': 'similar_artists',
+                        'name': data.artist.name,
+                        'html': player.station.similar_artists.get_html(data.artist.name)
+                    }
+                ]
             };
             elem.html(ich.tpl_infoblock_artist(context));
             // TODO template
@@ -38,7 +46,7 @@ ui.infoblock.show_artist = function(elem, name) {
 
 ui.infoblock.show = function(elem, type, name) {
     elem.html('<div class="infoblock-loader"></div>');
-    this['show_' + type](elem, name);
+    ui.infoblock['show_' + type](elem, name);
 };
 
 

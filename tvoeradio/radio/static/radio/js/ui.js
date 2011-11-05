@@ -50,21 +50,26 @@ ui.hide_loader_fullscreen = function() {
 };
 
 
+ui.stations_list = function(elem, list, max) {
+    if (!max) {
+        max = Inf;
+    }
+    max = Math.min(max, list.length);
+    var context = {'stations': []};
+    for (var i = 0; i < max; i++) {
+        context.stations.push({
+            'type': list[i].type,
+            'name': list[i].name,
+            'html': player.station[list[i].type].get_html(list[i].name)
+        });
+        elem.html(ich.tpl_stationslist(context));
+    }
+};
+
+
 ui.update_dashboard = function() {
-    var html = [];
-    var max = Math.min(15, userdata.recent_stations.list.length);
-    for (var i = 0; i < max; i++) {
-        var station = userdata.recent_stations.list[i];
-        html.push('<li><span class="pseudolink nav-station" data-type="' + station.type + '" data-name="' + station.name + '">' + player.station[station.type].get_html(station.name) + '</span></li>');
-    }
-    $('#dashboard__recent_stations__list').html(html.join(''));
-    var html = [];
-    var max = Math.min(15, userdata.favorited_stations.list.length);
-    for (var i = 0; i < max; i++) {
-        var station = userdata.favorited_stations.list[i];
-        html.push('<li><span class="pseudolink nav-station" data-type="' + station.type + '" data-name="' + station.name + '">' + player.station[station.type].get_html(station.name) + '</span></li>');
-    }
-    $('#dashboard__favorited_stations__list').html(html.join(''));
+    ui.stations_list($('#dashboard__cell_stations_favorited .dashboard__cell__content'), userdata.favorited_stations.list, 5);
+    ui.stations_list($('#dashboard__cell_stations_recent .dashboard__cell__content'), userdata.recent_stations.list, 5);
 };
 
 

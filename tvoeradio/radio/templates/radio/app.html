@@ -42,6 +42,7 @@
     {% include_ich 'radio/ich/popup__lastfm_auth1.html' %}
     {% include_ich 'radio/ich/popup__lastfm_auth2.html' %}
     {% include_ich 'radio/ich/popup__lastfm.html' %}
+    {% include_ich 'radio/ich/stationslist.html' partial %}
 
     <div class="popup">
         <div class="popup__close">&nbsp;</div>
@@ -66,26 +67,32 @@
 
         <div id="search-widget">
             <div id="search-widget__clear"></div>
-            <span id="search-widget__label">поиск:</span><input id="search-widget__text" type="text" class="input_text" />
+            <span id="search-widget__label">Поиск:</span><input id="search-widget__text" type="text" class="input_text" />
         </div>
 
 
-        {% comment %}
-        <div style="text-align: justify; color: #C0CAD5;">{% for tag in top_tags %} <span style="font-size: {{ tag.size }}%; vertical-align:middle">{{ tag.name }}</span>{% endfor %}</div>
-        {% endcomment %}
+
 
         <div id="dashboard">
 
-            <div class="dashboard__row">
-                <div class="dashboard__cell">
-                    <div class="dashboard__cell__title"><span class="pseudolink" id="dashboard__favorited_stations">все</span>Последнее в избранном</div>
-                    <ul id="dashboard__favorited_stations__list"></ul>
-                </div>
-                <div class="dashboard__cell">
-                    <div class="dashboard__cell__title">Последнее прослушанное</div>
-                    <ul id="dashboard__recent_stations__list"></ul>
-                </div>
+            {% comment %}
+            <div class="dashboard__tags">
+                {% for tag in top_tags %}
+                    <span style="font-size: {{ tag.size }}%" class="pseudolink nav-infoblock" data-type="tag" data-name="{{ tag.name }}">{{ tag.name }}</span>
+                {% endfor %}
             </div>
+            {% endcomment %}
+
+            <div class="clear"></div>
+            <div class="dashboard__cell" id="dashboard__cell_stations_favorited">
+                <div class="dashboard__cell__title"><span class="pseudolink">избранное</span>Последнее в избранном</div>
+                <div class="dashboard__cell__content"></div>
+            </div>
+            <div class="dashboard__cell" id="dashboard__cell_stations_recent">
+                <div class="dashboard__cell__title">Последнее прослушанное</div>
+                <div class="dashboard__cell__content"></div>
+            </div>
+            <div class="clear"></div>
         </div>
 
         <div id="search-result">
