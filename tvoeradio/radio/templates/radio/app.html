@@ -3,6 +3,7 @@
 {% load media %} {# external libs #}
 {% load jsonize include_ich %} {# common app #}
 
+{% spaceless %}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -70,27 +71,31 @@
             <span id="search-widget__label">Поиск:</span><input id="search-widget__text" type="text" class="input_text" />
         </div>
 
+    <div id="dashboard">
 
-
-
-        <div id="dashboard">
-
-            {% comment %}
-            <div class="dashboard__tags">
+            <div class="dashboard__block dashboard__tags">
                 {% for tag in top_tags %}
                     <span style="font-size: {{ tag.size }}%" class="pseudolink nav-infoblock" data-type="tag" data-name="{{ tag.name }}">{{ tag.name }}</span>
                 {% endfor %}
             </div>
-            {% endcomment %}
+
+            <div class="dashboard__block dashboard__artists">
+                {% for artist in top_artists %}
+                    <span class="pseudolink nav-infoblock" data-type="artist" data-name="{{ artist.name }}"><img src="{{ artist.image.url }}" alt="{{ artist.name }}" title="{{ artist.name }}" /></span>
+                {% endfor %}
+            </div>
+
 
             <div class="clear"></div>
-            <div class="dashboard__cell" id="dashboard__cell_stations_favorited">
-                <div class="dashboard__cell__title"><span class="pseudolink">избранное</span>Последнее в избранном</div>
-                <div class="dashboard__cell__content"></div>
-            </div>
-            <div class="dashboard__cell" id="dashboard__cell_stations_recent">
-                <div class="dashboard__cell__title">Последнее прослушанное</div>
-                <div class="dashboard__cell__content"></div>
+            <div class="dashboard__block">
+                <div class="dashboard__cell" id="dashboard__cell_stations_favorited">
+                    <div class="dashboard__cell__title"><span class="pseudolink">избранное</span>Последнее в избранном</div>
+                    <div class="dashboard__cell__content"></div>
+                </div>
+                <div class="dashboard__cell" id="dashboard__cell_stations_recent">
+                    <div class="dashboard__cell__title">Последнее прослушанное</div>
+                    <div class="dashboard__cell__content"></div>
+                </div>
             </div>
             <div class="clear"></div>
         </div>
@@ -162,3 +167,4 @@
 
 </body>
 </html>
+{% endspaceless %}

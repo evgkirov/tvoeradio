@@ -283,7 +283,7 @@ a:hover, span.pseudolink:hover {
 }
 
 #topnav {
-    background: white;
+    background: white url(../img/topnav.png) repeat-x;
     border-bottom: 1px solid #DAE2E8;
     padding: 10px 10px 5px 10px;
 }
@@ -418,19 +418,46 @@ a:hover, span.pseudolink:hover {
 }
 
 #dashboard {
-    padding: 10px 0 10px 10px;
+    padding: 10px 0;
+}
+
+.dashboard__block {
+    clear: both;
+    padding: 0 0 0 10px;
 }
 
 .dashboard__tags {
     color: #C0CAD5;
-    padding: 0 10px 10px 0;
+    padding: 0 10px 10px 10px;
     text-align: center;
 }
 
 .dashboard__tags .nav-infoblock {
+    margin: 0 2px;
+}
+
+#dashboard .nav-infoblock {
     background: none;
+    display: inline-block;
+    opacity: 0.5;
     padding: 0;
     vertical-align: middle;
+    white-space: nowrap;
+}
+
+
+#dashboard .nav-infoblock:hover {
+    opacity: 1;
+}
+
+.dashboard__artists {
+    height: 50px;
+    left: -10px;
+    overflow: hidden;
+    padding-bottom: 10px;
+    position: relative;
+    width: 100%;
+    white-space: nowrap;
 }
 
 .dashboard__cell {
