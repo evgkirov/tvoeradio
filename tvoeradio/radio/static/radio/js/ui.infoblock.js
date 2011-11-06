@@ -17,9 +17,9 @@ ui.infoblock.show_artist = function(elem, name) {
                 'image': data.artist.image[data.artist.image.length-1]["#text"],
                 'stations': [
                     {
-                        'type': 'similar_artists',
+                        'type': 'similar',
                         'name': data.artist.name,
-                        'html': player.station.similar_artists.get_html(data.artist.name)
+                        'html': player.station.similar.get_html(data.artist.name)
                     }
                 ]
             };

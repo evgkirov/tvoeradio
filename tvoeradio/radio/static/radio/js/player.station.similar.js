@@ -1,7 +1,7 @@
-register_namespace('player.station.similar_artists');
+register_namespace('player.station.similar');
 
 
-player.station.similar_artists.add_to_playlist = function(callback) {
+player.station.similar.add_to_playlist = function(callback) {
 
     network.lastfm.api('artist.getSimilar', {'artist': player.station.name}, function(data) {
         var sim_artist = util.random.choice_similar(network.lastfm.arrayize(data.similarartists.artist));
@@ -19,6 +19,6 @@ player.station.similar_artists.add_to_playlist = function(callback) {
 };
 
 
-player.station.similar_artists.get_html = function(name) {
+player.station.similar.get_html = function(name) {
     return 'похожее на <b>' + util.string.htmlspecialchars(name) + '</b>';
 };

@@ -62,8 +62,8 @@ ui.stations_list = function(elem, list, max) {
             'name': list[i].name,
             'html': player.station[list[i].type].get_html(list[i].name)
         });
-        elem.html(ich.tpl_stationslist(context));
     }
+    elem.html(ich.tpl_stationslist(context));
 };
 
 

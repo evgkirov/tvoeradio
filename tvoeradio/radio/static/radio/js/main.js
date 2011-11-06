@@ -199,6 +199,10 @@ $(document).ready(function(){
         userdata.favorited_stations.add(player.station.type, player.station.name);
     });
 
+    $('#menu_station__remove_favorite').click(function(){
+        userdata.favorited_stations.remove(player.station.type, player.station.name);
+    });
+
 });
 
 if (config.mode == 'vk') {
