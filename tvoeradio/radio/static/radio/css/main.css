@@ -445,9 +445,12 @@ a:hover, span.pseudolink:hover {
     white-space: nowrap;
 }
 
-
 #dashboard .nav-infoblock:hover {
     opacity: 1;
+}
+
+#dashboard .nav-infoblock img {
+    opacity: 0;
 }
 
 .dashboard__artists {

@@ -193,7 +193,8 @@ $(document).ready(function(){
         network.vkontakte.api(
             'wall.post',
             {
-                'message': 'Советую послушать: http://vkontakte.ru/app'+config.vk_api_id+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
+                'message': 'Советую послушать:',
+                'attachment': 'http://vkontakte.ru/app'+config.vk_api_id+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
             },
             function(data) {}
         );
@@ -205,6 +206,10 @@ $(document).ready(function(){
 
     $('#menu_station__remove_favorite').click(function(){
         userdata.favorited_stations.remove(player.station.type, player.station.name);
+    });
+
+    $('#dashboard .nav-infoblock img').load(function(){
+        $(this).fadeTo('slow', 1);
     });
 
 });
