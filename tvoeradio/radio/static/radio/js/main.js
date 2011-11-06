@@ -118,6 +118,10 @@ $(document).ready(function(){
         ui.show_popup_lastfm();
     });
 
+    $('#dashboard__cell_stations_favorited .dashboard__cell__title .pseudolink').click(function(){
+        ui.popup.show('Избранное', ui.get_stations_list_html(userdata.favorited_stations.list));
+    });
+
 
     // События в плеере
 

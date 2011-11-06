@@ -37,6 +37,7 @@
 <body>
 
     {% csrf_token %}
+
     {% include_ich 'radio/ich/infoblock_artist.html' %}
     {% include_ich 'radio/ich/playlist.html' %}
     {% include_ich 'radio/ich/popup.html' %}
@@ -89,7 +90,7 @@
             <div class="clear"></div>
             <div class="dashboard__block">
                 <div class="dashboard__cell" id="dashboard__cell_stations_favorited">
-                    <div class="dashboard__cell__title"><span class="pseudolink">избранное</span>Последнее в избранном</div>
+                    <div class="dashboard__cell__title"><span class="pseudolink">всё</span>Последнее в избранном</div>
                     <div class="dashboard__cell__content"></div>
                 </div>
                 <div class="dashboard__cell" id="dashboard__cell_stations_recent">

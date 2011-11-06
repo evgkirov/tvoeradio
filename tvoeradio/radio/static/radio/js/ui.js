@@ -50,9 +50,9 @@ ui.hide_loader_fullscreen = function() {
 };
 
 
-ui.stations_list = function(elem, list, max) {
+ui.get_stations_list_html = function(list, max) {
     if (!max) {
-        max = Inf;
+        max = Infinity;
     }
     max = Math.min(max, list.length);
     var context = {'stations': []};
@@ -63,13 +63,13 @@ ui.stations_list = function(elem, list, max) {
             'html': player.station[list[i].type].get_html(list[i].name)
         });
     }
-    elem.html(ich.tpl_stationslist(context));
+    return ich.tpl_stationslist(context);
 };
 
 
 ui.update_dashboard = function() {
-    ui.stations_list($('#dashboard__cell_stations_favorited .dashboard__cell__content'), userdata.favorited_stations.list, 5);
-    ui.stations_list($('#dashboard__cell_stations_recent .dashboard__cell__content'), userdata.recent_stations.list, 5);
+    $('#dashboard__cell_stations_favorited .dashboard__cell__content').html(ui.get_stations_list_html(userdata.favorited_stations.list, 5));
+    $('#dashboard__cell_stations_recent .dashboard__cell__content').html(ui.get_stations_list_html(userdata.recent_stations.list, 5));
 };
 
 
