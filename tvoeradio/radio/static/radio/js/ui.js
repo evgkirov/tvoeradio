@@ -90,15 +90,17 @@ ui.update_track_info = function() {
         }
     });
     ui.infoblock.show($('#tabcontent_tabs_player__info'), 'artist', current_track.artist);
+    ui.update_track_controls();
+};
+
+
+ui.update_track_controls = function() {
+    var current_track = player.playlist.get_current_track();
     if (network.lastfm.authorized) {
         $('#menu_track__love').show();
     } else {
         $('#menu_track__love').hide();
     }
-};
-
-
-ui.update_player_controls = function() {
     if (player.control.is_playing()) {
         $('#button_pause').show();
         $('#button_play').hide();
@@ -106,20 +108,29 @@ ui.update_player_controls = function() {
         $('#button_pause').hide();
         $('#button_play').show();
     }
+    if (userdata.audio.is_added(current_track.artist, current_track.title)) {
+        $('#menu_track__addaudio').hide();
+    } else {
+        $('#menu_track__addaudio').show();
+    }
 };
 
 
 ui.update_station_info = function() {
     $('#station_name').html(player.station.get_current_html());
-    if (userdata.favorited_stations.is_favorited(player.station.type, player.station.name)) {
-        $('#menu_station__favorite').hide();
-        $('#menu_station__remove_favorite').show();
-    } else {
-        $('#menu_station__favorite').show();
-        $('#menu_station__remove_favorite').hide();
-    }
-
+    ui.update_station_controls();
 };
+
+
+ui.update_station_controls = function() {
+    if (userdata.favorited_stations.is_favorited(player.station.type, player.station.name)) {
+        $('#menu_station__addfavorite').hide();
+        $('#menu_station__removefavorite').show();
+    } else {
+        $('#menu_station__addfavorite').show();
+        $('#menu_station__removefavorite').hide();
+    }
+}
 
 
 ui.update_topnav = function() {

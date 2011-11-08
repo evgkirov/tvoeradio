@@ -9,7 +9,7 @@ userdata.favorited_stations.add = function(type, name) {
     $.post('/app/add_favorite/', data, function(data){
         userdata.favorited_stations.list = data.favorited_stations;
         ui.update_dashboard();
-        ui.update_station_info();
+        ui.update_station_controls();
     });
 };
 
@@ -19,7 +19,7 @@ userdata.favorited_stations.remove = function(type, name) {
     $.post('/app/remove_favorite/', data, function(data){
         userdata.favorited_stations.list = data.favorited_stations;
         ui.update_dashboard();
-        ui.update_station_info();
+        ui.update_station_controls();
     });
 };
 

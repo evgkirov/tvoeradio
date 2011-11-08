@@ -58,10 +58,10 @@ $(document).ready(function(){
             $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(player.playlist.get_current_track().duration));
         },
         'play': function(e) {
-            ui.update_player_controls();
+            ui.update_track_controls();
         },
         'pause': function(e) {
-            ui.update_player_controls();
+            ui.update_track_controls();
         },
         'volumechange': function(e) {
             $('#slider_volume').css('background-position', e.jPlayer.status.volume*100+'% 0');
@@ -189,6 +189,11 @@ $(document).ready(function(){
         );
     });
 
+    $('#menu_track__addaudio').click(function() {
+        var current_track = player.playlist.get_current_track();
+        userdata.audio.add(current_track.artist, current_track.title, current_track.vk_aid, current_track.vk_oid);
+    });
+
     $('#menu_station__poststatus').click(function(){
         network.vkontakte.api(
             'wall.post',
@@ -200,11 +205,11 @@ $(document).ready(function(){
         );
     });
 
-    $('#menu_station__favorite').click(function(){
+    $('#menu_station__addfavorite').click(function(){
         userdata.favorited_stations.add(player.station.type, player.station.name);
     });
 
-    $('#menu_station__remove_favorite').click(function(){
+    $('#menu_station__removefavorite').click(function(){
         userdata.favorited_stations.remove(player.station.type, player.station.name);
     });
 

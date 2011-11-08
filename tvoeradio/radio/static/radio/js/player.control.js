@@ -14,7 +14,7 @@ player.control.start = function(type, name) {
         ui.update_station_info();
         player.audio.set_file(player.playlist.get_current_track().mp3_url);
         player.audio.play();
-        ui.update_player_controls();
+        ui.update_track_controls();
         player.station.current.add_to_playlist();
         if (config.mode == 'vk') {
             network.vkontakte.callMethod('setLocation', type+'/'+util.string.urlencode(name));
@@ -39,7 +39,7 @@ player.control.next = function() {
         player.audio.set_file(player.playlist.get_current_track().mp3_url);
         player.audio.play();
         ui.update_playlist()
-        ui.update_player_controls();
+        ui.update_track_controls();
         player.station.current.add_to_playlist();
     }
     if (player.playlist.playlist.length == player.playlist.current_track_num + 1) {
@@ -60,7 +60,7 @@ player.control.navigate = function(to) {
     player.audio.set_file(player.playlist.get_current_track().mp3_url);
     player.audio.play();
     ui.update_playlist();
-    ui.update_player_controls();
+    ui.update_track_controls();
 
 };
 
@@ -73,7 +73,7 @@ player.control.previous = function() {
 
 player.control.pause = function() {
     player.audio.pause();
-    ui.update_player_controls();
+    ui.update_track_controls();
 };
 
 
