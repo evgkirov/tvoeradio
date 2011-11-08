@@ -41,7 +41,7 @@ $(document).ready(function() {
     $('#search-widget').children('.input_text').blur(function(e) {
         setTimeout($('#search-suggest').hide, 1000);
     });
-    
+
     $('#search-widget__clear').click(function(){
         $('#search-widget__clear').hide();
         $('#dashboard').show();
@@ -49,7 +49,7 @@ $(document).ready(function() {
         $('#search-widget__text').val('');
         $('#search-suggest').hide();
     });
-    
+
     $('#search-widget').children('.input_text').keyup( function(e) {
         var $this = $(this);
 
@@ -59,12 +59,12 @@ $(document).ready(function() {
         }
 
         if (e.which == 13) { // enter
-  
+
             var $li_active = $('#search-suggest li.active');
             if ($li_active.length) {
                 ui.search.load_result($li_active.attr('rel'), $li_active.text());
             }
-            
+
         } else if ((e.which == 40) || (e.which==38)) { // up / down
 
             var $li = $('#search-suggest li');
@@ -87,7 +87,7 @@ $(document).ready(function() {
             $this.val((active >= 0) ? $($li[active]).text() : $('#search-suggest__text').val());
 
         } else {
-            
+
             $('#search-suggest').css({
                 'left': $this.position().left-100+'px'
             })
@@ -98,7 +98,7 @@ $(document).ready(function() {
 
             clearTimeout(ui.search.timeout);
             ui.search.timeout = setTimeout(ui.search.load_suggest, 300, $this.val());
-           
+
         }
     });
 

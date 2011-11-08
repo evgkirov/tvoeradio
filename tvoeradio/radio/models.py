@@ -87,3 +87,12 @@ class TopArtist(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Ban(models.Model):
+
+    user = models.ForeignKey(User)
+    date_added = models.DateTimeField(auto_now_add=True)
+    artist = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True)
+    ban_artist = models.BooleanField()

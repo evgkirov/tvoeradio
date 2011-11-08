@@ -4,7 +4,7 @@ register_namespace('ui');
 ui.go_to_page = function(name) {
     $('.page').hide();
     $('#page_'+name).show();
-    $('.popup').hide();
+    ui.popup.hide();
 };
 
 

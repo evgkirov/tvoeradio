@@ -194,7 +194,23 @@ $(document).ready(function(){
         userdata.audio.add(current_track.artist, current_track.title, current_track.vk_aid, current_track.vk_oid);
     });
 
-    $('#menu_station__poststatus').click(function(){
+    $('#menu_track__ban').click(function() {
+        var current_track = player.playlist.get_current_track();
+        ui.popup.show('Забанить', ich.tpl_popup__ban_add(current_track));
+    });
+
+    $('#popup__actions__ban_track').live('click', function() {
+        userdata.bans.add($(this).parent().data('artist'), $(this).parent().data('title'), false);
+        ui.popup.hide();
+    });
+
+    $('#popup__actions__ban_artist').live('click', function() {
+        userdata.bans.add($(this).parent().data('artist'), $(this).parent().data('title'), true);
+        ui.popup.hide();
+    });
+
+
+    $('#menu_station__poststatus').click(function() {
         network.vkontakte.api(
             'wall.post',
             {

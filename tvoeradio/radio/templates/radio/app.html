@@ -30,8 +30,9 @@
     {% endif %}
     {% include_media 'radio.js' %}
     <script type="text/javascript">
-        userdata.recent_stations.list = {{ recent_stations|jsonize }};
+        userdata.bans.list = {{ bans|jsonize }};
         userdata.favorited_stations.list = {{ favorited_stations|jsonize }};
+        userdata.recent_stations.list = {{ recent_stations|jsonize }};
     </script>
 </head>
 <body>
@@ -44,6 +45,7 @@
     {% include_ich 'radio/ich/popup__lastfm_auth1.html' %}
     {% include_ich 'radio/ich/popup__lastfm_auth2.html' %}
     {% include_ich 'radio/ich/popup__lastfm.html' %}
+    {% include_ich 'radio/ich/popup__ban_add.html' %}
     {% include_ich 'radio/ich/stationslist.html' partial %}
 
     <div class="popup">
@@ -133,7 +135,7 @@
                     <li id="menu_track__love" style="background-image:url({% media_url 'img/icons/heart.png' %})">Last.fm: Нравится</li>
                     <li id="menu_track__addaudio" style="background-image:url({% media_url 'img/icons/music--plus.png' %})">В «Мои аудиозаписи»</li>
                     <li id="menu_track__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">В статус</li>
-                    <!--<li id="menu_track__ban" style="background-image:url({% media_url 'img/icons/prohibition.png' %})">Забанить</li>-->
+                    <li id="menu_track__ban" style="background-image:url({% media_url 'img/icons/prohibition.png' %})">Забанить</li>
                 </ul><!--menu_track-->
             </div><!--trackinfo-->
 

@@ -17,9 +17,14 @@ ui.popup.set_content = function(content) {
 };
 
 
+ui.popup.hide = function() {
+    $('.popup').hide();
+};
+
+
 $(document).ready(function(){
-    $('.popup__close').live('click', function(){
-        $(this).parent('.popup').hide();
+    $('.popup__close, .popup__actions__close').live('click', function(){
+        ui.popup.hide();
     });
 
 });

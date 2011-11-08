@@ -363,6 +363,15 @@ a:hover, span.pseudolink:hover {
     padding: 16px 14px;
 }
 
+.popup__actions .button_blue {
+    margin: 10px 0;
+}
+
+.popup__actions .button_gray {
+    float: right;
+    margin: 10px 0 0 0;
+}
+
 #popup_lastfm__auth1, #popup_lastfm__auth2 {
     padding: 30px;
     text-align: center;
@@ -534,6 +543,7 @@ a:hover, span.pseudolink:hover {
 
 #search-widget__clear {
     background: url(../img/search-widget__clear.gif) center center no-repeat;
+    cursor: pointer;
     display: none;
     height: 11px;
     position: absolute;

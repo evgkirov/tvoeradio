@@ -7,4 +7,5 @@ urlpatterns = patterns('radio.views',
     ('^started/$', 'started'),
     ('^add_favorite/$', 'add_favorite'),
     ('^remove_favorite/$', 'remove_favorite'),
+    ('^add_ban/$', 'add_ban'),
 )
