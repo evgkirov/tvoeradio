@@ -1,14 +1,14 @@
 {
-	"folders":
-	[
-		{
-			"path": "tvoeradio"
-		}
-	],
-	"settings" :{
-		"translate_tabs_to_spaces": true,
-		"tab_size": 4,
-		"detect_indentation": false
-	}
-
+    "folders":
+    [
+        {
+            "path": "tvoeradio"
+        }
+    ],
+    "settings" :{
+        "translate_tabs_to_spaces": true,
+        "tab_size": 4,
+        "detect_indentation": false,
+        "draw_white_space": "all"
+    }
 }
