@@ -35,7 +35,7 @@
         userdata.recent_stations.list = {{ recent_stations|jsonize }};
     </script>
 </head>
-<body>
+<body class="mode-{{ mode }}">
 
     {% csrf_token %}
 
@@ -56,6 +56,7 @@
 
     <div id="mp3player"></div>
     <div id="loader_fullscreen"><div id="loader_fullscreen__i"></div></div>
+    <div id="popup-overlay"></div>
 
     <div id="page_tune" class="page">
 
@@ -74,7 +75,7 @@
             <span id="search-widget__label">Поиск:</span><input id="search-widget__text" type="text" class="input_text" />
         </div>
 
-    <div id="dashboard">
+        <div id="dashboard">
 
             <div class="dashboard__block dashboard__tags">
                 {% for tag in top_tags %}

@@ -4,7 +4,7 @@ register_namespace('ui.popup');
 ui.popup.show = function(title, content) {
     ui.popup.set_title(title);
     ui.popup.set_content(content)
-    $('.popup').show();
+    $('.popup, #popup-overlay').show();
 };
 
 
@@ -18,12 +18,12 @@ ui.popup.set_content = function(content) {
 
 
 ui.popup.hide = function() {
-    $('.popup').hide();
+    $('.popup, #popup-overlay').hide();
 };
 
 
 $(document).ready(function(){
-    $('.popup__close, .popup__actions__close').live('click', function(){
+    $('#popup-overlay, .popup__close, .popup__actions__close').live('click', function(){
         ui.popup.hide();
     });
 
