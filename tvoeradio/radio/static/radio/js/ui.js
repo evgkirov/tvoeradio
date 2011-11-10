@@ -83,22 +83,34 @@ ui.update_dashboard = function() {
 
 
 ui.update_track_info = function() {
+
     var current_track = player.playlist.get_current_track();
+
     $('#track_artist').hide().text(current_track.artist);
     setTimeout("$('#track_artist').fadeIn()", 100);
     $('#track_name').hide().text(current_track.title).fadeIn();
     $('#album_name').hide().text('');
     $('#album_cover').hide();
-    network.lastfm.api('track.getInfo', {'artist': current_track.artist, 'track': current_track.title}, function(data){
-        if (data.track.album) {
-            current_track.album_cover = data.track.album.image[data.track.album.image.length-1]["#text"];
-            current_track.album_name = data.track.album.title;
-            current_track.album_artist = data.track.album.artist;
-            $('#album_name').text(current_track.album_name).fadeIn();
-            $('#album_cover').attr('src', current_track.album_cover);
+
+    network.lastfm.api(
+        'track.getInfo',
+        {
+            'artist': current_track.artist,
+            'track': current_track.title
+        },
+        function(data){
+            if (data.track.album) {
+                current_track.album_cover = data.track.album.image[data.track.album.image.length-1]["#text"];
+                current_track.album_name = data.track.album.title;
+                current_track.album_artist = data.track.album.artist;
+                $('#album_name').text(current_track.album_name).fadeIn();
+                $('#album_cover').attr('src', current_track.album_cover);
+            }
         }
-    });
+    );
+
     ui.infoblock.show($('#tabcontent_tabs_player__info'), 'artist', current_track.artist);
+
     if (current_track.vk_lyrics_id) {
         $('#tabcontent_tabs_player__lyrics').html('<div class="infoblock-loader"></div>');
         network.vkontakte.api('audio.getLyrics', {'lyrics_id': current_track.vk_lyrics_id}, function(data) {
@@ -107,8 +119,36 @@ ui.update_track_info = function() {
     } else {
         $('#tabcontent_tabs_player__lyrics').text('(У меня просто нет слов!)');
     }
+
     $('#tabcontent_tabs_player__comments').text('');
     network.vkontakte.Widgets.Comments('tabcontent_tabs_player__comments', {autoPublish: 0, limit: 10}, util.string.md5('artist ' + current_track.artist + 'title ' + current_track.title));
+
+    /*$('#tabcontent_tabs_player__buy').text('');
+    network.lastfm.api(
+        'track.getBuylinks',
+        {
+            'artist': current_track.artist,
+            'track': current_track.title,
+            'country': 'russia'
+        },
+        function(data) {
+            var downloads = [];
+            var physicals = [];
+            try {
+                if (typeof data.affiliations.downloads != 'string')
+                    downloads = network.lastfm.arrayize(data.affiliations.downloads.affiliation);
+            } catch(err) {}
+            try {
+                physicals = network.lastfm.arrayize(data.affiliations.physicals.affiliation);
+            } catch(err) {}
+            var affiliations = [];
+            $.merge(affiliations, downloads);
+            $.merge(affiliations, physicals);
+            var html = ich.tpl_tabcontent_tabs_player__buy({'affiliations': affiliations});
+            $('#tabcontent_tabs_player__buy').html(html);
+        }
+    );*/
+
     ui.update_track_controls();
 };
 
