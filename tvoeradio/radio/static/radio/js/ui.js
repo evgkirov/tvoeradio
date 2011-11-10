@@ -98,6 +98,7 @@ ui.update_track_info = function() {
     } else {
         $('#tabcontent_tabs_player__lyrics').text('(У меня просто нет слов!)');
     }
+    $('#tabcontent_tabs_player__comments').html('<div class="infoblock-loader"></div>');
     network.vkontakte.Widgets.Comments('tabcontent_tabs_player__comments', {autoPublish: 0, limit: 10}, util.string.md5('artist ' + current_track.artist + 'title ' + current_track.title));
     ui.update_track_controls();
 };
