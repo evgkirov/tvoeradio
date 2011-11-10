@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
+from django.utils.datastructures import MultiValueDictKeyError
 import urllib2
 
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
@@ -59,7 +60,7 @@ def started(request):
     try:
         type = request.POST['type']
         name = request.POST['name']
-    except IndexError:
+    except MultiValueDictKeyError:
         raise Http404()
 
     rs = RecentStation.objects.create_user_station(request.user, type, name)
@@ -79,7 +80,7 @@ def add_favorite(request):
     try:
         type = request.POST['type']
         name = request.POST['name']
-    except IndexError:
+    except MultiValueDictKeyError:
         raise Http404()
 
     FavoritedStation.objects.create_user_station(request.user, type, name)
@@ -97,7 +98,7 @@ def remove_favorite(request):
     try:
         type = request.POST['type']
         name = request.POST['name']
-    except IndexError:
+    except MultiValueDictKeyError:
         raise Http404()
 
     FavoritedStation.objects.delete_user_station(request.user, type, name)
@@ -116,7 +117,7 @@ def add_ban(request):
         artist = request.POST['artist']
         title = request.POST['title']
         ban_artist = bool(request.POST.get('ban_artist'))
-    except IndexError:
+    except MultiValueDictKeyError:
         raise Http404()
 
     Ban.objects.create(user=request.user, artist=artist, title=title, ban_artist=ban_artist)

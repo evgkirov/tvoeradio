@@ -3,15 +3,40 @@ register_namespace('network.vkontakte');
 network.vkontakte = VK;
 
 network.vkontakte.search_audio = function(artist, title, callback, callback_notfound) {
-    this.api('audio.search', {'q': artist+' '+title, 'sort': 0 }, function(data) {
-        if (data.response[0] != '0') {
-            // Поиск наиболее подходящего файла
-            var mp3 = data.response[1];
-            var best_match = Infinity;
+    //this.api('audio.search', {'q': artist+' '+title, 'sort': 0 }, function(data) {
+
+    var q = artist.replace(/"/g,' ') + ' ' + title.replace(/"/g,' ');
+    var code = [];
+    code.push('return [');
+    code.push('    API.audio.search({"q": "' + q + '", "sort": 0, "lyrics": 1}),');
+    code.push('    API.audio.search({"q": "' + q + '", "sort": 0})');
+    code.push('];');
+
+
+    this.api('execute', {'code': code.join(' ')}, function(data) {
+
+        // тут data.response представляет собой результат вызова двух api-методов (с текстом и без)
+        // сначала пробуем с текстом
+        console.log('сначала пробуем с текстом');
+        var response = data.response[0];
+        // пусто? берём остальные
+        if (response[0] == 0) {
+            console.log('пусто? берём остальные');
+            response = data.response[1];
+        }
+        // опять пусто? пробуем следующий трек
+        if (response[0] == 0) {
+            if (callback_notfound) {
+                setTimeout(callback_notfound, 350, artist, title, callback, callback_notfound);
+            }
+        } else {
+            // всё ок - выбор наиболее подходящего файла
+            var mp3 = response[1];
+            var best_match = Infinity; // лучше когда 0
             var durations = {};
             var best_duration = 0;
             var best_duration_num = 0;
-            $.each(data.response, function(k,v){
+            $.each(response, function(k,v){
                 if (k) {
                     if (durations[v.duration]) {
                         durations[v.duration]++;
@@ -25,12 +50,12 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
                 }
             });
 
-            $.each(data.response, function(k,v){
+            $.each(response, function(k,v){
                 if (k) {
 
                     if (best_match) {
+                        // 100 * incorrect artist + 20 * incorrect title + |duration diff|
                         var cur_match = 100*util.string.levenshtein(artist, v.artist)+20*util.string.levenshtein(title, v.title)+Math.abs(v.duration-best_duration);
-
                         if (cur_match<best_match) {
                             best_match = cur_match;
                             mp3 = v;
@@ -38,16 +63,11 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
                     }
                 }
             });
-           
+
             if (callback) {
                 callback(mp3);
             }
-            
-        } else {
-            if (callback_notfound) {
-                setTimeout(callback_notfound, 350, artist, title, callback, callback_notfound);
-                //callback_notfound(artist, title, callback, callback_notfound);
-            }
+
         }
     });
 };

@@ -90,6 +90,14 @@ ui.update_track_info = function() {
         }
     });
     ui.infoblock.show($('#tabcontent_tabs_player__info'), 'artist', current_track.artist);
+    if (current_track.vk_lyrics_id) {
+        $('#tabcontent_tabs_player__lyrics').html('<div class="infoblock-loader"></div>');
+        network.vkontakte.api('audio.getLyrics', {'lyrics_id': current_track.vk_lyrics_id}, function(data) {
+            $('#tabcontent_tabs_player__lyrics').html(data.response.text.replace(/\n/g, '<br/>'));
+        });
+    } else {
+        $('#tabcontent_tabs_player__lyrics').text('(У меня просто нет слов!)');
+    }
     ui.update_track_controls();
 };
 
