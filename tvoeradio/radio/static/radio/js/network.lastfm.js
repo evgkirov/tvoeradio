@@ -4,7 +4,6 @@ register_namespace('network.lastfm');
 network.lastfm.api_url = null;
 network.lastfm.api_key = null;
 network.lastfm.api_secret = null;
-network.lastfm.cache = {};
 network.lastfm.user = null;
 network.lastfm.authorized = false;
 network.lastfm.auth_token = null;
@@ -14,10 +13,10 @@ network.lastfm.write_methods = ['track.updateNowPlaying', 'track.scrobble', 'tra
 
 
 network.lastfm.api = function(method, params, callback) {
-    var cache_key = method;
     var _this = this;
     var callback = callback || $.noop;
 
+    var cache_key = 'lastfm-' + method;
     for (var k in params) {
         cache_key += '&' + k + '=' + params[k];
     }
@@ -38,12 +37,17 @@ network.lastfm.api = function(method, params, callback) {
 
     if (this.write_methods.indexOf(method)==-1) {
 
-        if ((this.cache[cache_key]) && (this.nocache_methods.indexOf(method)==-1)) {
-            callback(this.cache[cache_key]);
+        var cache_result = lscache.get(cache_key);
+        var is_write_method = !(this.nocache_methods.indexOf(method)==-1);
+
+        if (cache_result && !is_write_method) {
+            callback(cache_result);
         } else {
             callback.cache_key = cache_key;
             $.getJSON(this.api_url+'?callback=?', params, function(data) {
-                _this.cache[callback.cache_key] = data;
+                if (!is_write_method) {
+                    lscache.set(callback.cache_key, data, 60*24*30*2); // 2 months
+                }
                 callback(data);
             });
         }
