@@ -35,6 +35,13 @@ ui.fit = function() {
                 h = ph;
             }
         }
+        // vk comment form attach popup
+        if ($('body>iframe').length) {
+            var ih = $('body>iframe').height();
+            if (h < ih) {
+                h = ih;
+            }
+        }
         network.vkontakte.callMethod('resizeWindow', 727, h);
     }
 }
