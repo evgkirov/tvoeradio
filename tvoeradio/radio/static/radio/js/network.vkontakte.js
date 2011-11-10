@@ -3,7 +3,6 @@ register_namespace('network.vkontakte');
 network.vkontakte = VK;
 
 network.vkontakte.search_audio = function(artist, title, callback, callback_notfound) {
-    //this.api('audio.search', {'q': artist+' '+title, 'sort': 0 }, function(data) {
 
     var q = artist.replace(/"/g,' ') + ' ' + title.replace(/"/g,' ');
     var code = [];
@@ -12,16 +11,13 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
     code.push('    API.audio.search({"q": "' + q + '", "sort": 0})');
     code.push('];');
 
-
     this.api('execute', {'code': code.join(' ')}, function(data) {
 
         // тут data.response представляет собой результат вызова двух api-методов (с текстом и без)
         // сначала пробуем с текстом
-        console.log('сначала пробуем с текстом');
         var response = data.response[0];
         // пусто? берём остальные
         if (response[0] == 0) {
-            console.log('пусто? берём остальные');
             response = data.response[1];
         }
         // опять пусто? пробуем следующий трек

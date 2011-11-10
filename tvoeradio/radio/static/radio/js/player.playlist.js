@@ -31,7 +31,6 @@ player.playlist.add_track = function(artist, title, callback) {
             'vk_aid': mp3.aid,
             'vk_lyrics_id': mp3.lyrics_id
         }
-        console.log(track.lyrics_vk_id);
         player.playlist.playlist.push(track);
         ui.update_playlist()
         if (callback) {
