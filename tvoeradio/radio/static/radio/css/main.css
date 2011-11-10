@@ -709,32 +709,38 @@ h2 {
 }
 
 .control_button {
-    color: #999;
+    background-repeat: no-repeat;
     cursor: pointer;
-    font-size: 9px;
     float: left;
-    height: 9px;
+    height: 32px;
     margin-right: 10px;
-    padding-top: 23px;
     text-align: center;
     width: 32px;
 }
 
+.control_button:hover {
+    background-position: center;
+}
+
+.control_button:active {
+    background-position: bottom;
+}
+
 #button_next {
-    background: url(../img/button_next.png) no-repeat;
+    background-image: url(../img/button_next.png);
 }
 
 #button_play {
-    background: url(../img/button_play.png) no-repeat;
+    background-image: url(../img/button_play.png);
     display: none;
 }
 
 #button_pause {
-    background: url(../img/button_pause.png) no-repeat;
+    background-image: url(../img/button_pause.png);
 }
 
 #button_previous {
-    background: url(../img/button_previous.png) no-repeat;
+    background-image: url(../img/button_previous.png);
 }
 
 .control_slider {
