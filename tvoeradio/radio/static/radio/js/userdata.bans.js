@@ -21,7 +21,6 @@ userdata.bans.add = function(artist, title, ban_artist) {
 userdata.bans.is_banned = function(artist, title) {
     for (var i in this.list) {
         if ((artist == this.list[i].artist) && ((this.list[i].ban_artist) || (title == this.list[i].title))) {
-            console.log('Ban match', artist, title, this.list[i])
             return true;
         }
     }

@@ -16,9 +16,9 @@ def app(request):
 
     user = request.user
 
-    mode = request.GET.get('mode', 'vk')
-    if mode not in ('vk', 'desktop'):
-        mode = 'vk'
+    mode = request.GET.get('mode')
+    if mode not in ('vk', 'desktop', 'standalone'):
+        mode = 'standalone'
 
     top_tags = list(TopTag.objects.all())
     max_popularity = max(top_tags, key=lambda tag: tag.popularity).popularity
