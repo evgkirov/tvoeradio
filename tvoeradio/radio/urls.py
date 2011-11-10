@@ -3,9 +3,9 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('radio.views',
     ('^$', 'app'),
-    ('^lastfm_proxy/$', 'lastfm_proxy'),
-    ('^started/$', 'started'),
-    ('^add_favorite/$', 'add_favorite'),
-    ('^remove_favorite/$', 'remove_favorite'),
-    ('^add_ban/$', 'add_ban'),
+    ('^_/lastfm_proxy/$', 'lastfm_proxy'),
+    ('^_/started/$', 'started'),
+    ('^_/favorite/add/$', 'add_favorite'),
+    ('^_/favorite/remove/$', 'remove_favorite'),
+    ('^_/ban/add/$', 'add_ban'),
 )

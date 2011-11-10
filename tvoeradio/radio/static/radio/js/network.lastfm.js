@@ -17,7 +17,7 @@ network.lastfm.api = function(method, params, callback) {
     var cache_key = method;
     var _this = this;
     var callback = callback || $.noop;
-    
+
     for (var k in params) {
         cache_key += '&' + k + '=' + params[k];
     }
@@ -47,9 +47,9 @@ network.lastfm.api = function(method, params, callback) {
                 callback(data);
             });
         }
-        
+
     } else {
-        $.post('/app/lastfm_proxy/', params, function(data){
+        $.post('/app/_/lastfm_proxy/', params, function(data){
             callback(data);
         });
     }

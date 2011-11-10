@@ -10,7 +10,7 @@ userdata.bans.add = function(artist, title, ban_artist) {
         'title': ban_artist ? '' : title,
         'ban_artist': ban_artist ? 1 : ''
     };
-    $.post('/app/add_ban/', data, function(data){
+    $.post('/app/_/ban/add/', data, function(data){
         userdata.bans.list = data.bans;
         player.playlist.filter_tail(artist, title, ban_artist);
         player.control.next();
