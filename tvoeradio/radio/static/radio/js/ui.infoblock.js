@@ -84,7 +84,32 @@ ui.infoblock.show_tag = function(elem, name) {
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
         }
     );
-}
+};
+
+
+ui.infoblock.show_user = function(elem, name) {
+    network.lastfm.api(
+        'user.getInfo',
+        {
+            'user': name
+        },
+        function(data) {
+            var context = {
+                'name': data.user.name,
+                'image': network.lastfm.select_image(data.user.image, 'large'),
+                'lastfm_url': data.user.url,
+                'stations': [
+                    {
+                        'type': 'library',
+                        'name': data.user.name,
+                        'html': player.station.library.get_html(data.user.name)
+                    }
+                ]
+            };
+            elem.html(ich.tpl_infoblock_user(context));
+        }
+    );
+};
 
 
 ui.infoblock.show = function(elem, type, name) {

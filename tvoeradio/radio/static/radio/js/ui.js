@@ -195,7 +195,7 @@ ui.update_station_controls = function() {
 ui.update_topnav = function() {
     var links_left = [];
     if (network.lastfm.authorized) {
-        links_left.push('<span class="pseudolink" id="topnav__lastfm">Last.fm (' + util.string.htmlspecialchars(network.lastfm.user) + ')</span>')
+        links_left.push('<span class="pseudolink nav-infoblock" data-type="user" data-name="' + util.string.htmlspecialchars(network.lastfm.user) + '">Last.fm (' + util.string.htmlspecialchars(network.lastfm.user) + ')</span>')
     } else {
         links_left.push('<span class="pseudolink" id="topnav__lastfm_auth">Last.fm</span>')
     }
