@@ -44,7 +44,7 @@ ui.fit = function() {
                 h = ih;
             }
         }
-        network.vkontakte.callMethod('resizeWindow', 727, h);
+        network.vkontakte.callMethod('resizeWindow', 627, h);
     }
 }
 
@@ -77,8 +77,8 @@ ui.get_stations_list_html = function(list, max) {
 
 
 ui.update_dashboard = function() {
-    $('#dashboard__cell_stations_favorited .dashboard__cell__content').html(ui.get_stations_list_html(userdata.favorited_stations.list, 5));
-    $('#dashboard__cell_stations_recent .dashboard__cell__content').html(ui.get_stations_list_html(userdata.recent_stations.list, 5));
+    $('#dashboard__cell_stations_favorited .dashboard__cell__content').html(ui.get_stations_list_html(userdata.favorited_stations.list, 10));
+    $('#dashboard__cell_stations_recent .dashboard__cell__content').html(ui.get_stations_list_html(userdata.recent_stations.list, 10));
 };
 
 

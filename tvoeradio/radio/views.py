@@ -36,7 +36,7 @@ def app(request):
         'mode': mode,
         'top_tags': top_tags,
         'top_artists': top_artists,
-        'recent_stations': get_user_stations_list(RecentStation, user, 20),
+        'recent_stations': get_user_stations_list(RecentStation, user, 10),
         'favorited_stations': get_user_stations_list(FavoritedStation, user),
         'bans': bans,
     }
