@@ -8,7 +8,8 @@ network.lastfm.user = null;
 network.lastfm.authorized = false;
 network.lastfm.auth_token = null;
 network.lastfm.session_key = null;
-network.lastfm.nocache_methods = ['auth.getToken', 'user.getLovedTracks'];
+network.lastfm.nocache_methods = ['auth.getToken'];
+network.lastfm.shortcache_methods = ['user.getLovedTracks'];
 network.lastfm.write_methods = ['track.updateNowPlaying', 'track.scrobble', 'track.love'];
 
 
@@ -46,7 +47,11 @@ network.lastfm.api = function(method, params, callback) {
             callback.cache_key = cache_key;
             $.getJSON(this.api_url+'?callback=?', params, function(data) {
                 if (!is_write_method) {
-                    lscache.set(callback.cache_key, data, 60*24*30*2); // 2 months
+                    var minutes = 60*24*30*2;  // 2 months
+                    if (network.lastfm.shortcache_methods.indexOf(method)!=-1) {
+                        minutes = 10;
+                    }
+                    lscache.set(callback.cache_key, data, minutes);
                 }
                 callback(data);
             });
