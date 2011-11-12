@@ -42,7 +42,12 @@ ui.infoblock.show_artist = function(elem, name) {
                         'type': 'similar',
                         'name': data.artist.name,
                         'html': player.station.similar.get_html(data.artist.name)
-                    }
+                    },
+                    {
+                        'type': 'artist',
+                        'name': data.artist.name,
+                        'html': player.station.artist.get_html(data.artist.name)
+                    },
                 ]
             };
             elem.html(ich.tpl_infoblock_artist(context));
