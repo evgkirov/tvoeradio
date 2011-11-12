@@ -8,7 +8,7 @@ network.lastfm.user = null;
 network.lastfm.authorized = false;
 network.lastfm.auth_token = null;
 network.lastfm.session_key = null;
-network.lastfm.nocache_methods = ['auth.getToken'];
+network.lastfm.nocache_methods = ['auth.getToken', 'user.getLovedTracks'];
 network.lastfm.write_methods = ['track.updateNowPlaying', 'track.scrobble', 'track.love'];
 
 

@@ -103,6 +103,11 @@ ui.infoblock.show_user = function(elem, name) {
                         'type': 'library',
                         'name': data.user.name,
                         'html': player.station.library.get_html(data.user.name)
+                    },
+                    {
+                        'type': 'loved',
+                        'name': data.user.name,
+                        'html': player.station.loved.get_html(data.user.name)
                     }
                 ]
             };
