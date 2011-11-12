@@ -611,10 +611,6 @@ h2 {
     max-width: 100%;
 }
 
-.infoblock__line_stationlist {
-    background: #f1f1f1;
-}
-
 .infoblock__similar span:after,
 .infoblock__tags span:after {
     content: ',';
@@ -626,15 +622,20 @@ h2 {
 }
 
 .infoblock__comments {
-    margin-top: 10px;
+    margin-top: 15px;
+}
+
+.infoblock__line_stationlist {
+    background: #f1f1f1;
 }
 
 .infoblock__line_stationlist td.infoblock__line__header {
     color: #000;
+    padding: 16px 0;
 }
 
 .infoblock__line_stationlist td.infoblock__line__content {
-    padding: 4px 4px 4px 0;
+    padding: 12px 4px 12px 0;
 }
 
 .infoblock-loader {

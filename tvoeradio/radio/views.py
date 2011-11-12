@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.utils.datastructures import MultiValueDictKeyError
+import random
 import urllib2
 
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
@@ -26,7 +27,8 @@ def app(request):
     for tag in top_tags:
         tag.size = 120 * tag.popularity / max_popularity + 90
 
-    top_artists = TopArtist.objects.all()
+    top_artists = list(TopArtist.objects.all())
+    random.shuffle(top_artists)
 
     bans = list(Ban.objects.filter(user=request.user).values('artist', 'title', 'ban_artist'))
 
