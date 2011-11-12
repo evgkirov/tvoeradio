@@ -1,6 +1,27 @@
 register_namespace('ui.infoblock');
 
 
+ui.infoblock.convert_wiki = function (elem) {
+    elem.find('a').each(function(){
+        var html = '<span>' + $(this).text() + '</span>';
+        if ($(this).hasClass('bbcode_artist')) {
+            var artist = $(this).attr('href');
+            artist = artist.replace('http://www.last.fm/music/', '');
+            artist = util.string.urldecode(artist);
+            html = '<span class="pseudolink nav-infoblock" data-type="artist" data-name="' + artist + '">' + $(this).text() + '</span>'
+        }
+        if ($(this).hasClass('bbcode_tag')) {
+            var tag = $(this).attr('href');
+            tag = tag.replace('http://www.last.fm/tag/', '');
+            tag = util.string.urldecode(tag);
+            html = '<span class="pseudolink nav-infoblock" data-type="tag" data-name="' + tag + '">' + $(this).text() + '</span>'
+        }
+        $(html).insertAfter($(this));
+        $(this).remove();
+    });
+};
+
+
 ui.infoblock.show_artist = function(elem, name) {
     network.lastfm.api(
         'artist.getInfo',
@@ -10,11 +31,12 @@ ui.infoblock.show_artist = function(elem, name) {
         function(data) {
             var context = {
                 'name': data.artist.name,
-                'bio_summary': data.artist.bio.summary,
-                'bio': data.artist.bio.content,
+                'wiki_summary': data.artist.bio.summary,
+                'wiki': data.artist.bio.content,
                 'similar': network.lastfm.arrayize(data.artist.similar.artist),
                 'tags': network.lastfm.arrayize(data.artist.tags.tag),
                 'image': network.lastfm.select_image(data.artist.image, 'large'),
+                'lastfm_url': data.artist.url,
                 'stations': [
                     {
                         'type': 'similar',
@@ -24,24 +46,33 @@ ui.infoblock.show_artist = function(elem, name) {
                 ]
             };
             elem.html(ich.tpl_infoblock_artist(context));
-            // TODO template
-            $('.infoblock__bio a').each(function(){
-                var html = '<span>' + $(this).text() + '</span>';
-                if ($(this).hasClass('bbcode_artist')) {
-                    var artist = $(this).attr('href');
-                    artist = artist.replace('http://www.last.fm/music/', '');
-                    artist = util.string.urldecode(artist);
-                    html = '<span class="pseudolink nav-infoblock" data-type="artist" data-name="' + artist + '">' + $(this).text() + '</span>'
-                }
-                $(html).insertAfter($(this));
-                $(this).remove();
-            });
+            ui.infoblock.convert_wiki($('.infoblock__wiki'));
             var id = 'infoblock_artist' + util.random.randint(0, 100500);
             elem.find('.infoblock__comments').attr('id', id + '__comments');
             network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, util.string.md5('artist ' + data.artist.name));
         }
     );
 };
+
+
+ui.infoblock.show_tag = function(elem, name) {
+    network.lastfm.api(
+        'tag.getInfo',
+        {
+            'tag': name
+        },
+        function(data) {
+            var context = {
+                'name': data.tag.name,
+                'wiki_summary': data.tag.wiki.summary,
+                'wiki': data.tag.wiki.content,
+                'lastfm_url': data.tag.url
+            };
+            elem.html(ich.tpl_infoblock_tag(context));
+            ui.infoblock.convert_wiki($('.infoblock__wiki'));
+        }
+    );
+}
 
 
 ui.infoblock.show = function(elem, type, name) {
