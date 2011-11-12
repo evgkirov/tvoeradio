@@ -97,7 +97,11 @@ $(document).ready(function() {
             //$('#search-suggest__text').val($this.val());
 
             clearTimeout(ui.search.timeout);
-            ui.search.timeout = setTimeout(ui.search.load_suggest, 300, $this.val());
+            if (e.keyCode == 32) {
+                ui.search.load_suggest($this.val());
+            } else {
+                ui.search.timeout = setTimeout(ui.search.load_suggest, 300, $this.val());
+            }
 
         }
     });

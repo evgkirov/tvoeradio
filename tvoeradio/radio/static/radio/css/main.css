@@ -539,7 +539,7 @@ a:hover, .pseudolink:hover {
     color: #ffffff;
     display: inline-block;
     font-size: 11px;
-    margin-right: 5px;
+    margin-right: 15px;
     text-align: right;
     width: 100px;
 }
@@ -564,7 +564,7 @@ a:hover, .pseudolink:hover {
     display: none;
     height: 11px;
     position: absolute;
-    right: 37px;
+    right: 27px;
     width: 11px;
     top: 20px;
 }
