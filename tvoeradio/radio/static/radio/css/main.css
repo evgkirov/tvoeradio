@@ -1,8 +1,3 @@
-ul, ol, li {
-    margin: 0;
-    padding: 0;
-}
-
 html, body {
     background: #ffffff;
     color: #000000;
@@ -11,6 +6,12 @@ html, body {
     margin: 0px;
     padding: 0px;
     text-align: left;
+}
+
+ul, ol, li, table, tbody, tr, td {
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 .clear {
@@ -22,13 +23,13 @@ html, body {
     overflow: hidden;
 }
 
-a, span.pseudolink {
+a, .pseudolink {
     color: #2B587A;
     cursor: pointer;
     text-decoration: none;
 }
 
-a:hover, span.pseudolink:hover {
+a:hover, .pseudolink:hover {
     text-decoration: underline;
 }
 
@@ -212,15 +213,6 @@ a:hover, span.pseudolink:hover {
     position:relative;
 }
 
-.nav-infoblock {
-    background: url(../img/nav-infoblock.png) no-repeat;
-    padding: 0 0 0 10px;
-}
-
-.nav-infoblock[data-type='tag'] {
-    background-position: left bottom;
-}
-
 .stations-list {
     list-style: none;
 }
@@ -379,7 +371,7 @@ a:hover, span.pseudolink:hover {
     overflow: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 16px 14px;
+    padding: 10px;
 }
 
 .popup__actions .button_blue {
@@ -577,47 +569,6 @@ a:hover, span.pseudolink:hover {
     top: 20px;
 }
 
-.infoblock {
-    display: table;
-    width: 100%;
-}
-
-.infoblock__i {
-    display: table-row;
-    vertical-align: top;
-}
-
-.infoblock__l {
-    float: left;
-    padding-right: 3%;
-    width: 67%;
-}
-
-.infoblock__r {
-    float: right;
-    width: 30%;
-}
-
-.infoblock__comments {
-    clear: both;
-}
-
-.infoblock__text {
-    margin: 10px 0;
-}
-
-.infoblock__tags,
-.infoblock__similar {
-    padding: 10px 0;
-}
-
-
-.infoblock__tags .nav-infoblock,
-.infoblock__similar .nav-infoblock {
-    display: inline-block;
-    margin-right: 10px;
-}
-
 h2 {
     border-bottom: 1px solid #DAE1E8;
     color: #36638E;
@@ -627,14 +578,63 @@ h2 {
     padding-bottom: 5px;
 }
 
-.infoblock_artist__picture {
+.infoblock {
+    border-collapse:collapse;
+    width: 100%;
+}
+
+.infoblock td {
+    padding: 8px;
+    vertical-align: top;
+}
+
+.infoblock .infoblock__line:first-child td {
+    padding-top: 0;
+}
+
+.infoblock .infoblock__line:last-child td {
+    padding-bottom: 0;
+}
+
+.infoblock td.infoblock__line__header {
+    color: #777;
+    padding-right: 10px !important;
+    text-align: right;
+    width: 94px;
+}
+
+.infoblock td.infoblock__photo {
+    padding-left: 0;
+}
+
+.infoblock td.infoblock__photo img {
     max-width: 100%;
 }
 
-.infoblock__stations {
-    background: #F1F1F1;
-    padding: 5px;
-    text-align: center;
+.infoblock__line_stationlist {
+    background: #f1f1f1;
+}
+
+.infoblock__similar span:after,
+.infoblock__tags span:after {
+    content: ',';
+}
+
+.infoblock__similar span:last-child:after,
+.infoblock__tags span:last-child:after {
+    content: '';
+}
+
+.infoblock__comments {
+    margin-top: 10px;
+}
+
+.infoblock__line_stationlist td.infoblock__line__header {
+    color: #000;
+}
+
+.infoblock__line_stationlist td.infoblock__line__content {
+    padding: 4px 4px 4px 0;
 }
 
 .infoblock-loader {
@@ -668,7 +668,7 @@ h2 {
 
 #station_name {
     font-size: 14px;
-    margin: 15px 0 0 140px;
+    margin: 15px 0 0 130px;
     filter: alpha(opacity=40);
     -moz-opacity: 0.4;
     -khtml-opacity: 0.4;
@@ -700,7 +700,7 @@ h2 {
 
 #track_artist {
     font-size: 24px;
-    margin: 10px 0 0 140px;
+    margin: 10px 0 0 130px;
     filter: alpha(opacity=80);
     -moz-opacity: 0.8;
     -khtml-opacity: 0.8;
@@ -709,12 +709,12 @@ h2 {
 
 #track_name {
     font-size: 32px;
-    margin: 40px 0 0 140px;
+    margin: 40px 0 0 130px;
 }
 
 #album_name {
     font-size: 14px;
-    margin: 85px 0 0 140px;
+    margin: 85px 0 0 130px;
     filter: alpha(opacity=60);
     -moz-opacity: 0.6;
     -khtml-opacity: 0.6;
@@ -730,7 +730,7 @@ h2 {
 
 #buttons {
     height: 38px;
-    margin: 8px 0 0 136px;
+    margin: 8px 0 0 123px;
 }
 
 .control_button {
@@ -811,7 +811,7 @@ h2 {
 }
 
 #controls .tabs {
-    padding-left: 135px;
+    padding-left: 120px;
 }
 
 #trackinfo_panel {

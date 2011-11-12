@@ -90,3 +90,14 @@ network.lastfm.logout = function() {
 network.lastfm.arrayize = function(o) {
     return $.isArray(o) ? o : [o];
 };
+
+
+network.lastfm.select_image = function(list, size) {
+    list = network.lastfm.arrayize(list);
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].size == size) {
+            return list[i]['#text'];
+        }
+    }
+    return list[list.length-1]["#text"];
+};

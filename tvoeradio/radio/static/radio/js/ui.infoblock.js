@@ -14,7 +14,7 @@ ui.infoblock.show_artist = function(elem, name) {
                 'bio': data.artist.bio.content,
                 'similar': network.lastfm.arrayize(data.artist.similar.artist),
                 'tags': network.lastfm.arrayize(data.artist.tags.tag),
-                'image': data.artist.image[data.artist.image.length-1]["#text"],
+                'image': network.lastfm.select_image(data.artist.image, 'large'),
                 'stations': [
                     {
                         'type': 'similar',
@@ -25,7 +25,7 @@ ui.infoblock.show_artist = function(elem, name) {
             };
             elem.html(ich.tpl_infoblock_artist(context));
             // TODO template
-            $('.infoblock__text a').each(function(){
+            $('.infoblock__bio a').each(function(){
                 var html = '<span>' + $(this).text() + '</span>';
                 if ($(this).hasClass('bbcode_artist')) {
                     var artist = $(this).attr('href');
@@ -36,9 +36,9 @@ ui.infoblock.show_artist = function(elem, name) {
                 $(html).insertAfter($(this));
                 $(this).remove();
             });
-            //var id = 'infoblock_artist' + util.random.randint(0, 100500);
-            //elem.find('.infoblock__comments').attr('id', id + '__comments');
-            //network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, util.string.md5('artist ' + data.artist.name));
+            var id = 'infoblock_artist' + util.random.randint(0, 100500);
+            elem.find('.infoblock__comments').attr('id', id + '__comments');
+            network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, util.string.md5('artist ' + data.artist.name));
         }
     );
 };
@@ -60,6 +60,5 @@ $('.nav-infoblock').live('click', function(e) {
     e.preventDefault();
     ui.infoblock.show_popup($(this).data('type'), (($(this).data('name'))||$(this).text()));
 });
-
 
 

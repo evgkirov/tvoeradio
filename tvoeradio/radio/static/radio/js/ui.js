@@ -50,12 +50,12 @@ ui.fit = function() {
 
 
 ui.show_loader_fullscreen = function() {
-    $('#loader_fullscreen').fadeIn();
+    $('#loader_fullscreen').show();
 };
 
 
 ui.hide_loader_fullscreen = function() {
-    $('#loader_fullscreen').fadeOut();
+    $('#loader_fullscreen').hide();
 };
 
 
