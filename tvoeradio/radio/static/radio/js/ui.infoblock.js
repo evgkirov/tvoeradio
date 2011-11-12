@@ -71,7 +71,14 @@ ui.infoblock.show_tag = function(elem, name) {
                 'name': data.tag.name,
                 'wiki_summary': data.tag.wiki.summary,
                 'wiki': data.tag.wiki.content,
-                'lastfm_url': data.tag.url
+                'lastfm_url': data.tag.url,
+                'stations': [
+                    {
+                        'type': 'tag',
+                        'name': data.tag.name,
+                        'html': player.station.tag.get_html(data.tag.name)
+                    }
+                ]
             };
             elem.html(ich.tpl_infoblock_tag(context));
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
