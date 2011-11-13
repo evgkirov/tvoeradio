@@ -276,7 +276,6 @@ a:hover, .pseudolink:hover {
 
 #topnav {
     background: white url(../img/topnav.png) repeat-x;
-    border-bottom: 1px solid #DAE2E8;
     padding: 10px 10px 5px 10px;
 }
 
@@ -636,6 +635,10 @@ h2 {
 
 .infoblock__line_stationlist td.infoblock__line__content {
     padding: 12px 4px 12px 0;
+}
+
+.infoblock__line_itisyou td.infoblock__line__header {
+    vertical-align: middle;
 }
 
 .infoblock-loader {

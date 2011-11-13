@@ -206,7 +206,7 @@ ui.update_topnav = function() {
 
 ui.show_popup_lastfm = function() {
     if (network.lastfm.authorized) {
-        ui.popup.show('Last.fm', ich.tpl_popup__lastfm());
+        ui.infoblock.show_popup('user', network.lastfm.user);
     } else {
         ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1());
     }

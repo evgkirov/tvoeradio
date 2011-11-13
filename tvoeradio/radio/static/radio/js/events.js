@@ -31,10 +31,6 @@ $(document).ready(function(){
         ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1);
     });
 
-    $('#topnav__lastfm').live('click', function() {
-        ui.popup.show('Last.fm', ich.tpl_popup__lastfm);
-    });
-
     $('#popup_lastfm__auth1 button').live('click', function() {
         var open_link = window.open('','_blank');
         network.lastfm.api('auth.getToken', {}, function(data){
@@ -56,10 +52,10 @@ $(document).ready(function(){
         });
     });
 
-    $('#popup_lastfm__authed button').live('click', function() {
+    $('.infoblock_user button').live('click', function() {
         network.lastfm.logout();
         ui.update_topnav();
-        ui.show_popup_lastfm();
+        ui.popup.hide();
     });
 
     $('#dashboard__cell_stations_favorited .dashboard__cell__title .pseudolink').click(function(){

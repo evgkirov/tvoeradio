@@ -5,6 +5,15 @@
         <td class="infoblock__line__content infoblock__wiki">{{{wiki_summary}}}</td>
     </tr>
 
+    {{#it_is_you}}
+    <tr class="infoblock__line infoblock__line_itisyou">
+        <td class="infoblock__line__header">это вы</td>
+        <td class="infoblock__line__content">
+            <div class="button_blue"><button>Выйти</button></div>
+        </td>
+    </tr>
+    {{/it_is_you}}
+
     <tr class="infoblock__line infoblock__line_stationlist">
         <td class="infoblock__line__header">слушать:</td>
         <td class="infoblock__line__content">{{>tpl_partial_stationslist}}</td>

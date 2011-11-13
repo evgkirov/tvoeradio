@@ -98,6 +98,7 @@ ui.infoblock.show_user = function(elem, name) {
                 'name': data.user.name,
                 'image': network.lastfm.select_image(data.user.image, 'large'),
                 'lastfm_url': data.user.url,
+                'it_is_you': (data.user.name == network.lastfm.user),
                 'stations': [
                     {
                         'type': 'library',
