@@ -607,7 +607,7 @@ h2 {
 }
 
 .infoblock td.infoblock__photo img {
-    max-width: 100%;
+    max-width: 102px;
 }
 
 .infoblock__similar span:after,
