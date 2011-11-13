@@ -4,21 +4,30 @@ register_namespace('ui.search');
 ui.search.timeout = null;
 
 
-ui.search.load_suggest = function(txt) {
-    network.lastfm.api('artist.search', { 'artist': txt, 'limit': 5 }, function(data) {
+ui.search.load_suggest_for = function(type, txt) {
+    var params = {};
+    params['limit'] = 5;
+    params[type] = txt;
+    network.lastfm.api(type + '.search', params, function(data) {
         if (data.results['@attr']['for'] != $('#search-widget__text').val()) {
             return;
         }
-        var artists = network.lastfm.arrayize(data.results.artistmatches.artist);
+        var items = network.lastfm.arrayize(data.results[type + 'matches'][type]);
         var html = '';
-        for (var i in artists) {
-            html += '<li rel="artist">'+artists[i].name+'</li>';
+        for (var i in items) {
+            html += '<li rel="' + type + '">'+items[i].name+'</li>';
         }
         if (html != '') {
-            $('#search-suggest__artists ul').html(html);
+            $('#search-suggest__' + type + ' ul').html(html);
             $('#search-suggest').show();
         }
     });
+};
+
+
+ui.search.load_suggest = function(txt) {
+    ui.search.load_suggest_for('artist', txt);
+    ui.search.load_suggest_for('tag', txt);
 };
 
 
