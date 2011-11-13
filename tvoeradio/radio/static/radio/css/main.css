@@ -319,9 +319,9 @@ a:hover, .pseudolink:hover {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
     display: none;
     left: 50%;
-    margin-left: -260px;
+    margin-left: -210px;
     position: absolute;
-    width: 500px;
+    width: 518px;
     top: 40px;
     z-index: 100;
 }
@@ -458,16 +458,18 @@ a:hover, .pseudolink:hover {
     margin: 0 2px;
 }
 
-#dashboard .nav-infoblock {
+#dashboard .nav-infoblock,
+.infoblock__photos .nav-infoblock {
     background: none;
     display: inline-block;
-    opacity: 0.5;
+    opacity: 0.6;
     padding: 0;
     vertical-align: middle;
     white-space: nowrap;
 }
 
-#dashboard .nav-infoblock:hover {
+#dashboard .nav-infoblock:hover,
+.infoblock__photos .nav-infoblock:hover {
     opacity: 1;
 }
 
@@ -602,20 +604,31 @@ h2 {
     width: 94px;
 }
 
-.infoblock td.infoblock__photo {
+.infoblock td.infoblock__photo,
+.infoblock td.infoblock__photos.infoblock__line__header {
     padding-left: 0;
+}
+
+.infoblock td.infoblock__photos.infoblock__line__content {
+    padding-right: 0;
 }
 
 .infoblock td.infoblock__photo img {
     max-width: 102px;
 }
 
-.infoblock__similar span:after,
+.infoblock td.infoblock__photos .nav-infoblock,
+.infoblock td.infoblock__photos img {
+    height: 47px;
+    width: 47px;
+}
+
+.infoblock__artists span:after,
 .infoblock__tags span:after {
     content: ',';
 }
 
-.infoblock__similar span:last-child:after,
+.infoblock__artists span:last-child:after,
 .infoblock__tags span:last-child:after {
     content: '';
 }

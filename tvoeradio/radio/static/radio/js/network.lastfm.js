@@ -105,12 +105,16 @@ network.lastfm.arrayize = function(o) {
 };
 
 
-network.lastfm.select_image = function(list, size) {
+network.lastfm.select_image = function(list, size, square) {
     list = network.lastfm.arrayize(list);
+    var image = list[list.length-1]["#text"];
     for (var i = 0; i < list.length; i++) {
         if (list[i].size == size) {
-            return list[i]['#text'];
+            image = list[i]['#text'];
         }
     }
-    return list[list.length-1]["#text"];
+    if (square) {
+        image = image.replace().replace('/64/', '/64s/');
+    }
+    return image;
 };

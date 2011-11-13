@@ -22,6 +22,14 @@ ui.infoblock.convert_wiki = function (elem) {
 };
 
 
+ui.infoblock.add_comments = function(elem, type, name) {
+    var hash = util.string.md5(type + ' ' + name)
+    var id = 'infoblock_artist' + util.random.randint(0, 100500);
+    elem.find('.infoblock__comments').attr('id', id + '__comments');
+    network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5});
+}
+
+
 ui.infoblock.show_artist = function(elem, name) {
     network.lastfm.api(
         'artist.getInfo',
@@ -53,9 +61,7 @@ ui.infoblock.show_artist = function(elem, name) {
             };
             elem.html(ich.tpl_infoblock_artist(context));
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
-            var id = 'infoblock_artist' + util.random.randint(0, 100500);
-            elem.find('.infoblock__comments').attr('id', id + '__comments');
-            network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, util.string.md5('artist ' + data.artist.name));
+            ui.infoblock.add_comments(elem);
         }
     );
 };
@@ -84,6 +90,42 @@ ui.infoblock.show_tag = function(elem, name) {
             };
             elem.html(ich.tpl_infoblock_tag(context));
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
+            ui.infoblock.add_comments(elem);
+
+            network.lastfm.api(
+                'tag.getTopArtists',
+                {
+                    'tag': name,
+                    'limit': 25
+                },
+                function(data) {
+                    context['top_artists'] = [];
+                    var artists = context['artists'] = network.lastfm.arrayize(data.topartists.artist);
+                    for (var i = 0; i < 4; i++) {
+                        context['top_artists'].push({
+                            'name': artists[i].name,
+                            'image': network.lastfm.select_image(artists[i].image, 'medium', true)
+                        });
+                    }
+                    var html = ich.tpl_infoblock_tag(context).find('.infoblock__artists').html();
+                    elem.find('.infoblock__artists').html(html);
+                    var html = ich.tpl_infoblock_tag(context).find('.infoblock__photos').html();
+                    elem.find('.infoblock__photos').html(html);
+                }
+            );
+
+            network.lastfm.api(
+                'tag.getSimilar',
+                {
+                    'tag': name
+                },
+                function(data) {
+                    context['tags'] = network.lastfm.arrayize(data.similartags.tag).splice(0, 10);
+                    var html = ich.tpl_infoblock_tag(context).find('.infoblock__tags').html();
+                    elem.find('.infoblock__tags').html(html);
+                }
+            );
+
         }
     );
 };
@@ -115,6 +157,26 @@ ui.infoblock.show_user = function(elem, name) {
                 ]
             };
             elem.html(ich.tpl_infoblock_user(context));
+
+            network.lastfm.api(
+                'user.getTopArtists',
+                {
+                    'user': name,
+                    'period': 'overall',
+                    'limit': 16
+                },
+                function(data) {
+                    var artists = network.lastfm.arrayize(data.topartists.artist);
+                    context['artists'] = [];
+                    for (var i = 0; i < artists.length; i++) {
+                        context['artists'].push({
+                            'name': artists[i].name,
+                            'image': network.lastfm.select_image(artists[i].image, 'medium', true)
+                        });
+                    }
+                    elem.html(ich.tpl_infoblock_user(context));
+                }
+            );
         }
     );
 };

@@ -12,7 +12,7 @@
 
     <tr class="infoblock__line">
         <td class="infoblock__line__header">похожие:</td>
-        <td class="infoblock__line__content infoblock__similar">
+        <td class="infoblock__line__content infoblock__artists">
             {{#similar}}
                 <span class="pseudolink nav-infoblock" data-type="artist" data-name="{{name}}">{{name}}</span>
             {{/similar}}
@@ -25,6 +25,13 @@
             {{#tags}}
                 <span class="pseudolink nav-infoblock" data-type="tag" data-name="{{name}}">{{name}}</span>
             {{/tags}}
+        </td>
+    </tr>
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">подробнее:</td>
+        <td class="infoblock__line__content">
+            <a href="{{lastfm_url}}" target="_blank">{{{lastfm_url}}}</a>
         </td>
     </tr>
 

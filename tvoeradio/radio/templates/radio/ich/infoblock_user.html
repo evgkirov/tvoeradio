@@ -2,7 +2,9 @@
 
     <tr class="infoblock__line">
         <td class="infoblock__line__header infoblock__photo">{{#image}}<img src="{{image}}" alt="" />{{/image}}</td>
-        <td class="infoblock__line__content infoblock__wiki">{{{wiki_summary}}}</td>
+        <td class="infoblock__line__content infoblock__photos">
+            {{#artists}}<span class="pseudolink nav-infoblock" data-type="artist" data-name="{{name}}" title="{{name}}"><img src="{{image}}" alt="{{ name }}" /></span>{{/artists}}
+        </td>
     </tr>
 
     {{#it_is_you}}
@@ -17,6 +19,13 @@
     <tr class="infoblock__line infoblock__line_stationlist">
         <td class="infoblock__line__header">слушать:</td>
         <td class="infoblock__line__content">{{>tpl_partial_stationslist}}</td>
+    </tr>
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">подробнее:</td>
+        <td class="infoblock__line__content">
+            <a href="{{lastfm_url}}" target="_blank">{{{lastfm_url}}}</a>
+        </td>
     </tr>
 
 </table>
