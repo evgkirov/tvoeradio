@@ -14,6 +14,14 @@ network.lastfm.write_methods = ['track.updateNowPlaying', 'track.scrobble', 'tra
 
 
 network.lastfm.api = function(method, params, callback) {
+
+    var api_key = '';
+    var api_secret = '';
+    for (var i = 0; i < network.lastfm.api_key.length; i += 2) {
+        api_key += network.lastfm.api_key[i+1] + network.lastfm.api_key[i];
+        api_secret += network.lastfm.api_secret[i+1] + network.lastfm.api_secret[i];
+    }
+
     var _this = this;
     var callback = callback || $.noop;
 
@@ -23,7 +31,7 @@ network.lastfm.api = function(method, params, callback) {
     }
 
     params.method = method;
-    params.api_key = this.api_key;
+    params.api_key = api_key;
     if (this.session_key) {
         params['sk'] = this.session_key;
     }
@@ -33,7 +41,7 @@ network.lastfm.api = function(method, params, callback) {
         api_sig += i + params[i];
     }
 
-    params.api_sig = util.string.md5(api_sig + this.api_secret);
+    params.api_sig = util.string.md5(api_sig + api_secret);
     params.format = 'json';
 
     if (this.write_methods.indexOf(method)==-1) {

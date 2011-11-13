@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 {% load media %} {# external libs #}
-{% load jsonize include_ich %} {# common app #}
+{% load jsonize include_ich radio %} {# common app #}
 
 {% spaceless %}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
@@ -17,8 +17,8 @@
             'app_version': '{{ tvoeradio_version }}',
             'mode': '{{ mode }}',
             'lastfm_api_url': '{{ settings.LASTFM_API_URL }}',
-            'lastfm_api_key': '{{ settings.LASTFM_API_KEY }}',
-            'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET }}',
+            'lastfm_api_key': '{{ settings.LASTFM_API_KEY|reorder_letters }}',
+            'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET|reorder_letters }}',
             'vk_api_id': '{{ settings.VK_APP_ID }}',
             'jplayer_swfpath': '{% media_url 'js/3rdparty/jplayer/Jplayer.swf' %}'
         }
