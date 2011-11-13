@@ -26,7 +26,8 @@ ui.infoblock.show_artist = function(elem, name) {
     network.lastfm.api(
         'artist.getInfo',
         {
-            'artist': name
+            'artist': name,
+            'lang': 'ru'
         },
         function(data) {
             var context = {
@@ -64,7 +65,8 @@ ui.infoblock.show_tag = function(elem, name) {
     network.lastfm.api(
         'tag.getInfo',
         {
-            'tag': name
+            'tag': name,
+            'lang': 'ru'
         },
         function(data) {
             var context = {
