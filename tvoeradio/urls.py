@@ -9,7 +9,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     # Example:
     (r'^app/', include('radio.urls')),
-    #(r'^', include('website.urls')),
+    (r'^', include('website.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

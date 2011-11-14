@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load media %}
+
+{% block css %}
+    <link href='http://fonts.googleapis.com/css?family=Lobster&amp;subset=cyrillic' rel='stylesheet' type='text/css'>
+    {% include_media 'website.css' %}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?42"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="header">
+        <h1><a href="{% url index %}">Твоёрадио</a></h1>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="sidebar">
+            <div id="vk_groups"></div>
+            <br/>
+            <div class="fright"><div class="g-plusone" data-size="medium" data-href="http://tvoeradio.org/"></div></div>
+            <div class="fleft"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tvoeradio.org/" data-text="Твоёрадио — ололо ололо" data-count="horizontal" data-via="tvoeradio" data-lang="ru">Твитнуть</a></div>
+            <div class="clear"></div>
+            <div id="vk_like"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}
+

@@ -1,19 +1,73 @@
-html, body {
-    background: #ffffff;
-    color: #000000;
+html, body, h1, h2, h3, h4, h5, h6, p {
     margin: 0px;
     padding: 0px;
 }
+
+html, body {
+    background: #ffffff url(../img/body.png);
+    color: #000000;
+    font-family: tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+}
+
+p {
+    padding-bottom: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    padding-bottom: 15px;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 13px;
+}
+
 
 .clear {
     clear: both;
 }
 
-#wrapper {
-    margin: 0 auto;
-    width: 600px;
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
 }
 
 #header {
+    background: #2B587A; /* #f60 url(../img/header.png) bottom;*/
+    margin-bottom: 20px;
+}
 
+#header h1 {
+    font-family: Lobster, cursive;
+    font-size: 44px;
+    padding: 20px 0;
+}
+
+#header h1 a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#header h1,
+#wrapper {
+    margin: 0 auto;
+    width: 870px;
+}
+
+#content {
+    float: left;
+    width: 600px;
+}
+
+#sidebar {
+    float: right;
+    width: 220px;
 }
