@@ -328,18 +328,12 @@ a:hover, .pseudolink:hover {
     float: right;
     height: 17px;
     margin: 8px 8px 0px 0px;
-    filter: alpha(opacity=50);
-    -moz-opacity: 0.5;
-    -khtml-opacity: 0.5;
     opacity: 0.5;
     padding: 0;
     width: 17px;
 }
 
 .popup__close:hover {
-    filter: alpha(opacity=100);
-    -moz-opacity: 1;
-    -khtml-opacity: 1;
     opacity: 1;
 }
 
@@ -479,10 +473,6 @@ a:hover, .pseudolink:hover {
 #dashboard .nav-infoblock:hover,
 .infoblock__photos .nav-infoblock:hover {
     opacity: 1;
-}
-
-#dashboard .nav-infoblock img {
-    opacity: 0;
 }
 
 .dashboard__artists {

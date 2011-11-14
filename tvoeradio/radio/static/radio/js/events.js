@@ -68,14 +68,8 @@ $(document).ready(function(){
         ui.popup.show('Избранное', ui.get_stations_list_html(userdata.favorited_stations.list));
     });
 
-
-    $('#dashboard .nav-infoblock img').load(function(){
-        $(this).fadeTo('slow', 1);
-    });
-
     $('#app-preloader').hide();
     $('#app-content').fadeIn();
-
 
 });
 
