@@ -46,6 +46,7 @@ ui.infoblock.show_artist = function(elem, name) {
                 'tags': network.lastfm.arrayize(data.artist.tags.tag),
                 'image': network.lastfm.select_image(data.artist.image, 'large'),
                 'lastfm_url': data.artist.url,
+                'lastfm_url_text': util.string.urldecode(data.artist.url),
                 'stations': [
                     {
                         'type': 'similar',
@@ -80,6 +81,7 @@ ui.infoblock.show_tag = function(elem, name) {
                 'wiki_summary': data.tag.wiki.summary,
                 'wiki': data.tag.wiki.content,
                 'lastfm_url': data.tag.url,
+                'lastfm_url_text': util.string.urldecode(data.tag.url),
                 'stations': [
                     {
                         'type': 'tag',
@@ -142,6 +144,7 @@ ui.infoblock.show_user = function(elem, name) {
                 'name': data.user.name,
                 'image': network.lastfm.select_image(data.user.image, 'large'),
                 'lastfm_url': data.user.url,
+                'lastfm_url_text': util.string.urldecode(data.user.url),
                 'it_is_you': (data.user.name == network.lastfm.user),
                 'stations': [
                     {
@@ -156,7 +159,7 @@ ui.infoblock.show_user = function(elem, name) {
                     }
                 ]
             };
-            if (network.lastfm.authorized) {
+            if (data.user.name == network.lastfm.user) {
                 context['stations'].push({
                     'type': 'recommendations',
                     'name': data.user.name,
