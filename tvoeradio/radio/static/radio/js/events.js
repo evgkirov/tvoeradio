@@ -34,7 +34,13 @@ $(document).ready(function(){
     $('#popup_lastfm__auth1 button').live('click', function() {
         var open_link = window.open('','_blank');
         network.lastfm.api('auth.getToken', {}, function(data){
-            open_link.location='http://www.last.fm/api/auth/?api_key='+network.lastfm.api_key+'&token='+data.token;
+            var api_key = '';
+            var api_secret = '';
+            for (var i = 0; i < network.lastfm.api_key.length; i += 2) {
+                api_key += network.lastfm.api_key[i+1] + network.lastfm.api_key[i];
+                api_secret += network.lastfm.api_secret[i+1] + network.lastfm.api_secret[i];
+            }
+            open_link.location='http://www.last.fm/api/auth/?api_key='+api_key+'&token='+data.token;
             network.lastfm.auth_token = data.token;
             ui.popup.set_content(ich.tpl_popup__lastfm_auth2());
         });
