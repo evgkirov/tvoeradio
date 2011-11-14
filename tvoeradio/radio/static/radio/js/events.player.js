@@ -175,7 +175,7 @@ $(document).ready(function() {
             'wall.post',
             {
                 'message': 'Советую послушать:',
-                'attachment': 'http://vkontakte.ru/app'+config.vk_api_id+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
+                'attachment': config.vk_api_url+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
             },
             function(data) {}
         );

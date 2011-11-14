@@ -57,12 +57,14 @@ MEDIA_URL = '/static/uploads/'
 DEV_MEDIA_URL = '/develstatic/'
 
 MEDIA_BUNDLES = (
+    ('website.css',
+        'css/main.css',
+    ),
     ('radio.css',
         'radio/css/main.css',
         'radio/css/skin.css',
     ),
     ('radio.js',
-        'js/3rdparty/jquery.js',
         'js/3rdparty/lscache.js',
         'js/3rdparty/ICanHaz.js',
         'js/3rdparty/jplayer/jquery.jplayer.js',
@@ -163,6 +165,7 @@ AUTHENTICATION_BACKENDS = (
 
 
 ROOT_URLCONF = 'urls'
+LOGIN_URL = '/app/login/'
 
 TEMPLATE_DIRS = (
     here('templates'),
@@ -195,6 +198,7 @@ LASTFM_API_SECRET = '212627ff4f288e140a8b3734a40d2be2'
 VK_APP_ID = '1840144'
 VK_APP_KEY = 'rlh7nKUmRE'
 VK_APP_SECRET = '30mfDL0PaxY5b3VQGA2T'
+VK_APP_URL = 'http://vkontakte.ru/app1840144'
 
 
 # A sample logging configuration. The only tangible logging

@@ -3,9 +3,11 @@ html, body {
     color: #000000;
     font-family: tahoma, verdana, arial, sans-serif;
     font-size: 11px;
+    height: 100%;
     margin: 0px;
     padding: 0px;
     text-align: left;
+    width: 100%;
 }
 
 ul, ol, li, table, tbody, tr, td {
@@ -44,23 +46,6 @@ a:hover, .pseudolink:hover {
 .input_text_wide {
     display: block;
     width: 97%;
-}
-
-.greenbutton {
-    background: #69A74E;
-    border: 1px solid #99b38c;
-    outline: 1px solid #3B6E22;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 5px 20px;
-    margin-top: 10px;
-    font-size: 13px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.greenbutton:hover {
-    background: #75ba57;
 }
 
 .menu_button {
@@ -106,6 +91,14 @@ a:hover, .pseudolink:hover {
 
 .menu li:hover {
     background-color: #DAE2E8;
+}
+
+#app-preloader {
+    color: #ccc;
+    position: absolute;
+    text-align: center;
+    top: 49%;
+    width: 100%;
 }
 
 #loader_fullscreen {

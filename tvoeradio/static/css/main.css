@@ -1,0 +1,11 @@
+html, body {
+    background: #ffffff;
+    color: #000000;
+    font-family: tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    width: 100%;
+}

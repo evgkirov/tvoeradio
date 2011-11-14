@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% load media %} {# external libs #}
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{% block title %}{% endblock %} - Твоёрадио</title>
+    <link rel="icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% media_url 'img/apple-touch-icon.png' %}" />
+    {% include_media 'website.css' %}
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

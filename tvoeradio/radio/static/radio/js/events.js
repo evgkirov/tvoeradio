@@ -73,6 +73,10 @@ $(document).ready(function(){
         $(this).fadeTo('slow', 1);
     });
 
+    $('#app-preloader').hide();
+    $('#app-content').fadeIn();
+
+
 });
 
 if (config.mode == 'vk') {
