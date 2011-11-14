@@ -156,6 +156,13 @@ ui.infoblock.show_user = function(elem, name) {
                     }
                 ]
             };
+            if (network.lastfm.authorized) {
+                context['stations'].push({
+                    'type': 'recommendations',
+                    'name': data.user.name,
+                    'html': player.station.recommendations.get_html(data.user.name)
+                });
+            }
             elem.html(ich.tpl_infoblock_user(context));
 
             network.lastfm.api(

@@ -55,7 +55,7 @@ network.lastfm.api = function(method, params, callback) {
             callback.cache_key = cache_key;
             $.getJSON(this.api_url+'?callback=?', params, function(data) {
                 if (!is_write_method) {
-                    var minutes = 60*24*30*2;  // 2 months
+                    var minutes = 60*24*7;  // a week
                     if (network.lastfm.shortcache_methods.indexOf(method)!=-1) {
                         minutes = 10;
                     }

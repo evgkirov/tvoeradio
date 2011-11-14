@@ -177,6 +177,11 @@ ui.update_track_controls = function() {
 
 ui.update_station_info = function() {
     $('#station_name').html(player.station.get_current_html());
+    if (player.station.current.noshare) {
+        $('#menu_station__poststatus').hide();
+    } else {
+        $('#menu_station__poststatus').show();
+    }
     ui.update_station_controls();
 };
 
