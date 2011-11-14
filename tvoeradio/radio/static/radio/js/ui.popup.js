@@ -1,7 +1,8 @@
 register_namespace('ui.popup');
 
 
-ui.popup.show = function(title, content) {
+ui.popup.show = function(title, content, width) {
+    $('.popup').width(width || 518).css('margin-left', -Math.ceil((width || 518)/2));
     ui.popup.set_title(title);
     ui.popup.set_content(content)
     $('.popup, #popup-overlay').show();
@@ -23,7 +24,7 @@ ui.popup.hide = function() {
 
 
 $(document).ready(function(){
-    $('#popup-overlay, .popup__close, .popup__actions__close').live('click', function(){
+    $('#popup-overlay, .popup__close, .form__cancel').live('click', function(){
         ui.popup.hide();
     });
 

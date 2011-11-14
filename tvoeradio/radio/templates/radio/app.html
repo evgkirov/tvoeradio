@@ -47,6 +47,7 @@
     {% include_ich 'radio/ich/popup__lastfm_auth1.html' %}
     {% include_ich 'radio/ich/popup__lastfm_auth2.html' %}
     {% include_ich 'radio/ich/popup__ban_add.html' %}
+    {% include_ich 'radio/ich/popup__tag_add.html' %}
     {% include_ich 'radio/ich/stationslist.html' partial %}
     {% include_ich 'radio/ich/tabcontent_tabs_player__buy.html' %}
 
@@ -139,7 +140,9 @@
                 <div id="album_name"><span id="album_artist"></span></div>
                 <span id="menu_track_button" class="menu_button"><span>Песня</span> &#9660;</span>
                 <ul id="menu_track" class="menu">
-                    <li id="menu_track__love" style="background-image:url({% media_url 'img/icons/heart.png' %})">Last.fm: Нравится</li>
+                    <li id="menu_track__love" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/heart.png' %})">Last.fm: Нравится</li>
+                    <li id="menu_track__tag" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/tag-label-gray.png' %})">Last.fm: Добавить теги</li>
+                    <!--<li id="menu_track__toplaylist" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/document-music-playlist.png' %})">Last.fm: Добавить в плейлист</li>-->
                     <li id="menu_track__addaudio" style="background-image:url({% media_url 'img/icons/music--plus.png' %})">В «Мои аудиозаписи»</li>
                     <li id="menu_track__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">В статус</li>
                     <li id="menu_track__ban" style="background-image:url({% media_url 'img/icons/prohibition.png' %})">Забанить</li>

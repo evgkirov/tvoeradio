@@ -23,11 +23,11 @@ userdata.audio.add = function(artist, title, vk_aid, vk_oid) {
 
 
 userdata.audio.is_added = function(artist, title) {
-	for (var i in this.list) {
-		if ((artist == this.list[i].artist) && (title == this.list[i].title)) {
-			return true;
-		}
-	}
-	return false;
+    for (var i in this.list) {
+        if ((artist == this.list[i].artist) && (title == this.list[i].title)) {
+            return true;
+        }
+    }
+    return false;
 };
 

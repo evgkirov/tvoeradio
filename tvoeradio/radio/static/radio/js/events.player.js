@@ -118,6 +118,24 @@ $(document).ready(function() {
         );
     });
 
+    $('#menu_track__tag').click(function(){
+        var current_track = player.playlist.get_current_track();
+        ui.popup.show('Добавить теги', ich.tpl_popup__tag_add(current_track), 300);
+    });
+
+    $('#form_tag_add .form__submit').live('click', function(){
+        var form = $(this).parents('.form');
+        var what = form.find('select').val();
+        var params = {
+            'artist': form.data('artist'),
+            'title': form.data('title'),
+            'album': form.data('album'),
+            'tags': form.find('input').val()
+        };
+        ui.popup.hide();
+        network.lastfm.api(what + '.addTags', params, function(data) {});
+    });
+
     $('#menu_track__poststatus').click(function(){
         var current_track = player.playlist.get_current_track();
         network.vkontakte.api(
@@ -139,13 +157,13 @@ $(document).ready(function() {
         ui.popup.show('Забанить', ich.tpl_popup__ban_add(current_track));
     });
 
-    $('#popup__actions__ban_track').live('click', function() {
-        userdata.bans.add($(this).parent().data('artist'), $(this).parent().data('title'), false);
+    $('#form_ban_add__ban_track').live('click', function() {
+        userdata.bans.add($(this).parents('.form').data('artist'), $(this).parents('.form').data('title'), false);
         ui.popup.hide();
     });
 
-    $('#popup__actions__ban_artist').live('click', function() {
-        userdata.bans.add($(this).parent().data('artist'), $(this).parent().data('title'), true);
+    $('#form_ban_add__ban_artist').live('click', function() {
+        userdata.bans.add($(this).parents('.form').data('artist'), $(this).parents('.form').data('title'), true);
         ui.popup.hide();
     });
 

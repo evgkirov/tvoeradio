@@ -41,6 +41,11 @@ a:hover, .pseudolink:hover {
     width: 200px;
 }
 
+.input_text_wide {
+    display: block;
+    width: 97%;
+}
+
 .greenbutton {
     background: #69A74E;
     border: 1px solid #99b38c;
@@ -319,9 +324,7 @@ a:hover, .pseudolink:hover {
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
     display: none;
     left: 50%;
-    margin-left: -260px;
     position: absolute;
-    width: 518px;
     top: 40px;
     z-index: 100;
 }
@@ -373,18 +376,30 @@ a:hover, .pseudolink:hover {
     padding: 10px;
 }
 
-.popup__actions .button_blue {
-    margin: 10px 0;
-}
-
-.popup__actions .button_gray {
-    float: right;
-    margin: 10px 0 0 0;
-}
-
 #popup_lastfm__auth1, #popup_lastfm__auth2 {
     padding: 30px;
     text-align: center;
+}
+
+.popup__buttons {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.popup__buttons div {
+    margin-left: 10px;
+}
+
+.form__line {
+    margin-bottom: 10px;
+}
+
+.form__line label {
+    display: block;
+}
+
+.form__input {
+    border: 1px solid #666;
 }
 
 #search-suggest {
