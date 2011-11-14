@@ -1,26 +1,44 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
 {% load media %} {# external libs #}
 {% load jsonize include_ich radio %} {# common app #}
 
-{% spaceless %}
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Твоёрадио {{ tvoeradio_version }}</title>
-    <link rel="icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{% media_url 'img/apple-touch-icon.png' %}" />
-    {% include_media 'radio.css' %}
-    {# scripts are in the bottom #}
-</head>
-<body class="mode-{{ mode }}">
+{% block title %}{% endblock %}
+{% block css %}{% include_media 'radio.css' %}{% endblock %}
 
+{% block js %}
+    <script type="text/javascript">
+        var config = {
+            'app_version': '{{ tvoeradio_version }}',
+            'mode': '{{ mode }}',
+            'lastfm_api_url': '{{ settings.LASTFM_API_URL }}',
+            'lastfm_api_key': '{{ settings.LASTFM_API_KEY|reorder_letters }}',
+            'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET|reorder_letters }}',
+            'vk_api_id': '{{ settings.VK_APP_ID }}',
+            'vk_api_url': '{{ settings.VK_APP_URL }}',
+            'jplayer_swfpath': '{% media_url 'js/3rdparty/jplayer/Jplayer.swf' %}'
+        }
+    </script>
+    {% if mode == 'vk' %}
+        <script src="http://vkontakte.ru/js/api/xd_connection.js?2" type="text/javascript"></script>
+    {% else %}
+        <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
+    {% endif %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js" type="text/javascript"></script>
+    {% include_media 'radio.js' %}
+    <script type="text/javascript">
+        userdata.bans.list = {{ bans|jsonize }};
+        userdata.favorited_stations.list = {{ favorited_stations|jsonize }};
+        userdata.recent_stations.list = {{ recent_stations|jsonize }};
+    </script>
+{% endblock %}
+
+{% block body %}
     <div id="app-preloader">
         Загрузка…
     </div>
 
-    <div style="display:none" id="app-content">
+    <div  class="mode-{{ mode }}" style="display:none" id="app-content">
 
         {% csrf_token %}
 
@@ -167,31 +185,7 @@
 
     </div><!--app-content-->
 
-    <script type="text/javascript">
-        var config = {
-            'app_version': '{{ tvoeradio_version }}',
-            'mode': '{{ mode }}',
-            'lastfm_api_url': '{{ settings.LASTFM_API_URL }}',
-            'lastfm_api_key': '{{ settings.LASTFM_API_KEY|reorder_letters }}',
-            'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET|reorder_letters }}',
-            'vk_api_id': '{{ settings.VK_APP_ID }}',
-            'vk_api_url': '{{ settings.VK_APP_URL }}',
-            'jplayer_swfpath': '{% media_url 'js/3rdparty/jplayer/Jplayer.swf' %}'
-        }
-    </script>
-    {% if mode == 'vk' %}
-        <script src="http://vkontakte.ru/js/api/xd_connection.js?2" type="text/javascript"></script>
-    {% else %}
-        <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
-    {% endif %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js" type="text/javascript"></script>
-    {% include_media 'radio.js' %}
-    <script type="text/javascript">
-        userdata.bans.list = {{ bans|jsonize }};
-        userdata.favorited_stations.list = {{ favorited_stations|jsonize }};
-        userdata.recent_stations.list = {{ recent_stations|jsonize }};
-    </script>
+{% endblock %}
 
 </body>
 </html>
-{% endspaceless %}
