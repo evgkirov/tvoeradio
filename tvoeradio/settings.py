@@ -155,6 +155,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #"django.core.context_processors.static",
     #"django.contrib.messages.context_processors.messages",
     "common.context_processors.settings",
+    "common.context_processors.user_platform",
     "common.context_processors.version",
 )
 

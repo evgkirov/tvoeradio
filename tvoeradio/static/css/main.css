@@ -1,4 +1,4 @@
-html, body, h1, h2, h3, h4, h5, h6, p {
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol {
     margin: 0px;
     padding: 0px;
 }
@@ -10,8 +10,13 @@ html, body {
     font-size: 11px;
 }
 
-p {
+p, ul, ol {
+    line-height: 130%;
     padding-bottom: 15px;
+}
+
+ul, ol {
+    margin-left: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,6 +32,14 @@ h3 {
     font-size: 13px;
 }
 
+a {
+    color: #2B587A;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
 
 .clear {
     clear: both;
@@ -41,11 +54,12 @@ h3 {
 }
 
 #header {
-    background: #2B587A; /* #f60 url(../img/header.png) bottom;*/
+    background: #2B587A;
     margin-bottom: 20px;
 }
 
 #header h1 {
+    color: #ffffff;
     font-family: Lobster, cursive;
     font-size: 44px;
     padding: 20px 0;
