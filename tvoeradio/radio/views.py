@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 from annoying.decorators import render_to, ajax_request
 from django.conf import settings
+from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
+from django.shortcuts import redirect
 from django.utils.datastructures import MultiValueDictKeyError
+from vk_iframe.forms import VkontakteOpenAPIForm
 import random
+import urllib
 import urllib2
 
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
@@ -40,6 +44,34 @@ def app(request):
         'favorited_stations': get_user_stations_list(FavoritedStation, user),
         'bans': bans,
     }
+
+
+@render_to('radio/login.html')
+def login(request):
+    return {}
+    params = {
+        'client_id': settings.VK_APP_ID,
+        'scope': settings.VK_APP_SETTINGS,
+        'redirect_uri': 'http://%s/app/' % request.META['HTTP_HOST'],
+        'display': 'popup',
+        'response_type': 'code',
+    }
+    url = 'http://api.vkontakte.ru/oauth/authorize?' + urllib.urlencode(params)
+    print url
+    return redirect(url)
+
+
+def login_proceed(request):
+    vk_form = VkontakteOpenAPIForm(request.GET)
+    user = auth.authenticate(vk_form=vk_form)
+    if user:
+        request.user = user
+        auth.login(request, user)
+    else:
+        request.META['VKONTAKTE_LOGIN_ERRORS'] = vk_form.errors
+        raise Http404()
+
+    return redirect(app)
 
 
 @login_required

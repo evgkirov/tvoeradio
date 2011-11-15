@@ -200,6 +200,7 @@ VK_APP_ID = '1840144'
 VK_APP_KEY = 'rlh7nKUmRE'
 VK_APP_SECRET = '30mfDL0PaxY5b3VQGA2T'
 VK_APP_URL = 'http://vkontakte.ru/app1840144'
+VK_APP_SETTINGS = 'audio'
 
 
 # A sample logging configuration. The only tangible logging

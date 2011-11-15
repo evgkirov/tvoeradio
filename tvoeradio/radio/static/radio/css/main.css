@@ -843,7 +843,14 @@ h2 {
     display: block;
 }
 
-
 #tabcontent_tabs_player__playlist .boxed {
     cursor: pointer;
+}
+
+#login {
+    left: 50%;
+    margin-left: -100px;
+    position: absolute;
+    width: 200px;
+    top: 46%;
 }

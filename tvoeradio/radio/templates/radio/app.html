@@ -24,7 +24,6 @@
     {% else %}
         <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
     {% endif %}
-    {{ block.super }} {# google apis #}
     {% include_media 'radio.js' %}
     <script type="text/javascript">
         userdata.bans.list = {{ bans|jsonize }};
