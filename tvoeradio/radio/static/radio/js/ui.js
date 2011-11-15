@@ -24,7 +24,7 @@ ui.resz = function() {
 
 ui.fit = function() {
     if (config.mode == 'vk') {
-        var h = $('body').height();
+        var h = $('#app-content').height();
         if ($('#search-suggest').is(':visible')) {
             var ssh = $('#search-suggest').height() + $('#search-suggest').offset().top + 10;
             if (h < ssh) {
