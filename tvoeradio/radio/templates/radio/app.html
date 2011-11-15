@@ -37,6 +37,10 @@
         Загрузка…
     </div>
 
+    <div id="loader_fullscreen"><div id="loader_fullscreen__i"></div></div>
+    <div id="popup-overlay"></div>
+    <div id="mp3player"></div>
+
     <div  class="mode-{{ mode }}" style="display:none" id="app-content">
 
         {% csrf_token %}
@@ -58,10 +62,6 @@
             <div class="popup__title"><div></div></div>
             <div class="popup__content"></div>
         </div>
-
-        <div id="mp3player"></div>
-        <div id="loader_fullscreen"><div id="loader_fullscreen__i"></div></div>
-        <div id="popup-overlay"></div>
 
         <div id="page_tune" class="page">
 
