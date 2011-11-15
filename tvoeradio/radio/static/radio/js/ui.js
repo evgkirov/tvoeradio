@@ -204,7 +204,7 @@ ui.update_topnav = function() {
     } else {
         links_left.push('<span class="pseudolink" id="topnav__lastfm_auth">Last.fm</span>')
     }
-    links_left.push('<span>'+$('title').html()+'</span>');
+    links_left.push('<span>Твоёрадио '+config.app_version+'</span>');
     $('#topnav').html(links_left.join(' | '));
 };
 
