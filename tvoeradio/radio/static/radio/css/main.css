@@ -485,6 +485,11 @@ a:hover, .pseudolink:hover {
     white-space: nowrap;
 }
 
+.dashboard__artists img {
+    height: 50px;
+    width: 50px;
+}
+
 .dashboard__cell {
     float: left;
     width: 50%;
