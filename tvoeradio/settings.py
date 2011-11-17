@@ -139,12 +139,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'vk_iframe.middleware.IFrameFixMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'vk_iframe.middleware.AuthenticationMiddleware',
-    #'django.middleware.locale.LocaleMiddleware',
-    #'vk_iframe.middleware.LoginRequiredMiddleware',
-
-    #'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
