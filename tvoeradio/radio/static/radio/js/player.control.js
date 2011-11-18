@@ -9,6 +9,7 @@ player.control.start = function(type, name) {
         player.playlist.current_track_num = 0;
         ui.hide_loader_fullscreen();
         ui.go_to_page('player');
+        bridge.started();
         userdata.recent_stations.add(type, name);
         ui.update_track_info();
         ui.update_station_info();
@@ -25,6 +26,7 @@ player.control.start = function(type, name) {
 
 player.control.stop = function() {
     ui.go_to_page('tune');
+    bridge.stopped();
     player.audio.stop();
     if (config.mode == 'vk') {
         network.vkontakte.callMethod('setLocation', '');
