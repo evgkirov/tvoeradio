@@ -10,7 +10,7 @@ player.control.start = function(type, name) {
         ui.hide_loader_fullscreen();
         ui.go_to_page('player');
         $('#search-widget__clear').click();
-        bridge.started();
+        bridge.playing_change(true);
         userdata.recent_stations.add(type, name);
         ui.update_track_info();
         ui.update_station_info();
@@ -27,7 +27,7 @@ player.control.start = function(type, name) {
 
 player.control.stop = function() {
     ui.go_to_page('tune');
-    bridge.stopped();
+    bridge.playing_change(false);
     player.audio.stop();
     if (config.mode == 'vk') {
         network.vkontakte.callMethod('setLocation', '');

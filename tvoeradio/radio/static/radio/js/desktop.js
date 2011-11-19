@@ -7,8 +7,7 @@ if (window['bridge']) {
 } else {
 
     bridge = {
-        started: $.noop,
-        stopped: $.noop,
+        playing_change: $.noop,
         track_change: $.noop
     };
 
