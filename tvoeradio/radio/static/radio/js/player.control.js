@@ -9,6 +9,7 @@ player.control.start = function(type, name) {
         player.playlist.current_track_num = 0;
         ui.hide_loader_fullscreen();
         ui.go_to_page('player');
+        $('#search-widget__clear').click();
         bridge.started();
         userdata.recent_stations.add(type, name);
         ui.update_track_info();
