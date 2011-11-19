@@ -4,6 +4,7 @@
 {% load jsonize include_ich radio %} {# common app #}
 
 {% block title %}{% endblock %}
+{% block body_class %}mode-{{ mode }}{% endblock %}
 {% block css %}{% include_media 'radio.css' %}{% endblock %}
 
 {% block js %}
@@ -41,7 +42,7 @@
     <div id="popup-overlay"></div>
     <div id="mp3player"></div>
 
-    <div  class="mode-{{ mode }}" style="display:none" id="app-content">
+    <div style="display:none" id="app-content">
 
         {% csrf_token %}
 
