@@ -149,7 +149,9 @@ ui.update_track_info = function() {
         }
     );*/
 
-    bridge.track_change(current_track.artist, current_track.title);
+    if (window['bridge']) {
+        bridge.track_change(current_track.artist, current_track.title);
+    }
 
     ui.update_track_controls();
 };

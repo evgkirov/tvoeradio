@@ -10,7 +10,6 @@ player.control.start = function(type, name) {
         ui.hide_loader_fullscreen();
         ui.go_to_page('player');
         $('#search-widget__clear').click();
-        bridge.playing_change(true);
         userdata.recent_stations.add(type, name);
         ui.update_track_info();
         ui.update_station_info();
@@ -21,14 +20,19 @@ player.control.start = function(type, name) {
         if (config.mode == 'vk') {
             network.vkontakte.callMethod('setLocation', type+'/'+util.string.urlencode(name));
         }
+        if (window['bridge']) {
+            bridge.playing_change(true);
+        }
     });
 };
 
 
 player.control.stop = function() {
     ui.go_to_page('tune');
-    bridge.playing_change(false);
     player.audio.stop();
+    if (window['bridge']) {
+        bridge.playing_change(false);
+    }
     if (config.mode == 'vk') {
         network.vkontakte.callMethod('setLocation', '');
     }
