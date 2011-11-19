@@ -29,10 +29,6 @@ $(document).ready(function(){
 
     $('#topnav__lastfm_auth').live('click', function() {
         ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1);
-    });
-
-    $('#popup_lastfm__auth1 button').live('click', function() {
-        var open_link = window.open('','_blank');
         network.lastfm.api('auth.getToken', {}, function(data){
             var api_key = '';
             var api_secret = '';
@@ -40,16 +36,26 @@ $(document).ready(function(){
                 api_key += network.lastfm.api_key[i+1] + network.lastfm.api_key[i];
                 api_secret += network.lastfm.api_secret[i+1] + network.lastfm.api_secret[i];
             }
-            open_link.location='http://www.last.fm/api/auth/?api_key='+api_key+'&token='+data.token;
+            var url = 'http://www.last.fm/api/auth/?api_key='+api_key+'&token='+data.token;
+            $('#popup_lastfm__auth1 a').attr('href', url);
+            $('#popup_lastfm__auth1 div:first').hide();
+            $('#popup_lastfm__auth1 div.button_blue').show();
             network.lastfm.auth_token = data.token;
-            ui.popup.set_content(ich.tpl_popup__lastfm_auth2());
         });
+    });
+
+    $('#popup_lastfm__auth1 button').live('click', function() {
+
+        ui.popup.set_content(ich.tpl_popup__lastfm_auth2());
+
     });
 
     $('#popup_lastfm__auth2 button').live('click', function() {
         network.lastfm.api('auth.getSession', {'token': network.lastfm.auth_token}, function(data) {
             if (data.error) {
                 ui.popup.set_content(ich.tpl_popup__lastfm_auth1({'error': 'Вы не подтвердили доступ, придётся начать сначала.'}));
+            $('#popup_lastfm__auth1 div:first').show();
+            $('#popup_lastfm__auth1 div.button_blue').hide();
             } else {
                 network.lastfm.login(data.session.name, data.session.key);
                 ui.update_topnav();
