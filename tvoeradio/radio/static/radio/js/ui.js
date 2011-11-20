@@ -207,14 +207,14 @@ ui.update_station_controls = function() {
 
 
 ui.update_topnav = function() {
-    var links_left = [];
-    if (network.lastfm.authorized) {
-        links_left.push('<span class="pseudolink nav-infoblock" data-type="user" data-name="' + util.string.htmlspecialchars(network.lastfm.user) + '">Last.fm (' + util.string.htmlspecialchars(network.lastfm.user) + ')</span>')
-    } else {
-        links_left.push('<span class="pseudolink" id="topnav__lastfm_auth">Last.fm</span>')
-    }
-    links_left.push('<span>Твоёрадио '+config.app_version+'</span>');
-    $('#topnav').html(links_left.join(' | '));
+    var context = {
+        'lastfm_authorized': network.lastfm.authorized,
+        'lastfm_user': network.lastfm.user,
+        'config': config,
+        'standalone': (config.mode == 'standalone'),
+        'desktop': window['bridge'] ? true : false
+    };
+    $('#topnav').html(ich.tpl_topnav(context));
 };
 
 

@@ -20,6 +20,14 @@ ul, ol, li, table, tbody, tr, td {
     clear: both;
 }
 
+.fright {
+    float: right;
+}
+
+.center {
+    text-align: center;
+}
+
 #mp3player {
     height: 0;
     overflow: hidden;
@@ -274,7 +282,20 @@ a:hover, .pseudolink:hover {
 
 #topnav {
     background: white url(../img/topnav.png) repeat-x;
-    padding: 10px 10px 5px 10px;
+    padding: 7px 5px 2px 0;
+}
+
+#topnav a,
+#topnav span {
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 5px;
+    padding: 3px 5px;
+}
+
+#topnav a:hover,
+#topnav span:hover {
+    background: #E1E7ED;
 }
 
 .boxed {
@@ -357,6 +378,19 @@ a:hover, .pseudolink:hover {
     overflow-x: hidden;
     overflow-y: auto;
     padding: 10px;
+}
+
+#popup_about__main {
+    text-align: center;
+}
+
+#popup_about__main big {
+    font-size: 200%;
+}
+
+#popup_about__attributions {
+    font-size: 9px;
+    margin-top: 20px;
 }
 
 #popup_lastfm__auth1, #popup_lastfm__auth2 {

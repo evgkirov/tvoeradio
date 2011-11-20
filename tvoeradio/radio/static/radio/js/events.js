@@ -27,6 +27,19 @@ $(document).ready(function(){
     network.lastfm.cookielogin();
     ui.update_topnav();
 
+    $('#topnav__logout').live('click', function() {
+        window.location = '/app/logout/';
+    });
+
+    $('#topnav__about').live('click', function() {
+        var context = {
+            'version': config.app_version,
+            'desktop_version': window['bridge'] ? bridge.get_version() : false
+        }
+        ui.popup.show('О приложении', ich.tpl_popup__about(context), 300);
+    });
+
+
     $('#topnav__lastfm_auth').live('click', function() {
         ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1);
         network.lastfm.api('auth.getToken', {}, function(data){
