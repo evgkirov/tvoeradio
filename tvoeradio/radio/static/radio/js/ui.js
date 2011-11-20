@@ -149,6 +149,11 @@ ui.update_track_info = function() {
         }
     );*/
 
+    var window_title = current_track.artist + ' — ' + current_track.title;
+    $('title').text(window_title);
+    if (config.mode == 'vk') {
+        network.vkontakte.callMethod('setTitle', window_title);
+    }
     if (window['bridge']) {
         bridge.track_change(current_track.artist, current_track.title);
     }

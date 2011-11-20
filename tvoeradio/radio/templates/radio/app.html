@@ -17,7 +17,9 @@
             'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET|reorder_letters }}',
             'vk_api_id': '{{ settings.VK_APP_ID }}',
             'vk_api_url': '{{ settings.VK_APP_URL }}',
-            'jplayer_swfpath': '{% media_url 'js/3rdparty/jplayer/Jplayer.swf' %}'
+            'jplayer_swfpath': '{% media_url 'js/3rdparty/jplayer/Jplayer.swf' %}',
+            'first_name': '{{ user.first_name }}',
+            'last_name': '{{ user.last_name }}'
         }
     </script>
     {% if mode == 'vk' %}
