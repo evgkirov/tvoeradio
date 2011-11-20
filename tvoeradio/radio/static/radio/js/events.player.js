@@ -7,6 +7,8 @@ $(document).ready(function() {
 
         'swfPath': config.jplayer_swfpath.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''),
 
+        'solution': 'flash, html',
+
         'play': function(e) {
             if (network.lastfm.authorized) {
                 network.lastfm.api(
