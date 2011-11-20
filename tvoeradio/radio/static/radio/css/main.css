@@ -278,13 +278,10 @@ a:hover, .pseudolink:hover {
 }
 
 .boxed {
-    border: 1px solid #ffffff;
     min-height: 18px;
     list-style: none;
-    margin-bottom: 3px;
     padding: 4px 10px 0px 10px;
 }
-
 
 .boxed:hover {
     background-color: #DAE2E8;
@@ -292,8 +289,7 @@ a:hover, .pseudolink:hover {
 
 
 .boxed_selected, .boxed_selected:hover {
-    background-color: #6d84b4;
-    border: 1px solid #3b5998;
+    background-color: #597ea4;
     color: #ffffff;
 }
 
@@ -408,7 +404,7 @@ a:hover, .pseudolink:hover {
     float: left;
     padding: 4px 10px 0px 10px;
     text-align: right;
-    width: 80px;
+    width: 78px;
 }
 
 #search-suggest div ul {
@@ -418,12 +414,11 @@ a:hover, .pseudolink:hover {
 }
 
 #search-suggest div ul li {
-    border: 1px solid #ffffff;
     cursor: pointer;
     display: block;
     min-height: 18px;
     background: 4px 4px no-repeat;
-    padding: 4px 10px 0px 10px;
+    padding: 4px 14px 0px 10px;
 }
 
 #search-suggest div ul li:hover {
@@ -431,11 +426,8 @@ a:hover, .pseudolink:hover {
 }
 
 #search-suggest div ul li.active {
-    background-color: #6d84b4;
-    /*border: 1px solid #8a9cc1;*/
-    border: 1px solid #3b5998;
+    background-color: #597ea4;
     color: #ffffff;
-    /*outline: 1px solid #3b5998;*/
 }
 
 #dashboard {

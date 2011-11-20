@@ -100,7 +100,7 @@ $(document).ready(function() {
             $('#search-suggest').css({
                 'left': $this.position().left-100+'px'
             })
-            .width($this.outerWidth()+100);
+            .width($this.outerWidth()+98);
 
             $('#search-suggest ul').width($this.outerWidth());
             //$('#search-suggest__text').val($this.val());
