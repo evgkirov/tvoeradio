@@ -381,6 +381,7 @@ a:hover, .pseudolink:hover {
 }
 
 #popup_about__main {
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -390,7 +391,8 @@ a:hover, .pseudolink:hover {
 
 #popup_about__attributions {
     font-size: 9px;
-    margin-top: 20px;
+    margin-top: 30px;
+    color: #999;
 }
 
 #popup_lastfm__auth1, #popup_lastfm__auth2 {
