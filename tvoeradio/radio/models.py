@@ -12,7 +12,7 @@ class Station(models.Model):
         ordering = ('type', 'name')
 
     def __unicode__(self):
-        return '%s - %s' % (self.type, self.name)
+        return '%s: %s' % (self.type, self.name)
 
 
 class UserStationManager(models.Manager):
@@ -96,3 +96,9 @@ class Ban(models.Model):
     artist = models.CharField(max_length=255)
     title = models.CharField(max_length=255, blank=True)
     ban_artist = models.BooleanField()
+
+    class Meta:
+        ordering = ('-date_added',)
+
+    def __unicode__(self):
+        return u'%s - %s - %s - %s' % (self.user, self.artist, self.title, self.ban_artist)

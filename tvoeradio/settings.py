@@ -158,7 +158,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
+    #'django.contrib.auth.backends.ModelBackend',
     'vk_iframe.backends.VkontakteUserBackend',
 )
 
@@ -177,11 +177,9 @@ INSTALLED_APPS = (
     # 'django.contrib.sites',
     # 'django.contrib.messages',
     # 'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admin',
 
+    'monkeypatches',
     'mediagenerator',
     'vk_iframe',
 
