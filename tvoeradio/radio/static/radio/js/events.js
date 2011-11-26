@@ -28,6 +28,9 @@ $(document).ready(function(){
     ui.update_topnav();
 
     $('#topnav__logout').live('click', function() {
+        if (window['bridge']) {
+            bridge.logout();
+        }
         window.location = '/app/logout/';
     });
 
