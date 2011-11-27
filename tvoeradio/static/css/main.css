@@ -113,3 +113,12 @@ a:hover {
 #sidebar:hover {
     opacity: 1;
 }
+
+.chooseyourdestiny {
+    min-height: 32px;
+}
+
+.chooseyourdestiny img {
+    float: left;
+    padding-right: 15px;
+}
