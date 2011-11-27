@@ -9,12 +9,17 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^app/', include('radio.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^markitup/', include('markitup.urls')),
 )
 
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        url(r'^static/uploads/(?P<path>.*)$', 'django.views.static.serve', {
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
         }),
+        url(r'^static/raw/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.STATIC_ROOT,
+        }),
+
    )

@@ -1,8 +1,8 @@
+# -*- coding: utf-8 -*-
 # Django settings for tvoeradio project.
 
 import os
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
-
 
 DEBUG = TEMPLATE_DEBUG = MEDIA_DEV_MODE = True
 
@@ -10,51 +10,34 @@ ADMINS = MANAGERS = (
     ('Evgeniy Kirov', 'evg.kirov@gmail.com'),
 )
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': here('..', 'db', 'dev.sqlite'),  # Or path to database file if using sqlite3.
-        'USER': '',  # Not used with sqlite3.
-        'PASSWORD': '',  # Not used with sqlite3.
-        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': here('..', 'db', 'dev.sqlite'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
 TIME_ZONE = 'Europe/Moscow'
-
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'ru'
-
-SITE_ID = 1
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
-
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale
 USE_L10N = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
+# загруженные через админку файлы
 MEDIA_ROOT = here('media')
-GLOBAL_MEDIA_DIRS = (here('static'),)
+MEDIA_URL = '/media/'
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/static/uploads/'
-DEV_MEDIA_URL = '/develstatic/'
+# медиагенератор
+GLOBAL_MEDIA_DIRS = (here('static'),)
+DEV_MEDIA_URL = '/static/gen/'
+
+# остальная статика (админка и маркитап)
+STATIC_ROOT = here('static_raw')
+STATIC_URL = '/static/raw/'
+ADMIN_MEDIA_PREFIX = '/static/raw/admin/'
 
 MEDIA_BUNDLES = (
     ('website.css',
@@ -101,38 +84,11 @@ MEDIA_BUNDLES = (
     ),
 )
 
-# Absolute path to the directory that holds static files.
-# Example: "/home/media/media.lawrence.com/static/"
-#STATIC_ROOT = here('static')
-
-# URL that handles the static files served from STATIC_ROOT.
-# Example: "http://media.lawrence.com/static/"
-#STATIC_URL = '/static/'
-
-# URL prefix for admin media -- CSS, JavaScript and images.
-# Make sure to use a trailing slash.
-# Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
-
-# A list of locations of additional static files
-#STATICFILES_DIRS = ()
-
-# List of finder classes that know how to find static files in
-# various locations.
-#STATICFILES_FINDERS = (
-#    'django.contrib.staticfiles.finders.FileSystemFinder',
-#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-#)
-
-# Make this unique, and don't share it with anybody.
 SECRET_KEY = 'gmz7f8)&q848*^k+d_j*&3(77@7fe=3vgalst4(b-xl*^0@d+3'
 
-# List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -143,6 +99,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'vk_iframe.middleware.AuthenticationMiddleware',
     'vk_iframe.middleware.IFrameFixMiddleware',
+    'pages.middleware.PageMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -150,18 +107,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    #"django.core.context_processors.static",
-    #"django.contrib.messages.context_processors.messages",
     "common.context_processors.settings",
     "common.context_processors.user_platform",
     "common.context_processors.version",
 )
 
 AUTHENTICATION_BACKENDS = (
-    #'django.contrib.auth.backends.ModelBackend',
     'vk_iframe.backends.VkontakteUserBackend',
 )
-
 
 ROOT_URLCONF = 'urls'
 LOGIN_URL = '/app/login/'
@@ -174,20 +127,22 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    # 'django.contrib.sites',
-    # 'django.contrib.messages',
-    # 'django.contrib.staticfiles',
     'django.contrib.admin',
 
-    'monkeypatches',
+    'markitup',
     'mediagenerator',
     'vk_iframe',
 
+    'monkeypatches',
     'common',
+    'pages',
     'radio',
 
     'south',
 )
+
+MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.markdown', {})
+MARKITUP_SET = 'markitup/sets/markdown'
 
 LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/'
 LASTFM_API_KEY = '5f170ff5352903d39512d907566283fc'
