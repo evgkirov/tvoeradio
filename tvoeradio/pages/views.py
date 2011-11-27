@@ -29,5 +29,5 @@ def page(request, url):
     return {
         'TEMPLATE': page.template_name or DEFAULT_TEMPLATE,
         'title': page.title,
-        'content': Template(render_markup(page.content)).render(RequestContext(request)),
+        'content': render_markup(Template(page.content).render(RequestContext(request))),
     }
