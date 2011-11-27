@@ -14,7 +14,7 @@
     <script type="text/javascript">
         VK.init({apiId: {{ settings.VK_APP_ID }}});
         VK.Widgets.Group("vk_groups", {mode: 2, width: "auto", height: "200"}, 16049689);
-        VK.Widgets.Like("vk_like", {type: "button", pageTitle:"Твоёрадио — ололо ололо", pageDescription: "Ололо ололо", pageImage: "", pageUrl: "http://tvoeradio.org/"});
+        VK.Widgets.Like("vk_like", {type: "button"});
     </script>
 {% endblock %}
 
@@ -32,7 +32,7 @@
             <br/>
             <div id="vk_like"></div>
             <br/>
-            <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tvoeradio.org/" data-text="Твоёрадио — ололо ололо" data-count="horizontal" data-via="tvoeradio" data-lang="ru">Твитнуть</a></div>
+            <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tvoeradio.org/" data-text="Твоёрадио — автоматическое персональное радио на основе твоих музыкальных интересов" data-count="horizontal" data-via="tvoeradio" data-lang="ru">Твитнуть</a></div>
             <br/>
             <div class="g-plusone" data-size="medium" data-href="http://tvoeradio.org/"></div>
         </div>
