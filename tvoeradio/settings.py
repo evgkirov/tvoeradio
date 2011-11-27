@@ -141,8 +141,8 @@ INSTALLED_APPS = (
     'south',
 )
 
-MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.markdown', {})
-MARKITUP_SET = 'markitup/sets/markdown'
+MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.textile', {})
+MARKITUP_SET = 'markitup/sets/textile'
 
 LASTFM_API_URL = 'http://ws.audioscrobbler.com/2.0/'
 LASTFM_API_KEY = '5f170ff5352903d39512d907566283fc'

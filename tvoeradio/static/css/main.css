@@ -4,7 +4,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, ol {
 }
 
 html, body {
-    background: #ffffff url(../img/body.png);
+    background: #ffffff;
     color: #000000;
     font-family: tahoma, verdana, arial, sans-serif;
     font-size: 11px;
@@ -53,6 +53,10 @@ a:hover {
     float: right;
 }
 
+.shadow {
+    box-shadow: 0 0 20px #666;
+}
+
 #header {
     background: #2B587A;
     margin-bottom: 20px;
@@ -73,12 +77,12 @@ a:hover {
 #header h1,
 #wrapper {
     margin: 0 auto;
-    width: 870px;
+    width: 900px;
 }
 
 #content {
     float: left;
-    width: 600px;
+    width: 630px;
 }
 
 #sidebar {

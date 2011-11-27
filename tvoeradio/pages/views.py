@@ -1,11 +1,9 @@
 from annoying.decorators import render_to
 from django.conf import settings
-from django.contrib.markup.templatetags.markup import markdown
 from django.http import Http404, HttpResponsePermanentRedirect
 from django.template import Template, RequestContext
-from django.template.loader import render_to_string
 from django.shortcuts import get_object_or_404
-from django.utils.safestring import mark_safe
+from markitup.templatetags.markitup_tags import render_markup
 
 from .models import Page
 
@@ -30,6 +28,6 @@ def page(request, url):
 
     return {
         'TEMPLATE': page.template_name or DEFAULT_TEMPLATE,
-        'title': mark_safe(page.title),
-        'content': Template(markdown(page.content)).render(RequestContext(request)),
+        'title': page.title,
+        'content': Template(render_markup(page.content)).render(RequestContext(request)),
     }

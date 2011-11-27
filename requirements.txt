@@ -7,5 +7,5 @@ django-mediagenerator==1.11
 cssmin
 -e hg+http://bitbucket.org/eXtractor/django-mediagenerator-cssmin#egg=django-mediagenerator-cssmin
 
-Markdown==2.1.0
+textile==2.1.5
 django-markitup==1.0.0
