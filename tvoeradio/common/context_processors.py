@@ -1,15 +1,18 @@
+# -*- coding: utf-8 -*-
+
+
 def settings(request):
     from django.conf import settings
     return {'settings': settings}
 
 
 def user_platform(request):
-    platform = 'Windows'
+    platform = u'Виндоуса'
     u_a = request.META.get('HTTP_USER_AGENT', '')
     if 'Linux' in u_a:
-        platform = 'Linux'
+        platform = u'Линукса'
     if 'Mac OS X' in u_a:
-        platform = 'Mac OS X'
+        platform = u'Мака'
     return {'user_platform': platform}
 
 
