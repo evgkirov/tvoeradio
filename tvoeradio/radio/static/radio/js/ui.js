@@ -166,6 +166,9 @@ ui.update_track_controls = function() {
     var current_track = player.playlist.get_current_track();
     if (network.lastfm.authorized) {
         $('.menu_track__lastfm').show();
+        if (current_track.lastfm_loved) {
+            $('#menu_track__love').hide();
+        }
     } else {
         $('.menu_track__lastfm').hide();
     }

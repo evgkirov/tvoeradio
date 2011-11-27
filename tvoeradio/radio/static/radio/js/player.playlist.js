@@ -29,7 +29,8 @@ player.playlist.add_track = function(artist, title, callback) {
             'mp3_url': mp3.url,
             'vk_oid': mp3.owner_id,
             'vk_aid': mp3.aid,
-            'vk_lyrics_id': mp3.lyrics_id
+            'vk_lyrics_id': mp3.lyrics_id,
+            'lastfm_loved': false
         }
         player.playlist.playlist.push(track);
         ui.update_playlist()

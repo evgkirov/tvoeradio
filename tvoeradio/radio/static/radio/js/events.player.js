@@ -111,6 +111,7 @@ $(document).ready(function() {
 
     $('#menu_track__love').click(function(){
         $('#menu_track__love').hide();
+        player.playlist.get_current_track().lastfm_loved = true;
         network.lastfm.api(
             'track.love',
             {
