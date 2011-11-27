@@ -115,9 +115,9 @@ a:hover {
 }
 
 .chooseyourdestiny {
-    left: -42px;
+    float: left;
     min-height: 32px;
-    position: relative;
+    width: 50%;
 }
 
 .chooseyourdestiny img {
