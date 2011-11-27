@@ -115,10 +115,14 @@ a:hover {
 }
 
 .chooseyourdestiny {
+    left: -42px;
     min-height: 32px;
+    margin: 10px 0;
+    position: relative;
 }
 
 .chooseyourdestiny img {
     float: left;
-    padding-right: 15px;
+    padding-right: 10px;
+    padding-top: 5px;
 }
