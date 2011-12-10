@@ -4,7 +4,6 @@ from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from django.db import transaction
 from django.utils import simplejson
-from PIL import Image
 import StringIO
 import tempfile
 import urllib
