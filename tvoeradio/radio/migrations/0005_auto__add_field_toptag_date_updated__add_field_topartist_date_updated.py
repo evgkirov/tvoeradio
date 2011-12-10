@@ -7,16 +7,16 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
+
         # Adding field 'TopTag.date_updated'
-        db.add_column('radio_toptag', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime(2011, 12, 11, 0, 22, 55, 790578), blank=True), keep_default=False)
+        db.add_column('radio_toptag', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime.now(), blank=True), keep_default=False)
 
         # Adding field 'TopArtist.date_updated'
-        db.add_column('radio_topartist', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime(2011, 12, 11, 0, 23, 1, 861632), blank=True), keep_default=False)
+        db.add_column('radio_topartist', 'date_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.datetime.now(), blank=True), keep_default=False)
 
 
     def backwards(self, orm):
-        
+
         # Deleting field 'TopTag.date_updated'
         db.delete_column('radio_toptag', 'date_updated')
 
