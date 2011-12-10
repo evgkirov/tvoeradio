@@ -144,6 +144,7 @@ $(document).ready(function() {
         network.vkontakte.api(
             'wall.post',
             {
+                'message': '#np #tvoeradio',
                 'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
             },
             function(data) {}
@@ -177,7 +178,7 @@ $(document).ready(function() {
         network.vkontakte.api(
             'wall.post',
             {
-                'message': 'Советую послушать:',
+                'message': 'Советую послушать #tvoeradio',
                 'attachment': config.vk_api_url+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
             },
             function(data) {}
