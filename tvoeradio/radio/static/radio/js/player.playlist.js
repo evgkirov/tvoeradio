@@ -1,19 +1,19 @@
 register_namespace('player.playlist');
 
 
-player.playlist.playlist = [];
+player.playlist.list = [];
 player.playlist.current_track_num = 0;
 
 
 player.playlist.clear = function() {
-    this.playlist = [];
+    this.list = [];
     ui.update_playlist();
 };
 
 player.playlist.filter_tail = function(artist, title, ban_artist) {
-    for (var i = player.playlist.playlist.length-1; i > this.current_track_num; i--) {
-        if ((artist == player.playlist.playlist[i].artist) && (ban_artist || (title == player.playlist.playlist[i].title))) {
-            player.playlist.playlist.splice(i, 1);
+    for (var i = player.playlist.list.length-1; i > this.current_track_num; i--) {
+        if ((artist == player.playlist.list[i].artist) && (ban_artist || (title == player.playlist.list[i].title))) {
+            player.playlist.list.splice(i, 1);
         }
     }
     ui.update_playlist();
@@ -32,7 +32,7 @@ player.playlist.add_track = function(artist, title, callback) {
             'vk_lyrics_id': mp3.lyrics_id,
             'lastfm_loved': false
         }
-        player.playlist.playlist.push(track);
+        player.playlist.list.push(track);
         ui.update_playlist()
         if (callback) {
             callback();
@@ -51,6 +51,6 @@ player.playlist.add_track = function(artist, title, callback) {
 
 
 player.playlist.get_current_track = function() {
-    return this.playlist[this.current_track_num];
+    return this.list[this.current_track_num];
 };
 

@@ -53,7 +53,7 @@ player.control.next = function() {
         ui.update_track_controls();
         player.station.current.add_to_playlist();
     }
-    if (player.playlist.playlist.length == player.playlist.current_track_num + 1) {
+    if (player.playlist.list.length == player.playlist.current_track_num + 1) {
         player.station.current.add_to_playlist(do_next);
     } else {
         do_next();

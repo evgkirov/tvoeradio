@@ -232,8 +232,8 @@ ui.show_popup_lastfm = function() {
 
 ui.update_playlist = function() {
     var pl = [];
-    for (var i in player.playlist.playlist) {
-        var track = player.playlist.playlist[i];
+    for (var i in player.playlist.list) {
+        var track = player.playlist.list[i];
         pl.push({
             'number': i,
             'is_current': (i == player.playlist.current_track_num),

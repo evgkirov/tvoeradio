@@ -2,7 +2,7 @@ register_namespace('ui.popup');
 
 
 ui.popup.show = function(title, content, width) {
-    $('.popup').width(width || 518).css('margin-left', -Math.ceil((width || 518)/2));
+    $('.popup').width(width || 550).css('margin-left', -Math.ceil((width || 550)/2));
     ui.popup.set_title(title);
     ui.popup.set_content(content)
     $('.popup, #popup-overlay').show();
