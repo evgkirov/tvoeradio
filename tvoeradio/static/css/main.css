@@ -3,10 +3,9 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, ol {
     padding: 0px;
 }
 
-html, body {
+body {
     background: #ffffff;
     color: #000000;
-    font-family: tahoma, verdana, arial, sans-serif;
     font-size: 14px;
     font-family: "PT Serif", "Times New Roman", serif;
     /*font-size: 16px;*/
@@ -65,6 +64,7 @@ a:hover {
 }
 
 .shadow {
+    background: #fff;
     box-shadow: 0 0 20px rgba(0,0,0,.6);
 }
 
@@ -79,7 +79,6 @@ a:hover {
     font-size: 44px;
     font-weight: normal;
     padding: 20px 0;
-    height: 60px;
 }
 
 #header h1 a {
@@ -124,4 +123,15 @@ a:hover {
     float: left;
     padding-right: 10px;
     padding-top: 5px;
+}
+
+.error {
+    text-align: center;
+}
+
+.error #header h1 {
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+    width: auto;
 }

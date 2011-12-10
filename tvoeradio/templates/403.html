@@ -1,1 +1,7 @@
-403
+{% extends 'base_error.html' %}
+
+{% block title_text %}403 Доступ запрещён{% endblock %}
+{% block content %}
+    <p>Вам сюда нельзя.</p>
+    <p>А вот <a href="/">на главную</a> &mdash; можно.</p>
+{% endblock %}

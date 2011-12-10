@@ -7,12 +7,12 @@ def settings(request):
 
 
 def user_platform(request):
-    platform = u'Виндоуса'
+    platform = u'Виндоус'
     u_a = request.META.get('HTTP_USER_AGENT', '')
     if 'Linux' in u_a:
-        platform = u'Линукса'
+        platform = u'Линукс'
     if 'Mac OS X' in u_a:
-        platform = u'Мака'
+        platform = u'Мак'
     return {'user_platform': platform}
 
 
