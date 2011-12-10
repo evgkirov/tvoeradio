@@ -32,7 +32,7 @@ class UserStationAdmin(admin.ModelAdmin):
 
 class TopAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'popularity')
+    list_display = ('name', 'popularity', 'date_updated')
 
 
 class BanAdmin(admin.ModelAdmin):

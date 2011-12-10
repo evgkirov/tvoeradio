@@ -65,6 +65,7 @@ class TopTag(models.Model):
 
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField()
+    date_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ('name',)
@@ -81,6 +82,7 @@ class TopArtist(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     popularity = models.IntegerField(db_index=True)
     image = models.URLField()
+    date_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ('-popularity',)
