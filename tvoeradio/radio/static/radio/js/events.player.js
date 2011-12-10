@@ -1,5 +1,15 @@
 $(document).ready(function() {
 
+    // Начальная громкость
+
+    var default_volume = util.cookie.get('tvoeradio_player_volume');
+    if (default_volume == null) {
+        default_volume = 0.8;
+    } else {
+        default_volume = parseInt(default_volume) / 100;
+    }
+    $('#slider_volume').css('background-position', default_volume*100+'% 0');
+
 
     // Поднимаем плеер
 
@@ -8,6 +18,8 @@ $(document).ready(function() {
         'swfPath': config.jplayer_swfpath.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''),
 
         'solution': 'flash, html',
+
+        'volume': default_volume,
 
         'play': function(e) {
             if (network.lastfm.authorized) {
@@ -52,17 +64,6 @@ $(document).ready(function() {
         }
 
     });
-
-
-    // Начальная громкость
-
-    var default_volume = util.cookie.get('tvoeradio_player_volume');
-    if (default_volume == null) {
-        default_volume = 0.8;
-    } else {
-        default_volume = parseInt(default_volume) / 100;
-    }
-    $('#mp3player').jPlayer('volume', default_volume);
 
 
     // Кнопки плеера
