@@ -10,6 +10,11 @@ html, body {
     width: 100%;
 }
 
+img {
+    -ms-interpolation-mode: bicubic;
+    image-rendering: optimizeQuality;
+}
+
 ul, ol, li, table, tbody, tr, td {
     border: none;
     margin: 0;

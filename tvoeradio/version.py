@@ -12,6 +12,6 @@ def get_version():
         #rev -= 35
         return '%s.%s' % (rev / 10, rev % 10)
     except:
-        return 'unknown version'
+        return 'unknown'
 
 VERSION = get_version()
