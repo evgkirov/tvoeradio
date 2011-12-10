@@ -4,7 +4,7 @@ from .models import Station, RecentStation, FavoritedStation, TopTag, TopArtist,
 
 
 def user_id(self, o):
-    return u'<a href="../../auth/user/%s/">%s</a>' % (o.user.id, o.user.username)
+    return u'<a href="http://vk.com/id%s">%s</a>' % (o.user.username, o.user.username)
 user_id.allow_tags = True
 
 

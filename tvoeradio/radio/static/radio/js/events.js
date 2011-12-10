@@ -93,14 +93,12 @@ $(document).ready(function(){
     $('#app-preloader').hide();
     $('#app-content').fadeIn();
 
+    window.setTimeout(migrate.favorites, 1000);
 });
 
 if (config.mode == 'vk') {
 
-    network.vkontakte.init(function() {
-        // API initialization succeeded
-        // Your code here
-    });
+    network.vkontakte.init(function(){});
 
     network.vkontakte.addCallback('onLocationChanged', function(str){
         if (str) {

@@ -141,6 +141,36 @@ def remove_favorite(request):
         'favorited_stations': get_user_stations_list(FavoritedStation, request.user),
     }
 
+@login_required
+@require_POST
+@ajax_request
+def migrate_favorites(request):
+
+    count = int(request.POST['count'])
+    items = [request.POST['item%s' % i] for i in range(count)]
+
+    delim = '\t::\t'
+
+    replace_types = {
+        'artist': 'similar',
+        'artist_exact': 'artist',
+        'library': 'library',
+        'tag': 'tag',
+    }
+
+    for item in items:
+        parts = item.split(delim)
+        if len(parts) != 3:
+            continue
+        type = parts[1]
+        name = parts[2]
+        if type in replace_types:
+            type = replace_types[type]
+            FavoritedStation.objects.create_user_station(request.user, type, name)
+
+    return {
+        'favorited_stations': get_user_stations_list(FavoritedStation, request.user),
+    }
 
 @login_required
 @require_POST
