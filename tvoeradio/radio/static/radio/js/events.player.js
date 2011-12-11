@@ -224,7 +224,7 @@ $(document).ready(function() {
                 'wall.post',
                 {
                     'owner_id': uid,
-                    'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио»',
+                    'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио»:',
                     'attachment': config.vk_api_url + '#' + hash
                 },
                 function(data) {
