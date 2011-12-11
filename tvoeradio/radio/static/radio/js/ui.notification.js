@@ -5,8 +5,10 @@ ui.notification.timeout = 0;
 
 ui.notification.show = function(type, text, permanent) {
     var n = $('#notification');
-
-    n.text(text).attr('class', type).css('top', 46 + Math.floor((117 - n.outerHeight())/2));
+    n.text(text).attr('class', type).css({
+        'top': 46 + Math.floor((117 - n.outerHeight())/2)//,
+        //'margin-left': -Math.floor(n.outerWidth()/2)
+    });
     $('#notification:hidden').fadeIn('fast');
     ui.notification.clear_timeout();
     if (!permanent) {

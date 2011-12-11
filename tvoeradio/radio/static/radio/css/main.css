@@ -6,6 +6,7 @@ html, body {
     height: 100%;
     margin: 0px;
     padding: 0px;
+    overflow: hidden;
     text-align: left;
     width: 100%;
 }
@@ -428,11 +429,12 @@ a:hover, .pseudolink:hover {
     cursor: pointer;
     display: none;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -220px;
+    max-width: 400px;
     padding: 20px;
     position: absolute;
-    width: 400px;
     text-align: center;
+    width: 400px;
     z-index: 105;
 }
 

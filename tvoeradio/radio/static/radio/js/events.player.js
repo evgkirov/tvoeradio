@@ -152,8 +152,8 @@ $(document).ready(function() {
             'wall.post',
             {
                 'services': 'twitter,facebook',
-                'message': '#np #tvoeradio',
-                'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
+                'message': current_track.artist + ' — ' + current_track.title + ' #np #tvoeradio',
+                'attachment': 'audio' + current_track.vk_oid + '_' + current_track.vk_aid
             },
             function(data) {
                 ui.notification.show('info', 'Сообщение отправлено');
