@@ -151,6 +151,7 @@ $(document).ready(function() {
         network.vkontakte.api(
             'wall.post',
             {
+                'services': 'twitter,facebook',
                 'message': '#np #tvoeradio',
                 'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
             },
@@ -158,6 +159,22 @@ $(document).ready(function() {
                 ui.notification.show('info', 'Сообщение отправлено');
             }
         );
+    });
+
+    $('#menu_track__postwall').click(function(){
+        var current_track = player.playlist.get_current_track();
+        network.vkontakte.choose_friend(function(uid){
+            network.vkontakte.api(
+                'wall.post',
+                {
+                    'owner_id': uid,
+                    'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
+                },
+                function(data) {
+                    ui.notification.show('info', 'Сообщение отправлено');
+                }
+            );
+        });
     });
 
     $('#menu_track__addaudio').click(function() {
@@ -184,16 +201,37 @@ $(document).ready(function() {
     // Меню станции
 
     $('#menu_station__poststatus').click(function() {
+        var hash = player.station.get_current_hash();
+        var desc = player.station.get_current_desc();
         network.vkontakte.api(
             'wall.post',
             {
-                'message': 'Советую послушать #tvoeradio',
-                'attachment': config.vk_api_url+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
+                'services': 'twitter,facebook',
+                'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио» #tvoeradio',
+                'attachment': config.vk_api_url + '#' + hash
             },
             function(data) {
                 ui.notification.show('info', 'Сообщение отправлено');
             }
         );
+    });
+
+    $('#menu_station__postwall').click(function() {
+        var hash = player.station.get_current_hash();
+        var desc = player.station.get_current_desc();
+        network.vkontakte.choose_friend(function(uid){
+            network.vkontakte.api(
+                'wall.post',
+                {
+                    'owner_id': uid,
+                    'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио»',
+                    'attachment': config.vk_api_url + '#' + hash
+                },
+                function(data) {
+                    ui.notification.show('info', 'Сообщение отправлено');
+                }
+            );
+        });
     });
 
     $('#menu_station__addfavorite').click(function(){

@@ -414,6 +414,11 @@ a:hover, .pseudolink:hover {
     margin-left: 10px;
 }
 
+.popup__qsearch {
+    padding: 10px;
+    text-align: center;
+}
+
 #notification {
     background: #000;
     background: rgba(0,0,0,.9);
@@ -635,6 +640,34 @@ h2 {
     padding: 0px;
     font-size: 14px;
     padding-bottom: 5px;
+}
+
+.people-list {
+    height: 250px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.people-list__item {
+    float: left;
+    height: 79px;
+    padding: 10px 0;
+    overflow: hidden;
+    width: 71px;
+    text-align: center;
+}
+
+.people-list__item:hover {
+    background: #EDF1F5;
+}
+
+.people-list__item span {
+    display: block;
+}
+
+.people-list__item__last {
+    font-size: 10px;
 }
 
 .infoblock {

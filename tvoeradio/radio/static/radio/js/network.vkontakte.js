@@ -89,3 +89,27 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
         }
     });
 };
+
+
+network.vkontakte.choose_friend = function(callback) {
+    ui.popup.show('Выберите друга', '<div class="infoblock-loader"></div>');
+    network.vkontakte.api('friends.get', {'fields': 'uid,first_name,last_name,photo'}, function(data){
+        var html = ich.tpl_popup__choose_friend({
+            'friends': data.response
+        });
+        ui.popup.set_content(html);
+        var input = $('#popup__choose_friend .popup__qsearch input');
+        var items = $('#popup__choose_friend .people-list__item');
+        items.each(function(index){
+            $(this).attr('data-searchstr', $(this).attr('data-searchstr').toLowerCase());
+        });
+        items.click(function(){
+            ui.popup.hide();
+            var uid = parseInt($(this).data('uid'));
+            callback(uid);
+        });
+        input.keyup(function(){
+            items.hide().filter('[data-searchstr*="' + input.val().toLowerCase() + '"]').show();
+        });
+    });
+};

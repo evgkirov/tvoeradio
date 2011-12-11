@@ -16,3 +16,12 @@ player.station.set = function(type, name) {
 player.station.get_current_html = function() {
     return this.current.get_html(this.name);
 };
+
+
+player.station.get_current_desc = function() {
+    return util.string.strip_tags(player.station.get_current_html());
+};
+
+player.station.get_current_hash = function() {
+    return this.type + '/' + util.string.urlencode(this.name);
+};
