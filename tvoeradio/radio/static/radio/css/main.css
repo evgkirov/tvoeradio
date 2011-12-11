@@ -77,7 +77,7 @@ a:hover, .pseudolink:hover {
 }
 
 .menu_button_active {
-    background-image: url(../img/white50.png);
+    background-image: url(../img/white30.png);
 }
 
 .menu {
@@ -412,6 +412,28 @@ a:hover, .pseudolink:hover {
 
 .popup__buttons div {
     margin-left: 10px;
+}
+
+#notification {
+    background: #000;
+    background: rgba(0,0,0,.9);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,.6);
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    left: 50%;
+    margin-left: -200px;
+    padding: 20px;
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    z-index: 105;
+}
+
+#notification.error {
+    background: #f00;
+    background: rgba(170,0,0,.9);
 }
 
 .form__line {

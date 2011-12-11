@@ -65,6 +65,7 @@ MEDIA_BUNDLES = (
         'radio/js/ui.menu.js',
         'radio/js/ui.js',
         'radio/js/ui.popup.js',
+        'radio/js/ui.notification.js',
         'radio/js/ui.infoblock.js',
         'radio/js/ui.search.js',
         'radio/js/player.audio.js',

@@ -13,7 +13,7 @@
             'app_version': '{{ tvoeradio_version }}',
             'mode': '{{ mode }}',
             'lastfm_api_url': '{{ settings.LASTFM_API_URL }}',
-            'lastfm_api_key': '{{ settings.LASTFM_API_KEY|reorder_letters }}',
+            'lastfm_api_key': '{{ settings.LASTFM_API_KEY }}',
             'lastfm_api_secret': '{{ settings.LASTFM_API_SECRET|reorder_letters }}',
             'vk_api_id': '{{ settings.VK_APP_ID }}',
             'vk_api_url': '{{ settings.VK_APP_URL }}',
@@ -41,6 +41,7 @@
     </div>
 
     <div id="loader_fullscreen"><div id="loader_fullscreen__i"></div></div>
+    <div id="notification"></div>
     <div id="popup-overlay"></div>
     <div id="mp3player"></div>
 

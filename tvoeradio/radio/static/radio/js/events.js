@@ -16,6 +16,10 @@ $(document).ready(function(){
         }
     });
 
+    /*$.ajaxError(function(jqXHR, textStatus, errorThrown) {
+            ui.notification.show('error', 'Не удалось совершить действие из-за ошибки во время запроса: ' + textStatus, true);
+    });*/
+
     // Настройка UI
 
     $(window).resize(ui.resz);
@@ -46,10 +50,9 @@ $(document).ready(function(){
     $('#topnav__lastfm_auth').live('click', function() {
         ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1);
         network.lastfm.api('auth.getToken', {}, function(data){
-            var api_key = '';
+            var api_key = network.lastfm.api_key;
             var api_secret = '';
             for (var i = 0; i < network.lastfm.api_key.length; i += 2) {
-                api_key += network.lastfm.api_key[i+1] + network.lastfm.api_key[i];
                 api_secret += network.lastfm.api_secret[i+1] + network.lastfm.api_secret[i];
             }
             var url = 'http://www.last.fm/api/auth/?api_key='+api_key+'&token='+data.token;

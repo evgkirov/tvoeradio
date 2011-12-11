@@ -2,6 +2,36 @@ register_namespace('network.vkontakte');
 
 network.vkontakte = VK;
 
+network.vkontakte.real_api = VK.api;
+
+network.vkontakte.api = function(method, params, callback) {
+    if (!callback) {
+        callback = $.noop;
+    }
+    network.vkontakte.real_api(method, params, function(data) {
+        if (data['error']) {
+
+            switch (data.error.error_code) {
+
+                case 6: // Too many requests per second.
+                    window.setTimeout(network.vkontakte.api, 3000, method, params, callback);
+                    break;
+
+                case 10007: // Operation denied by user.
+                    break;
+
+                default:
+                    ui.notification.show('error', 'Произошла ошибка во время запроса к VK API. Для корректной работы может потребоваться перезапуск приложения. ' + data.error.error_msg, true);
+
+            }
+
+        } else {
+            callback(data);
+        }
+    });
+};
+
+
 network.vkontakte.search_audio = function(artist, title, callback, callback_notfound) {
 
     var q = artist.replace(/"/g,' ') + ' ' + title.replace(/"/g,' ');

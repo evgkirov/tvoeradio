@@ -92,6 +92,7 @@ $(document).ready(function() {
         if (vol > 100) vol = 100;
         if (vol < 0) vol = 0;
         $('#mp3player').jPlayer('volume', vol / 100);
+        ui.notification.show('info', 'Громкость: ' + vol +'%');
         util.cookie.set('tvoeradio_player_volume', vol, 60*60*24*1000);
     }
 
@@ -118,6 +119,9 @@ $(document).ready(function() {
             {
                 'track': player.playlist.get_current_track().title,
                 'artist': player.playlist.get_current_track().artist
+            },
+            function(data) {
+                ui.notification.show('info', 'Трек добавлен в любимые на Last.fm');
             }
         );
     });
@@ -137,7 +141,9 @@ $(document).ready(function() {
             'tags': form.find('input').val()
         };
         ui.popup.hide();
-        network.lastfm.api(what + '.addTags', params, function(data) {});
+        network.lastfm.api(what + '.addTags', params, function(data) {
+            ui.notification.show('info', 'К '+ ({'track':'треку','album':'альбому','artist':'исполнителю'})[what]+' добавлены теги');
+        });
     });
 
     $('#menu_track__poststatus').click(function(){
@@ -148,7 +154,9 @@ $(document).ready(function() {
                 'message': '#np #tvoeradio',
                 'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
             },
-            function(data) {}
+            function(data) {
+                ui.notification.show('info', 'Сообщение отправлено');
+            }
         );
     });
 
@@ -182,7 +190,9 @@ $(document).ready(function() {
                 'message': 'Советую послушать #tvoeradio',
                 'attachment': config.vk_api_url+'#'+player.station.type+'/'+util.string.urlencode(player.station.name)
             },
-            function(data) {}
+            function(data) {
+                ui.notification.show('info', 'Сообщение отправлено');
+            }
         );
     });
 

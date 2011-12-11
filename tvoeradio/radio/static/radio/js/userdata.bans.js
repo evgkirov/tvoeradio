@@ -14,6 +14,7 @@ userdata.bans.add = function(artist, title, ban_artist) {
         userdata.bans.list = data.bans;
         player.playlist.filter_tail(artist, title, ban_artist);
         player.control.next();
+        ui.notification.show('info', (ban_artist?'Исполнитель':'Трек') + ' забанен и никогда больше не будет воспроизводиться');
     });
 };
 

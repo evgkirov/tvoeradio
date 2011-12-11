@@ -15,10 +15,9 @@ network.lastfm.write_methods = ['album.addTags', 'artist.addTags', 'track.addTag
 
 network.lastfm.api = function(method, params, callback) {
 
-    var api_key = '';
+    var api_key = network.lastfm.api_key;
     var api_secret = '';
     for (var i = 0; i < network.lastfm.api_key.length; i += 2) {
-        api_key += network.lastfm.api_key[i+1] + network.lastfm.api_key[i];
         api_secret += network.lastfm.api_secret[i+1] + network.lastfm.api_secret[i];
     }
 
@@ -71,7 +70,6 @@ network.lastfm.api = function(method, params, callback) {
         });
     }
 };
-
 
 network.lastfm.login = function(user, session_key) {
     this.user = user;

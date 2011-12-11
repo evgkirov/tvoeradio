@@ -10,6 +10,7 @@ userdata.favorited_stations.add = function(type, name) {
         userdata.favorited_stations.list = data.favorited_stations;
         ui.update_dashboard();
         ui.update_station_controls();
+        ui.notification.show('info', 'Станция добавлена в избранное');
     });
 };
 
@@ -20,6 +21,7 @@ userdata.favorited_stations.remove = function(type, name) {
         userdata.favorited_stations.list = data.favorited_stations;
         ui.update_dashboard();
         ui.update_station_controls();
+        ui.notification.show('info', 'Станция удалена из избранного');
     });
 };
 
