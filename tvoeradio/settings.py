@@ -116,6 +116,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 AUTHENTICATION_BACKENDS = (
     'vk_iframe.backends.VkontakteUserBackend',
+    'radio.backends.VkontakteDesktopUserBackend',
 )
 
 ROOT_URLCONF = 'urls'
@@ -153,7 +154,7 @@ VK_APP_ID = '1840144'
 VK_APP_KEY = 'rlh7nKUmRE'
 VK_APP_SECRET = '30mfDL0PaxY5b3VQGA2T'
 VK_APP_URL = 'http://vkontakte.ru/app1840144'
-VK_APP_SETTINGS = 'audio'
+VK_APP_SETTINGS = 2 + 8 # friends + audio
 
 
 # A sample logging configuration. The only tangible logging

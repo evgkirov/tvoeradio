@@ -2,16 +2,19 @@
 from annoying.decorators import render_to, ajax_request
 from django.conf import settings
 from django.contrib import auth
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
+from django.utils import simplejson
 from django.utils.datastructures import MultiValueDictKeyError
 from vk_iframe.forms import VkontakteOpenAPIForm
 import random
 import urllib
 import urllib2
 
+from .backends import VkontakteDesktopUserBackend
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
 from .utils import get_user_stations_list
 
@@ -48,30 +51,61 @@ def app(request):
 
 @render_to('radio/login.html')
 def login(request):
-    return {}
+    #return {}
     params = {
         'client_id': settings.VK_APP_ID,
         'scope': settings.VK_APP_SETTINGS,
-        'redirect_uri': 'http://%s/app/' % request.META['HTTP_HOST'],
+        'redirect_uri': 'http://%s/app/login/proceed/' % request.META['HTTP_HOST'],
         'display': 'popup',
         'response_type': 'code',
     }
     url = 'http://api.vkontakte.ru/oauth/authorize?' + urllib.urlencode(params)
-    print url
     return redirect(url)
 
 
 def login_proceed(request):
-    vk_form = VkontakteOpenAPIForm(request.GET)
-    user = auth.authenticate(vk_form=vk_form)
+
+    if request.GET.get('error'):
+        return redirect('/')
+
+    params = {
+        'client_id': settings.VK_APP_ID,
+        'client_secret': settings.VK_APP_SECRET,
+        'code': request.GET.get('code', ''),
+    }
+    fetcher = urllib.urlopen('https://api.vkontakte.ru/oauth/access_token?' + urllib.urlencode(params))
+    data = simplejson.loads(fetcher.read())
+
+    uid = data['user_id']
+    token = data['access_token']
+
+    params = {
+        'access_token': token,
+        'uids': uid,
+        'fields': 'uid,first_name,last_name,nickname,domain,sex,bdate,timezone,photo,photo_medium,photo_big',
+    }
+    fetcher = urllib.urlopen('https://api.vkontakte.ru/method/getProfiles?' + urllib.urlencode(params))
+    data = simplejson.loads(fetcher.read())['response'][0]
+
+    user = auth.authenticate(vk_profile=data)
     if user:
         request.user = user
         auth.login(request, user)
     else:
-        request.META['VKONTAKTE_LOGIN_ERRORS'] = vk_form.errors
         raise Http404()
 
     return redirect(app)
+
+    #return HttpResponse(str(data))
+    #vk_form = VkontakteOpenAPIForm(request.GET)
+    #user = auth.authenticate(vk_form=vk_form)
+    #if user:
+    #    request.user = user
+    #    auth.login(request, user)
+    #else:
+    #    request.META['VKONTAKTE_LOGIN_ERRORS'] = vk_form.errors
+    #    raise Http404()
+    #return redirect(app)
 
 
 @login_required
