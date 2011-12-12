@@ -1,9 +1,6 @@
 register_namespace('player.control');
 
 
-player.control.play_next_immediately = false;
-
-
 player.control.start = function(type, name) {
     ui.show_loader_fullscreen();
     player.playlist.clear();
@@ -31,7 +28,7 @@ player.control.start = function(type, name) {
 
 
 player.control.stop = function() {
-    player.control.play_next_immediately = false;
+    $('#button_next').removeClass('control_button_loader');
     ui.go_to_page('tune');
     player.audio.stop();
     $('title').text('Твоёрадио');
@@ -49,22 +46,22 @@ player.control.stop = function() {
 
 player.control.next = function() {
     function do_next() {
-        player.control.play_next_immediately = false;
-        player.playlist.current_track_num++;
-        ui.update_track_info();
-        player.audio.set_file(player.playlist.get_current_track().mp3_url);
-        player.audio.play();
-        ui.update_playlist()
-        ui.update_track_controls();
-        player.station.current.add_to_playlist(function(){
-            if (player.control.play_next_immediately) {
-                player.control.play_next_immediately = false;
-                player.control.next();
-            }
-        });
+        if ($('#button_next').hasClass('control_button_loader')) {
+            $('#button_next').removeClass('control_button_loader');
+            ui.update_track_controls();
+            player.playlist.current_track_num++;
+            ui.update_track_info();
+            player.audio.set_file(player.playlist.get_current_track().mp3_url);
+            player.audio.play();
+            ui.update_playlist()
+            ui.update_track_controls();
+            player.station.current.add_to_playlist();
+        }
     }
-    if (player.playlist.list.length == player.playlist.current_track_num + 1) {
-        player.control.play_next_immediately = true;
+    $('#button_next').addClass('control_button_loader');
+    if (
+        player.playlist.list.length == player.playlist.current_track_num + 1) {
+
         player.station.current.add_to_playlist(do_next);
     } else {
         do_next();
@@ -74,7 +71,8 @@ player.control.next = function() {
 
 
 player.control.navigate = function(to) {
-    player.control.play_next_immediately = false;
+    $('#button_next').removeClass('control_button_loader');
+    ui.update_track_controls();
     player.playlist.current_track_num = parseInt(to);
     if (player.playlist.current_track_num < 0) {
         player.playlist.current_track_num = 0;

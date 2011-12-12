@@ -184,11 +184,6 @@ ui.update_track_controls = function() {
     } else {
         $('#menu_track__addaudio').show();
     }
-    if (player.control.play_next_immediately) {
-        $('#button_next').addClass('control_button_loader');
-    } {
-        $('#button_next').removeClass('control_button_loader');
-    }
 };
 
 
