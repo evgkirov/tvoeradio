@@ -4,8 +4,11 @@ django-annoying==0.7.6
 -e hg+http://bitbucket.org/eXtractor/django-vkontakte-iframe/#egg=django-vkontakte-iframe
 django-mediagenerator==1.11
 -e hg+http://bitbucket.org/eXtractor/django-mediagenerator-closure-webservice#egg=django-mediagenerator-closure-webservice
-cssmin
--e hg+http://bitbucket.org/eXtractor/django-mediagenerator-cssmin#egg=django-mediagenerator-cssmin
+#cssmin
+#-e hg+http://bitbucket.org/eXtractor/django-mediagenerator-cssmin#egg=django-mediagenerator-cssmin
+cssutils
+git+https://github.com/myfreeweb/cssprefixer.git#egg=cssprefixer
+-e hg+http://bitbucket.org/eXtractor/django-mediagenerator-cssprefixer#egg=django-mediagenerator-cssprefixer
 
 textile==2.1.5
 django-markitup==1.0.0
