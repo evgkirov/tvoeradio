@@ -860,8 +860,15 @@ h2 {
     background-position: bottom;
 }
 
+
 #button_next {
     background-image: url(../img/button_next.png);
+}
+
+#button_next.control_button.control_button_loader {
+    cursor: default;
+    background-image: url(../img/control_button_loader.gif);
+    background-position: center;
 }
 
 #button_play {

@@ -55,7 +55,7 @@ $(document).ready(function() {
 
         'timeupdate': function(e) {
             $('#slider_seek div').width(Math.round(e.jPlayer.status.seekPercent)+'%');
-            $('#slider_seek').css('background-position', Math.ceil(100*e.jPlayer.status.currentTime/player.playlist.get_current_track().duration)+'% 0');
+            $('#slider_seek').css('background-position', (100*e.jPlayer.status.currentTime/player.playlist.get_current_track().duration)+'% 0');
             $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(player.playlist.get_current_track().duration));
         },
 
