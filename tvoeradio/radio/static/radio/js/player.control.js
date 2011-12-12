@@ -1,12 +1,16 @@
 register_namespace('player.control');
 
 
+player.control.is_loading = false;
+
+
 player.control.start = function(type, name) {
     ui.show_loader_fullscreen();
     player.playlist.clear();
     player.station.set(type, name);
     player.station.current.add_to_playlist(function(){
         player.playlist.current_track_num = 0;
+        player.control.is_loading = false;
         ui.hide_loader_fullscreen();
         ui.go_to_page('player');
         $('#search-widget__clear').click();
@@ -28,7 +32,6 @@ player.control.start = function(type, name) {
 
 
 player.control.stop = function() {
-    $('#button_next').removeClass('control_button_loader');
     ui.go_to_page('tune');
     player.audio.stop();
     $('title').text('Твоёрадио');
@@ -45,10 +48,12 @@ player.control.stop = function() {
 
 
 player.control.next = function() {
+    if (player.control.is_loading) {
+        return;
+    }
     function do_next() {
-        if ($('#button_next').hasClass('control_button_loader')) {
-            $('#button_next').removeClass('control_button_loader');
-            ui.update_track_controls();
+        if (player.control.is_loading) {
+            player.control.is_loading = false;
             player.playlist.current_track_num++;
             ui.update_track_info();
             player.audio.set_file(player.playlist.get_current_track().mp3_url);
@@ -58,10 +63,9 @@ player.control.next = function() {
             player.station.current.add_to_playlist();
         }
     }
-    $('#button_next').addClass('control_button_loader');
-    if (
-        player.playlist.list.length == player.playlist.current_track_num + 1) {
-
+    player.control.is_loading = true;
+    ui.update_track_controls();
+    if (player.playlist.list.length == player.playlist.current_track_num + 1) {
         player.station.current.add_to_playlist(do_next);
     } else {
         do_next();
@@ -71,7 +75,7 @@ player.control.next = function() {
 
 
 player.control.navigate = function(to) {
-    $('#button_next').removeClass('control_button_loader');
+    player.control.is_loading = false;
     ui.update_track_controls();
     player.playlist.current_track_num = parseInt(to);
     if (player.playlist.current_track_num < 0) {

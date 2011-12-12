@@ -69,11 +69,7 @@ $(document).ready(function() {
     // Кнопки плеера
 
     $('#station_change').click(player.control.stop);
-    $('#button_next').click(function(){
-        if (!$(this).hasClass('control_button_loader')) {
-            player.control.next();
-        }
-    });
+    $('#button_next').click(player.control.next);
     $('#button_previous').click(player.control.previous);
     $('#button_play, #button_pause').click(player.control.pause);
 
