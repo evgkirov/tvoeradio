@@ -62,7 +62,7 @@ player.control.next = function() {
             ui.update_track_controls();
             if (player.playlist.list.length == player.playlist.current_track_num + 1) {
                 // если в очереди не осталось треков
-                player.station.current.add_to_playlist();
+                player.station.current.add_to_playlist(do_next);
             }
         }
     }
