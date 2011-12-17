@@ -890,6 +890,7 @@ h2 {
 
 #slider_seek {
     border-top-color: #999999;
+    border-top-color: rgba(255, 255, 255, .4);
     width: 350px;
 }
 
