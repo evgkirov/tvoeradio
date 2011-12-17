@@ -34,7 +34,7 @@ player.control.start = function(type, name) {
 player.control.stop = function() {
     ui.go_to_page('tune');
     player.audio.stop();
-    $('title').text('Твоёрадио');
+    document.title = 'Твоёрадио';
     if (config.mode == 'vk') {
         network.vkontakte.callMethod('setTitle', 'Твоёрадио');
     }

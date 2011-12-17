@@ -150,7 +150,7 @@ ui.update_track_info = function() {
     );*/
 
     var window_title = current_track.artist + ' — ' + current_track.title;
-    $('title').text(window_title);
+    document.title = window_title;
     if (config.mode == 'vk') {
         network.vkontakte.callMethod('setTitle', window_title);
     }
