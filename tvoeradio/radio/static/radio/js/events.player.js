@@ -28,7 +28,7 @@ $(document).ready(function() {
                     {
                         'track': player.playlist.get_current_track().title,
                         'artist': player.playlist.get_current_track().artist,
-                        'duration': e.jPlayer.status.duration
+                        'duration': player.playlist.get_current_track().duration
                     }
                 );
             }
