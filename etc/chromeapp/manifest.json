@@ -1,0 +1,16 @@
+{
+    "name": "Твоёрадио",
+    "description": "Автоматическое персональное радио на основе твоих музыкальных интересов",
+    "version": "2",
+    "app": {
+        "launch": {
+            "web_url": "http://tvoeradio.org/app/",
+            "container": "panel",
+            "height": 550,
+            "width": 650
+        }
+    },
+    "icons": {
+        "128": "icon_128.png"
+    }
+}
