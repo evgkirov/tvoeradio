@@ -51,6 +51,7 @@ MEDIA_BUNDLES = (
         'js/3rdparty/lscache.js',
         'js/3rdparty/ICanHaz.js',
         'js/3rdparty/jplayer/jquery.jplayer.js',
+        'radio/js/browsers.js',
         'radio/js/util.namespace.js',
         'radio/js/util.random.js',
         'radio/js/util.cookie.js',
