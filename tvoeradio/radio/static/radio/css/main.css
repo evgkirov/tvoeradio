@@ -284,6 +284,10 @@ a:hover, .pseudolink:hover {
     padding: 7px 5px 2px 0;
 }
 
+/*.mode-vk #topnav {
+    border-top: 1px solid #f9f9f9;
+}*/
+
 #topnav a,
 #topnav span {
     border-radius: 5px;

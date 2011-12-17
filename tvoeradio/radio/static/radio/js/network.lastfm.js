@@ -43,19 +43,19 @@ network.lastfm.api = function(method, params, callback) {
     params.api_sig = util.string.md5(api_sig + api_secret);
     params.format = 'json';
 
-    if (this.write_methods.indexOf(method)==-1) {
+    if ($.inArray(method, this.write_methods) == -1) {
 
         var cache_result = lscache.get(cache_key);
-        var is_write_method = !(this.nocache_methods.indexOf(method)==-1);
+        var is_nocache_method = ($.inArray(method, this.nocache_methods) != -1);
 
-        if (cache_result && !is_write_method) {
+        if (cache_result && !is_nocache_method) {
             callback(cache_result);
         } else {
             callback.cache_key = cache_key;
             $.getJSON(this.api_url+'?callback=?', params, function(data) {
-                if (!is_write_method) {
+                if (!is_nocache_method) {
                     var minutes = 60*24*7;  // a week
-                    if (network.lastfm.shortcache_methods.indexOf(method)!=-1) {
+                    if ($.inArray(method, network.lastfm.shortcache_methods) != -1) {
                         minutes = 10;
                     }
                     lscache.set(callback.cache_key, data, minutes);
