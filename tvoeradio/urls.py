@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib import admin
-
+from django.http import HttpResponse
 
 admin.autodiscover()
 
@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     (r'^app/', include('radio.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^markitup/', include('markitup.urls')),
+    (r'^robots\.txt$', lambda r: HttpResponse('User-agent: *\nDisallow: /', mimetype='text/plain')),
 )
 
 
