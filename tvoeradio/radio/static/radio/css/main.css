@@ -78,7 +78,7 @@ a:hover, .pseudolink:hover {
 }
 
 .menu_button_active {
-    background-image: url(../img/white30.png);
+    background: rgba(255, 255, 255, .3);
 }
 
 .menu {
@@ -116,7 +116,7 @@ a:hover, .pseudolink:hover {
 }
 
 #loader_fullscreen {
-    background: url(../img/loader_fullscreen.png);
+    background: rgba(255, 255, 255, .7) url(../img/loader_big.gif) center no-repeat;
     display: none;
     height: 100%;
     left: 0;
@@ -124,11 +124,6 @@ a:hover, .pseudolink:hover {
     width: 100%;
     top: 0;
     z-index: 300;
-}
-
-#loader_fullscreen__i {
-    background: url(../img/loader_fullscreen__i.gif) center no-repeat;
-    height: 100%;
 }
 
 .button_blue, .button_gray {
@@ -271,7 +266,7 @@ a:hover, .pseudolink:hover {
 }
 
 .tabs_dark li:hover {
-    background: url(../img/white30.png);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .tabs_dark li.active {
@@ -284,9 +279,9 @@ a:hover, .pseudolink:hover {
     padding: 7px 5px 2px 0;
 }
 
-/*.mode-vk #topnav {
-    border-top: 1px solid #f9f9f9;
-}*/
+.mode-vk #topnav {
+    /*border-top: 1px solid #f5f5f5;*/
+}
 
 #topnav a,
 #topnav span {
@@ -827,6 +822,7 @@ h2 {
 }
 
 .control_button {
+    background-image: url(../img/control_button.png);
     background-repeat: no-repeat;
     cursor: pointer;
     float: left;
@@ -844,29 +840,27 @@ h2 {
     background-position: bottom;
 }
 
-
-#button_next {
-    background-image: url(../img/button_next.png);
-}
-
 #button_next.control_button.control_button_loader {
     cursor: default;
     background-image: url(../img/control_button_loader.gif);
     background-position: center;
 }
 
-#button_play {
-    background-image: url(../img/button_play.png);
-    display: none;
-}
+#button_play { background-position: 0 top; display: none; }
+#button_play:hover { background-position: 0 center; }
+#button_play:active { background-position: 0 bottom; }
 
-#button_pause {
-    background-image: url(../img/button_pause.png);
-}
+#button_pause { background-position: -32px top; }
+#button_pause:hover { background-position: -32px center; }
+#button_pause:active { background-position: -32px bottom; }
 
-#button_previous {
-    background-image: url(../img/button_previous.png);
-}
+#button_previous { background-position: -64px top; }
+#button_previous:hover { background-position: -64px center; }
+#button_previous:active { background-position: -64px bottom; }
+
+#button_next { background-position: -96px top; }
+#button_next:hover { background-position: -96px center; }
+#button_next:active { background-position: -96px bottom; }
 
 .control_slider {
     background-image: url(../img/control_slider.png);
