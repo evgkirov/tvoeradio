@@ -108,6 +108,9 @@ $(document).ready(function() {
         $(this).unbind('mousemove', change_volume);
     });
 
+    $('#tabcontent_tabs_player__playlist .boxed').live('click', function(e){
+       player.control.navigate($(this).data('number'));
+    });
 
     // Меню трека
 

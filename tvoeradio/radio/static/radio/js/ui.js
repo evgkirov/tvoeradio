@@ -23,31 +23,37 @@ ui.resz = function() {
 
 
 ui.fit = function() {
-    if (config.mode == 'vk') {
-        var h = $('#app-content').height();
-        if ($('#search-suggest').is(':visible')) {
-            var ssh = $('#search-suggest').height() + $('#search-suggest').offset().top + 10;
-            if (h < ssh) {
-                h = ssh;
-            }
+    var app_content = $('#app-content'),
+        search_suggest = $('#search-suggest :visible'),
+        popup = $('.popup:visible'),
+        iframe = $('body>iframe');
+    var h = app_content.height();
+    if (search_suggest.length) {
+        var ssh = search_suggest.height() + search_suggest.offset().top + 10;
+        if (h < ssh) {
+            h = ssh;
         }
-        if ($('.popup:visible').length) {
-            var ph = $('.popup:visible').height() + $('.popup:visible').offset().top + 30;
-            if (h < ph) {
-                h = ph;
-            }
-        }
-        // vk comment form attach popup
-        if ($('body>iframe').length) {
-            var ih = $('body>iframe').height();
-            if (h < ih) {
-                h = ih;
-            }
-        }
-        network.vkontakte.callMethod('resizeWindow', 627, h);
     }
-}
+    if (popup.length) {
+        var ph = popup.height() + popup.offset().top + 30;
+        if (h < ph) {
+            h = ph;
+        }
+    }
+    // vk comment form attach popup
+    if (iframe.length) {
+        var ih = iframe.height();
+        if (h < ih) {
+            h = ih;
+        }
+    }
+    if (ui.fit.previous_height != h) {
+        network.vkontakte.callMethod('resizeWindow', 627, h);
+        ui.fit.previous_height = h;
+    }
+};
 
+ui.fit.previous_height = 0;
 
 ui.show_loader_fullscreen = function() {
     $('#loader_fullscreen').show();
@@ -256,15 +262,14 @@ $(document).ready(function(){
        $(this).addClass('active');
        $('.tabcontent').hide();
        $('#tabcontent_'+$(this).attr('id')).show();
-   });
-   $('#album_cover').load(function(){$(this).fadeIn()});
-   $('#tabcontent_tabs_player__playlist .boxed').live('click', function(e){
-       player.control.navigate($(this).data('number'));
-   });
-   $('.nav-station').live('click', function(e) {
+    });
+    $('#album_cover').load(function(){$(this).fadeIn()});
+    $('.nav-station').live('click', function(e) {
         e.preventDefault();
         player.control.start($(this).data('type'), (($(this).data('name'))||$(this).text()));
     });
-   ui.update_dashboard();
-   setInterval(ui.fit, 10);
+    ui.update_dashboard();
+    if (config.mode == 'vk') {
+        window.setInterval(ui.fit, 40);
+    }
 });
