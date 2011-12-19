@@ -109,6 +109,7 @@ if (config.mode == 'vk') {
             if (parts[0] == 'info') {
                 parts = parts[1].split('/', 2);
                 ui.infoblock.show_popup(parts[0], parts[1]);
+                network.vkontakte.callMethod('setLocation', '');
             } else {
                 player.control.start(parts[0], parts[1]);
             }
