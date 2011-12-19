@@ -40,6 +40,7 @@ def app(request):
     bans = list(Ban.objects.filter(user=request.user).values('artist', 'title', 'ban_artist'))
 
     return {
+        'app_domain': request.META.get('HTTP_HOST', ''),
         'mode': mode,
         'top_tags': top_tags,
         'top_artists': top_artists,

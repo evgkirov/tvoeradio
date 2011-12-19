@@ -127,7 +127,16 @@ ui.update_track_info = function() {
     }
 
     $('#tabcontent_tabs_player__comments').text('');
-    network.vkontakte.Widgets.Comments('tabcontent_tabs_player__comments', {autoPublish: 0, limit: 10}, util.string.md5('artist ' + current_track.artist + 'title ' + current_track.title));
+    network.vkontakte.Widgets.Comments(
+        'tabcontent_tabs_player__comments',
+        {
+            'autoPublish': 0,
+            'limit': 10,
+            'pageTitle': 'Твоёрадио: ' + current_track.artist + ' — ' + current_track.title,
+            'pageUrl': 'http://' + config.app_domain + '/'
+        },
+        util.string.md5('artist ' + current_track.artist + ' title ' + current_track.title)
+    );
 
     /*$('#tabcontent_tabs_player__buy').text('');
     network.lastfm.api(

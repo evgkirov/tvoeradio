@@ -105,13 +105,10 @@ if (config.mode == 'vk') {
 
     network.vkontakte.addCallback('onLocationChanged', function(str){
         if (str) {
-            var parts = util.string.urldecode(str).split('/', 2);
+            var parts = util.string.urldecode(str).split('/');
             if (parts[0] == 'info') {
-                parts = parts[1].split('/', 2);
+                ui.infoblock.show_popup(parts[1], parts[2]);
                 network.vkontakte.callMethod('setLocation', '');
-                $(document).ready(function(){
-                    ui.infoblock.show_popup(parts[0], parts[1]);
-                });
             } else {
                 player.control.start(parts[0], parts[1]);
             }
