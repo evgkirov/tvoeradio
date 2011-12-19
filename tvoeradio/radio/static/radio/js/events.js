@@ -108,8 +108,10 @@ if (config.mode == 'vk') {
             var parts = util.string.urldecode(str).split('/', 2);
             if (parts[0] == 'info') {
                 parts = parts[1].split('/', 2);
-                ui.infoblock.show_popup(parts[0], parts[1]);
                 network.vkontakte.callMethod('setLocation', '');
+                $(document).ready(function(){
+                    ui.infoblock.show_popup(parts[0], parts[1]);
+                });
             } else {
                 player.control.start(parts[0], parts[1]);
             }
