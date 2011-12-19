@@ -210,9 +210,9 @@ ui.update_track_controls = function() {
 ui.update_station_info = function() {
     $('#station_name').html(player.station.get_current_html());
     if (player.station.current.noshare) {
-        $('#menu_station__poststatus').hide();
+        $('#menu_station__poststatus, #menu_station__postwall').hide();
     } else {
-        $('#menu_station__poststatus').show();
+        $('#menu_station__poststatus, #menu_station__postwall').show();
     }
     ui.update_station_controls();
 };

@@ -155,7 +155,7 @@ $(document).ready(function() {
             'wall.post',
             {
                 'services': 'twitter,facebook',
-                'message': current_track.artist + ' — ' + current_track.title + ' #np #tvoeradio',
+                'message': current_track.artist + ' — ' + current_track.title + ' #np #tvoeradio', // artist и title не убирать, так как показываются в твиттере
                 'attachment': 'audio' + current_track.vk_oid + '_' + current_track.vk_aid
             },
             function(data) {
