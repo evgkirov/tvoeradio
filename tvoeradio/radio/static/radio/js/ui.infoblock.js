@@ -23,7 +23,6 @@ ui.infoblock.convert_wiki = function (elem) {
 
 
 ui.infoblock.add_comments = function(elem, type, name) {
-    var title = 'Твоёрадио: информация о ' + name;
     var hash = 'info/' + type + '/' + util.string.urlencode(name)
     var url = config.vk_api_url + '#' + hash;
     var hash = util.string.md5(type + ' ' + name)
@@ -34,7 +33,7 @@ ui.infoblock.add_comments = function(elem, type, name) {
         {
             'autoPublish': 0,
             'limit': 5,
-            'pageTitle': title,
+            'pageTitle': 'Твоёрадио: информация о ' + name,
             'pageUrl': url
         },
         hash
