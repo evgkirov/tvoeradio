@@ -23,10 +23,21 @@ ui.infoblock.convert_wiki = function (elem) {
 
 
 ui.infoblock.add_comments = function(elem, type, name) {
+    var title = 'Твоёрадио: информация о ' + name;
+    var url = '/';
     var hash = util.string.md5(type + ' ' + name)
     var id = 'infoblock_' + type + util.random.randint(0, 100500);
     elem.find('.infoblock__comments').attr('id', id + '__comments');
-    network.vkontakte.Widgets.Comments(id + '__comments', {autoPublish: 0, limit: 5}, hash);
+    network.vkontakte.Widgets.Comments(
+        id + '__comments',
+        {
+            'autoPublish': 0,
+            'limit': 5,
+            'pageTitle': title,
+            'pageUrl': url
+        },
+        hash
+    );
 }
 
 
