@@ -23,6 +23,7 @@ ui.infoblock.convert_wiki = function (elem) {
 
 
 ui.infoblock.add_comments = function(elem, type, name) {
+    var title = name + ' (в приложении «Твоёрадио»)';
     var hash = 'info/' + type + '/' + util.string.urlencode(name)
     var url = 'http://' + config.app_domain + '/app/vkredir/?hash=' + hash;
     var hash = util.string.md5(type + ' ' + name)
@@ -31,9 +32,9 @@ ui.infoblock.add_comments = function(elem, type, name) {
     network.vkontakte.Widgets.Comments(
         id + '__comments',
         {
-            'autoPublish': 0,
+            'autoPublish': 1,
             'limit': 5,
-            'pageTitle': 'Твоёрадио: информация о ' + name,
+            'pageTitle': ,
             'pageUrl': url
         },
         hash
