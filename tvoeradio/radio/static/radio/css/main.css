@@ -427,7 +427,7 @@ a:hover, .pseudolink:hover {
     position: absolute;
     text-align: center;
     width: 400px;
-    z-index: 105;
+    z-index: 500;
 }
 
 #notification.error {

@@ -29,6 +29,8 @@ network.lastfm.api = function(method, params, callback) {
         cache_key += '&' + k + '=' + params[k];
     }
 
+    var passed_params = params;
+
     params.method = method;
     params.api_key = api_key;
     if (this.session_key) {
@@ -49,19 +51,37 @@ network.lastfm.api = function(method, params, callback) {
         var is_nocache_method = ($.inArray(method, this.nocache_methods) != -1);
 
         if (cache_result && !is_nocache_method) {
+
             callback(cache_result);
+
         } else {
+
             callback.cache_key = cache_key;
-            $.getJSON(this.api_url+'?callback=?', params, function(data) {
-                if (!is_nocache_method) {
-                    var minutes = 60*24*7;  // a week
-                    if ($.inArray(method, network.lastfm.shortcache_methods) != -1) {
-                        minutes = 10;
+
+            $.jsonp({
+                'url': this.api_url+'?callback=?',
+                'data': params,
+                'cache': false,
+                'pageCache': false,
+                //'timeout': 15000,
+                'success': function(data) {
+                    if (!is_nocache_method) {
+                        var minutes = 60*24*7;  // a week
+                        if ($.inArray(method, network.lastfm.shortcache_methods) != -1) {
+                            minutes = 10;
+                        }
+                        lscache.set(callback.cache_key, data, minutes);
                     }
-                    lscache.set(callback.cache_key, data, minutes);
+                    callback(data);
+                },
+                'error': function(data, msg) {
+                    window.setTimeout(function(){
+                        network.lastfm.api(method, passed_params, callback);
+                    }, 1000);
+                    ui.notification.show('error', 'JSONP ' + msg + ', попробуем ещё разок');
                 }
-                callback(data);
             });
+
         }
 
     } else {
