@@ -34,7 +34,7 @@ ui.infoblock.add_comments = function(elem, type, name) {
         {
             'autoPublish': 1,
             'limit': 5,
-            'pageTitle': ,
+            'pageTitle': title,
             'pageUrl': url
         },
         hash
