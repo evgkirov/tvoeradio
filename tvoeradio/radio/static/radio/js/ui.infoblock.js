@@ -24,7 +24,7 @@ ui.infoblock.convert_wiki = function (elem) {
 
 ui.infoblock.add_comments = function(elem, type, name) {
     var hash = 'info/' + type + '/' + util.string.urlencode(name)
-    var url = config.vk_api_url + '#' + hash;
+    var url = 'http://' + config.app_domain + '/app/vkredir/?hash=' + hash;
     var hash = util.string.md5(type + ' ' + name)
     var id = 'infoblock_' + type + util.random.randint(0, 100500);
     elem.find('.infoblock__comments').attr('id', id + '__comments');

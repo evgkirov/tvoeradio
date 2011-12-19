@@ -4,6 +4,7 @@ from django.contrib.auth.views import logout_then_login
 
 urlpatterns = patterns('radio.views',
     url('^$', 'app', name='app'),
+    url('^vkredir/$', 'redirect_to_vk', name='redirect_to_vk'),
     url('^login/$', 'login', name='login'),
     url('^login/proceed/$', 'login_proceed', name='login_proceed'),
     url('^logout/$', logout_then_login, name='logout'),

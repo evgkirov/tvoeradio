@@ -50,6 +50,14 @@ def app(request):
     }
 
 
+def redirect_to_vk(request):
+    hsh = request.GET.get('hash', '')
+    url = settings.VK_APP_URL
+    if hsh:
+        url = u'%s#%s' % (url, hsh)
+    return redirect(url)
+
+
 @render_to('radio/login.html')
 def login(request):
     #return {}
