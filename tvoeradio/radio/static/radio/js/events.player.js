@@ -236,8 +236,4 @@ $(document).ready(function() {
         userdata.favorited_stations.remove(player.station.type, player.station.name);
     });
 
-    //ui.go_to_page('player');
-    player.control.start('tag', 'jazz');
-
-
 });
