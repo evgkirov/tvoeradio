@@ -33,6 +33,7 @@ network.lastfm.api = function(method, params, callback) {
 
     params.method = method;
     params.api_key = api_key;
+    params.rnd = util.random.randint(0, 100500); // чтобы не скешировалось лишнее
     if (this.session_key) {
         params['sk'] = this.session_key;
     }
@@ -61,24 +62,31 @@ network.lastfm.api = function(method, params, callback) {
             $.jsonp({
                 'url': this.api_url+'?callback=?',
                 'data': params,
-                'cache': false,
                 'pageCache': false,
+                // cache = true -- потому что мы сами ставим флаг для кэширования (параметр rnd).
+                // jquery-jsonp не позволяет с false работать нормально с подписанными запросами LFM
+                'cache': true,
+                'dataType': 'jsonp',
                 //'timeout': 15000,
                 'success': function(data) {
-                    if (!is_nocache_method) {
-                        var minutes = 60*24*7;  // a week
-                        if ($.inArray(method, network.lastfm.shortcache_methods) != -1) {
-                            minutes = 10;
+                    if (data['error']) {
+                        ui.notification.show('error', 'Произошла ошибка во время запроса к Last.fm API. Для корректной работы может потребоваться перезапуск приложения. ' + data.message + ' (код '+ data.error + ')', true);
+                    } else {
+                        if (!is_nocache_method) {
+                            var minutes = 60*24*7;  // a week
+                            if ($.inArray(method, network.lastfm.shortcache_methods) != -1) {
+                                minutes = 10;
+                            }
+                            lscache.set(callback.cache_key, data, minutes);
                         }
-                        lscache.set(callback.cache_key, data, minutes);
+                        callback(data);
                     }
-                    callback(data);
                 },
                 'error': function(data, msg) {
                     window.setTimeout(function(){
                         network.lastfm.api(method, passed_params, callback);
                     }, 1000);
-                    ui.notification.show('error', 'JSONP ' + msg + ', попробуем ещё разок');
+                    ui.notification.show('error', msg + ', попробуем ещё разок');
                 }
             });
 
