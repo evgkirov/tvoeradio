@@ -45,7 +45,6 @@ $(document).ready(function() {
         ui.search.clear_result();
     });
 
-
     $("#search-widget__name").autocomplete({
         'source': function(request, callback) {
             var type = $('#search-widget__type').val();

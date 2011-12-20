@@ -842,9 +842,6 @@ h2 {
 #button_next:active { background-position: -96px bottom; }
 
 .control_slider {
-    background-image: url(../img/control_slider.png);
-    background-repeat: no-repeat;
-    border-top: 1px solid white;
     cursor: pointer;
     float: right;
     height: 10px;
@@ -862,23 +859,42 @@ h2 {
     top: -13px;
 }
 
+.ui-slider {
+    border-top: 1px solid white;
+    padding-right: 10px;
+}
+
+.ui-slider-handle {
+    background: #ffffff;
+    display: block;
+    outline: none;
+    position: relative;
+    height: 5px;
+    width: 10px;
+}
+
 #slider_volume {
-    background-position: 80% 0;
     width: 100px;
 }
 
 #slider_seek {
-    border-top-color: #999999;
-    border-top-color: rgba(255, 255, 255, .4);
+    border-top: 1px solid #999999;
+    border-top: 1px solid rgba(255, 255, 255, .4);
+    height: 5px;
     width: 350px;
 }
 
-#slider_seek div {
-    border-top: 1px solid white;
-    height: 0;
+#slider_load {
+    border-top: 1px solid #fff;
     position: relative;
     top: -1px;
     width: 0%;
+}
+
+#slider_pos {
+    border-top: none;
+    position: relative;
+    top: -1px;
 }
 
 #controls .tabs {

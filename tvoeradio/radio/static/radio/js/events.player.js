@@ -8,7 +8,7 @@ $(document).ready(function() {
     } else {
         default_volume = parseInt(default_volume) / 100;
     }
-    $('#slider_volume').css('background-position', default_volume*100+'% 0');
+    //$('#slider_volume').css('background-position', default_volume*100+'% 0');
 
 
     // Поднимаем плеер
@@ -33,6 +33,7 @@ $(document).ready(function() {
                 );
             }
             ui.update_track_controls();
+            $('#slider_pos').slider('option', 'max', player.playlist.get_current_track().duration);
         },
 
         'pause': function(e) {
@@ -53,14 +54,21 @@ $(document).ready(function() {
             player.control.next();
         },
 
-        'timeupdate': function(e) {
-            $('#slider_seek div').width(e.jPlayer.status.seekPercent+'%');
-            $('#slider_seek').css('background-position', (100*e.jPlayer.status.currentTime/player.playlist.get_current_track().duration)+'% 0');
-            $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(player.playlist.get_current_track().duration));
+        'progress': function(e) {
+            $('#slider_load').width(e.jPlayer.status.seekPercent+'%');
         },
 
-        'volumechange': function(e) {
-            $('#slider_volume').css('background-position', e.jPlayer.status.volume*100+'% 0');
+        'seeking': function(e) {
+            $('#slider_pos .ui-slider-handle').css('opacity', .4);
+        },
+
+        'seeked': function(e) {
+            $('#slider_pos .ui-slider-handle').css('opacity', 1);
+        },
+
+        'timeupdate': function(e) {
+            $('#slider_pos').slider('value', e.jPlayer.status.currentTime);
+            $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(player.playlist.get_current_track().duration));
         }
 
     });
@@ -73,43 +81,26 @@ $(document).ready(function() {
     $('#button_previous').click(player.control.previous);
     $('#button_play, #button_pause').click(player.control.pause);
 
-    $('#slider_seek').click(function(e) {
-        var percent = e.offsetX / $(this).width();
-        var max_percent = $('#mp3player').data('jPlayer').status.seekPercent / 100;
-        percent = Math.min(percent, max_percent);
-        var time = Math.round(percent * player.playlist.get_current_track().duration)-1;
-        if (time - 2 >= 0) {
-            time = time - 2;
+    $('#slider_pos').slider({
+        'step': 0.05,
+        'slide': function(event, jui) {
+            if (event.originalEvent) {
+                player.audio.seek(jui.value);
+            }
         }
-        player.audio.seek(time);
     });
 
-    function change_volume(e) {
-        var slider_width = 10;
-        var x = e.pageX-$('#slider_volume').position().left-Math.round(slider_width/2);
-        var k = ($('#slider_volume').width() - slider_width) / 100;
-        var vol = Math.round(x/k);
-        if (vol > 100) vol = 100;
-        if (vol < 0) vol = 0;
-        $('#mp3player').jPlayer('volume', vol / 100);
-        ui.notification.show('info', 'Громкость: ' + vol +'%');
-        util.cookie.set('tvoeradio_player_volume', vol, 60*60*24*1000);
-    }
-
-    $('#slider_volume').mousedown(function(e) {
-        e.preventDefault();
-        change_volume(e);
-        $(window).mousemove(change_volume);
-    });
-
-    $('#slider_volume').click(change_volume);
-
-    $(window).mouseup(function(){
-        $(this).unbind('mousemove', change_volume);
+    $('#slider_volume').slider({
+        'value': default_volume*100,
+        'slide': function(event, jui) {
+            $('#mp3player').jPlayer('volume', jui.value / 100);
+            ui.notification.show('info', 'Громкость: ' + jui.value +'%');
+            util.cookie.set('tvoeradio_player_volume', jui.value, 60*60*24*1000);
+        }
     });
 
     $('#tabcontent_tabs_player__playlist .boxed').live('click', function(e){
-       player.control.navigate($(this).data('number'));
+        player.control.navigate($(this).data('number'));
     });
 
     // Меню трека
@@ -244,6 +235,9 @@ $(document).ready(function() {
     $('#menu_station__removefavorite').click(function(){
         userdata.favorited_stations.remove(player.station.type, player.station.name);
     });
+
+    //ui.go_to_page('player');
+    player.control.start('tag', 'jazz');
 
 
 });
