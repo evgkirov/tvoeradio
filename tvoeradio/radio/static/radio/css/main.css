@@ -447,47 +447,28 @@ a:hover, .pseudolink:hover {
     border: 1px solid #666;
 }
 
-#search-suggest {
+.ui-autocomplete {
     background: white;
     border: 1px solid #6792bb;
-    display: none;
-    position: absolute;
-    top: 64px;
-    z-index: 300;
-}
-
-#search-suggest div {
-    clear: both;
-}
-
-#search-suggest div span {
-    color:  #666666;
-    display: block;
-    float: left;
-    padding: 4px 10px 0px 10px;
-    text-align: right;
-    width: 78px;
-}
-
-#search-suggest div ul {
-    float: left;
     list-style: none;
-    min-width: 200px;
+    width: 300px;
 }
 
-#search-suggest div ul li {
+.ui-autocomplete li a {
     cursor: pointer;
+    color: #000000;
     display: block;
     min-height: 18px;
     background: 4px 4px no-repeat;
     padding: 4px 14px 0px 10px;
 }
 
-#search-suggest div ul li:hover {
+.ui-autocomplete li a:hover {
     background-color: #DAE2E8;
+    text-decoration: none;
 }
 
-#search-suggest div ul li.active {
+.ui-autocomplete li a.ui-state-hover {
     background-color: #597ea4;
     color: #ffffff;
 }
@@ -593,16 +574,14 @@ a:hover, .pseudolink:hover {
     white-space: nowrap;
 }
 
-#search-widget__label {
-    color: #ffffff;
+#search-widget__type {
     display: inline-block;
     font-size: 11px;
     margin-right: 15px;
-    text-align: right;
     width: 100px;
 }
 
-#search-widget__text {
+#search-widget__name {
     background-color: #FFFFFF;
     background-image: linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -o-linear-gradient(top, #efefef 0%, #ffffff 100%);

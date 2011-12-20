@@ -12,7 +12,7 @@ ui.resz = function() {
     var ww = $(window).width();
     var wh = $(window).height()
     $('#slider_seek').width(ww-400);
-    $('#search-widget__text').width(ww-155);
+    $('#search-widget__name').width(ww-155);
     $('#trackinfo div').width(ww-140);
     if (config.mode != 'vk') {
         $('#trackinfo_panel').height(wh-$('#controls').height()-20);

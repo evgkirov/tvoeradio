@@ -73,23 +73,15 @@
 
         <div id="page_tune" class="page">
 
-            <div id="search-suggest">
-                <input id="search-suggest__text" type="hidden" />
-                <div id="search-suggest__artist">
-                    <span>исполнители</span>
-                    <ul></ul>
-                </div>
-                <div id="search-suggest__tag">
-                    <span>теги</span>
-                    <ul></ul>
-                </div>
-            </div>
-
             <div id="topnav"></div>
 
             <div id="search-widget">
                 <div id="search-widget__clear"></div>
-                <span id="search-widget__label">поиск:</span><input id="search-widget__text" type="text" class="input_text" />
+                <select id="search-widget__type">
+                    <option value="artist">исполнитель</option>
+                    <option value="tag">тег</option>
+                </span>
+                <input id="search-widget__name" type="text" class="input_text" />
             </div>
 
             <div id="dashboard">
