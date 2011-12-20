@@ -703,6 +703,8 @@ h2 {
 
 .infoblock__line_stationlist {
     background: #f1f1f1;
+    border-bottom: 1px solid #bbb;
+    border-top: 1px solid #bbb;
 }
 
 .infoblock__line_stationlist td.infoblock__line__header {
