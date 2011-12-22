@@ -123,6 +123,7 @@ $(document).ready(function() {
     $('#menu_track__tag').click(function(){
         var current_track = player.playlist.get_current_track();
         ui.popup.show('Добавить теги', ich.tpl_popup__tag_add(current_track), 300);
+        cuSel({'changedEl': 'select'});
     });
 
     $('#form_tag_add .form__submit').live('click', function(){

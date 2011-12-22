@@ -24,6 +24,7 @@ $(document).ready(function(){
 
     $(window).resize(ui.resz);
     ui.resz();
+    cuSel({'changedEl': 'select'});
 
 
     // Логинимся в Last.fm, если были залогинены ранее
@@ -95,6 +96,8 @@ $(document).ready(function(){
 
     $('#app-preloader').hide();
     $('#app-content').fadeIn();
+
+    $('#search-widget__name').focus();
 
     window.setTimeout(migrate.favorites, 1000);
 });

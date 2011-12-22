@@ -217,6 +217,75 @@ a:hover, .pseudolink:hover {
     position:relative;
 }
 
+.cusel {
+    background: #ffffff;
+    border: 1px solid #C0CAD5;
+    cursor: pointer;
+    display: inline-block;
+    height: 19px;
+    position: relative;
+    z-index: 1;
+}
+
+.cuselFrameRight {
+    background: url(../img/darr_dd_out.gif) center center no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 19px;
+    width: 21px;
+    z-index: 2;
+}
+
+.cusel .cuselText {
+    display: block;
+    height: 13px;
+    padding: 3px 5px;
+}
+
+.cusel span {
+    background: #ffffff;
+    display: block;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 3px 0px 3px 10px;
+}
+
+
+.cusel-scroll-wrap .jScrollPaneContainer {
+    border: 1px solid #C0CAD5;
+    position: relative;
+}
+
+
+.cusel span:hover,
+.cusel .cuselOptHover {
+    background: #DAE2E8;
+    color: #000;
+}
+.cusel .cuselActive,
+.cusel .cuselActive:hover {
+    background: #597ea4;
+    color: #fff;
+    cursor: default;
+}
+
+.cusel:hover,
+.cusel:focus,
+.cuselFocus {
+    outline: none;
+}
+
+.cusel:hover .cuselFrameRight,
+.cuselFocus .cuselFrameRight {
+    background-color: #E1E8ED;
+    border-left: 1px solid #D2DBE0;
+}
+
+.cuselOpen {
+    z-index: 999;
+}
+
 .stations-list {
     list-style: none;
 }
@@ -436,7 +505,13 @@ a:hover, .pseudolink:hover {
 }
 
 .form__line {
+    height: 37px;
     margin-bottom: 10px;
+}
+
+.form__line select {
+    display: block;
+    width: 99%;
 }
 
 .form__line label {
@@ -574,26 +649,35 @@ a:hover, .pseudolink:hover {
     white-space: nowrap;
 }
 
-#search-widget__type {
-    display: inline-block;
-    font-size: 11px;
-    margin-right: 15px;
-    width: 100px;
+#search-widget__type  {
+    width: 90px;
 }
 
-#search-widget__name {
-    background-color: #FFFFFF;
+
+#search-widget__name,
+#cuselFrame-search-widget__type {
+    /*background-color: #FFFFFF;
     background-image: linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -o-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -moz-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -webkit-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -ms-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #efefef), color-stop(1, #ffffff));
-    border-radius: 3px;
-    display: inline-block;
+    border-radius: 3px;*/
+    border-color: rgba(0,0,0,.8);
+    display: block;
     font-size: 11px;
+    left: 125px;
     margin: 0;
+    position: absolute;
+    top: 15px;
 }
+
+
+#cuselFrame-search-widget__type {
+    left: 15px;
+}
+
 
 #search-widget__clear {
     background: url(../img/search-widget__clear.gif) center center no-repeat;
@@ -601,9 +685,10 @@ a:hover, .pseudolink:hover {
     display: none;
     height: 11px;
     position: absolute;
-    right: 27px;
+    right: 23px;
     width: 11px;
     top: 20px;
+    z-index: 20;
 }
 
 h2 {
