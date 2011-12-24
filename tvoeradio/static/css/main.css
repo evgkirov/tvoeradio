@@ -126,7 +126,6 @@ a:hover {
 }
 
 .error {
-    text-align: center;
 }
 
 .error #header h1 {
@@ -134,4 +133,54 @@ a:hover {
     margin: 0;
     text-align: center;
     width: auto;
+}
+
+.error .whitemessage {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.error .bluebutton {
+    background: #2B587A;
+    color: #fff;
+    display: block;
+    font-size: 200%;
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 400px;
+    text-align: center;
+}
+
+.error .smallgray,
+.error .smallgray a {
+    color: #999;
+    font-size: 10px;
+}
+
+.error .browsers {
+    list-style: none;
+    margin-left: 0;
+    padding-top: 0;
+}
+
+.error .browsers li {
+    background: left center no-repeat;
+    display: block;
+    padding: 2px 0 2px 20px;
+}
+
+.error .browsers li.chrome {
+    background-image: url(../img/icons/chrome.png);
+}
+
+.error .browsers li.firefox {
+    background-image: url(../img/icons/firefox.png);
+}
+
+.error .browsers li.opera {
+    background-image: url(../img/icons/opera.png);
+}
+
+.error .browsers li.safari {
+    background-image: url(../img/icons/safari.png);
 }

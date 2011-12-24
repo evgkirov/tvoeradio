@@ -15,10 +15,12 @@ import urllib
 import urllib2
 
 from .backends import VkontakteDesktopUserBackend
+from .decorators import noie7
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
 from .utils import get_user_stations_list
 
 
+@noie7
 @login_required
 @render_to('radio/app.html')
 def app(request):
@@ -58,9 +60,8 @@ def redirect_to_vk(request):
     return redirect(url)
 
 
-@render_to('radio/login.html')
+@noie7
 def login(request):
-    #return {}
     params = {
         'client_id': settings.VK_APP_ID,
         'scope': settings.VK_APP_SETTINGS,
