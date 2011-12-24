@@ -85,9 +85,14 @@ $(document).ready(function(){
     });
 
     $(window).keyup(function(e){
+        $('#welcome:visible').remove();
         if (e.which == 27) {
             ui.popup.hide();
         }
+    });
+
+    $(window).click(function(e){
+        $('#welcome:visible').remove();
     });
 
     $('.infoblock_user button').live('click', function() {

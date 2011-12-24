@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 from annoying.decorators import render_to, ajax_request
+from datetime import timedelta, datetime
 from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
 from django.utils import simplejson
 from django.utils.datastructures import MultiValueDictKeyError
-from vk_iframe.forms import VkontakteOpenAPIForm
 import random
 import urllib
 import urllib2
 
-from .backends import VkontakteDesktopUserBackend
 from .decorators import noie7
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
 from .utils import get_user_stations_list
@@ -49,6 +47,7 @@ def app(request):
         'recent_stations': get_user_stations_list(RecentStation, user, 10),
         'favorited_stations': get_user_stations_list(FavoritedStation, user),
         'bans': bans,
+        'just_registered': ((user.date_joined + timedelta(minutes=1)) > datetime.now()),
     }
 
 

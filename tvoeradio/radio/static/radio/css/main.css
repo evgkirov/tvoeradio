@@ -696,6 +696,26 @@ select:focus {
     z-index: 20;
 }
 
+#welcome {
+    background: rgba(233, 237, 241, .92);
+    border: 1px solid #6792bb;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
+    color: #607387;
+    left: 125px;
+    padding: 10px;
+    position: absolute;
+    top: 35px;
+    z-index: 10;
+}
+
+#welcome__i {
+    background: url(../img/welcome.png) left top no-repeat;
+    height: 10px;
+    position: absolute;
+    width: 10px;
+    top: -11px;
+}
+
 h2 {
     border-bottom: 1px solid #DAE1E8;
     color: #36638E;

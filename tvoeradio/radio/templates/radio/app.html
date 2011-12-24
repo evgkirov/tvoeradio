@@ -82,6 +82,9 @@
                     <option value="tag">тег</option>
                 </span>
                 <input id="search-widget__name" type="text" class="input_text" />
+                {% if just_registered %}
+                    <div id="welcome"><div id="welcome__i"></div>Начать работу можно с поисковой строки:<br/>введите здесь имя любимого исполнителя и нажмите Enter.</div>
+                {% endif %}
             </div>
 
             <div id="dashboard">
