@@ -84,6 +84,12 @@ $(document).ready(function(){
         });
     });
 
+    $(window).keyup(function(e){
+        if (e.which == 27) {
+            ui.popup.hide();
+        }
+    });
+
     $('.infoblock_user button').live('click', function() {
         network.lastfm.logout();
         ui.update_topnav();
