@@ -55,6 +55,10 @@ a:hover {
     clear: both;
 }
 
+.center {
+    text-align: center;
+}
+
 .fleft {
     float: left;
 }
