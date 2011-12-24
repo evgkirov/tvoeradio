@@ -23,7 +23,6 @@ def noie7(view):
                         '&' if '?' in request.get_full_path() else '?',
                         'no_ua_check=1'
                     ])
-                    print cd
                     return render_to_response('radio/badbrowser.html', cd, context_instance=RequestContext(request))
         return view(request, *args, **kwargs)
     return _wrap

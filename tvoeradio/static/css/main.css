@@ -4,7 +4,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, ol {
 }
 
 body {
-    background: #ffffff;
+    background: #f7f7f7;
     color: #000000;
     font-size: 14px;
     font-family: "PT Serif", "Times New Roman", serif;
@@ -73,43 +73,38 @@ a:hover {
 }
 
 #header {
-    background: #f1f1f1;
+    background: #ddd;
     margin-bottom: 20px;
-}
-
-#header h1 {
-    color: #2B587A;
-    font-family: Lobster, cursive;
-    font-size: 44px;
-    font-weight: normal;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 #header h1 a {
-    color: #2B587A;
+    background: url(../img/tvoeradio-logo.png);
+    color: #ddd;
+    font-size: 0;
+    display: block;
+    height: 50px;
+    margin: 0 auto;
     text-decoration: none;
+    width: 210px;
 }
 
-#header h1,
 #wrapper {
     margin: 0 auto;
-    width: 900px;
+    padding-left: 250px;
+    width: 880px;
 }
 
+
 #content {
-    float: right;
+    float: left;
     width: 630px;
 }
 
-#content.shifted {
-    position: relative;
-    top: -128px;
-}
-
 #sidebar {
-    float: left;
+    float: right;
     opacity: 1;
-    padding-top: 15px;
+    padding-top: 8px;
     width: 220px;
 }
 
@@ -127,16 +122,6 @@ a:hover {
     float: left;
     padding-right: 10px;
     padding-top: 5px;
-}
-
-.error {
-}
-
-.error #header h1 {
-    font-size: 24px;
-    margin: 0;
-    text-align: center;
-    width: auto;
 }
 
 .bluebutton {
