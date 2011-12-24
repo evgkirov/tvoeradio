@@ -62,6 +62,11 @@ a:hover, .pseudolink:hover {
     width: 97%;
 }
 
+input:focus,
+select:focus {
+    outline: none;
+}
+
 .menu_button {
     cursor: pointer;
     display: block;
@@ -656,15 +661,14 @@ a:hover, .pseudolink:hover {
 
 #search-widget__name,
 #cuselFrame-search-widget__type {
-    /*background-color: #FFFFFF;
+    background-color: #FFFFFF;
     background-image: linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -o-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -moz-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -webkit-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -ms-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #efefef), color-stop(1, #ffffff));
-    border-radius: 3px;*/
-    border-color: rgba(0,0,0,.8);
+    border-radius: 3px;
     display: block;
     font-size: 11px;
     left: 125px;
@@ -676,6 +680,7 @@ a:hover, .pseudolink:hover {
 
 #cuselFrame-search-widget__type {
     left: 15px;
+    width: 92px !important;
 }
 
 
