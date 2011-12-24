@@ -7,13 +7,16 @@ def settings(request):
 
 
 def user_platform(request):
-    platform = u'Виндоус'
+    platform_ru = u'Виндоус'
+    platform = 'Windows'
     u_a = request.META.get('HTTP_USER_AGENT', '')
     if 'Linux' in u_a:
-        platform = u'Линукс'
+        platform_ru = u'Линукс'
+        platform = 'Linux'
     if 'Mac OS X' in u_a:
-        platform = u'Мак'
-    return {'user_platform': platform}
+        platform_ru = u'Мак'
+        platform = 'Mac OS X'
+    return {'user_platform_ru': platform_ru, 'user_platform': platform}
 
 
 def version(request):
