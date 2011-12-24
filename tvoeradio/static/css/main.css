@@ -135,12 +135,7 @@ a:hover {
     width: auto;
 }
 
-.error .whitemessage {
-    margin: 0 auto;
-    width: 600px;
-}
-
-.error .bluebutton {
+.bluebutton {
     background: #2B587A;
     color: #fff;
     display: block;
@@ -151,10 +146,16 @@ a:hover {
     text-align: center;
 }
 
-.error .smallgray,
-.error .smallgray a {
+.smallgray,
+.smallgray a {
     color: #999;
     font-size: 10px;
+}
+
+
+.error .whitemessage {
+    margin: 0 auto;
+    width: 600px;
 }
 
 .error .browsers {
