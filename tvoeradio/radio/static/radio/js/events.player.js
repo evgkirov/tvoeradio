@@ -17,9 +17,17 @@ $(document).ready(function() {
 
         'swfPath': config.jplayer_swfpath.replace(/\\/g, '/').replace(/\/[^\/]*\/?$/, ''),
 
-        'solution': 'flash, html',
+        'solution': 'flash,html',
 
         'volume': default_volume,
+
+        'errorAlerts': false,
+
+        'error': function(e) {
+            if (e.jPlayer.error.type == $.jPlayer.error.NO_SOLUTION) {
+                ui.notification.show('error permanent unclosable', 'Воспроизведение музыки невозможно.<br/><br/>Установите <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player</a>.', true);
+            }
+        },
 
         'play': function(e) {
             if (network.lastfm.authorized) {

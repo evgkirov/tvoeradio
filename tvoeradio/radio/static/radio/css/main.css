@@ -509,6 +509,15 @@ select:focus {
     background: rgba(170,0,0,.9);
 }
 
+#notification.unclosable {
+    cursor: default;
+}
+
+#notification a {
+    color: #fff;
+    text-decoration: underline;
+}
+
 .form__line {
     height: 37px;
     margin-bottom: 10px;

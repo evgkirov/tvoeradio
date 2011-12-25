@@ -17,7 +17,7 @@ $(document).ready(function(){
     });
 
     /*$.ajaxError(function(jqXHR, textStatus, errorThrown) {
-            ui.notification.show('error', 'Не удалось совершить действие из-за ошибки во время запроса: ' + textStatus, true);
+            ui.notification.show('error permanent', 'Не удалось совершить действие из-за ошибки во время запроса: ' + textStatus);
     });*/
 
     // Настройка UI
