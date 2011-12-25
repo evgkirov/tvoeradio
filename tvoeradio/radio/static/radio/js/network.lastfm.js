@@ -86,7 +86,6 @@ network.lastfm.api = function(method, params, callback) {
                     window.setTimeout(function(){
                         network.lastfm.api(method, passed_params, callback);
                     }, 1000);
-                    ui.notification.show('error', msg + ', попробуем ещё разок');
                 }
             });
 
