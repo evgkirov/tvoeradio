@@ -26,7 +26,7 @@ $(document).ready(function() {
         'error': function(e) {
             if (e.jPlayer.error.type == $.jPlayer.error.NO_SOLUTION) {
                 var link = 'http://www.adobe.com/go/getflashplayer';
-                if ((window['bridge'])&&(navigator.platform.indexOf('Windows')!==-1)) {
+                if ((window['bridge'])&&(navigator.userAgent.indexOf('Windows')!==-1)) {
                     link = 'http://get.adobe.com/ru/flashplayer/completion/?installer=Flash_Player_11_for_Other_Browsers_(32_bit)';
                 }
                 ui.notification.show('error permanent unclosable', 'Воспроизведение музыки невозможно.<br/><br/>Установите <a href="' + link + '">Adobe Flash Player</a>.', true);
