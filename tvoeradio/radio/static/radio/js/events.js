@@ -42,7 +42,8 @@ $(document).ready(function(){
     $('#topnav__about').live('click', function() {
         var context = {
             'version': config.app_version,
-            'desktop_version': window['bridge'] ? bridge.get_version() : false
+            'desktop_version': window['bridge'] ? bridge.get_version() : false,
+            'year': (new Date()).getFullYear(),
         }
         ui.popup.show('О приложении', ich.tpl_popup__about(context), 300);
     });
