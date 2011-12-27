@@ -4,7 +4,7 @@ register_namespace('migrate');
 migrate.favorites = function() {
     var start = 1400;
     network.vkontakte.api('getVariable', {'key': start - 1}, function(data){
-        if (!data.response) {
+        if (data.response != 'favorites migrated') {
             network.vkontakte.api('getVariables', {'count': 32, 'key': start}, function(data){
                 var params = {};
                 for (var i in data.response) {
