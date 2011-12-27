@@ -7,9 +7,9 @@ def get_version():
         from mercurial import ui, hg
         repo = hg.repository(ui.ui(), here('..'))
         rev = repo.filectx(repo.root, 'tip').rev()
-        if True:
+        if False:
             return 'r%s' % rev
-        rev -= 252
+        rev -= 253
         return '%s.%s' % (rev / 10, rev % 10)
     except:
         return 'unknown'
