@@ -214,8 +214,7 @@ $(document).ready(function() {
             'wall.post',
             {
                 'services': 'twitter,facebook',
-                'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио» #tvoeradio',
-                'attachment': config.vk_api_url + '#' + hash
+                'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио» ' + config.vk_api_url + '#' + hash + ' #np #tvoeradio'
             },
             function(data) {
                 ui.notification.show('info', 'Сообщение отправлено');
