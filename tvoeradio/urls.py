@@ -10,7 +10,6 @@ urlpatterns = patterns('',
     (r'^app/', include('radio.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^markitup/', include('markitup.urls')),
-    (r'^robots\.txt$', lambda r: HttpResponse('User-agent: *\nDisallow: /', mimetype='text/plain')),
     (r'^googlea44acf4184a0aff9\.html$', lambda r: HttpResponse('google-site-verification: googlea44acf4184a0aff9.html')),
 )
 
