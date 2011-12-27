@@ -9,7 +9,7 @@ def get_version():
         rev = repo.filectx(repo.root, 'tip').rev()
         if True:
             return 'r%s' % rev
-        #rev -= 35
+        rev -= 252
         return '%s.%s' % (rev / 10, rev % 10)
     except:
         return 'unknown'
