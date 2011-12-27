@@ -1,7 +1,7 @@
 {
     "name": "Твоёрадио",
     "description": "Автоматическое персональное радио на основе твоих музыкальных интересов",
-    "version": "2",
+    "version": "2011.0",
     "app": {
         "launch": {
             "web_url": "http://tvoeradio.org/app/",
