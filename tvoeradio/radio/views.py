@@ -64,7 +64,7 @@ def login(request):
     params = {
         'client_id': settings.VK_APP_ID,
         'scope': settings.VK_APP_SETTINGS,
-        'redirect_uri': 'http://oauth.vkontakte.ru/blank.html',
+        'redirect_uri': 'http://%s/app/login/proceed/' % request.META['HTTP_HOST'],
         'display': 'popup',
         'response_type': 'code',
     }
