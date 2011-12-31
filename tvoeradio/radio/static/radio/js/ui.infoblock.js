@@ -50,6 +50,7 @@ ui.infoblock.show_artist = function(elem, name) {
             'lang': 'ru'
         },
         function(data) {
+            data.artist.url = data.artist.url.replace('http://www.last.fm', 'http://www.lastfm.ru');
             var context = {
                 'name': data.artist.name,
                 'wiki_summary': data.artist.bio.summary,
@@ -88,6 +89,7 @@ ui.infoblock.show_tag = function(elem, name) {
             'lang': 'ru'
         },
         function(data) {
+            data.tag.url = data.tag.url.replace('http://www.last.fm', 'http://www.lastfm.ru');
             var context = {
                 'name': data.tag.name,
                 'wiki_summary': data.tag.wiki.summary,
@@ -152,6 +154,7 @@ ui.infoblock.show_user = function(elem, name) {
             'user': name
         },
         function(data) {
+            data.user.url = data.user.url.replace('http://www.last.fm', 'http://www.lastfm.ru');
             var context = {
                 'name': data.user.name,
                 'image': network.lastfm.select_image(data.user.image, 'large'),

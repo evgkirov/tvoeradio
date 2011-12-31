@@ -57,7 +57,7 @@ $(document).ready(function(){
             for (var i = 0; i < network.lastfm.api_key.length; i += 2) {
                 api_secret += network.lastfm.api_secret[i+1] + network.lastfm.api_secret[i];
             }
-            var url = 'http://www.last.fm/api/auth/?api_key='+api_key+'&token='+data.token;
+            var url = 'http://www.lastfm.ru/api/auth/?api_key='+api_key+'&token='+data.token;
             $('#popup_lastfm__auth1 a').attr('href', url);
             $('#popup_lastfm__auth1 div:first').hide();
             $('#popup_lastfm__auth1 div.button_blue').show();
