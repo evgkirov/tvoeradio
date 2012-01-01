@@ -37,15 +37,15 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
     var q = artist.replace(/"/g,' ') + ' ' + title.replace(/"/g,' ');
     var code = [];
     code.push('return');
-    code.push('    API.audio.search({"q": "' + q + '", "sort": 0, "lyrics": 1})');
-    code.push('    + API.audio.search({"q": "' + q + '", "sort": 0})');
+    code.push('API.audio.search({"q": "' + q + '", "sort": 0, "lyrics": 1})');
+    code.push('+ API.audio.search({"q": "' + q + '", "sort": 0})');
     code.push(';');
 
     this.api('execute', {'code': code.join(' ')}, function(data) {
 
         if (data.response.length <= 2) {
             if (callback_notfound) {
-                setTimeout(callback_notfound, 350, artist, title, callback, callback_notfound);
+                setTimeout(callback_notfound, 1000, artist, title, callback, callback_notfound);
             }
         } else {
             // всё ок - выбор наиболее подходящего файла
