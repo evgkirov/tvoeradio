@@ -227,6 +227,14 @@ ui.update_station_controls = function() {
         $('#menu_station__addfavorite').show();
         $('#menu_station__removefavorite').hide();
     }
+    if (player.station.include_remixes) {
+        $('#menu_station__includeremixes').hide();
+        $('#menu_station__excluderemixes').show();
+    } else {
+        $('#menu_station__includeremixes').show();
+        $('#menu_station__excluderemixes').hide();
+    }
+
 }
 
 

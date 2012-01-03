@@ -46,6 +46,13 @@ player.playlist.add_track = function(artist, title, callback) {
         search_callback_notfound();
         return;
     }
+    var title_lc = title.toLowerCase();
+    if (!player.station.include_remixes && (
+            (title_lc.indexOf('remix') > -1)
+       )) {
+        search_callback_notfound();
+        return;
+   }
     network.vkontakte.search_audio(artist, title, search_callback, search_callback_notfound);
 };
 

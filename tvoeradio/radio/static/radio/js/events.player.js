@@ -248,4 +248,14 @@ $(document).ready(function() {
         userdata.favorited_stations.remove(player.station.type, player.station.name);
     });
 
+    $('#menu_station__includeremixes').click(function(){
+        player.station.include_remixes = true;
+        ui.update_station_controls();
+    });
+
+    $('#menu_station__excluderemixes').click(function(){
+        player.station.include_remixes = false;
+        ui.update_station_controls();
+    });
+
 });
