@@ -132,6 +132,7 @@ ui.update_track_info = function() {
         {
             'autoPublish': 0,
             'limit': 10,
+            'mini': 1,
             'pageTitle': current_track.artist + ' — ' + current_track.title + ' (в приложении «Твоёрадио»)',
             'pageUrl': 'http://' + config.app_domain + '/'
         },
