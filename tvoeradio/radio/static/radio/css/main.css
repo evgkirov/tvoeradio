@@ -131,6 +131,13 @@ select:focus {
     z-index: 300;
 }
 
+#loader_fullscreen__cancel {
+    top: 50%;
+    left: 50%;
+    margin: 30px 0 0 -33px;
+    position: absolute;
+}
+
 .button_blue, .button_gray {
     text-align: center;
     border-radius: 2px;

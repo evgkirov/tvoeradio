@@ -56,6 +56,7 @@ ui.fit = function() {
 ui.fit.previous_height = 0;
 
 ui.show_loader_fullscreen = function() {
+    $('#loader_fullscreen__cancel').hide();
     $('#loader_fullscreen').show();
 };
 

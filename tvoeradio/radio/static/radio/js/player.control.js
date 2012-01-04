@@ -8,14 +8,8 @@ player.control.timeout_start = 0;
 player.control.start = function(type, name) {
     ui.show_loader_fullscreen();
     player.control.timeout_start = window.setTimeout(function(){
-        var highest_timeout = setTimeout("$.noop()");
-        for (var i = player.control.timeout_start; i < highest_timeout; i++) {
-            clearTimeout(i);
-        }
-        ui.notification.show('error permanent', 'Не удалось начать воспроизведение станции.');
-        ui.hide_loader_fullscreen();
-        player.control.stop();
-    }, 60000);
+        $('#loader_fullscreen__cancel').fadeIn();
+    }, 10000);
     player.playlist.clear();
     player.station.set(type, name);
     player.station.current.add_to_playlist(function(){

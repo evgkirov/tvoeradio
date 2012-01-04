@@ -32,6 +32,15 @@ $(document).ready(function(){
     network.lastfm.cookielogin();
     ui.update_topnav();
 
+    $('#loader_fullscreen__cancel').click(function(){
+        var highest_timeout = setTimeout("$.noop()");
+        for (var i = player.control.timeout_start; i < highest_timeout; i++) {
+            clearTimeout(i);
+        }
+        ui.hide_loader_fullscreen();
+        player.control.stop();
+    });
+
     $('#topnav__logout').live('click', function() {
         if (window['bridge']) {
             bridge.logout();
