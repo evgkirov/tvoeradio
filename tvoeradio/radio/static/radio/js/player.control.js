@@ -1,14 +1,25 @@
 register_namespace('player.control');
 
 
-player.control.is_loading = false;
+player.control.is_loading = false;  // сейчас загружается следующий трек
+player.control.timeout_start = 0;
 
 
 player.control.start = function(type, name) {
     ui.show_loader_fullscreen();
+    player.control.timeout_start = window.setTimeout(function(){
+        var highest_timeout = setTimeout("$.noop()");
+        for (var i = player.control.timeout_start; i < highest_timeout; i++) {
+            clearTimeout(i);
+        }
+        ui.notification.show('error permanent', 'Не удалось начать воспроизведение станции.');
+        ui.hide_loader_fullscreen();
+        player.control.stop();
+    }, 30000);
     player.playlist.clear();
     player.station.set(type, name);
     player.station.current.add_to_playlist(function(){
+        window.clearTimeout(player.control.timeout_start);
         player.playlist.current_track_num = 0;
         player.control.is_loading = false;
         ui.hide_loader_fullscreen();
