@@ -9,7 +9,7 @@ player.control.start = function(type, name) {
     ui.show_loader_fullscreen();
     player.control.timeout_start = window.setTimeout(function(){
         $('#loader_fullscreen__cancel').fadeIn();
-    }, 10000);
+    }, 15000);
     player.playlist.clear();
     player.station.set(type, name);
     player.station.current.add_to_playlist(function(){

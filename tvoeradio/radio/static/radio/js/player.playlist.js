@@ -22,6 +22,9 @@ player.playlist.filter_tail = function(artist, title, ban_artist) {
 
 player.playlist.add_track = function(artist, title, callback) {
     var search_callback = function(mp3){
+        if (title.indexOf(artist + ' - ') == 0) {
+            title = title.replace(artist + ' - ', '');
+        }
         var track = {
             'artist': artist,
             'title': title,
