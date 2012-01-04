@@ -15,7 +15,7 @@ player.control.start = function(type, name) {
         ui.notification.show('error permanent', 'Не удалось начать воспроизведение станции.');
         ui.hide_loader_fullscreen();
         player.control.stop();
-    }, 30000);
+    }, 60000);
     player.playlist.clear();
     player.station.set(type, name);
     player.station.current.add_to_playlist(function(){
