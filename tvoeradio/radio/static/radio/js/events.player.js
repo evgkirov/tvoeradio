@@ -214,7 +214,7 @@ $(document).ready(function() {
             'wall.post',
             {
                 'services': 'twitter,facebook',
-                'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио» ' + config.vk_api_url + '#' + hash + ' #np #tvoeradio'
+                'message': 'Рекомендую послушать станцию «' + desc + '» в приложении «Твоёрадио» ' + config.vk_api_url + '#' + hash + ' #np #tvoeradio'
             },
             function(data) {
                 ui.notification.show('info', 'Сообщение отправлено');
@@ -230,7 +230,7 @@ $(document).ready(function() {
                 'wall.post',
                 {
                     'owner_id': uid,
-                    'message': 'Советую послушать станцию «' + desc + '» в приложении «Твоёрадио»:',
+                    'message': 'Рекомендую послушать станцию «' + desc + '» в приложении «Твоёрадио»:',
                     'attachment': config.vk_api_url + '#' + hash
                 },
                 function(data) {
