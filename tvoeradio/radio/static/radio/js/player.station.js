@@ -4,7 +4,7 @@ register_namespace('player.station');
 player.station.type = null;
 player.station.name = null;
 player.station.current = null;
-
+player.station.include_remixes = false;
 
 player.station.set = function(type, name) {
     this.type = type;
