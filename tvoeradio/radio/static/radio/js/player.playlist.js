@@ -51,7 +51,9 @@ player.playlist.add_track = function(artist, title, callback) {
     }
     var title_lc = title.toLowerCase();
     if (!player.station.include_remixes && (
-            (title_lc.indexOf('remix') > -1)
+            (title_lc.indexOf('remix') > -1) ||
+            ((title_lc.indexOf('mix)') > -1) && (title_lc.indexOf('original mix)') == -1)) ||
+            ((title_lc.indexOf('mix]') > -1) && (title_lc.indexOf('original mix]') == -1))
        )) {
         search_callback_notfound();
         return;

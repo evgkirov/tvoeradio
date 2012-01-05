@@ -23,17 +23,11 @@ ui.resz = function() {
 
 
 ui.fit = function() {
-    var app_content = $('#app-content'),
+    var app_content = $c('#app-content'),
         search_suggest = $('#search-suggest :visible'),
         popup = $('.popup:visible'),
         iframe = $('body>iframe');
     var h = app_content.height();
-    if (search_suggest.length) {
-        var ssh = search_suggest.height() + search_suggest.offset().top + 10;
-        if (h < ssh) {
-            h = ssh;
-        }
-    }
     if (popup.length) {
         var ph = popup.height() + popup.offset().top + 30;
         if (h < ph) {

@@ -55,6 +55,7 @@ MEDIA_BUNDLES = (
         'js/3rdparty/cusel.js',
         'radio/js/browsers.js',
         'radio/js/util.namespace.js',
+        'radio/js/util.cachedselectors.js',
         'radio/js/util.random.js',
         'radio/js/util.cookie.js',
         'radio/js/util.string.js',

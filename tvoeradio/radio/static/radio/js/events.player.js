@@ -67,7 +67,7 @@ $(document).ready(function() {
         },
 
         'progress': function(e) {
-            $('#slider_load').width(e.jPlayer.status.seekPercent+'%');
+            $c('#slider_load').width(e.jPlayer.status.seekPercent+'%');
         },
 
         'seeking': function(e) {
@@ -79,8 +79,8 @@ $(document).ready(function() {
         },
 
         'timeupdate': function(e) {
-            $('#slider_pos').slider('value', e.jPlayer.status.currentTime);
-            $('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(player.playlist.get_current_track().duration));
+            $c('#slider_pos').slider('value', e.jPlayer.status.currentTime);
+            $c('#slider_seek span').text($.jPlayer.convertTime(e.jPlayer.status.currentTime)+' / '+$.jPlayer.convertTime(player.playlist.get_current_track().duration));
         }
 
     });
