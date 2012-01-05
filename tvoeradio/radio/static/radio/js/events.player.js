@@ -213,7 +213,7 @@ $(document).ready(function() {
         network.vkontakte.api(
             'wall.post',
             {
-                'services': 'twitter,facebook',
+                'services': '',
                 'message': 'Рекомендую послушать станцию «' + desc + '» в приложении «Твоёрадио» ' + config.vk_api_url + '#' + hash + ' #np #tvoeradio'
             },
             function(data) {
