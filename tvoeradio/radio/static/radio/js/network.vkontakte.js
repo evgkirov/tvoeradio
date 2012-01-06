@@ -21,7 +21,7 @@ network.vkontakte.api = function(method, params, callback) {
                     break;
 
                 default:
-                    ui.notification.show('error permanent', 'Произошла ошибка во время запроса к VK API. Для корректной работы может потребоваться перезапуск приложения. ' + data.error.error_msg + ' (код '+ data.error.error_code + ')');
+                    ui.notification.show('error permanent', 'Произошла ошибка во время запроса к VK API. ' + data.error.error_msg + ' (код '+ data.error.error_code + ')');
 
             }
 
