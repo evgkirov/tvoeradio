@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.admin',
 
+    'dbbackup',
     'markitup',
     'mediagenerator',
     'vk_iframe',
