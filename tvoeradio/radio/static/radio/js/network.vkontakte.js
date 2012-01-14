@@ -37,8 +37,8 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
     var q = artist.replace(/"/g,' ') + ' ' + title.replace(/"/g,' ');
     var code = [];
     code.push('return');
-    code.push('API.audio.search({"q": "' + q + '", "sort": 0, "lyrics": 1})');
-    code.push('+ API.audio.search({"q": "' + q + '", "sort": 0})');
+    code.push('API.audio.search({"q": "' + q + '", "sort": 2, "lyrics": 1})');
+    code.push('+ API.audio.search({"q": "' + q + '", "sort": 2})');
     code.push(';');
 
     this.api('execute', {'code': code.join(' ')}, function(data) {
