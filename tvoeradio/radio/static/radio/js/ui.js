@@ -229,6 +229,19 @@ ui.update_station_controls = function() {
         $('#menu_station__includeremixes').show();
         $('#menu_station__excluderemixes').hide();
     }
+    if (player.station.type == 'similar') {
+        $('#menu_station__onlysimilar span, #menu_station__notonlysimilar span').text(player.station.name);
+        if (player.station.only_similar) {
+            $('#menu_station__onlysimilar').hide();
+            $('#menu_station__notonlysimilar').show();
+        } else {
+            $('#menu_station__onlysimilar').show();
+            $('#menu_station__notonlysimilar').hide();
+        }
+    } else {
+        $('#menu_station__onlysimilar').hide();
+        $('#menu_station__notonlysimilar').hide();
+    }
 
 }
 

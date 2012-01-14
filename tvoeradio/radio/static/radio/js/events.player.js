@@ -258,4 +258,14 @@ $(document).ready(function() {
         ui.update_station_controls();
     });
 
+    $('#menu_station__onlysimilar').click(function(){
+        player.station.only_similar = true;
+        ui.update_station_controls();
+    });
+
+    $('#menu_station__notonlysimilar').click(function(){
+        player.station.only_similar = false;
+        ui.update_station_controls();
+    });
+
 });

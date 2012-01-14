@@ -116,7 +116,7 @@ $(document).ready(function(){
     });
 
     $('#app-preloader').hide();
-    $('#app-content').fadeIn();
+    $('#app-content').fadeIn(1000);
 
     $('#search-widget__name').focus();
 

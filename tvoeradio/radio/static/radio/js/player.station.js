@@ -5,6 +5,8 @@ player.station.type = null;
 player.station.name = null;
 player.station.current = null;
 player.station.include_remixes = false;
+player.station.only_similar = false;  // Играть «только похожие» а не «похожие + исполнитель»
+
 
 player.station.set = function(type, name) {
     this.type = type;
