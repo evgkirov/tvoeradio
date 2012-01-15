@@ -13,7 +13,8 @@ network.lastfm.shortcache_methods = ['user.getLovedTracks'];
 network.lastfm.write_methods = ['album.addTags', 'artist.addTags', 'track.addTags', 'track.love', 'track.updateNowPlaying', 'track.scrobble'];
 
 
-network.lastfm.api = function(method, params, callback) {
+network.lastfm.api = function(method, params, callback, callback_error) {
+
 
     var api_key = network.lastfm.api_key;
     var api_secret = '';
@@ -70,7 +71,13 @@ network.lastfm.api = function(method, params, callback) {
                 //'timeout': 15000,
                 'success': function(data) {
                     if (data['error']) {
-                        ui.notification.show('error permanent', 'Произошла ошибка во время запроса к Last.fm API. ' + data.message + ' (код '+ data.error + ')');
+                        var show_error = true;
+                        if (callback_error) {
+                            show_error = !(callback_error(data));
+                        }
+                        if (show_error) {
+                            ui.notification.show('error permanent', 'Произошла ошибка во время запроса к Last.fm API. ' + data.message + ' (код '+ data.error + ')');
+                        }
                     } else {
                         if (!is_nocache_method) {
                             var minutes = 60*24*7;  // a week

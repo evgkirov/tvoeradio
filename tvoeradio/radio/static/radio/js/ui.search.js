@@ -2,6 +2,10 @@ register_namespace('ui.search');
 
 
 ui.search.load_suggest_for = function(type, txt, callback) {
+    if (type == 'user') {
+        callback([]);
+        return;
+    }
     var params = {};
     params['limit'] = 10;
     params[type] = txt;
@@ -49,12 +53,7 @@ $(document).ready(function() {
         'source': function(request, callback) {
             var type = $('#search-widget__type').val();
             ui.search.load_suggest_for(type, request.term, callback);
-        }/*,
-        'select': function() {
-            var type = $('#search-widget__type').val();
-            var name = $('#search-widget__name').val();
-            ui.search.load_result(type, name);
-        }*/
+        }
     });
 
     $('#search-widget__name').keyup(function(e){

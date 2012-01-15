@@ -811,6 +811,11 @@ h2 {
     max-width: 102px;
 }
 
+.infoblock td.infoblock__photos div {
+    max-height: 102px;
+    overflow: hidden;
+}
+
 .infoblock td.infoblock__photos .nav-infoblock,
 .infoblock td.infoblock__photos img {
     height: 51px;
@@ -818,12 +823,14 @@ h2 {
 }
 
 .infoblock__artists span:after,
-.infoblock__tags span:after {
+.infoblock__tags span:after,
+.infoblock__users span:after {
     content: ',';
 }
 
 .infoblock__artists span:last-child:after,
-.infoblock__tags span:last-child:after {
+.infoblock__tags span:last-child:after,
+.infoblock__users span:last-child:after {
     content: '';
 }
 

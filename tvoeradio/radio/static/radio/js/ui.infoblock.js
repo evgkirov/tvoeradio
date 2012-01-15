@@ -77,6 +77,12 @@ ui.infoblock.show_artist = function(elem, name) {
             elem.html(ich.tpl_infoblock_artist(context));
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
             ui.infoblock.add_comments(elem, 'artist', name);
+        },
+        function(data) {
+            if (data.error == 6) {
+                $(elem).text('Нет такого исполнителя.');
+                return true;
+            }
         }
     );
 };
@@ -142,7 +148,12 @@ ui.infoblock.show_tag = function(elem, name) {
                     elem.find('.infoblock__tags').html(html);
                 }
             );
-
+        },
+        function(data) {
+            if (data.error == 6) {
+                $(elem).text('Нет такого тега.');
+                return true;
+            }
         }
     );
 };
@@ -188,19 +199,76 @@ ui.infoblock.show_user = function(elem, name) {
                 'user.getTopArtists',
                 {
                     'user': name,
-                    'period': 'overall',
-                    'limit': 16
+                    'period': 'overall'
                 },
                 function(data) {
                     var artists = network.lastfm.arrayize(data.topartists.artist);
                     context['artists'] = [];
                     for (var i = 0; i < artists.length; i++) {
-                        context['artists'].push({
-                            'name': artists[i].name,
-                            'image': network.lastfm.select_image(artists[i].image, 'medium', true)
-                        });
+                        var image = network.lastfm.select_image(artists[i].image, 'medium', true);
+                        if (image) {
+                            context['artists'].push({
+                                'name': artists[i].name,
+                                'image': image
+                            });
+                        }
                     }
                     elem.html(ich.tpl_infoblock_user(context));
+                    network.lastfm.api(
+                        'user.getNeighbours',
+                        {
+                            'user': name,
+                            'limit': 10
+                        },
+                        function(data) {
+                            var neighbours = network.lastfm.arrayize(data.neighbours.user);
+                            context['neighbours'] = [];
+                            for (var i = 0; i < neighbours.length; i++) {
+                                context['neighbours'].push({
+                                    'name': neighbours[i].name
+                                });
+                            }
+                            elem.html(ich.tpl_infoblock_user(context));
+                        }
+                    );
+                    network.lastfm.api(
+                        'user.getFriends',
+                        {
+                            'user': name,
+                            'limit': 1000
+                        },
+                        function(data) {
+                            var friends = network.lastfm.arrayize(data.friends.user);
+                            context['friends'] = [];
+                            for (var i = 0; i < friends.length; i++) {
+                                context['friends'].push({
+                                    'name': friends[i].name
+                                });
+                            }
+                            elem.html(ich.tpl_infoblock_user(context));
+                        }
+                    );
+                    if ((network.lastfm.authorized)&&(name != network.lastfm.user)) {
+                        network.lastfm.api(
+                            'tasteometer.compare',
+                            {
+                                'type1': 'user',
+                                'value1': network.lastfm.user,
+                                'type2': 'user',
+                                'value2': name
+                            },
+                            function(data) {
+                                context['tasteometer'] = Math.round(data.comparison.result.score * 100);
+                                elem.html(ich.tpl_infoblock_user(context));
+                            }
+                        );
+                    }
+                },
+                function(data) {
+                    if (data.error == 6) {
+                        $(elem).text('Нет такого пользователя на Last.fm.');
+                        return true;
+                    }
                 }
             );
         }
