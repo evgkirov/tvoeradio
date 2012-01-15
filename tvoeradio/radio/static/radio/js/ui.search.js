@@ -49,8 +49,16 @@ $(document).ready(function() {
         'source': function(request, callback) {
             var type = $('#search-widget__type').val();
             ui.search.load_suggest_for(type, request.term, callback);
-        },
+        }/*,
         'select': function() {
+            var type = $('#search-widget__type').val();
+            var name = $('#search-widget__name').val();
+            ui.search.load_result(type, name);
+        }*/
+    });
+
+    $('#search-widget__name').keyup(function(e){
+        if (e.which == 13) {
             var type = $('#search-widget__type').val();
             var name = $('#search-widget__name').val();
             ui.search.load_result(type, name);

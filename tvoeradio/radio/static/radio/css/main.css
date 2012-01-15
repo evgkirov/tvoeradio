@@ -292,6 +292,8 @@ select:focus {
 .cuselFocus .cuselFrameRight {
     background-color: #E1E8ED;
     border-left: 1px solid #D2DBE0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .cuselOpen {
@@ -685,6 +687,8 @@ select:focus {
     background-image: -ms-linear-gradient(top, #efefef 0%, #ffffff 100%);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #efefef), color-stop(1, #ffffff));
     border-radius: 3px;
+    border-color: #426285;
+    box-shadow: 0 1px 0px 0px #6f91bb, inset 0 1px 4px 0px #c0c4c9;
     display: block;
     font-size: 11px;
     left: 125px;
