@@ -159,7 +159,7 @@ $(document).ready(function() {
             'wall.post',
             {
                 'services': 'twitter,facebook',
-                'message': current_track.artist + ' — ' + current_track.title + ' #np #tvoeradio', // artist и title не убирать, так как показываются в твиттере
+                'message': current_track.artist + ' — ' + current_track.title + ' #np #nowplaying #твоёрадио', // artist и title не убирать, так как показываются в твиттере
                 'attachment': 'audio' + current_track.vk_oid + '_' + current_track.vk_aid
             },
             function(data) {
@@ -214,7 +214,8 @@ $(document).ready(function() {
             'wall.post',
             {
                 'services': '',
-                'message': 'Рекомендую послушать станцию «' + desc + '» в приложении «Твоёрадио» ' + config.vk_api_url + '#' + hash + ' #np #tvoeradio'
+                'message': 'Рекомендую послушать станцию «' + desc + '» в приложении «Твоёрадио» #np #nowplaying #твоёрадио',
+                'attachment': config.vk_api_url + '#' + hash
             },
             function(data) {
                 ui.notification.show('info', 'Сообщение отправлено');
