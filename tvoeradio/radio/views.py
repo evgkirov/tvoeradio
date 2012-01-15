@@ -9,6 +9,7 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
 from django.utils import simplejson
 from django.utils.datastructures import MultiValueDictKeyError
+from httplib import BadStatusLine
 import random
 import urllib
 import urllib2
@@ -120,10 +121,12 @@ def login_proceed(request):
 @login_required
 @require_POST
 def lastfm_proxy(request):
-
-    req = urllib2.Request(settings.LASTFM_API_URL, request.raw_post_data)
-    response = urllib2.urlopen(req)
-    return HttpResponse(response.read(), mimetype='application/json; charset=utf-8')
+    try:
+        req = urllib2.Request(settings.LASTFM_API_URL, request.raw_post_data)
+        response = urllib2.urlopen(req)
+        return HttpResponse(response.read(), mimetype='application/json; charset=utf-8')
+    except BadStatusLine:
+        return HttpResponse('')
 
 
 @login_required
