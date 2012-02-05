@@ -20,11 +20,30 @@ player.playlist.filter_tail = function(artist, title, ban_artist) {
 }
 
 
+player.playlist.autocorrect = function(artist, title) {
+    var original_title = title;
+    title = title.replace(/^\d\d\.\s(.+)$/, '$1'); // 03. Watercolour
+    title = title.replace(/^\d\d\s-\s(.+)$/, '$1'); // 03 - Watercolour
+    title = title.replace(/^0\d\s(.+)$/, '$1'); // 03 Watercolour
+    function endswith(str, suffix) {
+        return str.indexOf(suffix, str.length - suffix.length) !== -1;
+    }
+    if (endswith(title, ' - ' + artist)) {
+        title = title.replace(' - ' + artist, ''); // Watercolour - Pendulum
+    }
+    if (title.indexOf(artist + ' - ') == 0) {
+        title = title.replace(artist + ' - ', ''); // Pendulum - Watercolour
+    }
+    if (original_title != title) {
+        //console.log(original_title);
+        //console.log(title);
+    }
+    return title;
+};
+
+
 player.playlist.add_track = function(artist, title, callback) {
     var search_callback = function(mp3){
-        if (title.indexOf(artist + ' - ') == 0) {
-            title = title.replace(artist + ' - ', '');
-        }
         var track = {
             'artist': artist,
             'title': title,
@@ -45,6 +64,7 @@ player.playlist.add_track = function(artist, title, callback) {
         //network.vkontakte.search_audio(artist, title, search_callback, search_callback_notfound);
         player.station.current.add_to_playlist(callback);
     }
+    title = player.playlist.autocorrect(artist, title);
     if (userdata.bans.is_banned(artist, title)) {
         search_callback_notfound();
         return;
@@ -57,7 +77,7 @@ player.playlist.add_track = function(artist, title, callback) {
        )) {
         search_callback_notfound();
         return;
-   }
+    }
     network.vkontakte.search_audio(artist, title, search_callback, search_callback_notfound);
 };
 

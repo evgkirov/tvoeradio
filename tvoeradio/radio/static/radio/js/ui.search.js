@@ -25,7 +25,7 @@ ui.search.load_suggest_for = function(type, txt, callback) {
 };
 
 ui.search.load_result = function(type, name) {
-    $('#search-suggest').hide();
+    $('.ui-autocomplete').hide();
     $('#dashboard').hide();
     $('#search-result').show();
     $('#search-widget__clear').show();

@@ -13,7 +13,6 @@
             VK.UI.button('login__button');
             $('#login__button').click(function(){
                 VK.Auth.login(function(data) {
-                    console.log(data);
                     if (data.session) {
                         var url = '{% url login_proceed %}';
                         var params = {

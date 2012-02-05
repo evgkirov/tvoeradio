@@ -107,6 +107,11 @@ ui.update_track_info = function() {
                 $('#album_name').text(current_track.album_name).fadeIn();
                 $('#album_cover').attr('src', current_track.album_cover);
             }
+        },
+        function(data) {
+            if (data.error == 6) {
+                return true;
+            }
         }
     );
 
