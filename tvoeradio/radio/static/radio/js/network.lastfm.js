@@ -9,7 +9,7 @@ network.lastfm.authorized = false;
 network.lastfm.auth_token = null;
 network.lastfm.session_key = null;
 network.lastfm.nocache_methods = ['auth.getToken'];
-network.lastfm.shortcache_methods = ['user.getLovedTracks'];
+network.lastfm.shortcache_methods = ['user.getLovedTracks', 'library.getArtists'];
 network.lastfm.write_methods = ['album.addTags', 'artist.addTags', 'track.addTags', 'track.love', 'track.updateNowPlaying', 'track.scrobble'];
 
 
