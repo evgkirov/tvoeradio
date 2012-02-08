@@ -8,13 +8,19 @@
 {% endblock %}
 
 {% block js %}
+
     <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?42"></script>
     <script type="text/javascript" src="http://apis.google.com/js/plusone.js">{"lang": "ru"}</script>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <script type="text/javascript">
         VK.init({apiId: {{ settings.VK_APP_ID }}});
-        VK.Widgets.Group("vk_groups", {mode: 2, width: "auto", height: "200"}, 16049689);
+        VK.Widgets.Group("vk_groups", {mode: 2, width: "220", height: "200"}, 16049689);
         VK.Widgets.Like("vk_like", {type: "button", text: "Твоёрадио — персональное радио на основе твоих музыкальных интересов #tvoeradio"});
+        $(document).ready(function(){
+            setTimeout(function(){
+                $('#sidebar').fadeTo(0, 1);
+            }, 1500);
+        });
     </script>
 {% endblock %}
 
