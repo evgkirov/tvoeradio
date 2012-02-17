@@ -104,6 +104,33 @@ var lscache = function() {
     localStorage.removeItem(CACHE_PREFIX + key);
   }
 
+  function removeExpiredItems() {
+    if (!supportsStorage()) return;
+    for(var storedKey in localStorage) {
+      if (storedKey.indexOf(CACHE_PREFIX) === 0 && storedKey.indexOf(CACHE_SUFFIX) < 0) {
+        var mainKey = storedKey.substr(CACHE_PREFIX.length);
+        var exprKey = expirationKey(mainKey);
+        var expiration = getItem(exprKey);
+        if (expiration) {
+          expiration = parseInt(expiration, EXPIRY_BASE);
+        } else {
+          // TODO: Store date added for non-expiring items for smarter removal
+          expiration = 99999999999;
+        }
+        if (currentTime() >= expiration) {
+          removeItem(mainKey);
+          removeItem(exprKey);
+        }
+      }
+    }
+  }
+  setTimeout(function(){
+    removeExpiredItems();
+  }, 20000);
+  setInterval(function(){
+    removeExpiredItems();
+  }, 1000*60*60); // every hour
+
   return {
 
     /**

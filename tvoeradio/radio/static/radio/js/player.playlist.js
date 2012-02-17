@@ -34,10 +34,6 @@ player.playlist.autocorrect = function(artist, title) {
     if (title.indexOf(artist + ' - ') == 0) {
         title = title.replace(artist + ' - ', ''); // Pendulum - Watercolour
     }
-    if (original_title != title) {
-        //console.log(original_title);
-        //console.log(title);
-    }
     return title;
 };
 
