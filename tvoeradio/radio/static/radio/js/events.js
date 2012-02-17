@@ -120,6 +120,7 @@ $(document).ready(function(){
 
     $('#search-widget__name').focus();
 
+    migrate.clear_localstorage();
     window.setTimeout(migrate.favorites, 1000);
 });
 

@@ -27,3 +27,14 @@ migrate.favorites = function() {
         }
     });
 };
+
+
+migrate.clear_localstorage = function() {
+    if (('localStorage' in window) && window.localStorage !== null) {
+        if (window.localStorage.last_migration == '1') {  // don't use >= 1
+            return;
+        }
+        window.localStorage.clear();
+        window.localStorage.last_migration = '1';
+    }
+};

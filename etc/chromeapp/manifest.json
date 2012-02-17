@@ -1,13 +1,10 @@
 {
     "name": "Твоёрадио",
     "description": "Персональное радио на основе твоих музыкальных интересов",
-    "version": "2012.0",
+    "version": "2012.1",
     "app": {
         "launch": {
-            "web_url": "http://tvoeradio.org/app/",
-            "container": "panel",
-            "height": 550,
-            "width": 650
+            "web_url": "http://tvoeradio.org/app/"
         }
     },
     "icons": {
