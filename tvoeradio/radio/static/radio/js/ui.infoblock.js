@@ -76,7 +76,7 @@ ui.infoblock.show_artist = function(elem, name) {
             };
             elem.html(ich.tpl_infoblock_artist(context));
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
-            ui.infoblock.add_comments(elem, 'artist', name);
+            ui.infoblock.add_comments(elem, 'artist', data.artist.name);
         },
         function(data) {
             if (data.error == 6) {
@@ -113,7 +113,7 @@ ui.infoblock.show_tag = function(elem, name) {
             };
             elem.html(ich.tpl_infoblock_tag(context));
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
-            ui.infoblock.add_comments(elem, 'tag', name);
+            ui.infoblock.add_comments(elem, 'tag', data.tag.name);
 
             network.lastfm.api(
                 'tag.getTopArtists',
