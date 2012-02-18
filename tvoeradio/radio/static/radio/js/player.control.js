@@ -65,9 +65,6 @@ player.control.next = function() {
             player.audio.play();
             ui.update_playlist()
             ui.update_track_controls();
-            if (config.mode == 'vk') {
-                ui.get_ads();
-            }
             if (player.playlist.list.length == player.playlist.current_track_num + 1) {
                 // если в очереди не осталось треков
                 player.station.current.add_to_playlist(do_next);

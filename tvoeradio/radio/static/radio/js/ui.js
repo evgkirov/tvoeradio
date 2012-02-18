@@ -5,8 +5,8 @@ ui.go_to_page = function(name) {
     $('.page').hide();
     $('#page_'+name).show();
     ui.popup.hide();
-    if ((name == 'tune') || (config.mode == 'vk')) {
-        ui.get_ads();
+    if (name == 'tune') {
+        ui.get_ads('#dashboard');
     }
 };
 
@@ -44,7 +44,6 @@ ui.fit = function() {
             h = ih;
         }
     }
-    h += 10;
     if (ui.fit.previous_height != h) {
         network.vkontakte.callMethod('resizeWindow', 627, h);
         ui.fit.previous_height = h;
@@ -290,8 +289,9 @@ ui.update_playlist = function() {
     $('#tabcontent_tabs_player__playlist').html(ich.tpl_playlist({'playlist': pl}));
 };
 
-ui.get_ads = function() {
-    $c('#ad').hide();
+ui.get_ads = function(elem) {
+    var block = $(elem).find('.ad');
+    block.hide();
     $.getJSON('/ads/_/get/', function(data) {
         if (!data.text) {
             return;
@@ -299,10 +299,9 @@ ui.get_ads = function() {
         if (data.image) {
             data.image = 'url(' + data.image + ')';
         }
-        $c('#ad').css('background-image', data.image);
-        $c('#ad a').attr('href', data.link).text(data.text);
-        $c('#ad span').text(data.warning);
-        $c('#ad').fadeIn('fast');
+        block.find('a').attr('href', data.link).text(data.text);
+        block.find('span').text(data.warning);
+        block.css('background-image', data.image).show();
     });
 };
 
@@ -323,6 +322,6 @@ $(document).ready(function(){
     if (config.mode == 'vk') {
         window.setInterval(ui.fit, 40);
     } else {
-        ui.get_ads();
+        ui.get_ads('#dashboard');
     }
 });
