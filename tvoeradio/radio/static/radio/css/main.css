@@ -615,7 +615,7 @@ select:focus {
 .dashboard__tags {
     color: #C0CAD5;
     line-height: 160%;
-    padding: 0 10px 5px 10px;
+    padding: 0 10px 8px 10px;
     text-align: center;
 }
 

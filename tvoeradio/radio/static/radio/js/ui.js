@@ -19,7 +19,7 @@ ui.resz = function() {
     $('#trackinfo div').width(ww-140);
     if (config.mode != 'vk') {
         $('#trackinfo_panel').height(wh-$('#controls').height()-20);
-        $('#dashboard').height(wh - (29 + 51 + 13)); // some magic number
+        $('#dashboard').height(wh - (29 + 51 + 14)); // some magic number
         $('#search-result').height(wh - (29 + 51 + 19));
         $('.popup__content').css('max-height', wh - 134); // some random value
     }
