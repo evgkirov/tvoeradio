@@ -151,7 +151,7 @@ select:focus {
 }
 
 #dashboard .ad {
-    margin: 15px 10px 0 10px;
+    margin: 5px 10px 0 10px;
 }
 
 .ad span {
@@ -604,7 +604,7 @@ select:focus {
     overflow: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 10px 0;
+    padding: 5px 0 10px 0;
 }
 
 .dashboard__block {
@@ -614,7 +614,8 @@ select:focus {
 
 .dashboard__tags {
     color: #C0CAD5;
-    padding: 0 10px 10px 10px;
+    line-height: 160%;
+    padding: 0 10px 5px 10px;
     text-align: center;
 }
 
