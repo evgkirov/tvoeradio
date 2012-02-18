@@ -300,8 +300,8 @@ ui.get_ads = function(elem) {
         if (data.image) {
             data.image = 'url(' + data.image + ')';
         }
-        block.find('a').attr('href', data.link).text(data.text);
-        block.find('span').text(data.warning || 'реклама');
+        block.find('.ad__link').attr('href', data.link).text(data.text);
+        block.find('.ad__warning').text(data.warning || 'реклама');
         block.css('background-image', data.image).show();
     });
 };

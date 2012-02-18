@@ -147,24 +147,15 @@ select:focus {
     min-height: 16px;
     padding: 6px 10px 5px 26px;
     position: relative;
-    opacity: 0.5;
 }
 
 #dashboard .ad {
     margin: 5px 10px 0 10px;
 }
 
-.ad span {
+.ad__warning {
     color: #999999;
     float: right;
-}
-
-.ad:hover {
-    opacity: 1;
-}
-
-.ad:hover span {
-    color: #333;
 }
 
 .button_blue, .button_gray {
