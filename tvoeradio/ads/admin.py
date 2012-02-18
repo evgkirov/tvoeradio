@@ -7,6 +7,7 @@ from .models import Ad
 class AdAdmin(admin.ModelAdmin):
     list_display = ('image_html', 'text_html', 'link', 'weight', 'is_active', 'views', 'clicks', 'ctr')
     list_display_links = list_display[:2]
+    fields = ('text', 'warning', 'link', 'image', 'slug', 'weight', 'is_active')
 
     def image_html(self, obj):
         if obj.image:
