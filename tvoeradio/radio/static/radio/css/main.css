@@ -138,6 +138,25 @@ select:focus {
     position: absolute;
 }
 
+#ad {
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    border: 1px solid #E7EAED;
+    display: none;
+    margin: 10px;
+    min-height: 16px;
+    padding: 6px 10px 5px 26px;
+}
+
+
+
+#ad span {
+    color: #999999;
+    left: 3px;
+    position: relative;
+    font-size: 9px;
+}
+
 .button_blue, .button_gray {
     text-align: center;
     border-radius: 2px;

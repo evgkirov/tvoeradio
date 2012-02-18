@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     'common',
     'pages',
     'radio',
+    'ads',
 
     'south',
 )

@@ -117,6 +117,10 @@
                     </div>
                 </div>
                 <div class="clear"></div>
+
+                {% if mode != 'vk' %}
+                <div id="ad"><a href="" target="_blank"></a><span></span></div>
+                {% endif %}
             </div>
 
             <div id="search-result">
@@ -194,15 +198,9 @@
 
         </div>
 
-        {% comment %}
         {% if mode == 'vk' %}
-        <div style="padding: 10px">
-            <!-- code begin "Твоёрадио" -->
-            <iframe src="http://www.appgrade.ru/server/iframe.php?pid=875&width=607" width=607 height=60 marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling="no"></iframe>
-            <!-- code end -->
-        </div>
+        <div id="ad"><a href="" target="_blank"></a><span></span></div>
         {% endif %}
-        {% endcomment %}
 
     </div>
 
