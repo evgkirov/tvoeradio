@@ -4,6 +4,7 @@ from datetime import timedelta, datetime
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.core.mail import mail_admins
 from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
@@ -76,6 +77,7 @@ def login(request):
 def login_proceed(request):
 
     if request.GET.get('error'):
+        mail_admins(u'login_proceed error 1', unicode(request))
         return redirect('/')
 
     params = {
@@ -86,8 +88,12 @@ def login_proceed(request):
     fetcher = urllib.urlopen('https://api.vkontakte.ru/oauth/access_token?' + urllib.urlencode(params))
     data = simplejson.loads(fetcher.read())
 
-    uid = data['user_id']
-    token = data['access_token']
+    try:
+        uid = data['user_id']
+        token = data['access_token']
+    except KeyError, e:
+        mail_admins(u'login_proceed error 2', unicode(data))
+        raise KeyError, e
 
     params = {
         'access_token': token,
@@ -125,7 +131,7 @@ def lastfm_proxy(request):
         req = urllib2.Request(settings.LASTFM_API_URL, request.raw_post_data)
         response = urllib2.urlopen(req)
         return HttpResponse(response.read(), mimetype='application/json; charset=utf-8')
-    except BadStatusLine:
+    except:
         return HttpResponse('')
 
 
