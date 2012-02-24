@@ -92,7 +92,7 @@ def login_proceed(request):
         uid = data['user_id']
         token = data['access_token']
     except KeyError, e:
-        mail_admins(u'login_proceed error 2', unicode(data))
+        mail_admins(u'login_proceed error 2', u'%s\n\n%s' % (request, data))
         raise KeyError, e
 
     params = {
