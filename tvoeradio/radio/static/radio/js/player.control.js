@@ -63,7 +63,7 @@ player.control.next = function() {
             ui.update_track_info();
             player.audio.set_file(player.playlist.get_current_track().mp3_url);
             player.audio.play();
-            ui.update_playlist()
+            ui.update_playlist();
             ui.update_track_controls();
             if (player.playlist.list.length == player.playlist.current_track_num + 1) {
                 // если в очереди не осталось треков
@@ -85,7 +85,7 @@ player.control.next = function() {
 player.control.navigate = function(to) {
     player.control.is_loading = false;
     ui.update_track_controls();
-    player.playlist.current_track_num = parseInt(to);
+    player.playlist.current_track_num = parseInt(to, 10);
     if (player.playlist.current_track_num < 0) {
         player.playlist.current_track_num = 0;
     }
