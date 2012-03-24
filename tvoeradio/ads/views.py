@@ -12,12 +12,22 @@ def get_random(request):
     if not ad:
         return {}
     ad.viewed()
-    return {
+    response = {
         'text': ad.get_random_text(),
         'warning': ad.warning,
-        'link': reverse('ads.views.redirect_to_ad', kwargs={'slug': ad.slug}),
         'image': ad.image.url if ad.image else '',
+        'campaign': ad.slug,
+        'link': False,
+        'station': False,
     }
+    if ad.link:
+        response['link'] = reverse('ads.views.redirect_to_ad', kwargs={'slug': ad.slug})
+    if ad.station:
+        response['station'] = {
+            'type': ad.station.type,
+            'name': ad.station.name,
+        }
+    return response
 
 
 def redirect_to_ad(request, slug):

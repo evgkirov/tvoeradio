@@ -7,4 +7,4 @@ register = template.Library()
 
 @register.filter
 def jsonize(value):
-    return mark_safe(simplejson.dumps(value))
+    return mark_safe(simplejson.dumps(value).replace('</script', ''))

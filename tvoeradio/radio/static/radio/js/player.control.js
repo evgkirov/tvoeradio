@@ -5,7 +5,7 @@ player.control.is_loading = false;  // сейчас загружается сл�
 player.control.timeout_start = 0;
 
 
-player.control.start = function(type, name) {
+player.control.start = function(type, name, campaign) {
     ui.show_loader_fullscreen();
     player.control.timeout_start = window.setTimeout(function(){
         $('#loader_fullscreen__cancel').fadeIn();
@@ -19,7 +19,7 @@ player.control.start = function(type, name) {
         ui.hide_loader_fullscreen();
         ui.go_to_page('player');
         $('#search-widget__clear').click();
-        userdata.recent_stations.add(type, name);
+        userdata.recent_stations.add(type, name, campaign);
         ui.update_track_info();
         ui.update_station_info();
         player.audio.set_file(player.playlist.get_current_track().mp3_url);

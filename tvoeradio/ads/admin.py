@@ -5,9 +5,10 @@ from .models import Ad
 
 
 class AdAdmin(admin.ModelAdmin):
-    list_display = ('image_html', 'text_html', 'link', 'weight', 'is_active', 'views', 'clicks', 'ctr')
+    list_display = ('image_html', 'text_html', 'link_or_station', 'weight', 'is_active', 'views', 'clicks', 'ctr')
     list_display_links = list_display[:2]
-    fields = ('text', 'warning', 'link', 'image', 'slug', 'weight', 'is_active')
+    fields = ('text', 'warning', 'link', 'station', 'image', 'slug', 'weight', 'is_active')
+    raw_id_fields = ('station',)
 
     def image_html(self, obj):
         if obj.image:
@@ -21,6 +22,9 @@ class AdAdmin(admin.ModelAdmin):
         return linebreaksbr(obj.text)
     text_html.allow_tags = True
     text_html.short_description = 'Text'
+
+    def link_or_station(self, obj):
+        return unicode(obj.link or obj.station)
 
     def ctr(self, obj):
         if not obj.views:

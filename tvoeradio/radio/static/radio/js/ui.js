@@ -300,7 +300,18 @@ ui.get_ads = function(elem) {
         if (data.image) {
             data.image = 'url(' + data.image + ')';
         }
-        block.find('.ad__link').attr('href', data.link).text(data.text);
+        var ad_link = block.find('.ad__link');
+        ad_link.text(data.text);
+        ad_link.attr('href', data.link || '');
+        if (data.station) {
+            ad_link.addClass('nav-station').data({
+                'type': data.station.type,
+                'name': data.station.name,
+                'campaign': data.campaign
+            });
+        } else {
+            ad_link.removeClass('nav-station');
+        }
         block.find('.ad__warning').text(data.warning || 'реклама');
         block.css('background-image', data.image).show();
     });
@@ -314,10 +325,14 @@ $(document).ready(function(){
        $('.tabcontent').hide();
        $('#tabcontent_'+$(this).attr('id')).show();
     });
-    $('#album_cover').load(function(){$(this).fadeIn()});
+    $('#album_cover').load(function(){$(this).fadeIn();});
     $('.nav-station').live('click', function(e) {
         e.preventDefault();
-        player.control.start($(this).data('type'), (($(this).data('name'))||$(this).text()));
+        player.control.start(
+            $(this).data('type'),
+            (($(this).data('name'))||$(this).text()),
+            $(this).data('campaign')
+        );
     });
     ui.update_dashboard();
     if (config.mode == 'vk') {
@@ -325,4 +340,5 @@ $(document).ready(function(){
     } else {
         ui.get_ads('#dashboard');
     }
+
 });

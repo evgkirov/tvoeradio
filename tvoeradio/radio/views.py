@@ -10,10 +10,11 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
 from django.utils import simplejson
 from django.utils.datastructures import MultiValueDictKeyError
-from httplib import BadStatusLine
 import random
 import urllib
 import urllib2
+
+from ads.models import Ad
 
 from .decorators import noie7
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
@@ -149,9 +150,18 @@ def started(request):
     except MultiValueDictKeyError:
         raise Http404()
 
+    campaign = request.POST.get('campaign')
+
     rs = RecentStation.objects.create_user_station(request.user, type, name)
     rs.station.plays_count += 1
     rs.station.save()
+
+    if campaign:
+        try:
+            ad = Ad.objects.get(slug=campaign)
+            ad.clicked()
+        except Ad.DoesNotExist:
+            pass
 
     return {
         'recent_stations': get_user_stations_list(RecentStation, request.user, 20),
