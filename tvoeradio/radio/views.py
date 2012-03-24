@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.mail import mail_admins
+from django.db.models import Q
 from django.http import Http404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
@@ -17,7 +18,7 @@ import urllib2
 from ads.models import Ad
 
 from .decorators import noie7
-from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban
+from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban, Station
 from .utils import get_user_stations_list
 
 
@@ -203,6 +204,7 @@ def remove_favorite(request):
         'favorited_stations': get_user_stations_list(FavoritedStation, request.user),
     }
 
+
 @login_required
 @require_POST
 @ajax_request
@@ -234,6 +236,7 @@ def migrate_favorites(request):
         'favorited_stations': get_user_stations_list(FavoritedStation, request.user),
     }
 
+
 @login_required
 @require_POST
 @ajax_request
@@ -250,4 +253,17 @@ def add_ban(request):
 
     return {
         'bans': list(Ban.objects.filter(user=request.user).values('artist', 'title', 'ban_artist'))
+    }
+
+
+@login_required
+@ajax_request
+def random_station(request):
+    qs = Station.objects.filter(Q(type='artist') | Q(type='similar') | Q(type='tag'))
+    count = qs.count()
+    index = random.randint(0, count - 1)
+    station = qs[index]
+    return {
+        'type': station.type,
+        'name': station.name,
     }

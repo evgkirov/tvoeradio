@@ -14,4 +14,5 @@ urlpatterns = patterns('radio.views',
     url('^_/favorite/remove/$', 'remove_favorite'),
     url('^_/favorite/migrate/$', 'migrate_favorites'),
     url('^_/ban/add/$', 'add_ban'),
+    url('^_/random_station/$', 'random_station'),
 )

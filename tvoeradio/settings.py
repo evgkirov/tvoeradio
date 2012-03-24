@@ -82,6 +82,7 @@ MEDIA_BUNDLES = (
         'radio/js/player.station.recommendations.js',
         'radio/js/player.station.similar.js',
         'radio/js/player.station.tag.js',
+        'radio/js/player.station.insanity.js',
         'radio/js/player.control.js',
         'radio/js/desktop.js',
         'radio/js/migrate.js',
