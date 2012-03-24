@@ -1,6 +1,6 @@
 from annoying.decorators import ajax_request
 from django.core.urlresolvers import reverse
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, Http404
 from django.shortcuts import get_object_or_404
 
 from .models import Ad
@@ -33,4 +33,6 @@ def get_random(request):
 def redirect_to_ad(request, slug):
     ad = get_object_or_404(Ad, slug=slug)
     ad.clicked()
+    if not ad.link:
+        raise Http404('')
     return HttpResponsePermanentRedirect(ad.link)

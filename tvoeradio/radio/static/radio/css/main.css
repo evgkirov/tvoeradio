@@ -334,6 +334,15 @@ select:focus {
     background-color: #EDF1F5;
 }
 
+.ad .nav-station {
+    display: inline;
+    padding: 0;
+}
+
+.ad .nav-station:hover {
+    background: transparent;
+}
+
 .tabs {
     border-bottom: 1px solid #597DA3;
     color: #2B587A;
