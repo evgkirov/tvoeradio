@@ -19,8 +19,7 @@ player.audio.stop = function() {
 
 player.audio.is_playing = function() {
     return !$('#mp3player').data('jPlayer').status.paused;
-}
-
+};
 
 player.audio.pause = function() {
     if (this.is_playing()) {
