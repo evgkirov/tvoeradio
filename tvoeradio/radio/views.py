@@ -79,8 +79,7 @@ def login(request):
 def login_proceed(request):
 
     if request.GET.get('error'):
-        mail_admins(u'login_proceed error 1', unicode(request))
-        return redirect('/')
+        return redirect('/app/login/fail/')
 
     params = {
         'client_id': settings.VK_APP_ID,
@@ -93,9 +92,8 @@ def login_proceed(request):
     try:
         uid = data['user_id']
         token = data['access_token']
-    except KeyError, e:
-        mail_admins(u'login_proceed error 2', u'%s\n\n%s' % (request, data))
-        raise KeyError, e
+    except KeyError:
+        return redirect('/app/login/fail/')
 
     params = {
         'access_token': token,
