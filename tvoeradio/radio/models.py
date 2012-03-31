@@ -10,6 +10,7 @@ class Station(models.Model):
 
     class Meta:
         ordering = ('type', 'name')
+        unique_together = ('type', 'name')
 
     def __unicode__(self):
         return '%s: %s' % (self.type, self.name)
