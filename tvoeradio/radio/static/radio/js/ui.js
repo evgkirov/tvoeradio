@@ -46,7 +46,7 @@ ui.fit = function() {
         }
     }
     if (ui.fit.previous_height != h) {
-        network.vkontakte.callMethod('resizeWindow', 627, h);
+        network.vkontakte.callMethod('resizeWindow', 627, parseInt(h, 10));
         ui.fit.previous_height = h;
     }
 };
