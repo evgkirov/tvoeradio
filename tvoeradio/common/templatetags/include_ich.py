@@ -1,7 +1,7 @@
 # based on http://djangosnippets.org/snippets/1684/
 
 from django import template
-from django.template.loaders.app_directories import load_template_source
+from django.template.loaders.app_directories import _loader
 from os.path import basename
 
 register = template.Library()
@@ -14,7 +14,7 @@ def do_include_ich(parser, token):
         template_name = template_name[1:-1]
 
     block_name, block_type = basename(template_name).rsplit('.', 1)
-    source, path = load_template_source(template_name)
+    source, path = _loader.load_template_source(template_name)
 
     render = '<script id="tpl_%s" type="text/%s">\n%s\n</script>' % (block_name, block_type, source)
 
