@@ -10,20 +10,22 @@ hg_url = 'https://%s:%s@bitbucket.org/eXtractor/tvoeradio' % (hg_user, hg_passwo
 
 project_dir = '/home/hosting_extractor/projects/tvoeradio'
 repo_dir = '%s/app' % project_dir
-tvoeradio_dir = '%s/tvoeradio' % repo_dir
+src_dir = '%s/src' % repo_dir
+tvoeradio_dir = '%s/tvoeradio' % src_dir
 python_path = '%s/venv/bin/python' % project_dir
 pip_path = '%s/venv/bin/pip' % project_dir
 
 
 def deploy():
+    print "don't forget to save media!!!"
+    return
     with cd(repo_dir):
         run('hg pull %s' % hg_url)
         run('hg update')
-        run('%s install -r requirements.txt' % pip_path)
-    with cd(tvoeradio_dir):
-        run('%s manage.py syncdb' % python_path)
-        run('%s manage.py migrate' % python_path)
-        #run('%s manage.py update_top' % python_path)
+        # run('%s install -r requirements.txt' % pip_path)
+    with cd(src_dir):
+        # run('%s manage.py syncdb' % python_path)
+        # run('%s manage.py migrate' % python_path)
         run('%s manage.py generatemedia' % python_path)
         run('cp %s/static/js/3rdparty/jplayer/Jplayer.swf %s/static/gen/js/3rdparty/jplayer/ -v' % (tvoeradio_dir, project_dir))
     with cd(project_dir):

@@ -15,7 +15,7 @@ import random
 import urllib
 import urllib2
 
-from ads.models import Ad
+from tvoeradio.ads.models import Ad
 
 from .decorators import noie7
 from .models import TopTag, RecentStation, FavoritedStation, TopArtist, Ban, Station

@@ -20,5 +20,5 @@ def user_platform(request):
 
 
 def version(request):
-    from version import VERSION
+    from tvoeradio.version import VERSION
     return {'tvoeradio_version': VERSION}

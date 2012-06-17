@@ -7,8 +7,8 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-    (r'^app/', include('radio.urls')),
-    (r'^ads/', include('ads.urls')),
+    (r'^app/', include('tvoeradio.radio.urls')),
+    (r'^ads/', include('tvoeradio.ads.urls')),
     (r'^ololoadminpanel/', include(admin.site.urls)),
     (r'^markitup/', include('markitup.urls')),
     (r'^googlea44acf4184a0aff9\.html$', lambda r: HttpResponse('google-site-verification: googlea44acf4184a0aff9.html')),

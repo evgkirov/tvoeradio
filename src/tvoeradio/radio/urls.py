@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.views import logout_then_login
 
 
-urlpatterns = patterns('radio.views',
+urlpatterns = patterns('tvoeradio.radio.views',
     url('^$', 'app', name='app'),
     url('^vkredir/$', 'redirect_to_vk', name='redirect_to_vk'),
     url('^login/$', 'login', name='login'),

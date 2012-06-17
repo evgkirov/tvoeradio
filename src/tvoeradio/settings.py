@@ -13,7 +13,7 @@ ADMINS = MANAGERS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': here('..', 'db', 'dev.sqlite'),
+        'NAME': here('..', '..', 'db', 'dev.sqlite'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -99,6 +99,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'tvoeradio.common.middleware.MigrateDjango14',
     'mediagenerator.middleware.MediaMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -106,7 +107,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'vk_iframe.middleware.AuthenticationMiddleware',
     'vk_iframe.middleware.IFrameFixMiddleware',
-    'pages.middleware.PageMiddleware',
+    'tvoeradio.pages.middleware.PageMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -115,17 +116,17 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
-    "common.context_processors.settings",
-    "common.context_processors.user_platform",
-    "common.context_processors.version",
+    "tvoeradio.common.context_processors.settings",
+    "tvoeradio.common.context_processors.user_platform",
+    "tvoeradio.common.context_processors.version",
 )
 
 AUTHENTICATION_BACKENDS = (
     'vk_iframe.backends.VkontakteUserBackend',
-    'radio.backends.VkontakteDesktopUserBackend',
+    'tvoeradio.radio.backends.VkontakteDesktopUserBackend',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'tvoeradio.urls'
 LOGIN_URL = '/app/login/'
 
 TEMPLATE_DIRS = (
@@ -143,11 +144,11 @@ INSTALLED_APPS = (
     'mediagenerator',
     'vk_iframe',
 
-    'monkeypatches',
-    'common',
-    'pages',
-    'radio',
-    'ads',
+    'tvoeradio.monkeypatches',
+    'tvoeradio.common',
+    'tvoeradio.pages',
+    'tvoeradio.radio',
+    'tvoeradio.ads',
 
     'south',
 )
