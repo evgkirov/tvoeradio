@@ -1,0 +1,15 @@
+{% extends 'base_error.html' %}
+
+{% block title_text %}Обновите ваш браузер{% endblock %}
+{% block content %}
+    <p>Браузер Internet Explorer {{ version }} устарел и не может открыть приложение «Твоёрадио».</p>
+    <p class="center"><a target="_blank" href="http://ie.yandex.ru/" class="bluebutton">Обновить Internet Explorer</a></p>
+    <p>Вы также можете попробовать настольное приложение «<a target="_blank" href="/desktop/">Твоёрадио&nbsp;Десктоп</a>» или один из альтернативных браузеров:</p>
+    <ul class="browsers">
+        <li class="chrome"><a target="_blank" href="https://www.google.com/chrome/">Google Chrome</a></li>
+        <li class="firefox"><a target="_blank" href="http://getfirefox.com/">Mozilla Firefox</a></li>
+        <li class="safari"><a target="_blank" href="http://www.apple.com/safari/">Apple Safari</a></li>
+        <li class="opera"><a target="_blank" href="http://opera.com/">Opera</a></li>
+    </ul>
+    <p class="smallgray"><a href="{{ ignore_url }}"><br/><br/>Игнорировать эту ошибку и продолжить</a> (работоспособность приложения в данном случае не гарантируется)</p>
+{% endblock %}

@@ -1,20 +1,18 @@
 PIL
-django==1.4
+django==1.4.1
 South==0.7.5
 django-annoying==0.7.6
 httpagentparser==1.0.5
 -e hg+http://bitbucket.org/eXtractor/django-vkontakte-iframe/#egg=django-vkontakte-iframe
+
 django-mediagenerator==1.11
--e hg+http://bitbucket.org/eXtractor/django-mediagenerator-closure-webservice#egg=django-mediagenerator-closure-webservice
-#cssmin
-#-e hg+http://bitbucket.org/eXtractor/django-mediagenerator-cssmin#egg=django-mediagenerator-cssmin
-cssutils
--e git+https://github.com/myfreeweb/cssprefixer.git#egg=cssprefixer
--e hg+http://bitbucket.org/eXtractor/django-mediagenerator-cssprefixer#egg=django-mediagenerator-cssprefixer
+cssutils==0.9.10b1
+-e git+http://github.com/myfreeweb/cssprefixer.git#egg=cssprefixer
+-e git+http://bitbucket.org/eXtractor/django-mediagenerator-extras.git#egg=django-mediagenerator-extras
 
 textile==2.1.5
 django-markitup==1.0.0
 
--e hg+https://bitbucket.org/mjs7231/django-dbbackup#egg=django-dbbackup
+-e hg+http://bitbucket.org/mjs7231/django-dbbackup#egg=django-dbbackup
 simples3==1.0
 poster==0.8.1

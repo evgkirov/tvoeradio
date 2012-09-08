@@ -1,0 +1,47 @@
+<table class="infoblock infoblock_tag">
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header infoblock__photos">
+            {{#top_artists}}<span class="pseudolink nav-infoblock" data-type="artist" data-name="{{name}}" title="{{name}}"><img src="{{image}}" alt="{{ name }}" /></span>{{/top_artists}}
+        </td>
+        <td class="infoblock__line__content infoblock__wiki">
+            {{{wiki_summary}}}
+        </td>
+    </tr>
+
+    <tr class="infoblock__line infoblock__line_stationlist">
+        <td class="infoblock__line__header">слушать:</td>
+        <td class="infoblock__line__content">{{>tpl_partial_stationslist}}</td>
+    </tr>
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">исполнители:</td>
+        <td class="infoblock__line__content infoblock__artists">
+            {{#artists}}
+                <span class="pseudolink nav-infoblock" data-type="artist" data-name="{{name}}">{{name}}</span>
+            {{/artists}}
+        </td>
+    </tr>
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">похожие теги:</td>
+        <td class="infoblock__line__content infoblock__tags">
+            {{#tags}}
+                <span class="pseudolink nav-infoblock" data-type="tag" data-name="{{name}}">{{name}}</span>
+            {{/tags}}
+        </td>
+    </tr>
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">подробнее:</td>
+        <td class="infoblock__line__content">
+            <a href="{{lastfm_url}}" target="_blank">{{{lastfm_url}}}</a>
+        </td>
+    </tr>
+
+
+</table>
+
+<div class="ad"><span class="ad__warning"></span><a href="" target="_blank" class="ad__link"></a></div>
+
+<div class="infoblock__comments"></div>

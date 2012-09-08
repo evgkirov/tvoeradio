@@ -1,0 +1,58 @@
+<table class="infoblock infoblock_user">
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header infoblock__photo">{{#image}}<img src="{{image}}" alt="" />{{/image}}</td>
+        <td class="infoblock__line__content infoblock__photos">
+            <div>{{#artists}}<span class="pseudolink nav-infoblock" data-type="artist" data-name="{{name}}" title="{{name}}"><img src="{{image}}" alt="{{ name }}" /></span>{{/artists}}</div>
+        </td>
+    </tr>
+
+    {{#it_is_you}}
+    <tr class="infoblock__line infoblock__line_itisyou">
+        <td class="infoblock__line__header">это вы</td>
+        <td class="infoblock__line__content">
+            <div class="button_blue"><button>Выйти</button></div>
+        </td>
+    </tr>
+    {{/it_is_you}}
+
+    <tr class="infoblock__line infoblock__line_stationlist">
+        <td class="infoblock__line__header">слушать:</td>
+        <td class="infoblock__line__content">{{>tpl_partial_stationslist}}</td>
+    </tr>
+
+    {{#tasteometer}}
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">совместимость:</td>
+        <td class="infoblock__line__content">
+            {{tasteometer}}%
+        </td>
+    </tr>
+    {{/tasteometer}}
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">соседи:</td>
+        <td class="infoblock__line__content infoblock__users">
+            {{#neighbours}}
+                <span class="pseudolink nav-infoblock" data-type="user" data-name="{{name}}">{{name}}</span>
+            {{/neighbours}}
+        </td>
+    </tr>
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">друзья:</td>
+        <td class="infoblock__line__content infoblock__users">
+            {{#friends}}
+                <span class="pseudolink nav-infoblock" data-type="user" data-name="{{name}}">{{name}}</span>
+            {{/friends}}
+        </td>
+    </tr>
+
+    <tr class="infoblock__line">
+        <td class="infoblock__line__header">подробнее:</td>
+        <td class="infoblock__line__content">
+            <a href="{{lastfm_url}}" target="_blank">{{{lastfm_url}}}</a>
+        </td>
+    </tr>
+
+</table>
