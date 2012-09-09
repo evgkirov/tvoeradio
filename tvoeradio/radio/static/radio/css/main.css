@@ -638,17 +638,22 @@ select:focus {
     opacity: 1;
 }
 
-.dashboard__artists {
+.dashboard__artists,
+.dashboard__albums {
     height: 50px;
     left: -10px;
     overflow: hidden;
-    padding-bottom: 10px;
     position: relative;
     width: 100%;
     white-space: nowrap;
 }
 
-.dashboard__artists img {
+.dashboard__artists {
+    padding-bottom: 10px;
+}
+
+.dashboard__artists img,
+.dashboard__albums img {
     height: 50px;
     width: 50px;
 }

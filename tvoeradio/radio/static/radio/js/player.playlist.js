@@ -17,7 +17,7 @@ player.playlist.filter_tail = function(artist, title, ban_artist) {
         }
     }
     ui.update_playlist();
-}
+};
 
 
 player.playlist.autocorrect = function(artist, title) {
@@ -31,7 +31,7 @@ player.playlist.autocorrect = function(artist, title) {
     if (endswith(title, ' - ' + artist)) {
         title = title.replace(' - ' + artist, ''); // Watercolour - Pendulum
     }
-    if (title.indexOf(artist + ' - ') == 0) {
+    if (title.indexOf(artist + ' - ') === 0) {
         title = title.replace(artist + ' - ', ''); // Pendulum - Watercolour
     }
     return title;
@@ -49,9 +49,9 @@ player.playlist.add_track = function(artist, title, callback) {
             'vk_aid': mp3.aid,
             'vk_lyrics_id': mp3.lyrics_id,
             'lastfm_loved': false
-        }
+        };
         player.playlist.list.push(track);
-        ui.update_playlist()
+        ui.update_playlist();
         if (callback) {
             callback();
         }
@@ -59,7 +59,7 @@ player.playlist.add_track = function(artist, title, callback) {
     var search_callback_notfound = function(){
         //network.vkontakte.search_audio(artist, title, search_callback, search_callback_notfound);
         player.station.current.add_to_playlist(callback);
-    }
+    };
     title = player.playlist.autocorrect(artist, title);
     if (userdata.bans.is_banned(artist, title)) {
         search_callback_notfound();
@@ -75,6 +75,28 @@ player.playlist.add_track = function(artist, title, callback) {
         return;
     }
     network.vkontakte.search_audio(artist, title, search_callback, search_callback_notfound);
+};
+
+
+player.playlist.add_tracks = function(list, callback) {
+    for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        var track = {
+            'artist': item.artist.name,
+            'title': item.name,
+            'duration': null,
+            'mp3_url': null,
+            'vk_oid': null,
+            'vk_aid': null,
+            'vk_lyrics_id': null,
+            'lastfm_loved': false
+        };
+        player.playlist.list.push(track);
+    }
+    ui.update_playlist();
+    if (callback) {
+        callback();
+    }
 };
 
 

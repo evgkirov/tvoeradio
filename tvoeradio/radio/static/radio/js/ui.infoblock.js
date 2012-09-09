@@ -104,7 +104,19 @@ ui.infoblock.show_album = function(elem, name) {
             data.album.url = data.album.url.replace('http://www.last.fm', 'http://www.lastfm.ru');
             var context = {
                 'name': data.album.name,
-                'tracks': data.album.tracks.track
+                'artist': data.album.artist,
+                'tracks': data.album.tracks.track,
+                'tags': network.lastfm.arrayize(data.album.toptags.tag),
+                'image': network.lastfm.select_image(data.album.image, 'large'),
+                'lastfm_url': data.album.url,
+                'lastfm_url_text': util.string.urldecode(data.album.url),
+                'stations': [
+                    {
+                        'type': 'album',
+                        'name': name,
+                        'html': player.station.album.get_html(name)
+                    }
+                ]
             };
             elem.html(ich.tpl_infoblock_album(context));
             ui.get_ads(elem);

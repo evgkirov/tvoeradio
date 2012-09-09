@@ -22,9 +22,7 @@ player.control.start = function(type, name, campaign) {
         userdata.recent_stations.add(type, name, campaign);
         ui.update_track_info();
         ui.update_station_info();
-        player.audio.set_file(player.playlist.get_current_track().mp3_url);
-        player.audio.play();
-        ui.update_track_controls();
+        player.control.play_current_track();
         player.station.current.add_to_playlist();
         if (config.mode == 'vk') {
             network.vkontakte.callMethod('setLocation', type+'/'+util.string.urlencode(name));
@@ -33,6 +31,29 @@ player.control.start = function(type, name, campaign) {
             bridge.playing_change(true);
         }
     });
+};
+
+
+player.control.play_current_track = function() {
+    // Если слушаем альбом, то mp3_url может быть не подгружен
+    var current_track = player.playlist.get_current_track();
+    function do_play() {
+        player.audio.set_file(current_track.mp3_url);
+        player.audio.play();
+        ui.update_track_controls();
+    }
+    if (current_track.mp3_url) {
+        do_play();
+    } else {
+        network.vkontakte.search_audio(current_track.artist, current_track.title, function(mp3){
+            current_track.duration = mp3.duration;
+            current_track.mp3_url = mp3.url;
+            current_track.vk_oid = mp3.owner_id;
+            current_track.vk_aid = mp3.aid;
+            current_track.vk_lyrics_id = mp3.lyrics_id;
+            do_play();
+        });
+    }
 };
 
 
@@ -61,10 +82,8 @@ player.control.next = function() {
             player.control.is_loading = false;
             player.playlist.current_track_num++;
             ui.update_track_info();
-            player.audio.set_file(player.playlist.get_current_track().mp3_url);
-            player.audio.play();
+            player.control.play_current_track();
             ui.update_playlist();
-            ui.update_track_controls();
             if (player.playlist.list.length == player.playlist.current_track_num + 1) {
                 // если в очереди не осталось треков
                 player.station.current.add_to_playlist(do_next);
@@ -74,7 +93,10 @@ player.control.next = function() {
     player.control.is_loading = true;
     ui.update_track_controls();
     if (player.playlist.list.length == player.playlist.current_track_num + 1) {
-        player.station.current.add_to_playlist(do_next);
+        var result = player.station.current.add_to_playlist(do_next);
+        if (result == 'no_more_tracks') {
+            player.control.stop();
+        }
     } else {
         do_next();
     }
@@ -90,10 +112,8 @@ player.control.navigate = function(to) {
         player.playlist.current_track_num = 0;
     }
     ui.update_track_info();
-    player.audio.set_file(player.playlist.get_current_track().mp3_url);
-    player.audio.play();
+    player.control.play_current_track();
     ui.update_playlist();
-    ui.update_track_controls();
     if (player.playlist.list.length == player.playlist.current_track_num + 1) {
         // если в очереди не осталось треков
         player.station.current.add_to_playlist();

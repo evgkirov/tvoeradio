@@ -1,13 +1,9 @@
-from django.core.files import File
-from django.core.files.base import ContentFile
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.db import transaction
 from django.utils import simplejson
-import StringIO
-import tempfile
 import urllib
-import urllib2
+import time
 
 from tvoeradio.radio.models import TopTag, TopArtist
 
@@ -29,7 +25,7 @@ class Command(BaseCommand):
 
         @transaction.commit_on_success
         def update_top_tags(self):
-            self.stdout.write('update_top_tags')
+            self.stdout.write('update_top_tags\n')
             data = self.lastfm_request('chart.getTopTags')
             TopTag.objects.all().delete()
             for tag in data['tags']['tag']:
@@ -37,7 +33,7 @@ class Command(BaseCommand):
 
         @transaction.commit_on_success
         def update_top_artists(self):
-            self.stdout.write('update_top_artists')
+            self.stdout.write('update_top_artists\n')
             data = self.lastfm_request('geo.getTopArtists', country='russia')
             TopArtist.objects.all().delete()
             for artist in data['topartists']['artist']:

@@ -59,37 +59,31 @@ class FavoritedStation(UserStation):
         ordering = ('-date_added',)
 
 
-class TopTag(models.Model):
-    """
-    Топ тегов, показываемый в дашборде.
-    """
+class TopBase(models.Model):
 
     name = models.CharField(max_length=255, db_index=True)
-    popularity = models.IntegerField()
+    popularity = models.IntegerField(db_index=True)
     date_updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+    def __unicode__(self):
+        return self.name
+
+
+class TopTag(TopBase):
 
     class Meta:
         ordering = ('name',)
 
-    def __unicode__(self):
-        return self.name
 
+class TopArtist(TopBase):
 
-class TopArtist(models.Model):
-    """
-    Топ исполнителей, показываемый в дашборде.
-    """
-
-    name = models.CharField(max_length=255, db_index=True)
-    popularity = models.IntegerField(db_index=True)
     image = models.URLField()
-    date_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ('-popularity',)
-
-    def __unicode__(self):
-        return self.name
 
 
 class Ban(models.Model):

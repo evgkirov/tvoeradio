@@ -77,6 +77,7 @@ MEDIA_BUNDLES = (
         'radio/js/player.station.js',
         'radio/js/player.station.common.js',
         'radio/js/player.station.artist.js',
+        'radio/js/player.station.album.js',
         'radio/js/player.station.library.js',
         'radio/js/player.station.loved.js',
         'radio/js/player.station.recommendations.js',

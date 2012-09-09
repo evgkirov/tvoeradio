@@ -105,11 +105,12 @@ ui.update_track_info = function() {
         },
         function(data){
             if (data.track.album) {
-                current_track.album_cover = data.track.album.image[data.track.album.image.length-1]["#text"];
+                current_track.album_cover = data.track.album.image[data.track.album.image.length-1]["#text"] + '?' + Math.random();
                 current_track.album_name = data.track.album.title;
                 current_track.album_artist = data.track.album.artist;
                 $('#album_name').text(current_track.album_name).fadeIn();
                 $('#album_cover').attr('src', current_track.album_cover);
+                ui.infoblock.show($('#tabcontent_tabs_player__album_info'), 'album', current_track.album_name + ' (' + current_track.album_artist + ')');
             }
         },
         function(data) {

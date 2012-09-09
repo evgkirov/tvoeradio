@@ -8,6 +8,16 @@
 {% block css %}{% include_media 'radio.css' %}{% endblock %}
 
 {% block js %}
+    <script type="text/javascript" id="qbaka">
+    (function (w,d) {w.__qbaka_eh = w.onerror;w.__qbaka_reports=[];w.onerror = function () {
+    w.__qbaka_reports.push(arguments);};w.qbaka={exec:function(c){try{c()}catch(e){}},report:function(){},
+    _ldr:function(){w.qbaka._ldd=true;},customParams:{},set:function set(p, v){
+    qbaka.customParams[p]=v;},exec:function(f){try{f();}catch (e){qbaka.reportException(e);}},
+    reportException:function(){}};var e=d.createElement('script');e.id='qbaka';e.type='text/javascript';
+    e.async=!0;e.src='//cdn.qbaka.net/reporting.js';var s=d.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(e, s);w.addEventListener?w.addEventListener("load",w.qbaka._ldr,!1):
+    w.attachEvent("onload", w.qbaka._ldr);qbaka.key='04a3e38c05fd65013020a32b6febec2e';})(window, document);
+    </script>
     <script type="text/javascript">
         var config = {
             'app_version': '{{ tvoeradio_version }}',
@@ -94,6 +104,7 @@
 
             <div id="dashboard">
 
+
                 <div class="dashboard__block dashboard__tags">
                     {% for tag in top_tags %}
                         <span style="font-size: {{ tag.size }}%" class="pseudolink nav-infoblock" data-type="tag" data-name="{{ tag.name }}">{{ tag.name }}</span>
@@ -105,7 +116,6 @@
                         <span class="pseudolink nav-infoblock" data-type="artist" data-name="{{ artist.name }}"><img src="{{ artist.image }}" alt="{{ artist.name }}" title="{{ artist.name }}" /></span>
                     {% endfor %}
                 </div>
-
 
                 <div class="clear"></div>
                 <div class="dashboard__block">
@@ -179,18 +189,18 @@
 
                 <ul class="tabs tabs_dark" id="tabs_player">
                     <li class="active" id="tabs_player__info">Об исполнителе</li>
+                    <li id="tabs_player__album_info">Об альбоме</li>
                     <li id="tabs_player__lyrics">Текст песни</li>
                     <!-- <li id="tabs_player__buy">Купить</li> -->
                     <li id="tabs_player__comments">Комментарии к песне</li>
-                    <li id="tabs_player__playlist">История</li>
+                    <li id="tabs_player__playlist">Плейлист</li>
                 </ul>
 
             </div>
 
-
-
             <div id="trackinfo_panel">
                 <div class="tabcontent" id="tabcontent_tabs_player__info"></div>
+                <div class="tabcontent" id="tabcontent_tabs_player__album_info"></div>
                 <div class="tabcontent" id="tabcontent_tabs_player__lyrics"></div>
                 <div class="tabcontent" id="tabcontent_tabs_player__buy"></div>
                 <div class="tabcontent" id="tabcontent_tabs_player__comments"></div>
