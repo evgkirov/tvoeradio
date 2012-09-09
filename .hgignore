@@ -10,4 +10,5 @@ glob:_generated_media
 glob:settings_local.py
 glob:fabfile.py
 glob:.codeintel
+.DS_Store
 tvoeradio/media
