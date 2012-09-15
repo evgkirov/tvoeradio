@@ -87,6 +87,13 @@ ui.update_dashboard = function() {
 };
 
 
+ui.update_album_info = function() {
+    var current_track = player.playlist.get_current_track();
+    $('#album_name').text(current_track.album_name).fadeIn();
+    $('#album_cover').attr('src', current_track.album_cover + '?' + Math.random());
+    ui.infoblock.show($('#tabcontent_tabs_player__album_info'), 'album', current_track.album_name + ' (' + current_track.album_artist + ')');
+};
+
 ui.update_track_info = function() {
 
     var current_track = player.playlist.get_current_track();
@@ -97,28 +104,30 @@ ui.update_track_info = function() {
     $('#album_name').hide().text('');
     $('#album_cover').hide();
 
-    network.lastfm.api(
-        'track.getInfo',
-        {
-            'artist': current_track.artist,
-            'track': current_track.title
-        },
-        function(data){
-            if (data.track.album) {
-                current_track.album_cover = data.track.album.image[data.track.album.image.length-1]["#text"] + '?' + Math.random();
-                current_track.album_name = data.track.album.title;
-                current_track.album_artist = data.track.album.artist;
-                $('#album_name').text(current_track.album_name).fadeIn();
-                $('#album_cover').attr('src', current_track.album_cover);
-                ui.infoblock.show($('#tabcontent_tabs_player__album_info'), 'album', current_track.album_name + ' (' + current_track.album_artist + ')');
+    if (current_track.album_name) {
+        ui.update_album_info();
+    } else {
+        network.lastfm.api(
+            'track.getInfo',
+            {
+                'artist': current_track.artist,
+                'track': current_track.title
+            },
+            function(data){
+                if (data.track.album) {
+                    current_track.album_cover = network.lastfm.select_image(data.track.album.image, 'large');
+                    current_track.album_name = data.track.album.title;
+                    current_track.album_artist = data.track.album.artist;
+                    ui.update_album_info();
+                }
+            },
+            function(data) {
+                if (data.error == 6) {
+                    return true;
+                }
             }
-        },
-        function(data) {
-            if (data.error == 6) {
-                return true;
-            }
-        }
-    );
+        );
+    }
 
     ui.infoblock.show($('#tabcontent_tabs_player__info'), 'artist', current_track.artist);
 

@@ -78,7 +78,7 @@ player.playlist.add_track = function(artist, title, callback) {
 };
 
 
-player.playlist.add_tracks = function(list, callback) {
+player.playlist.add_tracks = function(list, callback, additional_info) {
     for (var i = 0; i < list.length; i++) {
         var item = list[i];
         var track = {
@@ -91,6 +91,9 @@ player.playlist.add_tracks = function(list, callback) {
             'vk_lyrics_id': null,
             'lastfm_loved': false
         };
+        for (var key in additional_info) {
+            track[key] = additional_info[key];
+        }
         player.playlist.list.push(track);
     }
     ui.update_playlist();

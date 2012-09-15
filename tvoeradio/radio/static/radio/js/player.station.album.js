@@ -9,7 +9,15 @@ player.station.album.add_to_playlist = function(callback) {
         return 'no_more_tracks';
     }
     network.lastfm.api('album.getInfo', {'artist': artist, 'album': album, 'lang': 'ru'}, function(data) {
-        player.playlist.add_tracks(data.album.tracks.track, callback);
+        player.playlist.add_tracks(
+            data.album.tracks.track,
+            callback,
+            {
+                album_cover: network.lastfm.select_image(data.album.image, 'large'),
+                album_name: album,
+                album_artist: artist
+            }
+        );
     });
 };
 
