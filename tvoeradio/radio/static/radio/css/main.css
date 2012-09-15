@@ -22,6 +22,10 @@ ul, ol, li, table, tbody, tr, td {
     padding: 0;
 }
 
+ol {
+    list-style-position: inside;
+}
+
 .clear {
     clear: both;
 }
@@ -849,6 +853,10 @@ h2 {
 .infoblock td.infoblock__photos div {
     max-height: 102px;
     overflow: hidden;
+}
+
+.infoblock td.infoblock__photos_all div {
+    max-height: none;
 }
 
 .infoblock td.infoblock__photos .nav-infoblock,

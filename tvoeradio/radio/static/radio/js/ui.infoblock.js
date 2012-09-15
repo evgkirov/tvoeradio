@@ -51,9 +51,11 @@ ui.infoblock.show_artist = function(elem, name) {
             'lang': 'ru'
         },
         function(data) {
+
             data.artist.url = data.artist.url.replace('http://www.last.fm', 'http://www.lastfm.ru');
             var context = {
                 'name': data.artist.name,
+                'artist': data.artist.name,
                 'wiki_summary': data.artist.bio.summary,
                 'wiki': data.artist.bio.content,
                 'similar': network.lastfm.arrayize(data.artist.similar.artist),
@@ -78,6 +80,39 @@ ui.infoblock.show_artist = function(elem, name) {
             ui.get_ads(elem);
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
             ui.infoblock.add_comments(elem, 'artist', data.artist.name);
+
+            var artist = data.artist.name;
+            network.lastfm.api(
+                'album.search',
+                {
+                    'album': artist,
+                    'limit': 1000
+                },
+                function(data) {
+                    var albums = network.lastfm.arrayize(data.results.albummatches.album);
+                    context['albums'] = [];
+                    for (var i = 0; i < albums.length; i++) {
+                        if (albums[i].artist != artist) {
+                            continue;
+                        }
+                        context['albums'].push({
+                            'name': albums[i].name,
+                            'cover': network.lastfm.select_image(albums[i].image, 'large')
+                        });
+                    }
+                    context['albums?'] = !!context['albums'].length;
+                    var html = ich.tpl_infoblock_artist(context).find('.infoblock__photos').html();
+                    elem.find('.infoblock__photos').html(html);
+                    if (!context['albums?']) {
+                        elem.find('.infoblock_photos').parent().hide();
+                    }
+                    elem.find('.show-all-albums').click(function(e){
+                        e.preventDefault();
+                        $(this).remove();
+                        elem.find('.infoblock__photos').addClass('infoblock__photos_all');
+                    });
+                }
+            );
         },
         function(data) {
             if (data.error == 6) {

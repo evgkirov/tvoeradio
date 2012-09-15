@@ -20,7 +20,7 @@ ui.resz = function() {
     if (config.mode != 'vk') {
         $('#trackinfo_panel').height(wh-$('#controls').height()-20);
         $('#dashboard').height(wh - (29 + 51 + 14)); // some magic number
-        $('#search-result').height(wh - (29 + 51 + 19));
+        $('#search-result').height(wh - (29 + 51 + 19)); // another magic number
         $('.popup__content').css('max-height', wh - 134); // some random value
     }
 };
@@ -262,7 +262,7 @@ ui.update_station_controls = function() {
         $('#menu_station__notonlysimilar').hide();
     }
 
-}
+};
 
 
 ui.update_topnav = function() {
@@ -329,13 +329,16 @@ ui.get_ads = function(elem) {
 
 
 $(document).ready(function(){
+
    $('.tabs li').click(function(){
        $('.tabs li.active').removeClass('active');
        $(this).addClass('active');
        $('.tabcontent').hide();
        $('#tabcontent_'+$(this).attr('id')).show();
     });
+
     $('#album_cover').load(function(){$(this).fadeIn();});
+
     $('.nav-station').live('click', function(e) {
         e.preventDefault();
         player.control.start(
@@ -344,7 +347,9 @@ $(document).ready(function(){
             $(this).data('campaign')
         );
     });
+
     ui.update_dashboard();
+
     if (config.mode == 'vk') {
         window.setInterval(ui.fit, 40);
     } else {
