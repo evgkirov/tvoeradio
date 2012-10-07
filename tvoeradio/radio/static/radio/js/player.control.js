@@ -45,6 +45,7 @@ player.control.play_current_track = function() {
     if (current_track.mp3_url) {
         do_play();
     } else {
+        player.control.pause();
         network.vkontakte.search_audio(current_track.artist, current_track.title, function(mp3){
             current_track.duration = mp3.duration;
             current_track.mp3_url = mp3.url;
@@ -52,6 +53,9 @@ player.control.play_current_track = function() {
             current_track.vk_aid = mp3.aid;
             current_track.vk_lyrics_id = mp3.lyrics_id;
             do_play();
+        },
+        function(){
+            player.control.next();
         });
     }
 };
