@@ -28,3 +28,5 @@ player.station.album.get_html = function(name) {
     var artist = parsed[2];
     return 'альбом <b>' + util.string.htmlspecialchars(album) + '</b> от <b>' + util.string.htmlspecialchars(artist) + '</b>';
 };
+
+player.station.album.include_remixes = true;

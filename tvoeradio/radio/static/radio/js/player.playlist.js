@@ -66,7 +66,8 @@ player.playlist.add_track = function(artist, title, callback) {
         return;
     }
     var title_lc = title.toLowerCase();
-    if (!player.station.include_remixes && (
+    var include_remixes = (player.station.include_remixes || player.station.current.include_remixes);
+    if (!include_remixes && (
             (title_lc.indexOf('remix') > -1) ||
             ((title_lc.indexOf('mix)') > -1) && (title_lc.indexOf('original mix)') == -1)) ||
             ((title_lc.indexOf('mix]') > -1) && (title_lc.indexOf('original mix]') == -1))
