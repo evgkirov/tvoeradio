@@ -57,6 +57,14 @@ $(document).ready(function() {
         'source': function(request, callback) {
             var type = $('#search-widget__type').val();
             ui.search.load_suggest_for(type, request.term, callback);
+        },
+        'select': function(event, jui) {
+            if (event.keyCode == 13) {
+                return;
+            }
+            var type = $('#search-widget__type').val();
+            var name = $('#search-widget__name').val();
+            ui.search.load_result(type, name);
         }
     });
 
@@ -67,5 +75,7 @@ $(document).ready(function() {
             ui.search.load_result(type, name);
         }
     });
+
+    // $('#search-widget__name').
 
 });
