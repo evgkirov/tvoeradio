@@ -272,8 +272,7 @@ ui.update_topnav = function() {
         'config': config,
         'standalone': (config.mode == 'standalone'),
         'desktop': window['bridge'] ? true : false,
-        'vk': (config.mode == 'vk'),
-        'banner_shown': $('#cmBannerBlock').length
+        'vk': (config.mode == 'vk')
     };
     $('#topnav').html(ich.tpl_topnav(context));
 };

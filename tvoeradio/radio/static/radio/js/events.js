@@ -57,13 +57,6 @@ $(document).ready(function(){
         ui.popup.show('О приложении', ich.tpl_popup__about(context), 300);
     });
 
-    // creara
-    $('#topnav__hide_banner').live('click', function() {
-        $('#cmBannerBlock').remove();
-        $(this).remove();
-    });
-    // /creara
-
     $('#topnav__lastfm_auth').live('click', function() {
         ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1);
         network.lastfm.api('auth.getToken', {}, function(data){
