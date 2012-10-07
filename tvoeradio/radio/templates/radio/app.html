@@ -9,6 +9,7 @@
 
 {% block js %}
     {% if not settings.DEBUG %}
+        <!-- qbaka -->
         <script type="text/javascript" id="qbaka">
         (function (w,d) {w.__qbaka_eh = w.onerror;w.__qbaka_reports=[];w.onerror = function () {
         w.__qbaka_reports.push(arguments);};w.qbaka={exec:function(c){try{c()}catch(e){}},report:function(){},
@@ -19,6 +20,7 @@
         s.parentNode.insertBefore(e, s);w.addEventListener?w.addEventListener("load",w.qbaka._ldr,!1):
         w.attachEvent("onload", w.qbaka._ldr);qbaka.key='04a3e38c05fd65013020a32b6febec2e';})(window, document);
         </script>
+        <!-- /qbaka -->
     {% endif %}
     <script type="text/javascript">
         var config = {
@@ -37,6 +39,9 @@
     </script>
     {% if mode == 'vk' %}
         <script src="http://vkontakte.ru/js/api/xd_connection.js?2" type="text/javascript"></script>
+        <!-- creara -->
+        <script src="http://img.creara-media.ru/js/v3/cmblockvk.js"></script>
+        <!-- /creara -->
     {% else %}
         <script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
     {% endif %}
@@ -85,6 +90,12 @@
             <div class="popup__title"><div></div></div>
             <div class="popup__content"></div>
         </div>
+
+        {% if mode == 'vk' %}
+            <!-- creara -->
+            <div id='cmBannerBlock'></div>
+            <!-- /creara -->
+        {% endif %}
 
         <div id="page_tune" class="page">
 

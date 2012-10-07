@@ -271,7 +271,9 @@ ui.update_topnav = function() {
         'lastfm_user': network.lastfm.user,
         'config': config,
         'standalone': (config.mode == 'standalone'),
-        'desktop': window['bridge'] ? true : false
+        'desktop': window['bridge'] ? true : false,
+        'vk': (config.mode == 'vk'),
+        'banner_shown': $('#cmBannerBlock').length
     };
     $('#topnav').html(ich.tpl_topnav(context));
 };

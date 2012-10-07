@@ -57,6 +57,12 @@ $(document).ready(function(){
         ui.popup.show('О приложении', ich.tpl_popup__about(context), 300);
     });
 
+    // creara
+    $('#topnav__hide_banner').live('click', function() {
+        $('#cmBannerBlock').remove();
+        $(this).remove();
+    });
+    // /creara
 
     $('#topnav__lastfm_auth').live('click', function() {
         ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1);
@@ -122,11 +128,17 @@ $(document).ready(function(){
 
     migrate.clear_localstorage();
     window.setTimeout(migrate.favorites, 1000);
+
 });
 
 if (config.mode == 'vk') {
 
-    network.vkontakte.init(function(){});
+    network.vkontakte.init(function(){
+        // creara
+        var cmBlock = new CMBlockVK;
+        cmBlock.setupBlock( 'cmBannerBlock', 21251, {} );
+        // /creara
+    });
 
     network.vkontakte.addCallback('onLocationChanged', function(str){
         if (str) {
