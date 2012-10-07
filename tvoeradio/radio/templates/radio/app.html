@@ -34,7 +34,10 @@
             'vk_api_url': '{{ settings.VK_APP_URL }}',
             'jplayer_swfpath': '{% media_url "js/3rdparty/jplayer/Jplayer.swf" %}',
             'first_name': '{{ user.first_name }}',
-            'last_name': '{{ user.last_name }}'
+            'last_name': '{{ user.last_name }}',
+            'images': {
+                'disc': '{% media_url "img/icons/disc.png" %}'
+            }
         }
     </script>
     {% if mode == 'vk' %}

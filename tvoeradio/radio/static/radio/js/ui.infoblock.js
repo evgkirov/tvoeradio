@@ -97,7 +97,7 @@ ui.infoblock.show_artist = function(elem, name) {
                         }
                         context['albums'].push({
                             'name': albums[i].name,
-                            'cover': network.lastfm.select_image(albums[i].image, 'large')
+                            'cover': (network.lastfm.select_image(albums[i].image, 'large') || config.images.disc)
                         });
                     }
                     context['albums?'] = !!context['albums'].length;
