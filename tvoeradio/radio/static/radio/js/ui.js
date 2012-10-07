@@ -311,14 +311,27 @@ ui.get_ads = function(elem) {
     var block = $(elem).find('.ad');
     block.hide();
     $.getJSON('/ads/_/get/', function(data) {
-        if (!data.text) {
+        if ((!data.text) && (!data.html)) {
             return;
+        }
+        if (data.text) {
+            block.html('<span class="ad__warning"></span><a href="" target="_blank" class="ad__link"></a>');
+            block.removeClass('ad_html').addClass('ad_text');
+        }
+        if (data.html) {
+            if (data.link || data.station) {
+                data.html = '<a href="" target="_blank" class="ad__link">' + data.html + '</a>';
+            }
+            block.html(data.html);
+            block.removeClass('ad_text').addClass('ad_html');
         }
         if (data.image) {
             data.image = 'url(' + data.image + ')';
         }
         var ad_link = block.find('.ad__link');
-        ad_link.text(data.text);
+        if (data.text) {
+            ad_link.text(data.text);
+        }
         ad_link.attr('href', data.link || '');
         if (data.station) {
             ad_link.addClass('nav-station').data({

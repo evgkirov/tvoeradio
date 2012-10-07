@@ -25,7 +25,8 @@ class AdManager(models.Manager):
 class Ad(models.Model):
 
     image = models.ImageField(help_text=u'Если не указано, будет взята фавиконка.', upload_to='ads', blank=True)
-    text = models.TextField(help_text=u'По одному тексту на строку.')
+    text = models.TextField(help_text=u'По одному тексту на строку.', blank=True)
+    html = models.TextField(help_text=u'Код баннера', blank=True)
     warning = models.CharField(max_length=255, blank=True)
     link = models.URLField(help_text=u'Не указывать, если есть Station.', blank=True)
     station = models.ForeignKey('radio.Station', blank=True, null=True)

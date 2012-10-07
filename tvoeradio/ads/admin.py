@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.template.defaultfilters import linebreaksbr
+from django.utils.html import escape
 
 from .models import Ad
 
 
 class AdAdmin(admin.ModelAdmin):
-    list_display = ('image_html', 'text_html', 'link_or_station', 'weight', 'is_active', 'views', 'clicks', 'ctr')
+    list_display = ('image_html', 'slug', 'text_html', 'link_or_station', 'weight', 'is_active', 'views', 'clicks', 'ctr')
     list_display_links = list_display[:2]
-    fields = ('text', 'warning', 'link', 'station', 'image', 'slug', 'weight', 'is_active')
+    fields = ('text', 'html', 'warning', 'link', 'station', 'image', 'slug', 'weight', 'is_active')
     raw_id_fields = ('station',)
 
     def image_html(self, obj):
@@ -19,9 +20,9 @@ class AdAdmin(admin.ModelAdmin):
     image_html.short_description = ''
 
     def text_html(self, obj):
-        return linebreaksbr(obj.text)
+        return escape(obj.html) or linebreaksbr(obj.text)
     text_html.allow_tags = True
-    text_html.short_description = 'Text'
+    text_html.short_description = 'Text or HTML'
 
     def link_or_station(self, obj):
         return unicode(obj.link or obj.station)

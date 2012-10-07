@@ -19,9 +19,10 @@ def get_random(request):
         'campaign': ad.slug,
         'link': False,
         'station': False,
+        'html': ad.html,
     }
     if ad.link:
-        response['link'] = reverse('ads.views.redirect_to_ad', kwargs={'slug': ad.slug})
+        response['link'] = reverse('tvoeradio.ads.views.redirect_to_ad', kwargs={'slug': ad.slug})
     if ad.station:
         response['station'] = {
             'type': ad.station.type,

@@ -149,8 +149,15 @@ select:focus {
     display: none;
     margin: 15px 0 10px 0;
     min-height: 16px;
-    padding: 6px 10px 5px 26px;
     position: relative;
+}
+
+.ad_text {
+    padding: 6px 10px 5px 26px;
+}
+
+.ad_html {
+    padding: 5px;
 }
 
 #dashboard .ad {
