@@ -104,6 +104,7 @@ ui.update_track_info = function() {
     $('#album_name').hide().text('');
     $('#album_cover').hide();
 
+    $('#tabcontent_tabs_player__album_info').text('(Нет информации)');
     if (current_track.album_name) {
         ui.update_album_info();
     } else {
