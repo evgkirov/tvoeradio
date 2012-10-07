@@ -13,7 +13,7 @@
     <tr class="infoblock__line hidden">
         <td class="infoblock__line__header">альбомы:</td>
         <td class="infoblock__line__content infoblock__photos">
-            <div>{{#albums}}<span class="pseudolink nav-infoblock" data-type="album" data-name="{{name}} ({{artist}})" title="{{name}}"><img src="{{cover}}" alt="{{ name }}" /></span>{{/albums}}</div>
+            <div class="infoblock__photos__inner"><div class="infoblock__photos__inner__inner">{{#albums}}<span class="pseudolink nav-infoblock" data-type="album" data-name="{{name}} ({{artist}})" title="{{name}}"><img src="{{cover}}" alt="{{ name }}" /></span>{{/albums}}</div></div>
             {{#albums?}}<span class="pseudolink show-all-albums">показать все</span>{{/albums?}}
         </td>
     </tr>

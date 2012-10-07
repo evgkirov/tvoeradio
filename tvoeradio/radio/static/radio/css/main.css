@@ -850,12 +850,12 @@ h2 {
     max-width: 102px;
 }
 
-.infoblock td.infoblock__photos div {
+.infoblock .infoblock__photos__inner {
     max-height: 102px;
     overflow: hidden;
 }
 
-.infoblock td.infoblock__photos_all div {
+.infoblock td.infoblock__photos_all .infoblock__photos__inner {
     max-height: none;
 }
 

@@ -106,6 +106,9 @@ ui.infoblock.show_artist = function(elem, name) {
                     if (!context['albums?']) {
                         elem.find('.infoblock_photos').parent().hide();
                     }
+                    if (elem.find('.infoblock__photos__inner__inner').height() <= 102) {
+                        elem.find('.show-all-albums').hide();
+                    }
                     elem.find('.show-all-albums').click(function(e){
                         e.preventDefault();
                         $(this).remove();
