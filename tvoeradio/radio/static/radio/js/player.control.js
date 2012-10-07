@@ -11,6 +11,7 @@ player.control.start = function(type, name, campaign) {
         $('#loader_fullscreen__cancel').fadeIn();
     }, 15000);
     player.playlist.clear();
+    player.playlist.current_track_num = 0;
     player.station.set(type, name);
     player.station.current.add_to_playlist(function(){
         window.clearTimeout(player.control.timeout_start);

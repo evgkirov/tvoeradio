@@ -159,7 +159,7 @@ ui.infoblock.show_album = function(elem, name) {
             elem.html(ich.tpl_infoblock_album(context));
             ui.get_ads(elem);
             // ui.infoblock.convert_wiki($('.infoblock__wiki'));
-            // ui.infoblock.add_comments(elem, 'artist', data.artist.name);
+            ui.infoblock.add_comments(elem, 'album', data.album.name + ' (' + data.album.artist + ')');
         },
         function(data) {
             if (data.error == 6) {
