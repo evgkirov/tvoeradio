@@ -129,6 +129,10 @@ ui.infoblock.show_artist = function(elem, name) {
 
 ui.infoblock.show_album = function(elem, name) {
     var parsed = /^(.+)\s\((.+)\)$/.exec(name);
+    if (!parsed) {
+        $(elem).text('Нет такого альбома.');
+        return;
+    }
     var album = parsed[1];
     var artist = parsed[2];
     network.lastfm.api(
@@ -143,7 +147,7 @@ ui.infoblock.show_album = function(elem, name) {
             var context = {
                 'name': data.album.name,
                 'artist': data.album.artist,
-                'tracks': data.album.tracks.track,
+                'tracks': network.lastfm.arrayize(data.album.tracks.track),
                 'tags': network.lastfm.arrayize(data.album.toptags.tag),
                 'image': network.lastfm.select_image(data.album.image, 'large'),
                 'lastfm_url': data.album.url,

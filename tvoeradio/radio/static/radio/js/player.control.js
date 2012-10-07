@@ -43,10 +43,10 @@ player.control.play_current_track = function() {
         player.audio.play();
         ui.update_track_controls();
     }
+    player.audio.stop();
     if (current_track.mp3_url) {
         do_play();
     } else {
-        player.control.pause();
         network.vkontakte.search_audio(current_track.artist, current_track.title, function(mp3){
             current_track.duration = mp3.duration;
             current_track.mp3_url = mp3.url;
