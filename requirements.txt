@@ -7,7 +7,7 @@ httpagentparser==1.0.5
 
 django-mediagenerator==1.11
 cssutils==0.9.10b1
--e git+http://github.com/myfreeweb/cssprefixer.git#egg=cssprefixer
+cssprefixer==1.4.1
 -e git+http://bitbucket.org/eXtractor/django-mediagenerator-extras.git#egg=django-mediagenerator-extras
 
 textile==2.1.5
