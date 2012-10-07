@@ -137,10 +137,15 @@ if (config.mode == 'vk') {
         if (str) {
             var parts = util.string.urldecode(str).split('/');
             if (parts[0] == 'info') {
-                ui.infoblock.show_popup(parts[1], parts[2]);
+                parts.shift();
+                var type = parts.shift();
+                var name = parts.join('/');
+                ui.infoblock.show_popup(type, name);
                 network.vkontakte.callMethod('setLocation', '');
             } else {
-                player.control.start(parts[0], parts[1]);
+                var type = parts.shift();
+                var name = parts.join('/');
+                player.control.start(type, name);
             }
         } else {
             player.control.stop();
