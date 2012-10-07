@@ -92,6 +92,9 @@ ui.infoblock.show_artist = function(elem, name) {
                     var albums = network.lastfm.arrayize(data.results.albummatches.album);
                     context['albums'] = [];
                     for (var i = 0; i < albums.length; i++) {
+                        if (!albums[i]) {
+                            continue;
+                        }
                         if (albums[i].artist != artist) {
                             continue;
                         }
