@@ -129,15 +129,7 @@ if (config.mode == 'vk') {
     network.vkontakte.init(function(){
         // creara
         var cmBlock = new CMBlockVK;
-        cmBlock.setupBlock(
-            'cmBannerBlock',
-            21251,
-            {
-                is_app_user: 1,
-                viewer_id: 'u' + config.user_id,
-                api_id: 'app' + config.vk_api_id
-            }
-        );
+        cmBlock.setupBlock( 'cmBannerBlock', 21251, {} );
         // /creara
     });
 
