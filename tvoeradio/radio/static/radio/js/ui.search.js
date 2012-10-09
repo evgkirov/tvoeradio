@@ -63,7 +63,7 @@ $(document).ready(function() {
                 return;
             }
             var type = $('#search-widget__type').val();
-            var name = $('#search-widget__name').val();
+            var name = jui.item.label;
             ui.search.load_result(type, name);
         }
     });
