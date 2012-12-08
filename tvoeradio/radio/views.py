@@ -135,6 +135,28 @@ def lastfm_proxy(request):
         return HttpResponse('')
 
 
+@ajax_request
+@login_required
+def buy_album_links(request):
+    try:
+        artist = urllib.quote_plus(request.GET['artist'])
+        album = urllib.quote_plus(request.GET['album'])
+    except MultiValueDictKeyError:
+        raise Http404()
+    url = 'http://fuzy.ru/api/artist/%s/albumlink/%s' % (artist, album)
+
+    req = urllib2.Request(url)
+    response = urllib2.urlopen(req)
+    data = response.read()
+
+    if data.startswith('fuzy.ru'):
+        return {
+            'fuzy': 'http://%s?ref=130' % data
+        }
+
+    return {}
+
+
 @login_required
 @require_POST
 @ajax_request

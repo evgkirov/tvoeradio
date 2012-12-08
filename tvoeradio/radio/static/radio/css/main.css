@@ -982,6 +982,19 @@ h2 {
     opacity: 0.6;
 }
 
+
+#fuzy {
+    display: none;
+}
+
+#fuzy img {
+    bottom: 10px;
+    height: 27px;
+    position: absolute;
+    right: 10px;
+    width: 140px;
+}
+
 #buttons {
     height: 38px;
     margin: 8px 0 0 123px;

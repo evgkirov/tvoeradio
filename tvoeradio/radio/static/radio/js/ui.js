@@ -92,6 +92,12 @@ ui.update_album_info = function() {
     $('#album_name').text(current_track.album_name).fadeIn();
     $('#album_cover').attr('src', current_track.album_cover + '?' + Math.random());
     ui.infoblock.show($('#tabcontent_tabs_player__album_info'), 'album', current_track.album_name + ' (' + current_track.album_artist + ')');
+    network.stores.buy_album_links(current_track.album_artist, current_track.album_name, function(data){
+        if (data['fuzy']) {
+            $('#fuzy').attr('href', data['fuzy']).fadeIn(100);
+        }
+    });
+
 };
 
 ui.update_track_info = function() {
@@ -103,6 +109,7 @@ ui.update_track_info = function() {
     $('#track_name').hide().text(current_track.title).fadeIn();
     $('#album_name').hide().text('');
     $('#album_cover').hide();
+    $('#fuzy').hide();
 
     $('#tabcontent_tabs_player__album_info').text('(Нет информации)');
     if (current_track.album_name) {
