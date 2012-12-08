@@ -94,7 +94,7 @@ ui.update_album_info = function() {
     ui.infoblock.show($('#tabcontent_tabs_player__album_info'), 'album', current_track.album_name + ' (' + current_track.album_artist + ')');
     network.stores.buy_album_links(current_track.album_artist, current_track.album_name, function(data){
         if (data['fuzy']) {
-            $('#fuzy').attr('href', data['fuzy']).fadeIn(100);
+            // $('#fuzy').attr('href', data['fuzy']).fadeIn(100);
         }
     });
 
