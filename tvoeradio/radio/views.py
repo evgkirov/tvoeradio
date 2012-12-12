@@ -72,7 +72,7 @@ def login(request):
         'display': 'popup',
         'response_type': 'code',
     }
-    url = 'http://api.vkontakte.ru/oauth/authorize?' + urllib.urlencode(params)
+    url = 'http://api.vk.com/oauth/authorize?' + urllib.urlencode(params)
     return redirect(url)
 
 
@@ -86,7 +86,7 @@ def login_proceed(request):
         'client_secret': settings.VK_APP_SECRET,
         'code': request.GET.get('code', ''),
     }
-    fetcher = urllib.urlopen('https://api.vkontakte.ru/oauth/access_token?' + urllib.urlencode(params))
+    fetcher = urllib.urlopen('https://api.vk.com/oauth/access_token?' + urllib.urlencode(params))
     data = simplejson.loads(fetcher.read())
 
     try:
@@ -100,7 +100,7 @@ def login_proceed(request):
         'uids': uid,
         'fields': 'uid,first_name,last_name,nickname,domain,sex,bdate,timezone,photo,photo_medium,photo_big',
     }
-    fetcher = urllib.urlopen('https://api.vkontakte.ru/method/getProfiles?' + urllib.urlencode(params))
+    fetcher = urllib.urlopen('https://api.vk.com/method/getProfiles?' + urllib.urlencode(params))
     data = simplejson.loads(fetcher.read())['response'][0]
 
     user = auth.authenticate(vk_profile=data)
