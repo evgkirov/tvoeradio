@@ -8,20 +8,6 @@
 {% block css %}{% include_media 'radio.css' %}{% endblock %}
 
 {% block js %}
-    {% if not settings.DEBUG %}
-        <!-- qbaka -->
-        <script type="text/javascript" id="qbaka">
-        (function (w,d) {w.__qbaka_eh = w.onerror;w.__qbaka_reports=[];w.onerror = function () {
-        w.__qbaka_reports.push(arguments);};w.qbaka={exec:function(c){try{c()}catch(e){}},report:function(){},
-        _ldr:function(){w.qbaka._ldd=true;},customParams:{},set:function set(p, v){
-        qbaka.customParams[p]=v;},exec:function(f){try{f();}catch (e){qbaka.reportException(e);}},
-        reportException:function(){}};var e=d.createElement('script');e.id='qbaka';e.type='text/javascript';
-        e.async=!0;e.src='//cdn.qbaka.net/reporting.js';var s=d.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(e, s);w.addEventListener?w.addEventListener("load",w.qbaka._ldr,!1):
-        w.attachEvent("onload", w.qbaka._ldr);qbaka.key='04a3e38c05fd65013020a32b6febec2e';})(window, document);
-        </script>
-        <!-- /qbaka -->
-    {% endif %}
     <script type="text/javascript">
         var config = {
             'app_version': '{{ tvoeradio_version }}',
