@@ -1,276 +1,285 @@
 /*
- * jQuery JSONP Core Plugin 2.2.0 (2010-12-11)
+ * jQuery JSONP Core Plugin 2.4.0 (2012-08-21)
  *
- * http://code.google.com/p/jquery-jsonp/
+ * https://github.com/jaubourg/jquery-jsonp
  *
- * Copyright (c) 2011 Julian Aubourg
+ * Copyright (c) 2012 Julian Aubourg
  *
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php
  */
 ( function( $ ) {
 
-	// ###################### UTILITIES ##
+    // ###################### UTILITIES ##
 
-	// Noop
-	function noop() {
-	}
+    // Noop
+    function noop() {
+    }
 
-	// Generic callback
-	function genericCallback( data ) {
-		lastValue = [ data ];
-	}
+    // Generic callback
+    function genericCallback( data ) {
+        lastValue = [ data ];
+    }
 
-	// Call if defined
-	function callIfDefined( method , object , parameters , returnFlag ) {
-		try {
-			returnFlag = method && method.apply( object.context || object , parameters );
-		} catch( _ ) {
-			returnFlag = !1;
-		}
-		return returnFlag;
-	}
+    // Call if defined
+    function callIfDefined( method , object , parameters ) {
+        return method && method.apply( object.context || object , parameters );
+    }
 
-	// Give joining character given url
-	function qMarkOrAmp( url ) {
-		return /\?/ .test( url ) ? "&" : "?";
-	}
+    // Give joining character given url
+    function qMarkOrAmp( url ) {
+        return /\?/ .test( url ) ? "&" : "?";
+    }
 
-	var // String constants (for better minification)
-		STR_ASYNC = "async",
-		STR_CHARSET = "charset",
-		STR_EMPTY = "",
-		STR_ERROR = "error",
-		STR_INSERT_BEFORE = "insertBefore",
-		STR_JQUERY_JSONP = "_jqjsp",
-		STR_ON = "on",
-		STR_ON_CLICK = STR_ON + "click",
-		STR_ON_ERROR = STR_ON + STR_ERROR,
-		STR_ON_LOAD = STR_ON + "load",
-		STR_ON_READY_STATE_CHANGE = STR_ON + "readystatechange",
-		STR_READY_STATE = "readyState",
-		STR_REMOVE_CHILD = "removeChild",
-		STR_SCRIPT_TAG = "<script>",
-		STR_SUCCESS = "success",
-		STR_TIMEOUT = "timeout",
+    var // String constants (for better minification)
+        STR_ASYNC = "async",
+        STR_CHARSET = "charset",
+        STR_EMPTY = "",
+        STR_ERROR = "error",
+        STR_INSERT_BEFORE = "insertBefore",
+        STR_JQUERY_JSONP = "_jqjsp",
+        STR_ON = "on",
+        STR_ON_CLICK = STR_ON + "click",
+        STR_ON_ERROR = STR_ON + STR_ERROR,
+        STR_ON_LOAD = STR_ON + "load",
+        STR_ON_READY_STATE_CHANGE = STR_ON + "readystatechange",
+        STR_READY_STATE = "readyState",
+        STR_REMOVE_CHILD = "removeChild",
+        STR_SCRIPT_TAG = "<script>",
+        STR_SUCCESS = "success",
+        STR_TIMEOUT = "timeout",
 
-		// Window
-		win = window,
-		// Head element
-		head = $( "head" )[ 0 ] || document.documentElement,
-		// First child
-		firstChild = head.firstChild,
-		// Page cache
-		pageCache = {},
-		// Counter
-		count = 0,
-		// Last returned value
-		lastValue,
+        // Window
+        win = window,
+        // Deferred
+        Deferred = $.Deferred,
+        // Head element
+        head = $( "head" )[ 0 ] || document.documentElement,
+        // Page cache
+        pageCache = {},
+        // Counter
+        count = 0,
+        // Last returned value
+        lastValue,
 
-		// ###################### DEFAULT OPTIONS ##
-		xOptionsDefaults = {
-			//beforeSend: undefined,
-			//cache: false,
-			callback: STR_JQUERY_JSONP,
-			//callbackParameter: undefined,
-			//charset: undefined,
-			//complete: undefined,
-			//context: undefined,
-			//data: "",
-			//dataFilter: undefined,
-			//error: undefined,
-			//pageCache: false,
-			//success: undefined,
-			//timeout: 0,
-			//traditional: false,
-			url: location.href
-		},
+        // ###################### DEFAULT OPTIONS ##
+        xOptionsDefaults = {
+            //beforeSend: undefined,
+            //cache: false,
+            callback: STR_JQUERY_JSONP,
+            //callbackParameter: undefined,
+            //charset: undefined,
+            //complete: undefined,
+            //context: undefined,
+            //data: "",
+            //dataFilter: undefined,
+            //error: undefined,
+            //pageCache: false,
+            //success: undefined,
+            //timeout: 0,
+            //traditional: false,
+            url: location.href
+        },
 
-		// opera demands sniffing :/
-		opera = win.opera;
+        // opera demands sniffing :/
+        opera = win.opera,
 
-	// ###################### MAIN FUNCTION ##
-	function jsonp( xOptions ) {
+        // IE < 10
+        oldIE = !!$( "<div>" ).html( "<!--[if IE]><i><![endif]-->" ).find("i").length;
 
-		// Build data with default
-		xOptions = $.extend( {} , xOptionsDefaults , xOptions );
+    // ###################### MAIN FUNCTION ##
+    function jsonp( xOptions ) {
 
-		// References to xOptions members (for better minification)
-		var completeCallback = xOptions.complete,
-			dataFilter = xOptions.dataFilter,
-			callbackParameter = xOptions.callbackParameter,
-			successCallbackName = xOptions.callback,
-			cacheFlag = xOptions.cache,
-			pageCacheFlag = xOptions.pageCache,
-			charset = xOptions.charset,
-			url = xOptions.url,
-			data = xOptions.data,
-			timeout = xOptions.timeout,
-			pageCached,
+        // Build data with default
+        xOptions = $.extend( {} , xOptionsDefaults , xOptions );
 
-			// Abort/done flag
-			done = 0,
+        // References to xOptions members (for better minification)
+        var successCallback = xOptions.success,
+            errorCallback = xOptions.error,
+            completeCallback = xOptions.complete,
+            dataFilter = xOptions.dataFilter,
+            callbackParameter = xOptions.callbackParameter,
+            successCallbackName = xOptions.callback,
+            cacheFlag = xOptions.cache,
+            pageCacheFlag = xOptions.pageCache,
+            charset = xOptions.charset,
+            url = xOptions.url,
+            data = xOptions.data,
+            timeout = xOptions.timeout,
+            pageCached,
 
-			// Life-cycle functions
-			cleanUp = noop,
+            // Abort/done flag
+            done = 0,
 
-			// Support vars
-			supportOnload,
-			supportOnreadystatechange,
+            // Life-cycle functions
+            cleanUp = noop,
 
-			// Request execution vars
-			script,
-			scriptAfter,
-			timeoutTimer;
+            // Support vars
+            supportOnload,
+            supportOnreadystatechange,
 
-		// Create the abort method
-		xOptions.abort = function() {
-			!( done++ ) && cleanUp();
-		};
+            // Request execution vars
+            firstChild,
+            script,
+            scriptAfter,
+            timeoutTimer;
 
-		// Call beforeSend if provided (early abort if false returned)
-		if ( callIfDefined( xOptions.beforeSend, xOptions , [ xOptions ] ) === !1 || done ) {
-			return xOptions;
-		}
+        // If we have Deferreds:
+        // - substitute callbacks
+        // - promote xOptions to a promise
+        Deferred && Deferred(function( defer ) {
+            defer.done( successCallback ).fail( errorCallback );
+            successCallback = defer.resolve;
+            errorCallback = defer.reject;
+        }).promise( xOptions );
 
-		// Control entries
-		url = url || STR_EMPTY;
-		data = data ? ( (typeof data) == "string" ? data : $.param( data , xOptions.traditional ) ) : STR_EMPTY;
+        // Create the abort method
+        xOptions.abort = function() {
+            !( done++ ) && cleanUp();
+        };
 
-		// Build final url
-		url += data ? ( qMarkOrAmp( url ) + data ) : STR_EMPTY;
+        // Call beforeSend if provided (early abort if false returned)
+        if ( callIfDefined( xOptions.beforeSend , xOptions , [ xOptions ] ) === !1 || done ) {
+            return xOptions;
+        }
 
-		// Add callback parameter if provided as option
-		callbackParameter && ( url += qMarkOrAmp( url ) + encodeURIComponent( callbackParameter ) + "=?" );
+        // Control entries
+        url = url || STR_EMPTY;
+        data = data ? ( (typeof data) == "string" ? data : $.param( data , xOptions.traditional ) ) : STR_EMPTY;
 
-		// Add anticache parameter if needed
-		!cacheFlag && !pageCacheFlag && ( url += qMarkOrAmp( url ) + "_" + ( new Date() ).getTime() + "=" );
+        // Build final url
+        url += data ? ( qMarkOrAmp( url ) + data ) : STR_EMPTY;
 
-		// Replace last ? by callback parameter
-		url = url.replace( /=\?(&|$)/ , "=" + successCallbackName + "$1" );
+        // Add callback parameter if provided as option
+        callbackParameter && ( url += qMarkOrAmp( url ) + encodeURIComponent( callbackParameter ) + "=?" );
 
-		// Success notifier
-		function notifySuccess( json ) {
+        // Add anticache parameter if needed
+        !cacheFlag && !pageCacheFlag && ( url += qMarkOrAmp( url ) + "_" + ( new Date() ).getTime() + "=" );
 
-			if ( !( done++ ) ) {
+        // Replace last ? by callback parameter
+        url = url.replace( /=\?(&|$)/ , "=" + successCallbackName + "$1" );
 
-				cleanUp();
-				// Pagecache if needed
-				pageCacheFlag && ( pageCache [ url ] = { s: [ json ] } );
-				// Apply the data filter if provided
-				dataFilter && ( json = dataFilter.apply( xOptions , [ json ] ) );
-				// Call success then complete
-				callIfDefined( xOptions.success , xOptions , [ json , STR_SUCCESS ] );
-				callIfDefined( completeCallback , xOptions , [ xOptions , STR_SUCCESS ] );
+        // Success notifier
+        function notifySuccess( json ) {
 
-			}
-		}
+            if ( !( done++ ) ) {
 
-		// Error notifier
-		function notifyError( type ) {
+                cleanUp();
+                // Pagecache if needed
+                pageCacheFlag && ( pageCache [ url ] = { s: [ json ] } );
+                // Apply the data filter if provided
+                dataFilter && ( json = dataFilter.apply( xOptions , [ json ] ) );
+                // Call success then complete
+                callIfDefined( successCallback , xOptions , [ json , STR_SUCCESS, xOptions ] );
+                callIfDefined( completeCallback , xOptions , [ xOptions , STR_SUCCESS ] );
 
-			if ( !( done++ ) ) {
+            }
+        }
 
-				// Clean up
-				cleanUp();
-				// If pure error (not timeout), cache if needed
-				pageCacheFlag && type != STR_TIMEOUT && ( pageCache[ url ] = type );
-				// Call error then complete
-				callIfDefined( xOptions.error , xOptions , [ xOptions , type ] );
-				callIfDefined( completeCallback , xOptions , [ xOptions , type ] );
+        // Error notifier
+        function notifyError( type ) {
 
-			}
-		}
+            if ( !( done++ ) ) {
 
-		// Check page cache
-		if ( pageCacheFlag && ( pageCached = pageCache[ url ] ) ) {
+                // Clean up
+                cleanUp();
+                // If pure error (not timeout), cache if needed
+                pageCacheFlag && type != STR_TIMEOUT && ( pageCache[ url ] = type );
+                // Call error then complete
+                callIfDefined( errorCallback , xOptions , [ xOptions , type ] );
+                callIfDefined( completeCallback , xOptions , [ xOptions , type ] );
 
-			pageCached.s ? notifySuccess( pageCached.s[ 0 ] ) : notifyError( pageCached );
+            }
+        }
 
-		} else {
+        // Check page cache
+        if ( pageCacheFlag && ( pageCached = pageCache[ url ] ) ) {
 
-			// Install the generic callback
-			// (BEWARE: global namespace pollution ahoy)
-			win[ successCallbackName ] = genericCallback;
+            pageCached.s ? notifySuccess( pageCached.s[ 0 ] ) : notifyError( pageCached );
 
-			// Create the script tag
-			script = $( STR_SCRIPT_TAG )[ 0 ];
-			script.id = STR_JQUERY_JSONP + count++;
+        } else {
 
-			// Set charset if provided
-			if ( charset ) {
-				script[ STR_CHARSET ] = charset;
-			}
+            // Install the generic callback
+            // (BEWARE: global namespace pollution ahoy)
+            win[ successCallbackName ] = genericCallback;
 
-			opera && opera.version() < 11.60 ?
-				// onerror is not supported: do not set as async and assume in-order execution.
-				// Add a trailing script to emulate the event
-				( ( scriptAfter = $( STR_SCRIPT_TAG )[ 0 ] ).text = "document.getElementById('" + script.id + "')." + STR_ON_ERROR + "()" )
-			:
-				// onerror is supported: set the script as async to avoid requests blocking each others
-				( script[ STR_ASYNC ] = STR_ASYNC )
+            // Create the script tag
+            script = $( STR_SCRIPT_TAG )[ 0 ];
+            script.id = STR_JQUERY_JSONP + count++;
 
-			;
+            // Set charset if provided
+            if ( charset ) {
+                script[ STR_CHARSET ] = charset;
+            }
 
-			// IE 6 to 8: event/htmlFor trick
-			if ( !( STR_ON_LOAD in script ) && ( STR_ON_READY_STATE_CHANGE in script ) ) {
+            opera && opera.version() < 11.60 ?
+                // onerror is not supported: do not set as async and assume in-order execution.
+                // Add a trailing script to emulate the event
+                ( ( scriptAfter = $( STR_SCRIPT_TAG )[ 0 ] ).text = "document.getElementById('" + script.id + "')." + STR_ON_ERROR + "()" )
+            :
+                // onerror is supported: set the script as async to avoid requests blocking each others
+                ( script[ STR_ASYNC ] = STR_ASYNC )
 
-				script.htmlFor = script.id;
-				script.event = STR_ON_CLICK;
-			}
+            ;
 
-			// Attached event handlers
-			script[ STR_ON_LOAD ] = script[ STR_ON_ERROR ] = script[ STR_ON_READY_STATE_CHANGE ] = function ( result ) {
+            // Internet Explorer: event/htmlFor trick
+            if ( oldIE ) {
+                script.htmlFor = script.id;
+                script.event = STR_ON_CLICK;
+            }
 
-				// Test readyState if it exists
-				if ( !script[ STR_READY_STATE ] || /loaded|complete/.test( script[ STR_READY_STATE ] ) ) {
+            // Attached event handlers
+            script[ STR_ON_LOAD ] = script[ STR_ON_ERROR ] = script[ STR_ON_READY_STATE_CHANGE ] = function ( result ) {
 
-					try {
+                // Test readyState if it exists
+                if ( !script[ STR_READY_STATE ] || !/i/.test( script[ STR_READY_STATE ] ) ) {
 
-						script[ STR_ON_CLICK ] && script[ STR_ON_CLICK ]();
+                    try {
 
-					} catch( _ ) {}
+                        script[ STR_ON_CLICK ] && script[ STR_ON_CLICK ]();
 
-					result = lastValue;
-					lastValue = 0;
-					result ? notifySuccess( result[ 0 ] ) : notifyError( STR_ERROR );
+                    } catch( _ ) {}
 
-				}
-			};
+                    result = lastValue;
+                    lastValue = 0;
+                    result ? notifySuccess( result[ 0 ] ) : notifyError( STR_ERROR );
 
-			// Set source
-			script.src = url;
+                }
+            };
 
-			// Re-declare cleanUp function
-			cleanUp = function( i ) {
-				timeoutTimer && clearTimeout( timeoutTimer );
-				script[ STR_ON_READY_STATE_CHANGE ] = script[ STR_ON_LOAD ] = script[ STR_ON_ERROR ]	= null;
-				head[ STR_REMOVE_CHILD ]( script );
-				scriptAfter && head[ STR_REMOVE_CHILD ]( scriptAfter );
-			};
+            // Set source
+            script.src = url;
 
-			// Append main script
-			head[ STR_INSERT_BEFORE ]( script , firstChild );
+            // Re-declare cleanUp function
+            cleanUp = function( i ) {
+                timeoutTimer && clearTimeout( timeoutTimer );
+                script[ STR_ON_READY_STATE_CHANGE ] = script[ STR_ON_LOAD ] = script[ STR_ON_ERROR ] = null;
+                head[ STR_REMOVE_CHILD ]( script );
+                scriptAfter && head[ STR_REMOVE_CHILD ]( scriptAfter );
+            };
 
-			// Append trailing script if needed
-			scriptAfter && head[ STR_INSERT_BEFORE ]( scriptAfter , firstChild );
+            // Append main script
+            head[ STR_INSERT_BEFORE ]( script , ( firstChild = head.firstChild ) );
 
-			// If a timeout is needed, install it
-			timeoutTimer = timeout > 0 && setTimeout( function() {
-				notifyError( STR_TIMEOUT );
-			} , timeout );
+            // Append trailing script if needed
+            scriptAfter && head[ STR_INSERT_BEFORE ]( scriptAfter , firstChild );
 
-		}
+            // If a timeout is needed, install it
+            timeoutTimer = timeout > 0 && setTimeout( function() {
+                notifyError( STR_TIMEOUT );
+            } , timeout );
 
-		return xOptions;
-	}
+        }
 
-	// ###################### SETUP FUNCTION ##
-	jsonp.setup = function( xOptions ) {
-		$.extend( xOptionsDefaults , xOptions );
-	};
+        return xOptions;
+    }
 
-	// ###################### INSTALL in jQuery ##
-	$.jsonp = jsonp;
+    // ###################### SETUP FUNCTION ##
+    jsonp.setup = function( xOptions ) {
+        $.extend( xOptionsDefaults , xOptions );
+    };
+
+    // ###################### INSTALL in jQuery ##
+    $.jsonp = jsonp;
 
 } )( jQuery );
