@@ -138,7 +138,7 @@ def lastfm_proxy(request):
 @ajax_request
 @login_required
 def buy_album_links(request):
-    return {}
+
     try:
         artist = urllib.quote_plus(request.GET['artist'])
         album = urllib.quote_plus(request.GET['album'])
