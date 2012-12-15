@@ -710,6 +710,65 @@ select:focus {
     min-height: 100px;
 }
 
+#now-playing {
+    background-position: left -47px;
+    color: white;
+    display: none;
+    height: 54px;
+    position: relative;
+}
+
+#back-to-player {
+    cursor: pointer;
+    margin-right: 150px;
+    height: 54px;
+}
+
+#back-to-player:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#now-playing__buttons {
+    position: absolute;
+    right: 7px;
+    top: 11px;
+}
+
+#now-playing .album_cover {
+    float: left;
+    height: 50px;
+    margin: 2px 8px 2px 16px;
+    width: 50px;
+}
+
+#now-playing .track_artist,
+#now-playing .track_name,
+#now-playing .album_name {
+    left: 0;
+    margin: 0 0 0 75px;
+    padding-top: 3px;
+    position: absolute;
+}
+
+#now-playing .track_artist {
+    font-size: 11px;
+    top: 2px;
+}
+
+#now-playing .track_name {
+    font-size: 13px;
+    top: 16px;
+}
+
+#now-playing .album_name {
+    font-size: 9px;
+    top: 33px;
+}
+
+/*.button_stop {
+    float: right;
+}*/
+
 #search-widget {
     background-position: bottom;
     height: 21px;
@@ -721,7 +780,6 @@ select:focus {
 #search-widget__type  {
     width: 90px;
 }
-
 
 #search-widget__name,
 #cuselFrame-search-widget__type {
@@ -955,30 +1013,30 @@ h2 {
     white-space: nowrap;
 }
 
-#album_cover {
+.album_cover {
     height: 100px;
     width: 100px;
     margin: 9px 0 0 10px;
 }
 
-#track_artist {
+.track_artist {
     font-size: 24px;
     margin: 10px 0 0 130px;
     opacity: 0.8;
 }
 
-#track_name {
+.track_name {
     font-size: 32px;
     margin: 40px 0 0 130px;
 }
 
-#album_name {
+.album_name {
     font-size: 14px;
     margin: 85px 0 0 130px;
     opacity: 0.6;
 }
 
-#album_artist {
+.album_artist {
     opacity: 0.6;
 }
 
@@ -1019,27 +1077,31 @@ h2 {
     background-position: bottom;
 }
 
-#button_next.control_button.control_button_loader {
+.button_next.control_button.control_button_loader {
     cursor: default;
     background-image: url(../img/control_button_loader.gif);
     background-position: center;
 }
 
-#button_play { background-position: 0 top; display: none; }
-#button_play:hover { background-position: 0 center; }
-#button_play:active { background-position: 0 bottom; }
+.button_play { background-position: 0 top; display: none; }
+.button_play:hover { background-position: 0 center; }
+.button_play:active { background-position: 0 bottom; }
 
-#button_pause { background-position: -32px top; }
-#button_pause:hover { background-position: -32px center; }
-#button_pause:active { background-position: -32px bottom; }
+.button_pause { background-position: -32px top; }
+.button_pause:hover { background-position: -32px center; }
+.button_pause:active { background-position: -32px bottom; }
 
-#button_previous { background-position: -64px top; }
-#button_previous:hover { background-position: -64px center; }
-#button_previous:active { background-position: -64px bottom; }
+.button_previous { background-position: -64px top; }
+.button_previous:hover { background-position: -64px center; }
+.button_previous:active { background-position: -64px bottom; }
 
-#button_next { background-position: -96px top; }
-#button_next:hover { background-position: -96px center; }
-#button_next:active { background-position: -96px bottom; }
+.button_next { background-position: -96px top; }
+.button_next:hover { background-position: -96px center; }
+.button_next:active { background-position: -96px bottom; }
+
+.button_stop { background-position: -128px top; }
+.button_stop:hover { background-position: -128px center; }
+.button_stop:active { background-position: -128px bottom; }
 
 .control_slider {
     cursor: pointer;
@@ -1073,25 +1135,25 @@ h2 {
     width: 10px;
 }
 
-#slider_volume {
+.slider_volume {
     width: 100px;
 }
 
-#slider_seek {
+.slider_seek {
     border-top: 1px solid #999999;
     border-top: 1px solid rgba(255, 255, 255, .4);
     height: 5px;
     width: 350px;
 }
 
-#slider_load {
+.slider_load {
     border-top: 1px solid #fff;
     position: relative;
     top: -1px;
     width: 0%;
 }
 
-#slider_pos {
+.slider_pos {
     border-top: none;
     position: relative;
     top: -1px;

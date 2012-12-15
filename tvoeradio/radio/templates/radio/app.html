@@ -89,6 +89,21 @@
 
         <div id="page_tune" class="page">
 
+            <div id="now-playing">
+                <div id="back-to-player">
+                    <img class="album_cover" alt="" src="{% media_url 'img/blank.gif' %}" />
+                    <div class="track_artist"></div>
+                    <div class="track_name"></div>
+                    <div class="album_name"></div>
+                </div>
+                <div id="now-playing__buttons">
+                    <div class="control_button button_pause" title="Пауза"></div>
+                    <div class="control_button button_play" title="Продолжить"></div>
+                    <div class="control_button button_next" title="Следующий трек"></div>
+                    <div class="control_button button_stop" title="Стоп"></div>
+                </div>
+            </div>
+
             <div id="topnav"></div>
 
             <div id="search-widget">
@@ -149,7 +164,7 @@
             <div id="controls">
 
                 <div id="station">
-                    <span id="station_change">&#9664; <span>сменить волну</span></span>
+                    <span id="station_change">&#9664; <span>назад к поиску</span></span>
                     <div id="station_name"></div>
                     <span id="menu_station_button" class="menu_button"><span>Станция</span> &#9660;</span>
                     <ul id="menu_station" class="menu">
@@ -165,10 +180,10 @@
                 </div>
 
                 <div id="trackinfo">
-                    <img id="album_cover" alt="" src="{% media_url 'img/blank.gif' %}" />
-                    <div id="track_artist"></div>
-                    <div id="track_name"></div>
-                    <div id="album_name"><span id="album_artist"></span></div>
+                    <img class="album_cover" alt="" src="{% media_url 'img/blank.gif' %}" />
+                    <div class="track_artist"></div>
+                    <div class="track_name"></div>
+                    <div class="album_name"><span class="album_artist"></span></div>
                     <span id="menu_track_button" class="menu_button"><span>Песня</span> &#9660;</span>
                     <ul id="menu_track" class="menu">
                         <li id="menu_track__love" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/heart.png' %})">Last.fm: Нравится</li>
@@ -183,12 +198,12 @@
                 </div>
 
                 <div id="buttons">
-                    <div id="button_previous" class="control_button" title="Предыдущий трек"></div>
-                    <div id="button_pause" class="control_button" title="Пауза"></div>
-                    <div id="button_play" class="control_button" title="Продолжить"></div>
-                    <div id="button_next" class="control_button" title="Следующий трек"></div>
-                    <div id="slider_volume" class="control_slider" title="Громкость"></div>
-                    <div id="slider_seek" class="control_slider"><div id="slider_load"></div><div id="slider_pos"></div><span></span></div>
+                    <div class="control_button button_previous" title="Предыдущий трек"></div>
+                    <div class="control_button button_pause" title="Пауза"></div>
+                    <div class="control_button button_play" title="Продолжить"></div>
+                    <div class="control_button button_next" title="Следующий трек"></div>
+                    <div class="control_slider slider_volume" title="Громкость"></div>
+                    <div class="control_slider slider_seek"><div class="slider_load"></div><div class="slider_pos"></div><span></span></div>
                 </div>
 
                 <ul class="tabs tabs_dark" id="tabs_player">

@@ -64,6 +64,7 @@ player.control.play_current_track = function() {
 
 player.control.stop = function() {
     ui.go_to_page('tune');
+    $('#now-playing').hide();
     player.audio.stop();
     document.title = 'Твоёрадио';
     if (config.mode == 'vk') {

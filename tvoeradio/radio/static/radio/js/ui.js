@@ -7,6 +7,7 @@ ui.go_to_page = function(name) {
     ui.popup.hide();
     if (name == 'tune') {
         ui.get_ads('#dashboard');
+        $('#now-playing').toggle(player.control.is_playing());
     }
 };
 
@@ -14,7 +15,7 @@ ui.go_to_page = function(name) {
 ui.resz = function() {
     var ww = $(window).width();
     var wh = $(window).height()
-    $('#slider_seek').width(ww-400);
+    $('.slider_seek').width(ww-400);
     $('#search-widget__name').width(ww-150);
     $('#trackinfo div').width(ww-140);
     if (config.mode != 'vk') {
@@ -89,8 +90,8 @@ ui.update_dashboard = function() {
 
 ui.update_album_info = function() {
     var current_track = player.playlist.get_current_track();
-    $('#album_name').text(current_track.album_name).fadeIn();
-    $('#album_cover').attr('src', current_track.album_cover + '?' + Math.random());
+    $('.album_name').text(current_track.album_name).fadeIn();
+    $('.album_cover').attr('src', current_track.album_cover + '?' + Math.random());
     ui.infoblock.show($('#tabcontent_tabs_player__album_info'), 'album', current_track.album_name + ' (' + current_track.album_artist + ')');
     network.stores.buy_album_links(current_track.album_artist, current_track.album_name, function(data){
         if (data['fuzy']) {
@@ -104,11 +105,11 @@ ui.update_track_info = function() {
 
     var current_track = player.playlist.get_current_track();
 
-    $('#track_artist').hide().text(current_track.artist);
-    setTimeout("$('#track_artist').fadeIn()", 100);
-    $('#track_name').hide().text(current_track.title).fadeIn();
-    $('#album_name').hide().text('');
-    $('#album_cover').hide();
+    $('.track_artist').hide().text(current_track.artist);
+    setTimeout("$('.track_artist').fadeIn()", 100);
+    $('.track_name').hide().text(current_track.title).fadeIn();
+    $('.album_name').hide().text('');
+    $('.album_cover').hide();
     $('#fuzy').hide();
 
     $('#tabcontent_tabs_player__album_info').text('(Нет информации)');
@@ -211,11 +212,11 @@ ui.update_track_controls = function() {
         $('.menu_track__lastfm').hide();
     }
     if (player.control.is_playing()) {
-        $('#button_pause').show();
-        $('#button_play').hide();
+        $('.button_pause').show();
+        $('.button_play').hide();
     } else {
-        $('#button_pause').hide();
-        $('#button_play').show();
+        $('.button_pause').hide();
+        $('.button_play').show();
     }
     if (userdata.audio.is_added(current_track.artist, current_track.title)) {
         $('#menu_track__addaudio').hide();
@@ -223,9 +224,9 @@ ui.update_track_controls = function() {
         $('#menu_track__addaudio').show();
     }
     if (player.control.is_loading) {
-        $('#button_next').addClass('control_button_loader');
+        $('.button_next').addClass('control_button_loader');
     } else {
-        $('#button_next').removeClass('control_button_loader');
+        $('.button_next').removeClass('control_button_loader');
     }
 };
 
@@ -364,7 +365,7 @@ $(document).ready(function(){
        $('#tabcontent_'+$(this).attr('id')).show();
     });
 
-    $('#album_cover').load(function(){$(this).fadeIn();});
+    $('.album_cover').load(function(){$(this).fadeIn();});
 
     $('.nav-station').live('click', function(e) {
         e.preventDefault();
