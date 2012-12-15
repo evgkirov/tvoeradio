@@ -60,8 +60,9 @@ player.playlist.add_track = function(artist, title, callback) {
         }
     };
     var search_callback_notfound = function(){
-        //network.vkontakte.search_audio(artist, title, search_callback, search_callback_notfound);
-        player.station.current.add_to_playlist(callback);
+        setTimeout(function() {
+            player.station.current.add_to_playlist(callback);
+        }, 1000);
     };
     title = player.playlist.autocorrect(artist, title);
     if (userdata.bans.is_banned(artist, title)) {
