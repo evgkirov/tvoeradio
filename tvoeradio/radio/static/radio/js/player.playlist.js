@@ -22,6 +22,9 @@ player.playlist.filter_tail = function(artist, title, ban_artist) {
 
 player.playlist.autocorrect = function(artist, title) {
     var original_title = title;
+    if (title.indexOf(' ') == -1) {
+        title = title.replace(/_/g, ' '); // Hold_Your_Colour
+    }
     title = title.replace(/^\d\d\.\s(.+)$/, '$1'); // 03. Watercolour
     title = title.replace(/^\d\d\s-\s(.+)$/, '$1'); // 03 - Watercolour
     title = title.replace(/^0\d\s(.+)$/, '$1'); // 03 Watercolour
