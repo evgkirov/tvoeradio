@@ -75,6 +75,14 @@ player.playlist.add_track = function(artist, title, callback) {
         search_callback_notfound();
         return;
     }
+    var last_tracks = this.list.slice(-5);
+    for (var i = 0; i < last_tracks.length; i++) {
+        var max_distance = (title.length > 10) ? 5 : 1;
+        if (util.string.levenshtein(title, last_tracks[i].title) <= max_distance) {
+            search_callback_notfound();
+            return;
+        }
+    };
     network.vkontakte.search_audio(artist, title, search_callback, search_callback_notfound);
 };
 
