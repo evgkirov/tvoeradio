@@ -131,7 +131,7 @@ def lastfm_proxy(request):
         req = urllib2.Request(settings.LASTFM_API_URL, request.raw_post_data)
         response = urllib2.urlopen(req)
         return HttpResponse(response.read(), mimetype='application/json; charset=utf-8')
-    except:
+    except urllib2.HTTPError:
         return HttpResponse('')
 
 
@@ -140,15 +140,18 @@ def lastfm_proxy(request):
 def buy_album_links(request):
 
     try:
-        artist = urllib.quote_plus(request.GET['artist'])
-        album = urllib.quote_plus(request.GET['album'])
+        artist = urllib.quote_plus(request.GET['artist'].encode('utf8'))
+        album = urllib.quote_plus(request.GET['album'].encode('utf8'))
     except MultiValueDictKeyError:
         raise Http404()
     url = 'http://fuzy.ru/api/artist/%s/albumlink/%s' % (artist, album)
 
-    req = urllib2.Request(url)
-    response = urllib2.urlopen(req)
-    data = response.read()
+    try:
+        req = urllib2.Request(url)
+        response = urllib2.urlopen(req)
+        data = response.read()
+    except urllib2.HTTPError:
+        return {}
 
     if data.startswith('fuzy.ru'):
         return {
