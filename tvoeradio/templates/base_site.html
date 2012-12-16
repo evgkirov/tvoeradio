@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load media %}
+{% load i18n %}
 
 {% block css %}
     <link href="http://fonts.googleapis.com/css?family=PT+Serif:400&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
@@ -22,7 +23,7 @@
     <script type="text/javascript">
         VK.init({apiId: {{ settings.VK_APP_ID }}});
         VK.Widgets.Group("vk_groups", {mode: 2, width: "220", height: "200"}, 16049689);
-        VK.Widgets.Like("vk_like", {type: "button", text: "Твоёрадио — персональное радио на основе твоих музыкальных интересов #tvoeradio"});
+        VK.Widgets.Like("vk_like", {type: "button", text: "{% trans "!!! TODO: SHORT DESCRIPTION" %} #tvoeradio"});
         $(document).ready(function(){
             setTimeout(function(){
                 $('#sidebar').fadeTo(0, 1);
@@ -33,7 +34,7 @@
 
 {% block body %}
     <div id="header">
-        <h1><a href="/">Твоёрадио</a></h1>
+        <h1><a href="/">{% trans "Tvoeradio" %}</a></h1>
     </div>
 
     <div id="fb-root"></div>
@@ -49,7 +50,7 @@
             <br/>
             <div class="fb-like" data-href="http://tvoeradio.org/" data-send="false" data-layout="button_count" data-width="220" data-show-faces="false"></div>
             <br/><br/>
-            <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tvoeradio.org/" data-text="Твоёрадио — персональное радио на основе твоих музыкальных интересов" data-count="horizontal" data-via="tvoeradio" data-related="tvoeradio" data-lang="ru">Твитнуть</a></div>
+            <div><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tvoeradio.org/" data-text="{% trans "!!! TODO: SHORT DESCRIPTION" %}" data-count="horizontal" data-via="tvoeradio" data-related="tvoeradio" data-lang="ru">{% trans "Tweet" %}</a></div>
             <br/>
             <div class="g-plusone" data-size="medium" data-href="http://tvoeradio.org/"></div>
         </div>

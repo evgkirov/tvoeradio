@@ -2,18 +2,19 @@
 <!DOCTYPE html>
 
 {% load media %} {# external libs #}
+{% load i18n %}
 
 <html prefix="og: http://ogp.me/ns#">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{% block title %}{% block title_text %}{% endblock %} &mdash; Твоёрадио{% endblock %}</title>
+    <title>{% block title %}{% block title_text %}{% endblock %} &mdash; {% trans "Tvoeradio" %}{% endblock %}</title>
     <link rel="icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
     <link rel="shortcut icon" href="{% media_url 'img/favicon.ico' %}" type="image/x-icon" />
     <link title="Твоёрадио: новости" type="application/atom+xml" rel="alternate" href="http://search.twitter.com/search.atom?q=from%3Atvoeradio"/>
-    <meta property="og:title" content="Твоёрадио"/>
+    <meta property="og:title" content="{% trans "Tvoeradio" %}"/>
     <meta property="og:image" content="{% media_url 'img/logo256.png' %}"/>
-    <meta property="og:description" content="Твоёрадио — персональное радио на основе твоих музыкальных интересов"/>
+    <meta property="og:description" content="{% trans "!!! TODO: SHORT DESCRIPTION" %}"/>
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:url" content="http://tvoeradio.org/"/>
     <meta property="fb:app_id" content="410274719042092"/>

@@ -1,7 +1,9 @@
 {% extends 'base_error.html' %}
 
-{% block title_text %}404 Страница не найдена{% endblock %}
+{% load i18n %}
+
+{% block title_text %}{% trans "404 Not found" %}{% endblock %}
 {% block content %}
-    <p>Нет такой страницы на сайте.</p>
-    <p>Может быть найдёте что-то <a href="/">на главной</a>?</p>
+    <p>{% trans "The page you're trying to reach does not exist." %}</p>
+    <p>{% trans "You will probably find something useful on the <a href=\"/\">main page</a>." %}</p>
 {% endblock %}

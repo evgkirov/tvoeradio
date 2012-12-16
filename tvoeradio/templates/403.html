@@ -1,7 +1,9 @@
 {% extends 'base_error.html' %}
 
-{% block title_text %}403 Доступ запрещён{% endblock %}
+{% load i18n %}
+
+{% block title_text %}{% trans "403 Forbidden" %}{% endblock %}
 {% block content %}
-    <p>Вам сюда нельзя.</p>
-    <p>А вот <a href="/">на главную</a> &mdash; можно.</p>
+    <p>{% trans "You are not allowed here." %}</p>
+    <p>{% trans "But you are always welcome on the <a href=\"/\">main page</a>." %}</p>
 {% endblock %}

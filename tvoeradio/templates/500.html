@@ -1,7 +1,9 @@
 {% extends 'base_error.html' %}
 
-{% block title_text %}500 Внутренняя ошибка сервера{% endblock %}
+{% load i18n %}
+
+{% block title_text %}{% trans "500 Internal server error" %}{% endblock %}
 {% block content %}
-    <p>Что-то сломалось, и это не ваша вина.</p>
-    <p>Скорее всего, администратор сайта уже в курсе проблемы. Ждите исправления.</p>
+    <p>{% trans "Something went wrong, and it's not your fault." %}</p>
+    <p>{% trans "Try again later." %}</p>
 {% endblock %}
