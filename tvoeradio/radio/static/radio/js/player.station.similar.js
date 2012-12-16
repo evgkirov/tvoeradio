@@ -17,5 +17,5 @@ player.station.similar.add_to_playlist = function(callback) {
 
 
 player.station.similar.get_html = function(name) {
-    return 'похожее на <b>' + util.string.htmlspecialchars(name) + '</b>';
+    return interpolate('similar to <b>%s</b>', [util.string.htmlspecialchars(name)]);
 };

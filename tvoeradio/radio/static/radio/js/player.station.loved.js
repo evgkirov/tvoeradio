@@ -15,5 +15,5 @@ player.station.loved.add_to_playlist = function(callback) {
 
 
 player.station.loved.get_html = function(name) {
-    return 'любимое <b>' + util.string.htmlspecialchars(name) + '</b>';
+        return interpolate('<b>%s</b>’s loved tracks', [util.string.htmlspecialchars(name)]);
 };

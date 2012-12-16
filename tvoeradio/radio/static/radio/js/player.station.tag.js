@@ -12,5 +12,5 @@ player.station.tag.add_to_playlist = function(callback) {
 
 
 player.station.tag.get_html = function(name) {
-    return 'тег <b>' + util.string.htmlspecialchars(name) + '</b>';
+    return interpolate('tag <b>%s</b>', [util.string.htmlspecialchars(name)]);
 };

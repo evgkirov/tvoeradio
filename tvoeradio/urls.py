@@ -7,6 +7,7 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
+    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog'),
     (r'^app/', include('tvoeradio.radio.urls')),
     (r'^ads/', include('tvoeradio.ads.urls')),
     (r'^ololoadminpanel/', include(admin.site.urls)),

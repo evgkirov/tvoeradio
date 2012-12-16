@@ -25,5 +25,5 @@ player.station.insanity.add_to_playlist = function(callback) {
 
 
 player.station.insanity.get_html = function(name) {
-    return 'режим безумия';
+    return gettext('insanity');
 };

@@ -16,5 +16,5 @@ player.station.library.add_to_playlist = function(callback) {
 
 
 player.station.library.get_html = function(name) {
-    return 'библиотека <b>' + util.string.htmlspecialchars(name) + '</b>';
+    return interpolate('<b>%s</b>’s library', [util.string.htmlspecialchars(name)]);
 };

@@ -16,7 +16,7 @@ player.station.recommendations.add_to_playlist = function(callback) {
 
 
 player.station.recommendations.get_html = function(name) {
-    return 'рекомендации для <b>' + util.string.htmlspecialchars(name) + '</b>';
+    return interpolate('recommendations for <b>%s</b>', [util.string.htmlspecialchars(name)]);
 };
 
 
