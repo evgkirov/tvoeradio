@@ -3,7 +3,7 @@ register_namespace('ui.menu');
 
 /**
  * Открывает меню по его идентификатору.
- *
+ * 
  * @param {String} id Идентификатор меню
  */
 ui.menu.open = function(id) {
@@ -24,7 +24,7 @@ ui.menu.open = function(id) {
 
 /**
  * Закрывает меню по его идентификатору.
- *
+ * 
  * @param {String} id Идентификатор меню. Если не представлено - закрытие всех меню.
  */
 ui.menu.close = function(id) {
@@ -63,19 +63,12 @@ ui.menu.toggle = function(id) {
 
 
 $(document).ready(function(){
-    $('.menu_button').hoverIntent({
-        over: function() {
-           ui.menu.open($(this).attr('id').slice(0,-7));
-        },
-        timeout: 500
+    
+    $('.menu_button').click( function() {
+        ui.menu.toggle($(this).attr('id').slice(0,-7));
     });
-
-    $('.menu').hoverIntent({
-        timeout: 200,
-        out: function() {
-           ui.menu.close_all();
-        }
-    });
-
+    
+    $('body').click
+    
 });
 
