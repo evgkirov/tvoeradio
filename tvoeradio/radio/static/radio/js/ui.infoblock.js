@@ -147,9 +147,16 @@ ui.infoblock.show_album = function(elem, name) {
         },
         function(data) {
             data.album.url = data.album.url.replace('http://www.last.fm', 'http://www.lastfm.ru');
+            var release_date = '';
+            try {
+                release_date = data.album.releasedate.match(/\d{4}/);
+            } catch (e) {
+
+            }
             var context = {
                 'name': data.album.name,
                 'artist': data.album.artist,
+                'release_date': release_date,
                 'tracks': network.lastfm.arrayize(data.album.tracks.track),
                 'tags': network.lastfm.arrayize(data.album.toptags.tag),
                 'image': network.lastfm.select_image(data.album.image, 'large'),
