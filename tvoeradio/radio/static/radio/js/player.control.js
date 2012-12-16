@@ -56,6 +56,7 @@ player.control.play_current_track = function() {
             do_play();
         },
         function(){
+            ui.notification.show('error', 'Файл не найден, пропускаем трек.');
             player.control.next();
         });
     }
