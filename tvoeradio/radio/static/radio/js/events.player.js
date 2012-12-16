@@ -71,7 +71,7 @@ $(document).ready(function() {
         },
 
         'seeking': function(e) {
-            $('.slider_pos .ui-slider-handle').css('opacity', .4);
+            $('.slider_pos .ui-slider-handle').css('opacity', 0.4);
         },
 
         'seeked': function(e) {
@@ -108,7 +108,7 @@ $(document).ready(function() {
         'value': default_volume*100,
         'slide': function(event, jui) {
             $('#mp3player').jPlayer('volume', jui.value / 100);
-            ui.notification.show('info', 'Громкость: ' + jui.value +'%');
+            ui.notification.show('info', interpolate('Volume: %s%', [jui.value]));
             util.cookie.set('tvoeradio_player_volume', jui.value, 60*60*24*1000);
         }
     });
@@ -129,14 +129,14 @@ $(document).ready(function() {
                 'artist': player.playlist.get_current_track().artist
             },
             function(data) {
-                ui.notification.show('info', 'Трек добавлен в любимые на Last.fm');
+                ui.notification.show('info', gettext('This track has been successfully added to your loved tracks on Last.fm'));
             }
         );
     });
 
     $('#menu_track__tag').click(function(){
         var current_track = player.playlist.get_current_track();
-        ui.popup.show('Добавить теги', ich.tpl_popup__tag_add(current_track), 300);
+        ui.popup.show(gettext('Tag'), ich.tpl_popup__tag_add(current_track), 300);
         cuSel({'changedEl': 'select'});
     });
 
@@ -165,7 +165,7 @@ $(document).ready(function() {
                 'attachment': 'audio' + current_track.vk_oid + '_' + current_track.vk_aid
             },
             function(data) {
-                ui.notification.show('info', 'Сообщение отправлено');
+                ui.notification.show('info', gettext('The messages has been sent'));
             }
         );
     });
@@ -180,7 +180,7 @@ $(document).ready(function() {
                     'attachment': 'audio'+current_track.vk_oid+'_'+current_track.vk_aid
                 },
                 function(data) {
-                    ui.notification.show('info', 'Сообщение отправлено');
+                    ui.notification.show('info', gettext('The messages has been sent'));
                 }
             );
         });
@@ -193,7 +193,7 @@ $(document).ready(function() {
 
     $('#menu_track__ban').click(function() {
         var current_track = player.playlist.get_current_track();
-        ui.popup.show('Забанить', ich.tpl_popup__ban_add(current_track));
+        ui.popup.show(gettext('Ban'), ich.tpl_popup__ban_add(current_track));
     });
 
     $('#form_ban_add__ban_track').live('click', function() {
@@ -209,6 +209,7 @@ $(document).ready(function() {
 
     // Меню станции
 
+
     $('#menu_station__poststatus').click(function() {
         var hash = player.station.get_current_hash();
         var desc = player.station.get_current_desc();
@@ -216,10 +217,10 @@ $(document).ready(function() {
             'wall.post',
             {
                 'services': '',
-                'message': 'Рекомендую послушать станцию «' + desc + '» в приложении «Твоёрадио» ' + config.vk_api_url + '#' + hash + ' #np #nowplaying #tvoeradio'
+                'message': interpolate('I recommend you to listen to the station „%s“ in Tvoeradio', [desc]) + ' ' + config.vk_api_url + '#' + hash + ' #np #nowplaying #tvoeradio'
             },
             function(data) {
-                ui.notification.show('info', 'Сообщение отправлено');
+                ui.notification.show('info', gettext('The messages has been sent'));
             }
         );
     });
@@ -232,11 +233,11 @@ $(document).ready(function() {
                 'wall.post',
                 {
                     'owner_id': uid,
-                    'message': 'Рекомендую послушать станцию «' + desc + '» в приложении «Твоёрадио»:',
+                    'message': interpolate('I recommend you to listen to the station „%s“ in Tvoeradio', [desc]) + ':',
                     'attachment': config.vk_api_url + '#' + hash
                 },
                 function(data) {
-                    ui.notification.show('info', 'Сообщение отправлено');
+                    ui.notification.show('info', gettext('The messages has been sent'));
                 }
             );
         });

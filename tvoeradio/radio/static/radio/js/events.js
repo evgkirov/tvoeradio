@@ -54,11 +54,11 @@ $(document).ready(function(){
             'desktop_version': window['bridge'] ? bridge.get_version() : false,
             'year': (new Date()).getFullYear()
         }
-        ui.popup.show('О приложении', ich.tpl_popup__about(context), 300);
+        ui.popup.show(gettext('About the app'), ich.tpl_popup__about(context), 300);
     });
 
     $('#topnav__lastfm_auth').live('click', function() {
-        ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1);
+        ui.popup.show(gettext('Authorize your Last.fm account'), ich.tpl_popup__lastfm_auth1);
         network.lastfm.api('auth.getToken', {}, function(data){
             var api_key = network.lastfm.api_key;
             var api_secret = '';
@@ -82,7 +82,7 @@ $(document).ready(function(){
     $('#popup_lastfm__auth2 button').live('click', function() {
         network.lastfm.api('auth.getSession', {'token': network.lastfm.auth_token}, function(data) {
             if (data.error) {
-                ui.popup.set_content(ich.tpl_popup__lastfm_auth1({'error': 'Вы не подтвердили доступ, придётся начать сначала.'}));
+                ui.popup.set_content(ich.tpl_popup__lastfm_auth1({'error': gettext('You haven’t been granted access to Last.fm, now you have to restart authorization process.')}));
             $('#popup_lastfm__auth1 div:first').show();
             $('#popup_lastfm__auth1 div.button_blue').hide();
             } else {
@@ -111,7 +111,7 @@ $(document).ready(function(){
     });
 
     $('#dashboard__cell_stations_favorited .dashboard__cell__title .pseudolink').click(function(){
-        ui.popup.show('Избранное', ui.get_stations_list_html(userdata.favorited_stations.list));
+        ui.popup.show(gettext('Favorite stations'), ui.get_stations_list_html(userdata.favorited_stations.list));
     });
 
     $('#app-preloader').hide();

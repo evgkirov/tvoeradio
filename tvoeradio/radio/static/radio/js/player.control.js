@@ -56,7 +56,7 @@ player.control.play_current_track = function() {
             do_play();
         },
         function(){
-            ui.notification.show('error', 'Файл не найден, пропускаем трек.');
+            ui.notification.show('error', gettext('Audio file was not found for this track, skipping…'));
             player.control.next();
         });
     }
@@ -67,9 +67,9 @@ player.control.stop = function() {
     ui.go_to_page('tune');
     $('#now-playing').hide();
     player.audio.stop();
-    document.title = 'Твоёрадио';
+    document.title = gettext('Tvoeradio');
     if (config.mode == 'vk') {
-        network.vkontakte.callMethod('setTitle', 'Твоёрадио');
+        network.vkontakte.callMethod('setTitle', gettext('Tvoeradio'));
     }
     if (window['bridge']) {
         bridge.playing_change(false);

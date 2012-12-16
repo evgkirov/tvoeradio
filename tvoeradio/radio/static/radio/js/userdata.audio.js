@@ -18,7 +18,7 @@ userdata.audio.add = function(artist, title, vk_aid, vk_oid) {
             'title': title
         });
         ui.update_track_controls();
-        ui.notification.show('info', 'Добавлено в Ваши аудиозаписи');
+        ui.notification.show('info', gettext('Added on your VK page'));
     });
 };
 

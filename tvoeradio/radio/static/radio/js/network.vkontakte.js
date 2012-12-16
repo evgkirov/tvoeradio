@@ -21,7 +21,7 @@ network.vkontakte.api = function(method, params, callback) {
                     break;
 
                 default:
-                    ui.notification.show('error permanent', 'Произошла ошибка во время запроса к VK API. ' + data.error.error_msg + ' (код '+ data.error.error_code + ')');
+                    ui.notification.show('error permanent', interpolate('An error occured when we tried to call VK API. %s (code %s)', [data.error.error_msg, data.error.error_code]));
 
             }
 
@@ -92,7 +92,7 @@ network.vkontakte.search_audio = function(artist, title, callback, callback_notf
 
 
 network.vkontakte.choose_friend = function(callback) {
-    ui.popup.show('Выберите друга', '<div class="infoblock-loader"></div>');
+    ui.popup.show(gettext('Choose a friend'), '<div class="infoblock-loader"></div>');
     network.vkontakte.api('friends.get', {'fields': 'uid,first_name,last_name,photo'}, function(data){
         var html = ich.tpl_popup__choose_friend({
             'friends': data.response

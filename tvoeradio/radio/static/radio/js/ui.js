@@ -112,7 +112,7 @@ ui.update_track_info = function() {
     $('.album_cover').hide();
     $('#fuzy').hide();
 
-    $('#tabcontent_tabs_player__album_info').text('(Нет информации)');
+    $('#tabcontent_tabs_player__album_info').text(gettext('(Does not compute)'));
     if (current_track.album_name) {
         ui.update_album_info();
     } else {
@@ -146,7 +146,7 @@ ui.update_track_info = function() {
             $('#tabcontent_tabs_player__lyrics').html(data.response.text.replace(/\n/g, '<br/>'));
         });
     } else {
-        $('#tabcontent_tabs_player__lyrics').text('(У меня просто нет слов!)');
+        $('#tabcontent_tabs_player__lyrics').text(gettext('(Sorry, we have no lyrics for this)'));
     }
 
     $('#tabcontent_tabs_player__comments').text('');
@@ -156,7 +156,7 @@ ui.update_track_info = function() {
             'autoPublish': 0,
             'limit': 10,
             'mini': 1,
-            'pageTitle': current_track.artist + ' — ' + current_track.title + ' (в приложении «Твоёрадио»)',
+            'pageTitle': current_track.artist + ' — ' + current_track.title + ' ' + gettext('(using Tvoeradio)'),
             'pageUrl': 'http://' + config.app_domain + '/'
         },
         util.string.md5('artist ' + current_track.artist + ' title ' + current_track.title)
@@ -296,7 +296,7 @@ ui.show_popup_lastfm = function() {
     if (network.lastfm.authorized) {
         ui.infoblock.show_popup('user', network.lastfm.user);
     } else {
-        ui.popup.show('Авторизация в Last.fm', ich.tpl_popup__lastfm_auth1());
+        ui.popup.show(gettext('Authorize your Last.fm account'), ich.tpl_popup__lastfm_auth1());
     }
 };
 
@@ -316,6 +316,9 @@ ui.update_playlist = function() {
 };
 
 ui.get_ads = function(elem) {
+    if (config.language_code != 'ru') {
+        return;
+    }
     var block = $(elem).find('.ad');
     block.hide();
     $.getJSON('/ads/_/get/', function(data) {
@@ -350,7 +353,7 @@ ui.get_ads = function(elem) {
         } else {
             ad_link.removeClass('nav-station');
         }
-        block.find('.ad__warning').text(data.warning || 'реклама');
+        block.find('.ad__warning').text(data.warning || gettext('ads'));
         block.css('background-image', data.image).show();
     });
 };

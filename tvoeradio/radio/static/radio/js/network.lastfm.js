@@ -76,7 +76,7 @@ network.lastfm.api = function(method, params, callback, callback_error) {
                             show_error = !(callback_error(data));
                         }
                         if (show_error) {
-                            ui.notification.show('error permanent', 'Произошла ошибка во время запроса к Last.fm API. ' + data.message + ' (код '+ data.error + ')');
+                            ui.notification.show('error permanent', interpolate('An error occured when we tried to call Last.fm API. %s (code %s)', [data.message, data.error]));
                         }
                     } else {
                         if (!is_nocache_method) {

@@ -14,7 +14,13 @@ userdata.bans.add = function(artist, title, ban_artist) {
         userdata.bans.list = data.bans;
         player.playlist.filter_tail(artist, title, ban_artist);
         player.control.next();
-        ui.notification.show('info', (ban_artist?'Исполнитель':'Трек') + ' забанен и никогда больше не будет воспроизводиться');
+        var message = '';
+        if (ban_artist) {
+            message = gettext('This artist is in your ban list now and it will be not played again ever.');
+        } else {
+            message = gettext('This track is in your ban list now and it will be not played again ever.');
+        }
+        ui.notification.show('info', message);
     });
 };
 

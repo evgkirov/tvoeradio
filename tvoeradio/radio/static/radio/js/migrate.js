@@ -19,7 +19,7 @@ migrate.favorites = function() {
                     ui.update_station_controls();
                     network.vkontakte.api('putVariable', {'key': start - 1, 'value': 'favorites migrated'}, function(data){
                         if (old_fav_count != new_fav_count) {
-                            ui.notification.show('info', 'Успешно перенесено избранное из предыдущей версии приложения');
+                            ui.notification.show('info', gettext('Your favorites has been successfully migrated from the previous version of the app'));
                         }
                     });
                 });

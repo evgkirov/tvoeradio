@@ -23,7 +23,7 @@ ui.infoblock.convert_wiki = function (elem) {
 
 
 ui.infoblock.add_comments = function(elem, type, name) {
-    var title = name + ' (в приложении «Твоёрадио»)';
+    var title = name + ' ' + gettext('(using Tvoeradio)');
     var hash = 'info/' + type + '/' + util.string.urlencode(name)
     var url = 'http://' + config.app_domain + '/app/vkredir/?hash=' + hash;
     var hash = util.string.md5(type + ' ' + name)
@@ -40,7 +40,7 @@ ui.infoblock.add_comments = function(elem, type, name) {
         },
         hash
     );
-}
+};
 
 
 ui.infoblock.show_artist = function(elem, name) {
@@ -122,7 +122,7 @@ ui.infoblock.show_artist = function(elem, name) {
         },
         function(data) {
             if (data.error == 6) {
-                $(elem).text('Нет такого исполнителя.');
+                $(elem).text(gettext('Artist not found.'));
                 return true;
             }
         }
@@ -133,7 +133,7 @@ ui.infoblock.show_artist = function(elem, name) {
 ui.infoblock.show_album = function(elem, name) {
     var parsed = /^(.+)\s\((.+)\)$/.exec(name);
     if (!parsed) {
-        $(elem).text('Нет такого альбома.');
+        $(elem).text(gettext('Album not found.'));
         return;
     }
     var album = parsed[1];
@@ -177,7 +177,7 @@ ui.infoblock.show_album = function(elem, name) {
         },
         function(data) {
             if (data.error == 6) {
-                $(elem).text('Нет такого альбома.');
+                $(elem).text(gettext('Album not found.'));
                 return true;
             }
         }
@@ -249,7 +249,7 @@ ui.infoblock.show_tag = function(elem, name) {
         },
         function(data) {
             if (data.error == 6) {
-                $(elem).text('Нет такого тега.');
+                $(elem).text(gettext('Tag not found.'));
                 return true;
             }
         }
@@ -364,7 +364,7 @@ ui.infoblock.show_user = function(elem, name) {
                 },
                 function(data) {
                     if (data.error == 6) {
-                        $(elem).text('Нет такого пользователя на Last.fm.');
+                        $(elem).text(gettext('Last.fm user not found.'));
                         return true;
                     }
                 }
