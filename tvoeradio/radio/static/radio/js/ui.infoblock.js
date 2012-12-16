@@ -48,7 +48,7 @@ ui.infoblock.show_artist = function(elem, name) {
         'artist.getInfo',
         {
             'artist': name,
-            'lang': 'ru'
+            'lang': config.language_code
         },
         function(data) {
 
@@ -143,7 +143,7 @@ ui.infoblock.show_album = function(elem, name) {
         {
             'artist': artist,
             'album': album,
-            'lang': 'ru'
+            'lang': config.language_code
         },
         function(data) {
             data.album.url = data.album.url.replace('http://www.last.fm', 'http://www.lastfm.ru');
@@ -190,7 +190,7 @@ ui.infoblock.show_tag = function(elem, name) {
         'tag.getInfo',
         {
             'tag': name,
-            'lang': 'ru'
+            'lang': config.language_code
         },
         function(data) {
             data.tag.url = data.tag.url.replace('http://www.last.fm', 'http://www.lastfm.ru');

@@ -22,7 +22,7 @@ DATABASES = {
 }
 
 TIME_ZONE = 'Europe/Moscow'
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en'
 USE_I18N = True
 USE_L10N = True
 

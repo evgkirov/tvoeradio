@@ -7,6 +7,8 @@
 {% block body_class %}mode-{{ mode }}{% endblock %}
 {% block css %}{% include_media 'radio.css' %}{% endblock %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block js %}
     <script type="text/javascript">
         var config = {
@@ -22,6 +24,7 @@
             'first_name': '{{ user.first_name }}',
             'last_name': '{{ user.last_name }}',
             'user_id': '{{ user.username }}',
+            'language_code': '{{ LANGUAGE_CODE }}',
             'images': {
                 'disc': '{% media_url "img/icons/disc.png" %}'
             }

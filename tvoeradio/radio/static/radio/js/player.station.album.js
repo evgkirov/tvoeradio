@@ -8,7 +8,7 @@ player.station.album.add_to_playlist = function(callback) {
     if (player.playlist.list.length) {
         return 'no_more_tracks';
     }
-    network.lastfm.api('album.getInfo', {'artist': artist, 'album': album, 'lang': 'ru'}, function(data) {
+    network.lastfm.api('album.getInfo', {'artist': artist, 'album': album, 'lang': config.language_code}, function(data) {
         player.playlist.add_tracks(
             network.lastfm.arrayize(data.album.tracks.track),
             callback,
