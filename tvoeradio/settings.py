@@ -49,6 +49,7 @@ MEDIA_BUNDLES = (
     ),
     ('radio.js',
         'js/3rdparty/lscache.js',
+        'js/3rdparty/mustache.js',
         'js/3rdparty/ICanHaz.js',
         'js/3rdparty/jquery.jsonp.js',
         'js/3rdparty/jplayer/jquery.jplayer.js',

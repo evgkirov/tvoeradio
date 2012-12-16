@@ -1,50 +1,50 @@
 <table class="infoblock infoblock_album">
 
     <tr class="infoblock__line">
-        <td class="infoblock__line__header infoblock__photo">{{#image}}<img src="{{image}}" alt="" />{{/image}}</td>
+        <td class="infoblock__line__header infoblock__photo">[[#image]]<img src="[[image]]" alt="" />[[/image]]</td>
         <td class="infoblock__line__content infoblock__wiki">
             <ol>
-                {{#tracks}}
-                    <li>{{name}}</li>
-                {{/tracks}}
+                [[#tracks]]
+                    <li>[[name]]</li>
+                [[/tracks]]
             </ol>
         </td>
     </tr>
 
     <tr class="infoblock__line infoblock__line_stationlist">
         <td class="infoblock__line__header">слушать:</td>
-        <td class="infoblock__line__content">{{>tpl_partial_stationslist}}</td>
+        <td class="infoblock__line__content">[[>tpl_partial_stationslist]]</td>
     </tr>
 
     <tr class="infoblock__line">
         <td class="infoblock__line__header">исполнитель:</td>
         <td class="infoblock__line__content infoblock__artists">
-            <span class="pseudolink nav-infoblock" data-type="artist" data-name="{{artist}}">{{artist}}</span>
+            <span class="pseudolink nav-infoblock" data-type="artist" data-name="[[artist]]">[[artist]]</span>
         </td>
     </tr>
 
-    {{#release_date}}
+    [[#release_date]]
     <tr class="infoblock__line">
         <td class="infoblock__line__header">год:</td>
         <td class="infoblock__line__content infoblock__artists">
-            {{release_date}}
+            [[release_date]]
         </td>
     </tr>
-    {{/release_date}}
+    [[/release_date]]
 
     <tr class="infoblock__line">
         <td class="infoblock__line__header">теги:</td>
         <td class="infoblock__line__content infoblock__tags">
-            {{#tags}}
-                <span class="pseudolink nav-infoblock" data-type="tag" data-name="{{name}}">{{name}}</span>
-            {{/tags}}
+            [[#tags]]
+                <span class="pseudolink nav-infoblock" data-type="tag" data-name="[[name]]">[[name]]</span>
+            [[/tags]]
         </td>
     </tr>
 
     <tr class="infoblock__line">
         <td class="infoblock__line__header">подробнее:</td>
         <td class="infoblock__line__content">
-            <a href="{{lastfm_url}}" target="_blank">{{{lastfm_url_text}}}</a>
+            <a href="[[lastfm_url]]" target="_blank">[[{lastfm_url_text}]]</a>
         </td>
     </tr>
 

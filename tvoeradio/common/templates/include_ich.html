@@ -1,0 +1,9 @@
+<script id="tpl_{{ template_name }}" type="text/html">
+    {% include template %}
+</script>
+
+{% if partial %}
+    <script id="tpl_partial_{{ template_name }}" type="text/html" class="partial">
+        {% include template %}
+    </script>
+{% endif %}

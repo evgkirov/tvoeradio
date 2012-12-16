@@ -1,10 +1,10 @@
-<div class="form" id="form_tag_add" data-artist="{{artist}}" data-title="{{title}}" data-album="{{album_name}}">
+<div class="form" id="form_tag_add" data-artist="[[artist]]" data-title="[[title]]" data-album="[[album_name]]">
     <div class="form__line">
         <label>Пометить:</label>
         <select>
-            <option value="track">трек ({{title}})</option>
-            {{#album_name}}<option value="album">альбом ({{album_name}})</option>{{/album_name}}
-            <option value="artist">исполнителя ({{artist}})</option>
+            <option value="track">трек ([[title]])</option>
+            [[#album_name]]<option value="album">альбом ([[album_name]])</option>[[/album_name]]
+            <option value="artist">исполнителя ([[artist]])</option>
         </select>
     </div>
     <div class="form__line">
