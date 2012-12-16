@@ -53,6 +53,7 @@ MEDIA_BUNDLES = (
         'js/3rdparty/jquery.jsonp.js',
         'js/3rdparty/jplayer/jquery.jplayer.js',
         'js/3rdparty/cusel.js',
+        'js/3rdparty/jquery.hoverIntent.js',
         'radio/js/browsers.js',
         'radio/js/util.namespace.js',
         'radio/js/util.cachedselectors.js',
