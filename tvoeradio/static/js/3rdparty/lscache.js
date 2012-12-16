@@ -101,7 +101,11 @@ var lscache = function() {
   function setItem(key, value) {
     // Fix for iPad issue - sometimes throws QUOTA_EXCEEDED_ERR on setItem.
     localStorage.removeItem(CACHE_PREFIX + cacheBucket + key);
-    localStorage.setItem(CACHE_PREFIX + cacheBucket + key, value);
+    try {
+      localStorage.setItem(CACHE_PREFIX + cacheBucket + key, value);
+    } catch (e) {
+      return;
+    }
   }
 
   function removeItem(key) {
