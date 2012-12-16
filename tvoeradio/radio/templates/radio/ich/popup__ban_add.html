@@ -1,11 +1,13 @@
+{% load i18n %}
+
 <div class="form" id="form_ban_add" data-artist="[[artist]]" data-title="[[title]]">
     <div class="form__line">
-        <div id="form_ban_add__ban_track" class="button_blue button_wide"><button>Забанить только этот трек</button></div>
+        <div id="form_ban_add__ban_track" class="button_blue button_wide"><button>{% trans "Ban only this track" %}</button></div>
     </div>
     <div class="form__line">
-        <div id="form_ban_add__ban_artist" class="button_blue button_wide"><button>Забанить всё от <b>[[artist]]</b></button></div>
+        <div id="form_ban_add__ban_artist" class="button_blue button_wide"><button>{% trans "Ban everything from <b>[[artist]]</b>" %}</button></div>
     </div>
     <div class="popup__buttons">
-        <div class="button_gray form__cancel"><button>Отмена</button></div>
+        <div class="button_gray form__cancel"><button>{% trans "Cancle" %}</button></div>
     </div>
 </div>

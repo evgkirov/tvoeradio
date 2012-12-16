@@ -71,7 +71,7 @@
         {% include_ich 'radio/ich/popup__lastfm_auth2.html' %}
         {% include_ich 'radio/ich/popup__ban_add.html' %}
         {% include_ich 'radio/ich/popup__tag_add.html' %}
-        {% include_ich 'radio/ich/stationslist.html' partial %}
+        {% include_ich 'radio/ich/stationslist.html' partial=1 %}
         {% include_ich 'radio/ich/tabcontent_tabs_player__buy.html' %}
         {% include_ich 'radio/ich/topnav.html' %}
 
@@ -138,7 +138,7 @@
                 <div class="clear"></div>
                 <div class="dashboard__block">
                     <div class="dashboard__cell" id="dashboard__cell_stations_favorited">
-                        <div class="dashboard__cell__title"><span class="pseudolink">{% trans "view all" %}</span>{% trans "Favorite stations" %}</div>
+                        <div class="dashboard__cell__title"><span class="pseudolink">{% trans "show all" %}</span>{% trans "Favorite stations" %}</div>
                         <div class="dashboard__cell__content"></div>
                     </div>
                     <div class="dashboard__cell" id="dashboard__cell_stations_recent">

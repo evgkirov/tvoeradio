@@ -1,22 +1,23 @@
+{% load i18n %}
+
 <div id="popup_about">
 
-
 <div id="popup_about__main">
-    <big>Твоёрадио</big><br/>версия [[version]]
-    [[#desktop_version]]/ десктоп [[desktop_version]][[/desktop_version]]<br/>
+    <big>{% trans "Tvoeradio" %}</big><br/>{% trans "version" %} [[version]]
+    [[#desktop_version]]/ {% trans "desktop" %} [[desktop_version]][[/desktop_version]]<br/>
     <br/>
-    <a href="/" target="_blank">Сайт</a> -
-    <a href="http://vk.com/tvoeradio_official" target="_blank">В Контакте</a> -
-    <a href="http://twitter.com/tvoeradio" target="_blank">Твиттер</a><br/>
+    <a href="/" target="_blank">{% trans "Website" %}</a> -
+    <a href="http://vk.com/tvoeradio_official" target="_blank">{% trans "VK" %}</a> -
+    <a href="http://twitter.com/tvoeradio" target="_blank">{% trans "Twitter" %}</a><br/>
     <br/>
-    &copy; Евгений Киров, 2010&mdash;[[year]]
+    &copy; {% trans "Evgeniy Kirov" %}, 2010&mdash;[[year]]
 </div>
 
 
 <div id="popup_about__attributions">
-    Иконки в&nbsp;менюшках &copy; <a href="http://p.yusukekamiyamane.com/" target="_blank" title="Простите, этого требует CC BY лицензия, а иконки и правда хорошие">Yusuke Kamiyamane</a><br/><br/>
-    <div class="fright" style="padding-left: 15px;">Данные &mdash;<br/><a href="http://last.fm/" target="_blank"><img src="http://cdn.last.fm/flatness/badges/lastfm_red_small.gif" title="Last.fm требует, чтобы я разместил тут их логотип" /></a></div>
-    Все аудиозаписи расположены на&nbsp;серверах &laquo;В&nbsp;Контакте&raquo; и&nbsp;загружены его пользователями. &laquo;Твоёрадио&raquo; никак не связано с ООО &laquo;В&nbsp;Контакте&raquo; или Last.fm Ltd.
+    {% trans "Menu icons" %} &copy; <a href="http://p.yusukekamiyamane.com/" target="_blank">Yusuke Kamiyamane</a><br/><br/>
+    <div class="fright" style="padding-left: 15px;">{% trans "Data is provided by" %}<br/><a href="http://last.fm/" target="_blank"><img src="http://cdn.last.fm/flatness/badges/lastfm_red_small.gif" /></a></div>
+    {% trans "Все аудиозаписи расположены на&nbsp;серверах &laquo;В&nbsp;Контакте&raquo; и&nbsp;загружены его пользователями. &laquo;Твоёрадио&raquo; никак не связано с ООО &laquo;В&nbsp;Контакте&raquo; или Last.fm Ltd." %}
 </div>
 
 </div>

@@ -1,5 +1,7 @@
+{% load i18n %}
+
 <div id="popup_lastfm__auth1">
     <p>[[error]]</p>
-    <div>Подождите…</div>
-    <div class="button_blue" style="display:none"><a href="[[url]]" target="_blank"><button>Начать авторизацию</button></a></div>
+    <div>{% trans "Wait for it…" %}</div>
+    <div class="button_blue" style="display:none"><a href="[[url]]" target="_blank"><button>{% trans "Begin authorization" %}</button></a></div>
 </div>
