@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% load media %} {# external libs #}
+{% load media i18n %} {# external libs #}
 {% load jsonize include_ich radio %} {# common app #}
 
-{% block title %}Твоёрадио{% endblock %}
+{% block title %}{% trans "Tvoeradio" %}{% endblock %}
 {% block body_class %}mode-{{ mode }}{% endblock %}
 {% block css %}{% include_media 'radio.css' %}{% endblock %}
 
@@ -45,11 +45,11 @@
 
 {% block body %}
     <div id="app-preloader">
-        Загрузка…
+        {% trans "Loading…" %}
     </div>
 
     <div id="loader_fullscreen">
-        <div id="loader_fullscreen__cancel" class="button_gray"><button>Отмена</button></div>
+        <div id="loader_fullscreen__cancel" class="button_gray"><button>{% trans "Cancel" %}</button></div>
     </div>
     <div id="notification"></div>
     <div id="popup-overlay"></div>
@@ -97,10 +97,10 @@
                     <div class="album_name"></div>
                 </div>
                 <div id="now-playing__buttons">
-                    <div class="control_button button_pause" title="Пауза"></div>
-                    <div class="control_button button_play" title="Продолжить"></div>
-                    <div class="control_button button_next" title="Следующий трек"></div>
-                    <div class="control_button button_stop" title="Стоп"></div>
+                    <div class="control_button button_pause" title="{% trans "Pause" %}"></div>
+                    <div class="control_button button_play" title="{% trans "Resume" %}"></div>
+                    <div class="control_button button_next" title="{% trans "Next track" %}"></div>
+                    <div class="control_button button_stop" title="{% trans "Stop" %}"></div>
                 </div>
             </div>
 
@@ -109,14 +109,14 @@
             <div id="search-widget">
                 <div id="search-widget__clear"></div>
                 <select id="search-widget__type">
-                    <option value="artist">исполнитель</option>
-                    <option value="album">альбом</option>
-                    <option value="tag">тег</option>
-                    <option value="user">пользователь</option>
+                    <option value="artist">{% trans "artist" %}</option>
+                    <option value="album">{% trans "album" %}</option>
+                    <option value="tag">{% trans "tag" %}</option>
+                    <option value="user">{% trans "user" %}</option>
                 </span>
                 <input id="search-widget__name" type="text" class="input_text" />
                 {% if just_registered %}
-                    <div id="welcome"><div id="welcome__i"></div>Начать работу можно с поисковой строки:<br/>введите здесь имя любимого исполнителя и нажмите Enter.</div>
+                    <div id="welcome"><div id="welcome__i"></div>{% trans "Start right here:<br/>type your favorite artist’s name and press Enter." %}</div>
                 {% endif %}
             </div>
 
@@ -138,11 +138,11 @@
                 <div class="clear"></div>
                 <div class="dashboard__block">
                     <div class="dashboard__cell" id="dashboard__cell_stations_favorited">
-                        <div class="dashboard__cell__title"><span class="pseudolink">всё</span>Последнее в избранном</div>
+                        <div class="dashboard__cell__title"><span class="pseudolink">{% trans "view all" %}</span>{% trans "Favorite stations" %}</div>
                         <div class="dashboard__cell__content"></div>
                     </div>
                     <div class="dashboard__cell" id="dashboard__cell_stations_recent">
-                        <div class="dashboard__cell__title">Последнее прослушанное</div>
+                        <div class="dashboard__cell__title">{% trans "Recent stations" %}</div>
                         <div class="dashboard__cell__content"></div>
                     </div>
                 </div>
@@ -164,18 +164,18 @@
             <div id="controls">
 
                 <div id="station">
-                    <span id="station_change">&#9664; <span>назад к поиску</span></span>
+                    <span id="station_change">&#9664; <span>{% trans "back to search" %}</span></span>
                     <div id="station_name"></div>
-                    <span id="menu_station_button" class="menu_button"><span>Станция</span> &#9660;</span>
+                    <span id="menu_station_button" class="menu_button"><span>{% trans "Station" %}</span> &#9660;</span>
                     <ul id="menu_station" class="menu">
-                        <li id="menu_station__onlysimilar" style="background-image:url({% media_url 'img/icons/checkbox-on.png' %})">В том числе «<span></span>»</li>
-                        <li id="menu_station__notonlysimilar" style="background-image:url({% media_url 'img/icons/checkbox-off.png' %})">В том числе «<span></span>»</li>
-                        <li id="menu_station__includeremixes" style="background-image:url({% media_url 'img/icons/checkbox-on.png' %})">Исключить ремиксы</li>
-                        <li id="menu_station__excluderemixes" style="background-image:url({% media_url 'img/icons/checkbox-off.png' %})">Исключить ремиксы</li>
-                        <li id="menu_station__addfavorite" style="background-image:url({% media_url 'img/icons/star--plus.png' %})">Добавить в избранное</li>
-                        <li id="menu_station__removefavorite" style="background-image:url({% media_url 'img/icons/star--minus.png' %})">Убрать из избранного</li>
-                        <li id="menu_station__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">В статус</li>
-                        <li id="menu_station__postwall" style="background-image:url({% media_url 'img/icons/wall-brick.png' %})">Другу на стену</li>
+                        <li id="menu_station__onlysimilar" style="background-image:url({% media_url 'img/icons/checkbox-on.png' %})">{% trans "Including <span></span>" %}</li>
+                        <li id="menu_station__notonlysimilar" style="background-image:url({% media_url 'img/icons/checkbox-off.png' %})">{% trans "Including <span></span>" %}</li>
+                        <li id="menu_station__includeremixes" style="background-image:url({% media_url 'img/icons/checkbox-on.png' %})">{% trans "Exclude remixes" %}</li>
+                        <li id="menu_station__excluderemixes" style="background-image:url({% media_url 'img/icons/checkbox-off.png' %})">{% trans "Exclude remixes" %}</li>
+                        <li id="menu_station__addfavorite" style="background-image:url({% media_url 'img/icons/star--plus.png' %})">{% trans "Add to favorites" %}</li>
+                        <li id="menu_station__removefavorite" style="background-image:url({% media_url 'img/icons/star--minus.png' %})">{% trans "Remove from favorites" %}</li>
+                        <li id="menu_station__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">{% trans "Share on my page" %}</li>
+                        <li id="menu_station__postwall" style="background-image:url({% media_url 'img/icons/wall-brick.png' %})">{% trans "Share with friend" %}</li>
                     </ul>
                 </div>
 
@@ -184,35 +184,33 @@
                     <div class="track_artist"></div>
                     <div class="track_name"></div>
                     <div class="album_name"><span class="album_artist"></span></div>
-                    <span id="menu_track_button" class="menu_button"><span>Песня</span> &#9660;</span>
+                    <span id="menu_track_button" class="menu_button"><span>{% trans "Track" %}</span> &#9660;</span>
                     <ul id="menu_track" class="menu">
-                        <li id="menu_track__love" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/heart.png' %})">Last.fm: Нравится</li>
-                        <li id="menu_track__tag" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/tag-label-gray.png' %})">Last.fm: Добавить теги</li>
-                        <!--<li id="menu_track__toplaylist" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/document-music-playlist.png' %})">Last.fm: Добавить в плейлист</li>-->
-                        <li id="menu_track__addaudio" style="background-image:url({% media_url 'img/icons/music--plus.png' %})">В «Мои аудиозаписи»</li>
-                        <li id="menu_track__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">В статус</li>
-                        <li id="menu_track__postwall" style="background-image:url({% media_url 'img/icons/wall-brick.png' %})">Другу на стену</li>
-                        <li id="menu_track__ban" style="background-image:url({% media_url 'img/icons/prohibition.png' %})">Забанить</li>
+                        <li id="menu_track__love" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/heart.png' %})">{% trans "Last.fm: Like" %}</li>
+                        <li id="menu_track__tag" class="menu_track__lastfm" style="background-image:url({% media_url 'img/icons/tag-label-gray.png' %})">{% trans "Last.fm: Tag" %}</li>
+                        <li id="menu_track__addaudio" style="background-image:url({% media_url 'img/icons/music--plus.png' %})">{% trans "Add to My Music on VK" %}</li>
+                        <li id="menu_track__poststatus" style="background-image:url({% media_url 'img/icons/balloon-white.png' %})">{% trans "Share on my page" %}</li>
+                        <li id="menu_track__postwall" style="background-image:url({% media_url 'img/icons/wall-brick.png' %})">{% trans "Share with friend" %}</li>
+                        <li id="menu_track__ban" style="background-image:url({% media_url 'img/icons/prohibition.png' %})">{% trans "Ban" %}</li>
                     </ul>
                     <a href="" id="fuzy" target="_blank"><img src="http://fuzy.ru/i/identity/fuzy_logo_140x27_brown.png" title="Икспиримент!" /></a>
                 </div>
 
                 <div id="buttons">
-                    <div class="control_button button_previous" title="Предыдущий трек"></div>
-                    <div class="control_button button_pause" title="Пауза"></div>
-                    <div class="control_button button_play" title="Продолжить"></div>
-                    <div class="control_button button_next" title="Следующий трек"></div>
-                    <div class="control_slider slider_volume" title="Громкость"></div>
+                    <div class="control_button button_previous" title="{% trans "Previous track" %}"></div>
+                    <div class="control_button button_pause" title="{% trans "Pause" %}"></div>
+                    <div class="control_button button_play" title="{% trans "Resume" %}"></div>
+                    <div class="control_button button_next" title="{% trans "Next track" %}"></div>
+                    <div class="control_slider slider_volume" title="{% trans "Volume" %}"></div>
                     <div class="control_slider slider_seek"><div class="slider_load"></div><div class="slider_pos"></div><span></span></div>
                 </div>
 
                 <ul class="tabs tabs_dark" id="tabs_player">
-                    <li class="active" id="tabs_player__info">Об исполнителе</li>
-                    <li id="tabs_player__album_info">Об альбоме</li>
-                    <li id="tabs_player__lyrics">Текст песни</li>
-                    <!-- <li id="tabs_player__buy">Купить</li> -->
-                    <li id="tabs_player__comments">Комментарии к песне</li>
-                    <li id="tabs_player__playlist">Плейлист</li>
+                    <li class="active" id="tabs_player__info">{% trans "About the artist" %}</li>
+                    <li id="tabs_player__album_info">{% trans "About the album" %}</li>
+                    <li id="tabs_player__lyrics">{% trans "Lyrics" %}</li>
+                    <li id="tabs_player__comments">{% trans "Comments for the track" %}</li>
+                    <li id="tabs_player__playlist">{% trans "Playlist" %}</li>
                 </ul>
 
             </div>
