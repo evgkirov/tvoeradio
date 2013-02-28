@@ -127,10 +127,7 @@ $(document).ready(function(){
 if (config.mode == 'vk') {
 
     network.vkontakte.init(function(){
-        // creara
-        var cmBlock = new CMBlockVK;
-        cmBlock.setupBlock( 'cmBannerBlock', 21251, {} );
-        // /creara
+        // vk init
     });
 
     network.vkontakte.addCallback('onLocationChanged', function(str){
