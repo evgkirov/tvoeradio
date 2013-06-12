@@ -17,8 +17,20 @@ network.vkontakte.api = function(method, params, callback) {
                     window.setTimeout(network.vkontakte.api, 3000, method, params, callback);
                     break;
 
+                case 14: // Captcha needed
+                    ui.popup.show('Введите код', ich.tpl_popup__captcha(data.error), 300);
+                    $('#form_captcha').submit(function(e){
+                        e.preventDefault();
+                        ui.popup.hide()
+                        params['captcha_sid'] = data.error.captcha_sid;
+                        params['captcha_key'] = $('#form_captcha__key').val();
+                        network.vkontakte.api(method, params, callback);
+                    });
+                    break;
+
                 case 10007: // Operation denied by user.
                     break;
+
 
                 default:
                     ui.notification.show('error permanent', 'Произошла ошибка во время запроса к VK API. ' + data.error.error_msg + ' (код '+ data.error.error_code + ')');
