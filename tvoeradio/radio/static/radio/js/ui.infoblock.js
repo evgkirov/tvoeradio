@@ -2,7 +2,7 @@ register_namespace('ui.infoblock');
 
 
 ui.infoblock.convert_wiki = function (elem) {
-    elem.find('a').each(function(){
+    elem.find('a').not('.infoblock__itunes').each(function(){
         var html = '<span>' + $(this).text() + '</span>';
         if ($(this).hasClass('bbcode_artist')) {
             var artist = $(this).attr('href');
@@ -78,6 +78,13 @@ ui.infoblock.show_artist = function(elem, name) {
             };
             elem.html(ich.tpl_infoblock_artist(context));
             ui.get_ads(elem);
+            if (!elem.is('#tabcontent_tabs_player__info')) {
+                network.stores.buy_artist_links(name, function(data) {
+                    if (data['itunes']) {
+                        elem.find('.infoblock__itunes').attr('href', data['itunes']).css('display', 'inline-block');
+                    }
+                });
+            }
             ui.infoblock.convert_wiki($('.infoblock__wiki'));
             ui.infoblock.add_comments(elem, 'artist', data.artist.name);
 
@@ -172,6 +179,11 @@ ui.infoblock.show_album = function(elem, name) {
             };
             elem.html(ich.tpl_infoblock_album(context));
             ui.get_ads(elem);
+            network.stores.buy_album_links(artist, album, function(data) {
+                if (data['itunes']) {
+                    elem.find('.infoblock__itunes').attr('href', data['itunes']).css('display', 'inline-block');
+                }
+            });
             // ui.infoblock.convert_wiki($('.infoblock__wiki'));
             ui.infoblock.add_comments(elem, 'album', data.album.name + ' (' + data.album.artist + ')');
         },

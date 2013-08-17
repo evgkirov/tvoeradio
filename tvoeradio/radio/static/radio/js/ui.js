@@ -95,7 +95,7 @@ ui.update_album_info = function() {
     ui.infoblock.show($('#tabcontent_tabs_player__album_info'), 'album', current_track.album_name + ' (' + current_track.album_artist + ')');
     network.stores.buy_album_links(current_track.album_artist, current_track.album_name, function(data){
         if (data['itunes']) {
-            $('#itunes').attr('href', data['itunes']).fadeIn(100);
+            $('#player_itunes').attr('href', data['itunes']).fadeIn(100);
         }
     });
 };
@@ -109,7 +109,7 @@ ui.update_track_info = function() {
     $('.track_name').hide().text(current_track.title).fadeIn();
     $('.album_name').hide().text('');
     $('.album_cover').hide();
-    $('#itunes').hide();
+    $('#player_itunes').hide();
 
     $('#tabcontent_tabs_player__album_info').text('(Нет информации)');
     if (current_track.album_name) {
