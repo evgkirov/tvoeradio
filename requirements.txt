@@ -1,5 +1,5 @@
 PIL
-django==1.4.1
+django==1.4.6
 South==0.7.5
 django-annoying==0.7.6
 httpagentparser==1.0.5
