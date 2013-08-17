@@ -1044,17 +1044,13 @@ h2 {
     opacity: 0.6;
 }
 
-
-#fuzy {
-    display: none;
-}
-
-#fuzy img {
+#itunes {
     bottom: 10px;
-    height: 27px;
+    color: white;
+    display: block;
     position: absolute;
+    padding: 7px;
     right: 10px;
-    width: 140px;
 }
 
 #buttons {

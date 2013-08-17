@@ -2,12 +2,25 @@ register_namespace('network.stores');
 
 
 network.stores.buy_album_links = function(artist, album, callback) {
-    $.getJSON(
-        '/app/_/buy_album_links/',
-        {
-            'artist': artist,
-            'album': album
+    $.jsonp({
+        'url': 'https://itunes.apple.com/search?callback=?',
+        'data': {
+            'term': artist + ' ' + album,
+            'country': 'RU',
+            'media': 'music',
+            'entity': 'album',
+            'version': 2
         },
-        callback
-    );
+        'success': function(data) {
+            for (var i = 0; i < data.resultCount; i++) {
+                var result = data.results[i];
+                if ((result.artistName == artist) && (result.collectionName == album)) {
+                    callback({
+                        'itunes': result.collectionViewUrl + '&at=10l3UF'
+                    });
+                    return;
+                }
+            }
+        }
+    });
 };
