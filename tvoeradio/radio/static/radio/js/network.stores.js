@@ -14,7 +14,7 @@ network.stores.buy_album_links = function(artist, album, callback) {
         'success': function(data) {
             for (var i = 0; i < data.resultCount; i++) {
                 var result = data.results[i];
-                if ((result.artistName == artist) && (result.collectionName == album)) {
+                if ((result.artistName.toLowerCase() == artist.toLowerCase()) && (result.collectionName.toLowerCase() == album.toLowerCase())) {
                     callback({
                         'itunes': result.collectionViewUrl + '&at=10l3UF'
                     });
