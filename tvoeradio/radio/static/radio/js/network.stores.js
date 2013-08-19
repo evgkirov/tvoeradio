@@ -3,6 +3,7 @@ register_namespace('network.stores');
 network.stores.itunes_id = '10l3UF';
 
 network.stores.buy_artist_links = function(artist, callback) {
+    return;
     $.jsonp({
         'url': 'https://itunes.apple.com/search?callback=?',
         'data': {
@@ -28,6 +29,7 @@ network.stores.buy_artist_links = function(artist, callback) {
 };
 
 network.stores.buy_album_links = function(artist, album, callback) {
+    return;
     $.jsonp({
         'url': 'https://itunes.apple.com/search?callback=?',
         'data': {
