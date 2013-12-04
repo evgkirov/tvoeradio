@@ -1,0 +1,13 @@
+db/*
+*.pyc
+*.komodoproject
+*.sublime-workspace
+.project
+.pydevproject
+.settings
+_generated_media_names.py
+_generated_media
+settings_local.py
+.codeintel
+.DS_Store
+tvoeradio/media
