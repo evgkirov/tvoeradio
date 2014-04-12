@@ -12,7 +12,3 @@ cssprefixer==1.4.1
 
 textile==2.1.5
 django-markitup==1.0.0
-
--e hg+http://bitbucket.org/mjs7231/django-dbbackup#egg=django-dbbackup
-simples3==1.0
-poster==0.8.1
